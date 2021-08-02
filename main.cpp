@@ -1,6 +1,7 @@
 #include <iostream>
 #include<vector>
 #include<set>
+#include<assert.h>
 class agent;
 class place{
 public:
@@ -26,17 +27,23 @@ public:
         work=0;
     }
     void doStuff(){
-        goHome();
-        goToWork();
-        goHome();
+        atHome();
+        transport(home,work);
+        atWork();
+        transport(work,home);
+        atHome();
     }
-    void goHome(){
-        work->remove(this);
-        home->add(this);
+    void transport(place* origin,place* destination){
+        origin->remove(this);
+        destination->add(this);
     }
-    void goToWork(){
-        home->remove(this);
-        work->add(this);
+    void atHome(){
+        //work->remove(this);
+        //home->add(this);
+    }
+    void atWork(){
+        //home->remove(this);
+        //work->add(this);
     }
     void setHome(place* p){
         home=p;
@@ -57,19 +64,32 @@ void place::show(bool listAll=false){
 int main(int argc, char **argv) {
     std::vector<agent*> agents;
     std::vector<place*> places;
-    for (int i=0;i<2;i++){
+    //create homes
+    for (int i=0;i<200;i++){
         place* p=new place();
         places.push_back(p);
         places[i]->ID=i;
     }
-    for (int i=0;i<60000;i++){
+    //allocate 3 agents per home
+    for (int i=0;i<600;i++){
         agent* a=new agent();
         agents.push_back(a);
         agents[i]->ID=i;
-        agents[i]->setHome(places[0]);
-        agents[i]->setWork(places[1]);
+        agents[i]->setHome(places[i/3]);
     }
-    for (int step=0;step<1;step++){
+    //create work places
+    for (int i=200;i<260;i++){
+        place* p=new place();
+        places.push_back(p);
+        places[i]->ID=i;
+    }
+    //allocate 10 agents per workplace
+    for (int i=0;i<600;i++){
+        assert(places[i/10+200]!=0);
+        agents[i]->setWork(places[i/10+200]);
+    }
+    //move between the two
+    for (int step=0;step<10;step++){
         for (int i=0;i<agents.size();i++){
             agents[i]->doStuff();
         }
