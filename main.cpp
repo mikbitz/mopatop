@@ -22,34 +22,48 @@ public:
     int ID;
     place* home;
     place* work;
+    //transport vehicles are places, albeit moveable!
+    place* bus;
     agent(){
         home=0;
         work=0;
+        bus=0;
     }
     void doStuff(){
         atHome();
-        transport(home,work);
+        enterTransport(home,bus);//load people into busstop rather than direct into bus?
+        inTransit();//trip chaining here?
+        leaveTransport(bus,work);
         atWork();
-        transport(work,home);
+        enterTransport(work,bus);
+        inTransit();
+        leaveTransport(bus,home);
         atHome();
     }
-    void transport(place* origin,place* destination){
+    void enterTransport(place* origin,place* transportMode){
         origin->remove(this);
+        transportMode->add(this);
+    }
+    void leaveTransport(place* transportMode,place* destination){
+        transportMode->remove(this);
         destination->add(this);
     }
     void atHome(){
-        //work->remove(this);
-        //home->add(this);
     }
     void atWork(){
-        //home->remove(this);
-        //work->add(this);
+    }
+    void inTransit(){
     }
     void setHome(place* p){
         home=p;
+        //start all agents at home
+        home->add(this);
     }
     void setWork(place* p){
         work=p;
+    }
+    void setTransport(place* p){
+        bus=p;
     }
 };
 void place::show(bool listAll=false){
@@ -64,29 +78,41 @@ void place::show(bool listAll=false){
 int main(int argc, char **argv) {
     std::vector<agent*> agents;
     std::vector<place*> places;
+    int nAgents=60000;
     //create homes
-    for (int i=0;i<200;i++){
+    for (int i=0;i<nAgents/3;i++){
         place* p=new place();
         places.push_back(p);
         places[i]->ID=i;
     }
     //allocate 3 agents per home
-    for (int i=0;i<600;i++){
+    for (int i=0;i<nAgents;i++){
         agent* a=new agent();
         agents.push_back(a);
         agents[i]->ID=i;
         agents[i]->setHome(places[i/3]);
     }
     //create work places
-    for (int i=200;i<260;i++){
+    for (int i=nAgents/3;i<nAgents/3+nAgents/10;i++){
         place* p=new place();
         places.push_back(p);
         places[i]->ID=i;
     }
     //allocate 10 agents per workplace
-    for (int i=0;i<600;i++){
+    for (int i=0;i<agents.size();i++){
         assert(places[i/10+200]!=0);
         agents[i]->setWork(places[i/10+200]);
+    }
+    //create buses
+    for (int i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
+        place* p=new place();
+        places.push_back(p);
+        places[i]->ID=i;
+    }
+    //allocate 30 agents per bus
+    for (int i=0;i<agents.size();i++){
+        assert(places[i/30+260]!=0);
+        agents[i]->setTransport(places[i/30+260]);
     }
     //move between the two
     for (int step=0;step<10;step++){
@@ -97,6 +123,5 @@ int main(int argc, char **argv) {
     for (int i=0;i<places.size();i++){
         places[i]->show();
     }
-    std::cout << "Hello, world!" << std::endl;
     return 0;
 }
