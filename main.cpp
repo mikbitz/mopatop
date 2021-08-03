@@ -1,9 +1,48 @@
 #include <iostream>
-#include<functional>
+#include <random>
 #include<vector>
 #include<set>
 #include<assert.h>
 class agent;
+//------------------------------------------------------------------------
+//Set up a wrapper class that will provide uniform random numbers between 0 and 1
+class randomizer {
+public:
+    static randomizer& getInstance(){ 
+        if (instance==NULL){
+            instance=new randomizer();
+        }
+        
+        return *instance;
+        
+    }
+    std::uniform_real_distribution<> uniform_dist;
+ 
+    // Use mersenne twister with fixed seed as the random number engine
+    std::mt19937 twister;
+public:
+    ~randomizer(){
+      clean();
+    }
+    double number(){
+     return uniform_dist(twister);
+    }
+    void setSeed(int s){
+        std::cout<<"randomizer seed set to "<<s <<std::endl;
+        twister.seed(s);
+    }
+private:
+    
+    static randomizer* instance;
+    randomizer(){
+        uniform_dist=std::uniform_real_distribution<> (0,1);
+        std::cout<<"A randomizer was set up with seed 0" <<std::endl;
+        twister.seed(0);
+    }
+    
+    void clean(){if (instance!=NULL) {delete instance;instance=NULL;}}
+};
+//------------------------------------------------------------------------
 class place{
 public:
     int ID;
@@ -23,13 +62,13 @@ public:
     void show(bool);
 };
 class placeChanger{
-    place* origin,*destination;
+    place *origin,*destination;
 public:
     placeChanger(){origin=nullptr;destination=nullptr;}
     placeChanger(agent* a, place* o,place* d):origin(o),destination(d){ 
         origin->remove(a);
         destination->add(a);
-    }
+    }//place changing shouldn't really happen in the constructor!
     place* update(){return destination;}
 };
 class agent{
@@ -64,7 +103,7 @@ public:
         schedule++;
         schedule=schedule % travel.size();
         if (diseased)currentPlace->increaseContamination(0.1);
-        if (currentPlace->getContaminationLevel()>0.4)diseased=true;
+        if (currentPlace->getContaminationLevel()>randomizer::getInstance().number())diseased=true;
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
         if (currentPlace==vehicle)inTransit();
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver 
@@ -113,10 +152,11 @@ void place::show(bool listAll=false){
         }
     }
 }
-
+randomizer* randomizer::instance=NULL;
 
 int main(int argc, char **argv) {
-
+    randomizer r=randomizer::getInstance();
+    r.setSeed(1);
     std::vector<agent*> agents;
     std::vector<place*> places;
     int nAgents=60;
