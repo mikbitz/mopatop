@@ -41,6 +41,9 @@ private:
     void clean(){if (instance!=nullptr) {delete instance;instance=nullptr;}}
 };
 //------------------------------------------------------------------------
+//static class members have to be initialized
+randomizer* randomizer::instance=NULL;
+//------------------------------------------------------------------------
 class place{
 public:
     int ID;
@@ -164,70 +167,79 @@ void place::show(bool listAll=false){
     }
 }
 //------------------------------------------------------------------------
-//static class members have to be initialized
-randomizer* randomizer::instance=NULL;
-//------------------------------------------------------------------------
-int main(int argc, char **argv) {
-    randomizer r=randomizer::getInstance();
-    r.setSeed(1);
+class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
     int nAgents=60000;
-    int nSteps=1000;
-    //create homes
-    for (int i=0;i<nAgents/3;i++){
-        place* p=new place();
-        places.push_back(p);
-        places[i]->ID=i;
+public:
+    model(){
+        randomizer r=randomizer::getInstance();
+        r.setSeed(1);
+        //create homes
+        for (int i=0;i<nAgents/3;i++){
+            place* p=new place();
+            places.push_back(p);
+            places[i]->ID=i;
+        }
+        //allocate 3 agents per home
+        for (int i=0;i<nAgents;i++){
+            agent* a=new agent();
+            agents.push_back(a);
+            agents[i]->ID=i;
+            agents[i]->setHome(places[i/3]);
+        }
+        //create work places
+        for (int i=nAgents/3;i<nAgents/3+nAgents/10;i++){
+            place* p=new place();
+            places.push_back(p);
+            places[i]->ID=i;
+        }
+        //allocate 10 agents per workplace
+        for (int i=0;i<agents.size();i++){
+            assert(places[i/10+nAgents/3]!=0);
+            agents[i]->setWork(places[i/10+nAgents/3]);
+        }
+        //create buses
+        for (int i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
+            place* p=new place();
+            places.push_back(p);
+            places[i]->ID=i;
+        }
+        //allocate 30 agents per bus
+        for (int i=0;i<agents.size();i++){
+            assert(places[i/30+nAgents/3+nAgents/10]!=0);
+            agents[i]->setTransport(places[i/30+nAgents/3+nAgents/10]);
+        }
+        for (int i=0;i<agents.size();i++){
+            agents[i]->initTravelSchedule();
+        }
+        std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
+        agents[0]->diseased=true;
     }
-    //allocate 3 agents per home
-    for (int i=0;i<nAgents;i++){
-        agent* a=new agent();
-        agents.push_back(a);
-        agents[i]->ID=i;
-        agents[i]->setHome(places[i/3]);
-    }
-    //create work places
-    for (int i=nAgents/3;i<nAgents/3+nAgents/10;i++){
-        place* p=new place();
-        places.push_back(p);
-        places[i]->ID=i;
-    }
-    //allocate 10 agents per workplace
-    for (int i=0;i<agents.size();i++){
-        assert(places[i/10+nAgents/3]!=0);
-        agents[i]->setWork(places[i/10+nAgents/3]);
-    }
-    //create buses
-    for (int i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
-        place* p=new place();
-        places.push_back(p);
-        places[i]->ID=i;
-    }
-    //allocate 30 agents per bus
-    for (int i=0;i<agents.size();i++){
-        assert(places[i/30+nAgents/3+nAgents/10]!=0);
-        agents[i]->setTransport(places[i/30+nAgents/3+nAgents/10]);
-    }
-    for (int i=0;i<agents.size();i++){
-        agents[i]->initTravelSchedule();
-    }
-    std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
-    agents[0]->diseased=true;
-    //move between the places
-    for (int step=0;step<nSteps;step++){
-        int ill=0;
+    void step(){
+        //move between the places
+        int totalInfected=0;
         for (int i=0;i<agents.size();i++){
             agents[i]->update();
-            if (agents[i]->diseased)ill++;
+            if (agents[i]->diseased)totalInfected++;
         }
         for (int i=0;i<places.size();i++){
             places[i]->update();
         }
-        std::cout<<"Infected "<<ill<<std::endl;
+        std::cout<<"Infected "<<totalInfected<<std::endl;
+        
+        for (int i=0;i<places.size();i++){
+            //places[i]->show();
+        }
     }
-    for (int i=0;i<places.size();i++){
-        //places[i]->show();
+    
+};
+//------------------------------------------------------------------------
+int main(int argc, char **argv) {
+    model m;
+    int nSteps=1000;
+    for (int step=0;step<nSteps;step++){
+        m.step();
     }
     return 0;
 }
