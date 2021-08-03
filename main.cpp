@@ -6,24 +6,22 @@
 class agent;
 //------------------------------------------------------------------------
 //Set up a wrapper class that will provide uniform random numbers between 0 and 1
+//Use a singleton so there is only one random seqeunce across all agents
 class randomizer {
 public:
     static randomizer& getInstance(){ 
         if (instance==NULL){
             instance=new randomizer();
         }
-        
         return *instance;
-        
     }
     std::uniform_real_distribution<> uniform_dist;
- 
     // Use mersenne twister with fixed seed as the random number engine
     std::mt19937 twister;
 public:
-    ~randomizer(){
-      clean();
-    }
+    //~randomizer(){
+    //  clean();
+   // }
     double number(){
      return uniform_dist(twister);
     }
@@ -40,16 +38,16 @@ private:
         twister.seed(0);
     }
     
-    void clean(){if (instance!=NULL) {delete instance;instance=NULL;}}
+    void clean(){if (instance!=nullptr) {delete instance;instance=nullptr;}}
 };
 //------------------------------------------------------------------------
 class place{
 public:
     int ID;
-    float contaminationLevel,decrement;
+    float contaminationLevel,fractionalDecrement;
     //unique list of current people in this place
     std::set<agent*> occupants;
-    place(){ID=0;contaminationLevel=0.;decrement=0.9;}
+    place(){ID=0;contaminationLevel=0.;fractionalDecrement=0.1;}
     void add(agent* a){
         occupants.insert(a);
     }
@@ -58,9 +56,10 @@ public:
     }
     void increaseContamination(float amount){contaminationLevel+=amount;}
     float getContaminationLevel(){return contaminationLevel;}
-    void update(){contaminationLevel*=decrement;}
+    void update(){contaminationLevel*=fractionalDecrement;}
     void show(bool);
 };
+//------------------------------------------------------------------------
 class placeChanger{
     place *origin,*destination;
 public:
@@ -71,6 +70,7 @@ public:
     }//place changing shouldn't really happen in the constructor!
     place* update(){return destination;}
 };
+//------------------------------------------------------------------------
 class agent{
 public:
     int ID;
@@ -82,7 +82,7 @@ public:
     
     std::vector<placeChanger*> travel;
     int schedule;
-    bool diseased;
+    bool diseased,immune;
     agent(){
         home=0;
         work=0;
@@ -102,12 +102,21 @@ public:
         currentPlace=travel[schedule]->update();
         schedule++;
         schedule=schedule % travel.size();
-        if (diseased)currentPlace->increaseContamination(0.1);
-        if (currentPlace->getContaminationLevel()>randomizer::getInstance().number())diseased=true;
+        disease();
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
         if (currentPlace==vehicle)inTransit();
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver 
         
+    }
+    void disease(){
+        if (diseased){
+            //cough
+            currentPlace->increaseContamination(0.01);
+            //recovery
+            if (0.002>randomizer::getInstance().number()) {diseased=false ; immune=true;}
+        }
+        //infection
+        if (currentPlace->getContaminationLevel()>randomizer::getInstance().number() && !immune)diseased=true;
     }
     void enterTransport(place* origin,place* transportMode){
         origin->remove(this);
@@ -143,6 +152,8 @@ public:
     }
 
 };
+//------------------------------------------------------------------------
+//needed here as agents are pre-declared before place class
 void place::show(bool listAll=false){
     std::cout<<"Place ID "<<ID<<" has "<<occupants.size()<<" occupants"<<std::endl;
     if (listAll){
@@ -152,14 +163,16 @@ void place::show(bool listAll=false){
         }
     }
 }
+//------------------------------------------------------------------------
+//static class members have to be initialized
 randomizer* randomizer::instance=NULL;
-
+//------------------------------------------------------------------------
 int main(int argc, char **argv) {
     randomizer r=randomizer::getInstance();
     r.setSeed(1);
     std::vector<agent*> agents;
     std::vector<place*> places;
-    int nAgents=60;
+    int nAgents=60000;
     int nSteps=1000;
     //create homes
     for (int i=0;i<nAgents/3;i++){
