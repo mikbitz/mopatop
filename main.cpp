@@ -3,7 +3,6 @@
 #include<vector>
 #include<set>
 #include<assert.h>
-class agent;
 //------------------------------------------------------------------------
 //Set up a wrapper class that will provide uniform random numbers between 0 and 1
 //Use a singleton so there is only one random seqeunce across all agents
@@ -44,6 +43,10 @@ private:
 //static class members have to be initialized
 randomizer* randomizer::instance=NULL;
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//Forward declaration of agent as they are needed in place class
+class agent;
+//------------------------------------------------------------------------
 class place{
 public:
     int ID;
@@ -63,6 +66,8 @@ public:
     void show(bool);
 };
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//move agents between locations
 class placeChanger{
     place *origin,*destination;
 public:
@@ -73,6 +78,7 @@ public:
     }//place changing shouldn't really happen in the constructor!
     place* update(){return destination;}
 };
+//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 class agent{
 public:
@@ -156,7 +162,8 @@ public:
 
 };
 //------------------------------------------------------------------------
-//needed here as agents are pre-declared before place class
+//------------------------------------------------------------------------
+//needed here for places as agents are pre-declared before place class
 void place::show(bool listAll=false){
     std::cout<<"Place ID "<<ID<<" has "<<occupants.size()<<" occupants"<<std::endl;
     if (listAll){
@@ -167,6 +174,7 @@ void place::show(bool listAll=false){
     }
 }
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
@@ -175,6 +183,9 @@ public:
     model(){
         randomizer r=randomizer::getInstance();
         r.setSeed(1);
+        init();
+    }
+    void init(){
         //create homes
         for (int i=0;i<nAgents/3;i++){
             place* p=new place();
@@ -234,6 +245,7 @@ public:
     }
     
 };
+//------------------------------------------------------------------------
 //------------------------------------------------------------------------
 int main(int argc, char **argv) {
     model m;
