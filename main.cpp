@@ -8,14 +8,14 @@
 #include<assert.h>
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-//simple class to abstract the clunky C++ chrono system
+//simple static class to abstract the clunky C++ chrono system
 class timeReporter{
 public:
     //get the time now
     static std::chrono::time_point<std::chrono::steady_clock> getTime(){return std::chrono::steady_clock::now();}
     //show the interval between two time points in milliseconds
     static void showInterval(std::string s,std::chrono::time_point<std::chrono::steady_clock> start,std::chrono::time_point<std::chrono::steady_clock> end){
-        std::cout<<s<<std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count()<<" milliseconds"<<std::endl;
+        std::cout<<s<<float(std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count())/1000<<" seconds"<<std::endl;
     }
 
 };
@@ -192,7 +192,7 @@ void place::show(bool listAll=false){
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
-    int nAgents=6000000;
+    int nAgents=60000;
 public:
     model(){
         randomizer r=randomizer::getInstance();
