@@ -1,6 +1,7 @@
 #include <iostream>
 #include<algorithm>
 #include <random>
+#include<fstream>
 #include<vector>
 #include<chrono>
 #include<set>
@@ -192,11 +193,16 @@ void place::show(bool listAll=false){
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
-    int nAgents=60000;
+    int nAgents=600;
+    std::ofstream output;
 public:
     model(){
         randomizer r=randomizer::getInstance();
         r.setSeed(1);
+        //output file
+        output.open("diseaseSummary");
+        //header line
+        output<<"step,susceptible,infected,recovered"<<std::endl;
         //Initialisation can be slow - check the timing
         auto start=timeReporter::getTime();
         init();
@@ -248,12 +254,12 @@ public:
         //set off the disease!
         agents[0]->diseased=true;
     }
-    void step(){
+    void step(int num){
         //update the places - changes contamination level
         for (int i=0;i<places.size();i++){
             places[i]->update();
         }
-        int totalInfected=0,recovered=0;
+        int infected=0,recovered=0;
         //do disease - synchronous update (i.e. all agents contaminate before getting infected) so that no agent gets to infect ahead of others.
         //alternatively could be randomized...depends on the idea of how a location works...places could be sub-divided to mimic spatial extent for example.
         for (int i=0;i<agents.size();i++){
@@ -262,15 +268,15 @@ public:
         //the disease progresses
         for (int i=0;i<agents.size();i++){
             agents[i]->disease();
-            if (agents[i]->diseased)totalInfected++;
+            if (agents[i]->diseased)infected++;
             if (agents[i]->immune)recovered++;
         }
         //move around, do other things in a location
         for (int i=0;i<agents.size();i++){
             agents[i]->update();
         }
-
-        std::cout<<"Infected "<<totalInfected<<std::endl;
+        output<<num<<","<<agents.size()-infected-recovered<<","<<infected<<","<<recovered<<std::endl;
+        std::cout<<"Infected "<<infected<<std::endl;
         
         for (int i=0;i<places.size();i++){
             //places[i]->show();
@@ -282,10 +288,10 @@ public:
 //------------------------------------------------------------------------
 int main(int argc, char **argv) {
     model m;
-    int nSteps=5;
+    int nSteps=1000;
     auto start=timeReporter::getTime();
     for (int step=0;step<nSteps;step++){
-        m.step();
+        m.step(step);
     }
     auto end=timeReporter::getTime();
     timeReporter::showInterval("Execution time after initialisation: ",start,end);
