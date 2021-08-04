@@ -6,6 +6,19 @@
 #include<set>
 #include<assert.h>
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//simple class to abstract the clunky C++ chrono system
+class timeReporter{
+public:
+    //get the time now
+    static std::chrono::time_point<std::chrono::steady_clock> getTime(){return std::chrono::steady_clock::now();}
+    //show the interval between two time points in milliseconds
+    static void showInterval(std::chrono::time_point<std::chrono::steady_clock> start,std::chrono::time_point<std::chrono::steady_clock> end){
+        std::cout<<"Initialisation took "<<std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count()<<" milliseconds"<<std::endl;
+    }
+
+};
+//------------------------------------------------------------------------
 //Set up a wrapper class that will provide uniform random numbers between 0 and 1
 //Use a singleton so there is only one random seqeunce across all agents
 class randomizer {
@@ -81,7 +94,7 @@ public:
     placeChanger(agent* a, place* o,place* d):origin(o),destination(d){ 
         origin->remove(a);
         destination->add(a);
-    }//place changing shouldn't really happen in the constructor! these lines are onyl needed if agents will interact directly at the place, in any case 
+    }//place changing shouldn't really happen in the constructor! these lines are only needed if agents will interact directly at the place, in any case 
     place* update(){return destination;}
 };
 //------------------------------------------------------------------------
@@ -183,10 +196,11 @@ public:
     model(){
         randomizer r=randomizer::getInstance();
         r.setSeed(1);
-        auto start=std::chrono::steady_clock::now();
+        //Initialisation can be slow - check the timing
+        auto start=timeReporter::getTime();
         init();
-        auto end=std::chrono::steady_clock::now();
-        std::cout<<"Initialisation took "<<std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count()<<" milliseconds"<<std::endl;
+        auto end=timeReporter::getTime();
+        timeReporter::showInterval(start,end);
     }
     void init(){
         //create homes
