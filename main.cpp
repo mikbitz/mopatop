@@ -2,6 +2,7 @@
 #include<algorithm>
 #include <random>
 #include<vector>
+#include<chrono>
 #include<set>
 #include<assert.h>
 //------------------------------------------------------------------------
@@ -54,6 +55,7 @@ public:
     int ID;
     float contaminationLevel,fractionalDecrement;
     //unique list of current people in this place
+    //currently this is not used...seems to add about 20% to memory requirement
     std::set<agent*> occupants;
 
     place(){ID=0;contaminationLevel=0.;fractionalDecrement=0.1;}
@@ -79,7 +81,7 @@ public:
     placeChanger(agent* a, place* o,place* d):origin(o),destination(d){ 
         origin->remove(a);
         destination->add(a);
-    }//place changing shouldn't really happen in the constructor!
+    }//place changing shouldn't really happen in the constructor! these lines are onyl needed if agents will interact directly at the place, in any case 
     place* update(){return destination;}
 };
 //------------------------------------------------------------------------
@@ -113,7 +115,6 @@ public:
     }
     void update(){
         //Use the base travel schedule - initialised at home for everyone
-        if (ID==0)std::cout<<schedule<<std::endl;
         currentPlace=travel[schedule]->update();
         schedule++;
         schedule=schedule % travel.size();
@@ -127,6 +128,7 @@ public:
         if (diseased) currentPlace->increaseContamination(0.01);
     }
     void disease(){
+        //very very simple disease...
         //recovery
         if (diseased){
             if (0.002>randomizer::getInstance().number()) {diseased=false ; immune=true;}
@@ -147,8 +149,8 @@ public:
     }
     void setHome(place* p){
         home=p;
-        //start all agents at home
-        home->add(this);
+        //start all agents at home - if using the occupants list, add to the home place
+        //home->add(this);
         currentPlace=home;
     }
     void setWork(place* p){
@@ -176,12 +178,15 @@ void place::show(bool listAll=false){
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
-    int nAgents=6000;
+    int nAgents=600000;
 public:
     model(){
         randomizer r=randomizer::getInstance();
         r.setSeed(1);
+        auto start=std::chrono::steady_clock::now();
         init();
+        auto end=std::chrono::steady_clock::now();
+        std::cout<<"Initialisation took "<<std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count()<<" milliseconds"<<std::endl;
     }
     void init(){
         //create homes
@@ -235,7 +240,7 @@ public:
         }
         int totalInfected=0,recovered=0;
         //do disease - synchronous update (i.e. all agents contaminate before getting infected) so that no agent gets to infect ahead of others.
-        //alternatively could be randomized...
+        //alternatively could be randomized...depends on the idea of how a location works...places could be sub-divided to mimic spatial extent for example.
         for (int i=0;i<agents.size();i++){
             agents[i]->cough();
         }
@@ -262,7 +267,7 @@ public:
 //------------------------------------------------------------------------
 int main(int argc, char **argv) {
     model m;
-    int nSteps=5000;
+    int nSteps=5;
     for (int step=0;step<nSteps;step++){
         m.step();
     }
