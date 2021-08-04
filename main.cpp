@@ -4,6 +4,7 @@
 #include<vector>
 #include<chrono>
 #include<set>
+#include<string>
 #include<assert.h>
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
@@ -13,8 +14,8 @@ public:
     //get the time now
     static std::chrono::time_point<std::chrono::steady_clock> getTime(){return std::chrono::steady_clock::now();}
     //show the interval between two time points in milliseconds
-    static void showInterval(std::chrono::time_point<std::chrono::steady_clock> start,std::chrono::time_point<std::chrono::steady_clock> end){
-        std::cout<<"Initialisation took "<<std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count()<<" milliseconds"<<std::endl;
+    static void showInterval(std::string s,std::chrono::time_point<std::chrono::steady_clock> start,std::chrono::time_point<std::chrono::steady_clock> end){
+        std::cout<<s<<std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count()<<" milliseconds"<<std::endl;
     }
 
 };
@@ -191,7 +192,7 @@ void place::show(bool listAll=false){
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
-    int nAgents=600000;
+    int nAgents=6000000;
 public:
     model(){
         randomizer r=randomizer::getInstance();
@@ -200,7 +201,7 @@ public:
         auto start=timeReporter::getTime();
         init();
         auto end=timeReporter::getTime();
-        timeReporter::showInterval(start,end);
+        timeReporter::showInterval("Initialisation took: ", start,end);
     }
     void init(){
         //create homes
@@ -282,9 +283,12 @@ public:
 int main(int argc, char **argv) {
     model m;
     int nSteps=5;
+    auto start=timeReporter::getTime();
     for (int step=0;step<nSteps;step++){
         m.step();
     }
+    auto end=timeReporter::getTime();
+    timeReporter::showInterval("Execution time after initialisation: ",start,end);
     return 0;
 }
 
