@@ -1,4 +1,5 @@
 #include <iostream>
+#include<algorithm>
 #include <random>
 #include<vector>
 #include<set>
@@ -47,12 +48,14 @@ randomizer* randomizer::instance=NULL;
 //Forward declaration of agent as they are needed in place class
 class agent;
 //------------------------------------------------------------------------
+//------------------------------------------------------------------------
 class place{
 public:
     int ID;
     float contaminationLevel,fractionalDecrement;
     //unique list of current people in this place
     std::set<agent*> occupants;
+
     place(){ID=0;contaminationLevel=0.;fractionalDecrement=0.1;}
     void add(agent* a){
         occupants.insert(a);
@@ -62,6 +65,7 @@ public:
     }
     void increaseContamination(float amount){contaminationLevel+=amount;}
     float getContaminationLevel(){return contaminationLevel;}
+    //contamination decays exponentially
     void update(){contaminationLevel*=fractionalDecrement;}
     void show(bool);
 };
@@ -88,9 +92,11 @@ public:
     place* work;
     //transport vehicles are places, albeit moveable!
     place* vehicle;
-    
+    //holds the travel schedule
     std::vector<placeChanger*> travel;
+    //where we have got to through the schedule
     int schedule;
+    //disease parameters
     bool diseased,immune;
     agent(){
         home=0;
@@ -111,33 +117,25 @@ public:
         currentPlace=travel[schedule]->update();
         schedule++;
         schedule=schedule % travel.size();
-        disease();
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
         if (currentPlace==vehicle)inTransit();
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver 
         
     }
+    void cough(){
+        //breathInto(place) - masks could go here (what about surfaces? -second contamination factor?)
+        if (diseased) currentPlace->increaseContamination(0.01);
+    }
     void disease(){
+        //recovery
         if (diseased){
-            //cough
-            currentPlace->increaseContamination(0.01);
-            //recovery
             if (0.002>randomizer::getInstance().number()) {diseased=false ; immune=true;}
         }
         //infection
         if (currentPlace->getContaminationLevel()>randomizer::getInstance().number() && !immune)diseased=true;
-    }
-    void enterTransport(place* origin,place* transportMode){
-        origin->remove(this);
-        transportMode->add(this);
-    }
-    void leaveTransport(place* transportMode,place* destination){
-        transportMode->remove(this);
-        destination->add(this);
+        //immunity loss could go here...
     }
     void atHome(){
-        //stigmergic disease at all locations? - how to update places consistently (and simply) with agents?
-        //breathInto(place)? (what about surfaces?)
         if (ID==0)std::cout<<"at Home"<<std::endl;
         if (ID==1)std::cout<<"cough! at place ID "<<currentPlace->ID<<": "<<home->getContaminationLevel()<<std::endl;
     }
@@ -178,7 +176,7 @@ void place::show(bool listAll=false){
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
-    int nAgents=60000;
+    int nAgents=6000;
 public:
     model(){
         randomizer r=randomizer::getInstance();
@@ -205,6 +203,8 @@ public:
             places.push_back(p);
             places[i]->ID=i;
         }
+        //shuffle agents so household members get different workplaces
+        random_shuffle(agents.begin(),agents.end());
         //allocate 10 agents per workplace
         for (int i=0;i<agents.size();i++){
             assert(places[i/10+nAgents/3]!=0);
@@ -225,18 +225,31 @@ public:
             agents[i]->initTravelSchedule();
         }
         std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
+        //set off the disease!
         agents[0]->diseased=true;
     }
     void step(){
-        //move between the places
-        int totalInfected=0;
-        for (int i=0;i<agents.size();i++){
-            agents[i]->update();
-            if (agents[i]->diseased)totalInfected++;
-        }
+        //update the places - changes contamination level
         for (int i=0;i<places.size();i++){
             places[i]->update();
         }
+        int totalInfected=0,recovered=0;
+        //do disease - synchronous update (i.e. all agents contaminate before getting infected) so that no agent gets to infect ahead of others.
+        //alternatively could be randomized...
+        for (int i=0;i<agents.size();i++){
+            agents[i]->cough();
+        }
+        //the disease progresses
+        for (int i=0;i<agents.size();i++){
+            agents[i]->disease();
+            if (agents[i]->diseased)totalInfected++;
+            if (agents[i]->immune)recovered++;
+        }
+        //move around, do other things in a location
+        for (int i=0;i<agents.size();i++){
+            agents[i]->update();
+        }
+
         std::cout<<"Infected "<<totalInfected<<std::endl;
         
         for (int i=0;i<places.size();i++){
@@ -249,25 +262,10 @@ public:
 //------------------------------------------------------------------------
 int main(int argc, char **argv) {
     model m;
-    int nSteps=1000;
+    int nSteps=5000;
     for (int step=0;step<nSteps;step++){
         m.step();
     }
     return 0;
 }
-//reminders of how to do some function cally things
-        //auto k=[&](){atHome();};
-        //k();
-//agent* w=new agent();
-//auto n=[&](agent* a){a->atHome();};
-//    template <typename F>
-//void ask(std::set<agent*> ps,F f){
-//    for (auto& p: ps) f(*p);
-//}
-//    template <typename F>
-//void ask(agent* ps,F f){
-//    f(ps);
-//}
-//ask(w,n);
-    //auto n=[&](agent* a){a->atHome();};
-    //void operator()(agent* a){a->atHome();}
+
