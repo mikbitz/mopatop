@@ -153,14 +153,13 @@ public:
         //immunity loss could go here...
     }
     void atHome(){
-        if (ID==0)std::cout<<"at Home"<<std::endl;
-        if (ID==1)std::cout<<"cough! at place ID "<<currentPlace->ID<<": "<<home->getContaminationLevel()<<std::endl;
+        //if (ID==0)std::cout<<"at Home"<<std::endl;
     }
     void atWork(){
-        if (ID==0)std::cout<<"at Work"<<std::endl;
+        //if (ID==0)std::cout<<"at Work"<<std::endl;
     }
     void inTransit(){
-        if (ID==0)std::cout<<"on Bus"<<std::endl;
+        //if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
     void setHome(place* p){
         home=p;
@@ -276,7 +275,7 @@ public:
             agents[i]->update();
         }
         output<<num<<","<<agents.size()-infected-recovered<<","<<infected<<","<<recovered<<std::endl;
-        std::cout<<"Infected "<<infected<<std::endl;
+        if (num%10==0)std::cout<<"Step "<<num<<std::endl;
         
         for (int i=0;i<places.size();i++){
             //places[i]->show();
