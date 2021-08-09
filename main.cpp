@@ -85,20 +85,7 @@ public:
     float getContaminationLevel(){return contaminationLevel;}
     //contamination decays exponentially
     void update(){contaminationLevel*=fractionalDecrement;}
-    void show(bool);
-};
-//------------------------------------------------------------------------
-//------------------------------------------------------------------------
-//move agents between locations
-class placeChanger{
-    place *origin,*destination;
-public:
-    placeChanger(){origin=nullptr;destination=nullptr;}
-    placeChanger(agent* a, place* o,place* d):origin(o),destination(d){ 
-        origin->remove(a);
-        destination->add(a);
-    }//place changing shouldn't really happen in the constructor! these lines are only needed if agents will interact directly at the place, in any case 
-    place* update(){return destination;}
+    void show(bool);//defined below once agents are defined
 };
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
@@ -110,9 +97,7 @@ public:
     std::vector<place*>places;
     placeTypes currentPlace;
 
-    //holds the travel schedule
-    //std::vector<placeChanger*> travel;
-    //where we have got to through the schedule
+    //where we have got to through the schedule ?? needs modification...
     int schedule;
     //disease parameters
     bool diseased,immune;
@@ -121,11 +106,7 @@ public:
         //this has to be the same size as the placeTypes enum
         places.resize(3);
     }
-    void initTravelSchedule(){
-        //travel.push_back(new placeChanger(this,home,vehicle));//load people into busstop (or transportHub) rather than direct into bus? - here they would wait
-        //travel.push_back(new placeChanger(this,vehicle,work));//trip chaining? how to handle trips across multiple transport hubs? how to do schools (do parents load up childer?) and shops?
-        //travel.push_back(new placeChanger(this,work,vehicle));
-        //travel.push_back(new placeChanger(this,vehicle,home));        
+    void initTravelSchedule(){       
         schedule=0;
     }
     void moveTo(placeTypes location){
@@ -135,7 +116,7 @@ public:
     }
     void update(){
         //Use the base travel schedule - initialised at home for everyone
-        currentPlace=home;//travel[schedule]->update();
+        moveTo(home);//travel[schedule]->update();//MODIFY to use new default travel sched.
         schedule++;
         //schedule=schedule % travel.size();
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
@@ -221,7 +202,7 @@ public:
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
-    int nAgents=6000000;
+    int nAgents=600000;
     std::ofstream output;
 public:
     model(){
