@@ -1,6 +1,7 @@
 #include <iostream>
 #include<algorithm>
 #include <random>
+#include <map>
 #include<fstream>
 #include<vector>
 #include<chrono>
@@ -104,35 +105,39 @@ public:
 class agent{
 public:
     int ID;
-    place* currentPlace;
-    place* home;
-    place* work;
     //transport vehicles are places, albeit moveable!
-    place* vehicle;
+    enum placeTypes{home,work,vehicle};
+    std::vector<place*>places;
+    placeTypes currentPlace;
+
     //holds the travel schedule
-    std::vector<placeChanger*> travel;
+    //std::vector<placeChanger*> travel;
     //where we have got to through the schedule
     int schedule;
     //disease parameters
     bool diseased,immune;
     agent(){
-        home=0;
-        work=0;
-        vehicle=0;
         diseased=false;
+        //this has to be the same size as the placeTypes enum
+        places.resize(3);
     }
     void initTravelSchedule(){
-        travel.push_back(new placeChanger(this,home,vehicle));//load people into busstop (or transportHub) rather than direct into bus? - here they would wait
-        travel.push_back(new placeChanger(this,vehicle,work));//trip chaining? how to handle trips across multiple transport hubs? how to do schools (do parents load up childer?) and shops?
-        travel.push_back(new placeChanger(this,work,vehicle));
-        travel.push_back(new placeChanger(this,vehicle,home));        
+        //travel.push_back(new placeChanger(this,home,vehicle));//load people into busstop (or transportHub) rather than direct into bus? - here they would wait
+        //travel.push_back(new placeChanger(this,vehicle,work));//trip chaining? how to handle trips across multiple transport hubs? how to do schools (do parents load up childer?) and shops?
+        //travel.push_back(new placeChanger(this,work,vehicle));
+        //travel.push_back(new placeChanger(this,vehicle,home));        
         schedule=0;
+    }
+    void moveTo(placeTypes location){
+        places[currentPlace]->remove(this);
+        places[location]->add(this);
+        currentPlace=location;
     }
     void update(){
         //Use the base travel schedule - initialised at home for everyone
-        currentPlace=travel[schedule]->update();
+        currentPlace=home;//travel[schedule]->update();
         schedule++;
-        schedule=schedule % travel.size();
+        //schedule=schedule % travel.size();
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
         if (currentPlace==vehicle)inTransit();
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver 
@@ -140,7 +145,7 @@ public:
     }
     void cough(){
         //breathInto(place) - masks could go here (what about surfaces? -second contamination factor?)
-        if (diseased) currentPlace->increaseContamination(0.01);
+        if (diseased) places[currentPlace]->increaseContamination(0.01);
     }
     void disease(){
         //very very simple disease...
@@ -149,7 +154,7 @@ public:
             if (0.002>randomizer::getInstance().number()) {diseased=false ; immune=true;}
         }
         //infection
-        if (currentPlace->getContaminationLevel()>randomizer::getInstance().number() && !immune)diseased=true;
+        if (places[currentPlace]->getContaminationLevel()>randomizer::getInstance().number() && !immune)diseased=true;
         //immunity loss could go here...
     }
     void atHome(){
@@ -161,17 +166,21 @@ public:
     void inTransit(){
         //if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
-    void setHome(place* p){
-        home=p;
+    void setHome(place* pu){
+        //home=pu;
+        places[home]=pu;
         //start all agents at home - if using the occupants list, add to the home place
-        //home->add(this);
+        //pu->add(this);
         currentPlace=home;
+        if (ID==0)std::cout<<"'ome! "<<places[home]<<std::endl;
     }
-    void setWork(place* p){
-        work=p;
+    void setWork(place* pu){
+        //work=pu;
+        places[work]=pu;
     }
-    void setTransport(place* p){
-        vehicle=p;
+    void setTransport(place* pu){
+        //vehicle=pu;
+        places[vehicle]=pu;
     }
 
 };
@@ -189,10 +198,30 @@ void place::show(bool listAll=false){
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+/**
+    @TODO make this real-world-time dependent
+*/
+class travelSchedule{
+    //holds the default travel schedule
+    std::vector<agent::placeTypes> destinations;
+public:
+    travelSchedule(){
+        destinations.push_back(agent::vehicle);//load people into busstop (or transportHub) rather than direct into bus? - here they would wait
+        destinations.push_back(agent::work);//trip chaining? how to handle trips across multiple transport hubs? how to do schools (do parents load up childer?) and shops? - use a stack to modify default schedule!
+        destinations.push_back(agent::vehicle);
+        destinations.push_back(agent::home);
+    }
+    void gotoNextLocation(agent* a,agent::placeTypes i){
+        a->moveTo(destinations[i]);
+    }
+
+};
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
-    int nAgents=600;
+    int nAgents=6000000;
     std::ofstream output;
 public:
     model(){
@@ -207,6 +236,7 @@ public:
         init();
         auto end=timeReporter::getTime();
         timeReporter::showInterval("Initialisation took: ", start,end);
+        travelSchedule x;
     }
     void init(){
         //create homes
@@ -287,7 +317,7 @@ public:
 //------------------------------------------------------------------------
 int main(int argc, char **argv) {
     model m;
-    int nSteps=1000;
+    int nSteps=5;
     auto start=timeReporter::getTime();
     for (int step=0;step<nSteps;step++){
         m.step(step);
