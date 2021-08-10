@@ -341,13 +341,18 @@ int main(int argc, char **argv) {
 }
 /**
  * @mainpage
- * 
+ * @section intro_sec Introduction
  * This model is aimed at representing the patterns of movement and interaction of agents that represent individual people as they go about their daily activities.
  * 
  * The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country.
- * 
- * @section intro_sec Introduction
  * @subsection Main Main ideas
+ * Agents move between places according to a given travel schedule. Places include transport vehicles.
+ * In each location, agents with a disease can add contamination, which then decays exponentially over time.
+ * The release of contamination depends linearly on a time spent in each location.
+ * In a contaminated location, susceptible agents can pick up the infection - they then recover with a fixed chance per timestep, and are subsequently immune.
+ * @subsection Compiling Compiling the model
+ * The model uses the CMake to generate a Makefile
  * @subsection Run Running the model
+ * At present this is a simple command-line application - just type the executable name and then return.
  **/
 

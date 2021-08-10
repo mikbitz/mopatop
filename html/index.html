@@ -65,14 +65,19 @@ $(function() {
 <div class="title">Mopatop Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This model is aimed at representing the patterns of movement and interaction of agents that represent individual people as they go about their daily activities.</p>
-<p>The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country.</p>
-<h1><a class="anchor" id="intro_sec"></a>
+<div class="textblock"><h1><a class="anchor" id="intro_sec"></a>
 Introduction</h1>
+<p>This model is aimed at representing the patterns of movement and interaction of agents that represent individual people as they go about their daily activities.</p>
+<p>The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country. </p>
 <h2><a class="anchor" id="Main"></a>
 Main ideas</h2>
+<p>Agents move between places according to a given travel schedule. Places include transport vehicles. In each location, agents with a disease can add contamination, which then decays exponentially over time. The release of contamination depends linearly on a time spent in each location. In a contaminated location, susceptible agents can pick up the infection - they then recover with a fixed chance per timestep, and are subsequently immune. </p>
+<h2><a class="anchor" id="Compiling"></a>
+Compiling the model</h2>
+<p>The model uses the CMake to generate a Makefile </p>
 <h2><a class="anchor" id="Run"></a>
 Running the model</h2>
+<p>At present this is a simple command-line application - just type the executable name and then return. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
