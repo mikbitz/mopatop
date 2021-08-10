@@ -202,36 +202,58 @@ float disease::recoveryRate=0.002;
 float disease::infectionShedLoad=0.1;
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+//Forward declaration of travelSchedule class, so agents know it exists - even though the travelSchedule also needs to know about agents
 class travelSchedule;
 /**
  * @brief The main agent class - each agent represents one person
+ * @details Agents move from place to place, using the travelSchedule. If they have the disease, the cough at each place they visit and contaminate it \n
+ * If they are in a contaminated location, they may contract the disease. Additionally they may do other things in their current location.
 */
 class agent{
 public:
+    /** Unique agent identifier - should be able to go up to 4e9 */
     unsigned long ID;
-    //transport vehicles are places, albeit moveable!
+    /** This enum associates a set of integers with names. So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example.
+     * Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567.
+     * transport vehicles are places, albeit moveable!*/
     enum placeTypes{home,work,vehicle};
+    /** A vector of pointers to places - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use he name (home.work etc.) \n
+       intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!)*/
     std::vector<place*>places;
+    /** Where the agent is currently located - note to get this actual place, use this is as an index into the places vector*/
     placeTypes currentPlace;
 
-    //the default schedule - currently every agent has the same - needs modification...(singleton?)
+    /** the default travel schedule - currently every agent has the same - 
+     * @todo needs modification...(singleton?) */
     travelSchedule* schedule;
-    //disease parameters
-    bool diseased,immune;
+    /** flag set to true if the agent has the disease */
+    bool diseased;
+    /** flag set to false initially, and true when the agent recovers from disease */
+    bool immune;
+    /** create and agent and set default disease flags. Also set aside storage for the three placeTypes the agent can occupy. \n
+     *  these are set later, as the places need to be created before they can be allocated to agents \n
+     */
     agent(){
         diseased=false;
         immune=false;
         //this has to be the same size as the placeTypes enum
         places.resize(3);
     }
+    /** Function to change the agent from one place's list of occupants to another - not used just at present - this function is very expensive on compute time */
     void moveTo(placeTypes location){
         places[currentPlace]->remove(this);
         places[location]->add(this);
         currentPlace=location;
     }
+    //the next three functions are defined after the travelSchedule, as they need to know the scheduel details before they can be set up
+    /** Move through the travel schedule, and then do any actions specific to places (apart from disease) \n
+     needs to be called every timestep */
     void update();
+    /** initialise the travel schedule  - this sets upt he list of places that will be visited, in order */
     void initTravelSchedule();
+    /** if you have the disease, contaminate the current place  - call every timestep */
     void cough();
+    /** call the disease functions, specified for this agent */
     void disease(){
         //recovery
         if (diseased){
@@ -241,24 +263,33 @@ public:
         if (disease::infect(places[currentPlace]->getContaminationLevel()) && !immune)diseased=true;
         //immunity loss could go here...
     }
+    /** do any things that need to be done at home */
     void atHome(){
         //if (ID==0)std::cout<<"at Home"<<std::endl;
     }
+    /** do any things that need to be done at work */
     void atWork(){
         //if (ID==0)std::cout<<"at Work"<<std::endl;
     }
+    /** do any things that need to be done while travelling */
     void inTransit(){
         //if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
+    /** set up the place vector to include being at home - needs to be called when places are being created by the model class 
+     @param pu a pointer to the specific home location for this agent */
     void setHome(place* pu){
         places[home]=pu;
         //start all agents at home - if using the occupants list, add to the home place
         //pu->add(this);
         currentPlace=home;
     }
+    /** set up the place vector to include being at work - needs to be called when places are being created by the model class 
+       @param pu a pointer to the specific work location for this agent */
     void setWork(place* pu){
         places[work]=pu;
     }
+    /** set up the place vector to include travelling - needs to be called when places are being created by the model class 
+     @param pu a pointer to the specific transport (e.g. a bus) location for this agent */
     void setTransport(place* pu){
         places[vehicle]=pu;
     }
@@ -359,13 +390,21 @@ void agent::cough()
 //------------------------------------------------------------------------
 /**
  * @brief The model contains all the agents and places, and steps them through time
+ * @details At the moment time steps are not even in length (since the schedule values are not of the same lenght for work/home/transport)\n
+ * @todo Sort the time stepping -  make sure the decay rate at places matches - at the moment 1 hour of decay on a bus is equivalent to 14 hours at home!
 */
 class model{
+    /** A container to hold pointers to all the agents */
     std::vector<agent*> agents;
+    /** A container to hold the places */
     std::vector<place*> places;
+    /** The number of agents to be created */
     int nAgents=6000000;
+    /** The output file stream */
     std::ofstream output;
 public:
+    /** Constructor for the model - set up the random seed and the output file, then call \ref init to define the agents and the places \n
+        The time reporter class is used to check how long it takes to set up everything */
     model(){
         randomizer r=randomizer::getInstance();
         r.setSeed(1);
@@ -378,10 +417,14 @@ public:
         init();
         auto end=timeReporter::getTime();
         timeReporter::showInterval("Initialisation took: ", start,end);
-        travelSchedule x;
     }
+    /** @brief Set up the agents and places, and allocate agents to homes, workplaces, vehicles. \n
+     * @details The relative structure of the places, size homes and workplaces and the number and size of transport vehicles, together with the schedule, \n
+     *  will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale \n
+     * This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
+     */
     void init(){
-        //create homes
+        //create homes - one third of the agent number
         for (int i=0;i<nAgents/3;i++){
             place* p=new place();
             places.push_back(p);
@@ -394,7 +437,7 @@ public:
             agents[i]->ID=i;
             agents[i]->setHome(places[i/3]);
         }
-        //create work places
+        //create work places - one tenth as many as agents - add them on to the end of the place list.
         for (int i=nAgents/3;i<nAgents/3+nAgents/10;i++){
             place* p=new place();
             places.push_back(p);
@@ -407,25 +450,30 @@ public:
             assert(places[i/10+nAgents/3]!=0);
             agents[i]->setWork(places[i/10+nAgents/3]);
         }
-        //create buses
+        //create buses - one thirtieth since 30 agents per bus. add them to the and of the place list again
         for (int i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
             place* p=new place();
             places.push_back(p);
             places[i]->ID=i;
         }
-        //allocate 30 agents per bus
+        //allocate 30 agents per bus - since agents aren't shuffled, those in similar workplaces will tend to share buses. 
         for (int i=0;i<agents.size();i++){
             assert(places[i/30+nAgents/3+nAgents/10]!=0);
             agents[i]->setTransport(places[i/30+nAgents/3+nAgents/10]);
         }
+        //set up travel schedule - same for every agent at the moment - so agents are all on the bus, at work or at home at exactly the same times
         for (int i=0;i<agents.size();i++){
             agents[i]->initTravelSchedule();
         }
+        //report intialization to std out 
         std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
-        //set off the disease!
+        //set off the disease! - one agent is infected at the start.
         agents[0]->diseased=true;
     }
-
+    /** @brief Advance the model time step \n
+    *   @details split up the timestep into update of places, contamination of places by agents, infection and progress of disease and finally update of agent locations \n
+        These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP (although this version doesn't scale well as yet)\n
+        Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. */
     void step(int num){
 
         //update the places - changes contamination level
@@ -462,7 +510,7 @@ public:
         //show the step number every 10 steps
 
         if (num%10==0)std::cout<<"Step "<<num<<std::endl;
-        
+        //show places - just for testing really so commented out at present
         for (int i=0;i<places.size();i++){
             //places[i]->show();
         }
@@ -477,8 +525,9 @@ int main(int argc, char **argv) {
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
-
+    //create and initialise the model
     model m;
+    //total time steps to run for
     int nSteps=10;
     //start a timer to record the execution time
     auto start=timeReporter::getTime();
@@ -495,7 +544,7 @@ int main(int argc, char **argv) {
  * @section intro_sec Introduction
  * This model is aimed at representing the patterns of movement and interaction of agents that represent individual people as they go about their daily activities. \n
  * The current version is intended to show how this can be done using a simple C++  program (using this language for speed of execution) \n
- * For this reason at the moment all code is in a single file. this can become unwieldy in a larger application though. \n
+ * For this reason at the moment all code is in a single file. This can become unwieldy in a larger application though. \n
  * 
  * The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country.
  * @subsection Main Main ideas
