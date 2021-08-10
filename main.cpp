@@ -109,11 +109,11 @@ public:
 */
 class disease{
 public:
-    //get the time now
+    //recover with a fixed chance in a given timestep
     static bool recover (){
       if (0.002>randomizer::getInstance().number())return true;else return false;
     }
-    //show the interval between two time points in milliseconds
+    //contract disease if contamination is large enough (note it could be >1)
     static bool infect(float contamination){
       if (contamination >randomizer::getInstance().number()) return true; else return false;
     }
