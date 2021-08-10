@@ -80,28 +80,153 @@ Collaboration diagram for disease:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a903bf900fa3cc67599ad82626f15354c"><td class="memItemLeft" align="right" valign="top"><a id="a903bf900fa3cc67599ad82626f15354c"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>recover</b> ()</td></tr>
+<tr class="memitem:a903bf900fa3cc67599ad82626f15354c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a903bf900fa3cc67599ad82626f15354c">recover</a> ()</td></tr>
 <tr class="separator:a903bf900fa3cc67599ad82626f15354c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1db74e7081cffd6d3d198542c7fabae5"><td class="memItemLeft" align="right" valign="top"><a id="a1db74e7081cffd6d3d198542c7fabae5"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>infect</b> (float contamination)</td></tr>
+<tr class="memitem:a1db74e7081cffd6d3d198542c7fabae5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a1db74e7081cffd6d3d198542c7fabae5">infect</a> (float contamination)</td></tr>
 <tr class="separator:a1db74e7081cffd6d3d198542c7fabae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="memItemLeft" align="right" valign="top"><a id="a0dea757c15ccfb19227ffa3b94c6f67d"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>shedInfection</b> ()</td></tr>
+<tr class="memitem:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a0dea757c15ccfb19227ffa3b94c6f67d">shedInfection</a> ()</td></tr>
 <tr class="separator:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:af4bf8070d12d8520054a25abb3fe27eb"><td class="memItemLeft" align="right" valign="top"><a id="af4bf8070d12d8520054a25abb3fe27eb"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>recoveryRate</b> =0.002</td></tr>
+<tr class="memitem:af4bf8070d12d8520054a25abb3fe27eb"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#af4bf8070d12d8520054a25abb3fe27eb">recoveryRate</a> =0.002</td></tr>
 <tr class="separator:af4bf8070d12d8520054a25abb3fe27eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3074a4bb5159116fe3ec0aabcbd30e18"><td class="memItemLeft" align="right" valign="top"><a id="a3074a4bb5159116fe3ec0aabcbd30e18"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>infectionShedLoad</b> =0.1</td></tr>
+<tr class="memitem:a3074a4bb5159116fe3ec0aabcbd30e18"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a3074a4bb5159116fe3ec0aabcbd30e18">infectionShedLoad</a> =0.1</td></tr>
 <tr class="separator:a3074a4bb5159116fe3ec0aabcbd30e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple static class to represent a very very simple disease. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p>Use of static class allws some of teh details of the disease to be abstracted here, without needed a separate disease object in every agent <br />
+The disadvantage of this is that the parameters are fixed outside teh class definition (a requiremnet of C++ for static (i.e. class-based rather than instance-based) variables) <br />
+</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>update this so that parameters can be set, e.g. from a parameter file </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1db74e7081cffd6d3d198542c7fabae5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1db74e7081cffd6d3d198542c7fabae5">&#9670;&nbsp;</a></span>infect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool disease::infect </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>contamination</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>contract disease if contamination is large enough (note it could be &gt;1) - again called very time step </p>
+
+</div>
+</div>
+<a id="a903bf900fa3cc67599ad82626f15354c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a903bf900fa3cc67599ad82626f15354c">&#9670;&nbsp;</a></span>recover()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool disease::recover </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>recover with a fixed chance in a given timestep - this function needs to be called every timestep by infected agents </p>
+
+</div>
+</div>
+<a id="a0dea757c15ccfb19227ffa3b94c6f67d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dea757c15ccfb19227ffa3b94c6f67d">&#9670;&nbsp;</a></span>shedInfection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float disease::shedInfection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>contribute infection to the place if diseased - called every timestep by infected agents </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a3074a4bb5159116fe3ec0aabcbd30e18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3074a4bb5159116fe3ec0aabcbd30e18">&#9670;&nbsp;</a></span>infectionShedLoad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float disease::infectionShedLoad =0.1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>fixed per timespte contribution to contamination at a site </p>
+
+</div>
+</div>
+<a id="af4bf8070d12d8520054a25abb3fe27eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4bf8070d12d8520054a25abb3fe27eb">&#9670;&nbsp;</a></span>recoveryRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float disease::recoveryRate =0.002</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>fixed per timestep chance of recovery </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="main_8cpp.html">main.cpp</a></li>
 </ul>
 </div><!-- contents -->

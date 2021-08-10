@@ -176,19 +176,25 @@ public:
 //------------------------------------------------------------------------
 /**
  * @brief Simple static class to represent a very very simple disease
+ * @details Use of static class allws some of teh details of the disease to be abstracted here, without needed a separate disease object in every agent \n
+ * The disadvantage of this is that the parameters are fixed outside teh class definition (a requiremnet of C++ for static (i.e. class-based rather than instance-based) variables) \n
+ * @todo update this so that parameters can be set, e.g. from a parameter file
 */
 class disease{
+    /** fixed per timestep chance of recovery */
     static float recoveryRate;
+    /** fixed per timespte contribution to contamination at a site */
     static float infectionShedLoad;
 public:
-    //recover with a fixed chance in a given timestep
+    /** recover with a fixed chance in a given timestep - this function needs to be called every timestep by infected agents*/
     static bool recover (){
       if (recoveryRate>randomizer::getInstance().number())return true;else return false;
     }
-    //contract disease if contamination is large enough (note it could be >1)
+    /** contract disease if contamination is large enough (note it could be >1) - again called very time step */
     static bool infect(float contamination){
       if (contamination >randomizer::getInstance().number()) return true; else return false;
     }
+    /** contribute infection to the place if diseased - called every timestep by infected agents */
     static float shedInfection(){return infectionShedLoad;}
 
 };
