@@ -80,32 +80,183 @@ Collaboration diagram for travelSchedule:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5d765167c1c2ea9cddc291adf82150fc"><td class="memItemLeft" align="right" valign="top"><a id="a5d765167c1c2ea9cddc291adf82150fc"></a>
-agent::placeTypes&#160;</td><td class="memItemRight" valign="bottom"><b>getNextLocation</b> ()</td></tr>
+<tr class="memitem:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="memItemLeft" align="right" valign="top"><a id="a9e0c7cd53fdb01767bdb20c0d42772b0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a9e0c7cd53fdb01767bdb20c0d42772b0">travelSchedule</a> ()</td></tr>
+<tr class="memdesc:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to build the schedule add the placeTypes to be visited in order to the destinations vector, and the corresponding time that will be spent in each place to the timeSpent vector <br />
+Index is set to point to the last place so that a call to getNextLocation will run the schedule back to the top. <br /></td></tr>
+<tr class="separator:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d765167c1c2ea9cddc291adf82150fc"><td class="memItemLeft" align="right" valign="top">agent::placeTypes&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a5d765167c1c2ea9cddc291adf82150fc">getNextLocation</a> ()</td></tr>
 <tr class="separator:a5d765167c1c2ea9cddc291adf82150fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ae020e4af6ae76c800267a11f5583fb"><td class="memItemLeft" align="right" valign="top"><a id="a2ae020e4af6ae76c800267a11f5583fb"></a>
-short&#160;</td><td class="memItemRight" valign="bottom"><b>getTimeAtCurrentPlaceInHours</b> ()</td></tr>
+<tr class="memitem:a2ae020e4af6ae76c800267a11f5583fb"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a2ae020e4af6ae76c800267a11f5583fb">getTimeAtCurrentPlaceInHours</a> ()</td></tr>
 <tr class="separator:a2ae020e4af6ae76c800267a11f5583fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ae2f5c0bdfbafdfd95cc3e08e40f1e83d"><td class="memItemLeft" align="right" valign="top"><a id="ae2f5c0bdfbafdfd95cc3e08e40f1e83d"></a>
-std::vector&lt; agent::placeTypes &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>destinations</b></td></tr>
+<tr class="memitem:ae2f5c0bdfbafdfd95cc3e08e40f1e83d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; agent::placeTypes &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#ae2f5c0bdfbafdfd95cc3e08e40f1e83d">destinations</a></td></tr>
 <tr class="separator:ae2f5c0bdfbafdfd95cc3e08e40f1e83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e83e138f40c6dd14248e3c755cb7d4d"><td class="memItemLeft" align="right" valign="top"><a id="a1e83e138f40c6dd14248e3c755cb7d4d"></a>
-std::vector&lt; short &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>timeSpent</b></td></tr>
+<tr class="memitem:a1e83e138f40c6dd14248e3c755cb7d4d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; short &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a1e83e138f40c6dd14248e3c755cb7d4d">timeSpent</a></td></tr>
 <tr class="separator:a1e83e138f40c6dd14248e3c755cb7d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d62c8f71557a55ad93427f7606d72fa"><td class="memItemLeft" align="right" valign="top"><a id="a2d62c8f71557a55ad93427f7606d72fa"></a>
-agent::placeTypes&#160;</td><td class="memItemRight" valign="bottom"><b>currentDestination</b></td></tr>
+<tr class="memitem:a2d62c8f71557a55ad93427f7606d72fa"><td class="memItemLeft" align="right" valign="top">agent::placeTypes&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a2d62c8f71557a55ad93427f7606d72fa">currentDestination</a></td></tr>
 <tr class="separator:a2d62c8f71557a55ad93427f7606d72fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f7cf11aafc4cee326c034200908645c"><td class="memItemLeft" align="right" valign="top"><a id="a3f7cf11aafc4cee326c034200908645c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>index</b></td></tr>
+<tr class="memitem:a3f7cf11aafc4cee326c034200908645c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a3f7cf11aafc4cee326c034200908645c">index</a></td></tr>
 <tr class="separator:a3f7cf11aafc4cee326c034200908645c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A simple fixed travel schedule that rotates cyclically between places. </p>
-<p>make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents... </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p>The schedule is simply an ordered list of the types of place to be visited. The actual places are stored with the individual agents, <br />
+ so that each agent can have a different location corresponding to a given type of place <br />
+Each agent sets up and stores its own copy of this schedule <br />
+Every time <a class="el" href="classtravelSchedule.html#a5d765167c1c2ea9cddc291adf82150fc">getNextLocation</a> is called, the schedule advances one place forward. When the end is reached the schedule resets to the first entry.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents... </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5d765167c1c2ea9cddc291adf82150fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d765167c1c2ea9cddc291adf82150fc">&#9670;&nbsp;</a></span>getNextLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">agent::placeTypes travelSchedule::getNextLocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>advance the schedule to the next place and return the placeType for that place </p>
+
+</div>
+</div>
+<a id="a2ae020e4af6ae76c800267a11f5583fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ae020e4af6ae76c800267a11f5583fb">&#9670;&nbsp;</a></span>getTimeAtCurrentPlaceInHours()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">short travelSchedule::getTimeAtCurrentPlaceInHours </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>report the time spent at the current place </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a2d62c8f71557a55ad93427f7606d72fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d62c8f71557a55ad93427f7606d72fa">&#9670;&nbsp;</a></span>currentDestination</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">agent::placeTypes travelSchedule::currentDestination</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The name of the destination currently pointed at by this travel schedule </p>
+
+</div>
+</div>
+<a id="ae2f5c0bdfbafdfd95cc3e08e40f1e83d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2f5c0bdfbafdfd95cc3e08e40f1e83d">&#9670;&nbsp;</a></span>destinations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;agent::placeTypes&gt; travelSchedule::destinations</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A vector of named integers that holds the default travel destinations in the order that places will be visited <br />
+The names are taken from the agent class, where and enum defines the names <br />
+Note that vector indices start at 0 </p>
+
+</div>
+</div>
+<a id="a3f7cf11aafc4cee326c034200908645c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f7cf11aafc4cee326c034200908645c">&#9670;&nbsp;</a></span>index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int travelSchedule::index</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>An index into destinations and/or timeSpent vector for the current destination </p>
+
+</div>
+</div>
+<a id="a1e83e138f40c6dd14248e3c755cb7d4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e83e138f40c6dd14248e3c755cb7d4d">&#9670;&nbsp;</a></span>timeSpent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;short&gt; travelSchedule::timeSpent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>For each place there is a time spent at each location (in hours at the moment), held here A short integer, so only up to 255 placeTypes can be held in one schedule at present! </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="main_8cpp.html">main.cpp</a></li>
 </ul>
 </div><!-- contents -->

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['mopatop',['mopatop',['../md_README.html',1,'']]],
-  ['model',['model',['../classmodel.html',1,'']]]
+  ['destinations',['destinations',['../classtravelSchedule.html#ae2f5c0bdfbafdfd95cc3e08e40f1e83d',1,'travelSchedule']]],
+  ['disease',['disease',['../classdisease.html',1,'']]]
 ];

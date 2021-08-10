@@ -69,7 +69,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Simple static class to abstract the clunky C++ chrono system.  
+<p>Simple static class to abstract the clunky C++ chrono system This class allows a variable to be created that will store the current run-time at the point it is created. <br />
+A second call later on then allows for the elapsed time to be calculated and show with the <a class="el" href="classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04">showInterval</a> method. <br />
+For example:-.  
  <a href="classtimeReporter.html#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for timeReporter:</div>
@@ -79,16 +81,94 @@ Collaboration diagram for timeReporter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8e60766761487fbdbc7027b3a6b67eeb"><td class="memItemLeft" align="right" valign="top"><a id="a8e60766761487fbdbc7027b3a6b67eeb"></a>
-static std::chrono::time_point&lt; std::chrono::steady_clock &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getTime</b> ()</td></tr>
+<tr class="memitem:a8e60766761487fbdbc7027b3a6b67eeb"><td class="memItemLeft" align="right" valign="top">static std::chrono::time_point&lt; std::chrono::steady_clock &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeReporter.html#a8e60766761487fbdbc7027b3a6b67eeb">getTime</a> ()</td></tr>
 <tr class="separator:a8e60766761487fbdbc7027b3a6b67eeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d18911f0ef9b37724cac84cfddc6b04"><td class="memItemLeft" align="right" valign="top"><a id="a2d18911f0ef9b37724cac84cfddc6b04"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>showInterval</b> (std::string s, std::chrono::time_point&lt; std::chrono::steady_clock &gt; start, std::chrono::time_point&lt; std::chrono::steady_clock &gt; end)</td></tr>
+<tr class="memitem:a2d18911f0ef9b37724cac84cfddc6b04"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04">showInterval</a> (std::string s, std::chrono::time_point&lt; std::chrono::steady_clock &gt; start, std::chrono::time_point&lt; std::chrono::steady_clock &gt; end)</td></tr>
 <tr class="separator:a2d18911f0ef9b37724cac84cfddc6b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Simple static class to abstract the clunky C++ chrono system. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p>Simple static class to abstract the clunky C++ chrono system This class allows a variable to be created that will store the current run-time at the point it is created. <br />
+A second call later on then allows for the elapsed time to be calculated and show with the <a class="el" href="classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04">showInterval</a> method. <br />
+For example:-. </p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> start=<a class="code" href="classtimeReporter.html#a8e60766761487fbdbc7027b3a6b67eeb">timeReporter::getTime</a>();</div><div class="line">... <span class="keywordflow">do</span> some stuff ...</div><div class="line">auto end=<a class="code" href="classtimeReporter.html#a8e60766761487fbdbc7027b3a6b67eeb">timeReporter::getTime</a>();</div><div class="line"><a class="code" href="classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04">showInterval</a>(<span class="stringliteral">&quot;time taken was&quot;</span>,start,end);</div></div><!-- fragment --><p> Note the use of "auto" so that the datatype of start and end doesn't need to be remembered! </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8e60766761487fbdbc7027b3a6b67eeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e60766761487fbdbc7027b3a6b67eeb">&#9670;&nbsp;</a></span>getTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::chrono::time_point&lt;std::chrono::steady_clock&gt; timeReporter::getTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>get the time now </p>
+
+</div>
+</div>
+<a id="a2d18911f0ef9b37724cac84cfddc6b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d18911f0ef9b37724cac84cfddc6b04">&#9670;&nbsp;</a></span>showInterval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void timeReporter::showInterval </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::chrono::time_point&lt; std::chrono::steady_clock &gt;&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::chrono::time_point&lt; std::chrono::steady_clock &gt;&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>show the interval between two time points in seconds (to the nearest millsecond) using standard output to the terminal </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>A string containing the message to show describing this time interval </td></tr>
+    <tr><td class="paramname">start</td><td>The start of the interval as reported by <a class="el" href="classtimeReporter.html#a8e60766761487fbdbc7027b3a6b67eeb">getTime</a> </td></tr>
+    <tr><td class="paramname">end</td><td>The correspinding end of the interval </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="main_8cpp.html">main.cpp</a></li>
 </ul>
 </div><!-- contents -->

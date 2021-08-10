@@ -21,12 +21,26 @@
 //------------------------------------------------------------------------
 /** 
  * @brief Simple static class to abstract the clunky C++ chrono system
+ * This class allows a variable to be created that will store the current run-time at the point it is created. \n
+ * A second call later on then allows for the elapsed time to be calculated and show with the \ref showInterval method. \n
+ * For example:-
+ * \code
+ * auto start=timeReporter::getTime();
+ * ... do some stuff ...
+ * auto end=timeReporter::getTime();
+ * showInterval("time taken was",start,end);
+ * \endcode
+ * Note the use of "auto" so that the datatype of start and end doesn't need to be remembered!
  */
 class timeReporter{
 public:
-    //get the time now
+    /** get the time now */
     static std::chrono::time_point<std::chrono::steady_clock> getTime(){return std::chrono::steady_clock::now();}
-    //show the interval between two time points in milliseconds
+    /** show the interval between two time points in seconds (to the nearest millsecond) using standard output to the terminal
+     @param s A string containing the message to show describing this time interval
+     @param start The start of the interval as reported by \ref getTime
+     @param end The correspinding end of the interval
+     */
     static void showInterval(std::string s,std::chrono::time_point<std::chrono::steady_clock> start,std::chrono::time_point<std::chrono::steady_clock> end){
         std::cout<<s<<float(std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count())/1000<<" seconds"<<std::endl;
     }
@@ -34,40 +48,61 @@ public:
 };
 //------------------------------------------------------------------------
 /**
- * @brief Set up a wrapper class that will provide uniform random numbers between 0 and 1
- * Use a singleton so there is only one random sequence across all agents (?works for llel execution with openMP??)
+ * @brief Set up a wrapper class that will provide uniform pseudo-random numbers between 0 and 1 \n
+ * As usual with rando mnumber generators, the sequence is actually periodic iwth a very long period.
+ * By setting the seed one can generate the same sequence repeatedly by using the same seed.
+ * The C++ random number generators are rather complicated. This class allows selection of one of the available generators \n
+ * without needing to look up the detail. It generates a random double between 0 and 1 using the mersenne twister generator. \n
+ * The seed defaults to 0 but can be reset with \ref setSeed
+ * Example:-
+ * \code
+ * randomizer r=randomizer::getInstance();
+ * r.setSeed(12991);
+ * double randomvalue=r.number();
+ * \endcode
+ * Use a singleton so there is only one random sequence across all agents 
+ * @todo (?works for llel execution with openMP??)
 */
 class randomizer {
 public:
+    /** @brief get a reference to the random number generator.
+     * If no instance yet exists, create it
+     * @return A reference to the single available instance
+     * */
     static randomizer& getInstance(){ 
         if (instance==NULL){
             instance=new randomizer();
         }
         return *instance;
     }
+    /** The distribution to be generated is uniform from 0 to 1 */
     std::uniform_real_distribution<> uniform_dist;
-    // Use mersenne twister with fixed seed as the random number engine
+    /**  Use mersenne twister with fixed seed as the random number engine */
     std::mt19937 twister;
 public:
     //~randomizer(){
     //  clean();
    // }
+    /** @brief return the next pseudo-random number in the current sequence */
     double number(){
      return uniform_dist(twister);
     }
+    /** Set the seed that starts off a given random sequence 
+     *param s The starting integer - any value can be used that fits with the size of int*/
     void setSeed(int s){
         std::cout<<"randomizer seed set to "<<s <<std::endl;
         twister.seed(s);
     }
 private:
-    
+    /** The instance of this class. As this is a singleton (there can only ever be one of this class anywhere in the code) the actual instance is hidden from the user of the class */
     static randomizer* instance;
+    /** The constructor makes the class instance - again private so that access can be controlled. The class is used through the getInstance method */
     randomizer(){
         uniform_dist=std::uniform_real_distribution<> (0,1);
         std::cout<<"A randomizer was set up with seed 0" <<std::endl;
         twister.seed(0);
     }
-    
+    /** if needed, clean up the pointer - however, given there is only one, it will just get deleted at end of program execution. */
     void clean(){if (instance!=nullptr) {delete instance;instance=nullptr;}}
 };
 //------------------------------------------------------------------------
