@@ -5,6 +5,7 @@
 #include<fstream>
 #include<vector>
 #include<chrono>
+#include<ctime>
 #include<set>
 #include<string>
 #include<assert.h>
@@ -135,18 +136,15 @@ public:
         if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
     void setHome(place* pu){
-        //home=pu;
         places[home]=pu;
         //start all agents at home - if using the occupants list, add to the home place
         //pu->add(this);
         currentPlace=home;
     }
     void setWork(place* pu){
-        //work=pu;
         places[work]=pu;
     }
     void setTransport(place* pu){
-        //vehicle=pu;
         places[vehicle]=pu;
     }
 
@@ -166,12 +164,13 @@ void place::show(bool listAll=false){
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /**
-    @TODO make this real-world-time dependent
+    @TODO make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents...
 */
 class travelSchedule{
     //holds the default travel schedule
     std::vector<agent::placeTypes> destinations;
-    std::vector<int>timeSpent;
+    //time at each location (in hours at the moment)
+    std::vector<short>timeSpent;
     agent::placeTypes currentDestination;
     //index into destinations vector
     int index;
@@ -194,7 +193,7 @@ public:
         currentDestination=destinations[index];
         return currentDestination;
     }
-    int getTimeAtCurrentPlaceInHours(){
+    short getTimeAtCurrentPlaceInHours(){
         return timeSpent[index];
     }
 
@@ -207,9 +206,9 @@ void agent::update()
 
 
         //Use the base travel schedule - initialised at home for everyone
-        //expensive - only needed if agents need direct agnt-to-agent interactions in a place -moveTo(home);//travel[schedule]->update();//MODIFY to use new default travel sched.
         currentPlace=schedule->getNextLocation();
-        //schedule=schedule % travel.size();
+        //expensive - only needed if agents need direct agnt-to-agent interactions in a place -
+        //moveTo(currentPlace);
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
         if (currentPlace==vehicle)inTransit();
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver 
@@ -221,7 +220,7 @@ void agent::initTravelSchedule(){
 void agent::cough()
 {
         //breathInto(place) - scale linearly with the time spent there - masks could go here as a scaling on contamination increase (what about surfaces? -second contamination factor?)
-        if (diseased) places[currentPlace]->increaseContamination(0.01*schedule->getTimeAtCurrentPlaceInHours()/24.);
+        if (diseased) places[currentPlace]->increaseContamination(0.1*schedule->getTimeAtCurrentPlaceInHours()/24.);
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
@@ -323,8 +322,15 @@ public:
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 int main(int argc, char **argv) {
+    
+    std::cout<<"Model version -0.9"<<std::endl;
+    //work out the current local time using C++ clunky time 
+    std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
+    std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
+
     model m;
-    int nSteps=1000;
+    int nSteps=2;
+;
     auto start=timeReporter::getTime();
     for (int step=0;step<nSteps;step++){
         m.step(step);
@@ -333,4 +339,15 @@ int main(int argc, char **argv) {
     timeReporter::showInterval("Execution time after initialisation: ",start,end);
     return 0;
 }
+/**
+ * @mainpage
+ * 
+ * This model is aimed at representing the patterns of movement and interaction of agents that represent individual people as they go about their daily activities.
+ * 
+ * The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country.
+ * 
+ * @section intro_sec Introduction
+ * @subsection Main Main ideas
+ * @subsection Run Running the model
+ **/
 
