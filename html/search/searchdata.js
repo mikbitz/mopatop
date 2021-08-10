@@ -3,9 +3,10 @@ var indexSectionsWithContent =
   0: "acdfgimnoprstu",
   1: "admprt",
   2: "m",
-  3: "acginprstu",
-  4: "cdfiortu",
-  5: "mt"
+  3: "acdgimnprstu",
+  4: "cdfioprstu",
+  5: "p",
+  6: "mt"
 };
 
 var indexSectionNames =
@@ -15,7 +16,8 @@ var indexSectionNames =
   2: "files",
   3: "functions",
   4: "variables",
-  5: "pages"
+  5: "enums",
+  6: "pages"
 };
 
 var indexSectionLabels =
@@ -25,6 +27,7 @@ var indexSectionLabels =
   2: "Files",
   3: "Functions",
   4: "Variables",
-  5: "Pages"
+  5: "Enumerations",
+  6: "Pages"
 };
 

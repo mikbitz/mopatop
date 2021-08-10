@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['timespent',['timeSpent',['../classtravelSchedule.html#a1e83e138f40c6dd14248e3c755cb7d4d',1,'travelSchedule']]],
-  ['twister',['twister',['../classrandomizer.html#a8c1820ea3c64a67bf48fca01cb68a310',1,'randomizer']]]
+  ['recoveryrate',['recoveryRate',['../classdisease.html#af4bf8070d12d8520054a25abb3fe27eb',1,'disease']]]
 ];
