@@ -1,3 +1,10 @@
+/**
+ * @file main.cpp 
+ * @brief File containing all classes and the main function
+ * 
+ * @author Mike Bithell
+ * @date 10/08/2021
+ **/
 #include <iostream>
 #include<algorithm>
 #include <random>
