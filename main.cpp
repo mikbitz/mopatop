@@ -90,14 +90,20 @@ public:
     //currently this is not used...seems to add about 20% to memory requirement
     std::set<agent*> occupants;
 
-    place(){ID=0;contaminationLevel=0.;fractionalDecrement=0.1;}
+    place(){
+        ID=0;
+        contaminationLevel=0.;
+        fractionalDecrement=0.1;        
+    }
     void add(agent* a){
         occupants.insert(a);
     }
     void remove(agent* a){
         occupants.erase(a);
     }
-    void increaseContamination(float amount){contaminationLevel+=amount;}
+    void increaseContamination(float amount){
+        contaminationLevel+=amount;
+    }
     float getContaminationLevel(){return contaminationLevel;}
     //contamination decays exponentially
     void update(){contaminationLevel*=fractionalDecrement;}
@@ -139,7 +145,7 @@ public:
     std::vector<place*>places;
     placeTypes currentPlace;
 
-    //the default schdule - currently every agent has the same - needs modification...(singleton?)
+    //the default schedule - currently every agent has the same - needs modification...(singleton?)
     travelSchedule* schedule;
     //disease parameters
     bool diseased,immune;
@@ -205,19 +211,33 @@ void place::show(bool listAll=false){
 //------------------------------------------------------------------------
 /**
  * @brief A simple fixed travel schedule that rotates cyclically between places
-*/
-/**
-    @TODO make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents...
+ * 
+ * The schedule is simply an ordered list of the types of place to be visited. The actual places are stored with the individual agents, \n 
+ * so that each agent can have a different location corresponding to a given type of place \n
+ * Each agent sets up and stores its own copy of this schedule \n
+ * Every time \ref getNextLocation is called, the schedule advances one place forward. When the end is reached the schedule resets to the first entry.
+ * 
+    @todo make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents...
 */
 class travelSchedule{
-    //holds the default travel schedule
-    std::vector<agent::placeTypes> destinations;
-    //time at each location (in hours at the moment)
+    /** A vector of named integers that holds the default travel destinations in the order that places will be visited \n
+     * The names are taken from the agent class, where and enum defines the names \n
+     * Note that vector indices start at 0
+     */
+    std::vector<agent::placeTypes> destinations; 
+    /** For each place there is a time spent at each location (in hours at the moment), held here
+     *  A short integer, so only up to 255 placeTypes can be held  in one schedule at present!
+     */
     std::vector<short>timeSpent;
+    /** The name of the destination currently pointed at by this travel schedule */
     agent::placeTypes currentDestination;
-    //index into destinations vector
+    /** An index into destinations and/or timeSpent vector for the current destination */
     int index;
 public:
+    /** @brief Constructor to build the schedule 
+     *  add the placeTypes to be visited in order to the destinations vector, and the corresponding time that will be spent in each place to the timeSpent vector \n
+     *  Index is set to point to the last place so that a call to getNextLocation will run the schedule back to the top.
+     */
     travelSchedule(){
         destinations.push_back(agent::vehicle);//load people into busstop (or transportHub) rather than direct into bus? - here they would wait
         timeSpent.push_back(1);
@@ -230,12 +250,14 @@ public:
         currentDestination=agent::home;
         index=3;//start at home
     }
+    /** advance the schedule to the next place and return the placeType for that place */
     agent::placeTypes getNextLocation(){
         index++;
         index=index%destinations.size();
         currentDestination=destinations[index];
         return currentDestination;
     }
+    /** report the time spent at the current place */
     short getTimeAtCurrentPlaceInHours(){
         return timeSpent[index];
     }
