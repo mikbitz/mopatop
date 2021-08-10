@@ -18,7 +18,9 @@
 #include<assert.h>
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-//simple static class to abstract the clunky C++ chrono system
+/** 
+ * @brief Simple static class to abstract the clunky C++ chrono system
+ */
 class timeReporter{
 public:
     //get the time now
@@ -30,8 +32,10 @@ public:
 
 };
 //------------------------------------------------------------------------
-//Set up a wrapper class that will provide uniform random numbers between 0 and 1
-//Use a singleton so there is only one random seqeunce across all agents
+/**
+ * @brief Set up a wrapper class that will provide uniform random numbers between 0 and 1
+ * Use a singleton so there is only one random seqeunce across all agents
+*/
 class randomizer {
 public:
     static randomizer& getInstance(){ 
@@ -74,6 +78,9 @@ randomizer* randomizer::instance=NULL;
 class agent;
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+/**
+ * @brief Places can have a list of occupants, and store disease contamination
+*/
 class place{
 public:
     int ID;
@@ -98,6 +105,9 @@ public:
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 class travelSchedule;
+/**
+ * @brief The main agent class - each agent represents one person
+*/
 class agent{
 public:
     int ID;
@@ -171,6 +181,9 @@ void place::show(bool listAll=false){
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /**
+ * @brief A simple fixed travel schedule that rotates cyclically between places
+*/
+/**
     @TODO make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents...
 */
 class travelSchedule{
@@ -207,7 +220,7 @@ public:
 };
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-//defined here so as to be after travellSchedule
+//defined here so as to be after travelSchedule
 void agent::update()
 {
 
@@ -231,6 +244,9 @@ void agent::cough()
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+/**
+ * @brief The model contains all the agents and places, and steps them through time
+*/
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
