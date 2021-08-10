@@ -114,10 +114,7 @@ public:
     }
     void update();
     void initTravelSchedule();
-    void cough(){
-        //breathInto(place) - masks could go here (what about surfaces? -second contamination factor?)
-        if (diseased) places[currentPlace]->increaseContamination(0.01);
-    }
+    void cough();
     void disease(){
         //very very simple disease...
         //recovery
@@ -174,15 +171,20 @@ void place::show(bool listAll=false){
 class travelSchedule{
     //holds the default travel schedule
     std::vector<agent::placeTypes> destinations;
+    std::vector<int>timeSpent;
     agent::placeTypes currentDestination;
     //index into destinations vector
     int index;
 public:
     travelSchedule(){
         destinations.push_back(agent::vehicle);//load people into busstop (or transportHub) rather than direct into bus? - here they would wait
+        timeSpent.push_back(1);
         destinations.push_back(agent::work);//trip chaining? how to handle trips across multiple transport hubs? how to do schools (do parents load up childer?) and shops? - use a stack to modify default schedule!
+        timeSpent.push_back(8);
         destinations.push_back(agent::vehicle);
+        timeSpent.push_back(1);
         destinations.push_back(agent::home);
+        timeSpent.push_back(14);
         currentDestination=agent::home;
         index=3;//start at home
     }
@@ -191,6 +193,9 @@ public:
         index=index%destinations.size();
         currentDestination=destinations[index];
         return currentDestination;
+    }
+    int getTimeAtCurrentPlaceInHours(){
+        return timeSpent[index];
     }
 
 };
@@ -212,6 +217,11 @@ void agent::update()
 }
 void agent::initTravelSchedule(){       
    schedule=new  travelSchedule();   
+}
+void agent::cough()
+{
+        //breathInto(place) - scale linearly with the time spent there - masks could go here as a scaling on contamination increase (what about surfaces? -second contamination factor?)
+        if (diseased) places[currentPlace]->increaseContamination(0.01*schedule->getTimeAtCurrentPlaceInHours()/24.);
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
@@ -314,7 +324,7 @@ public:
 //------------------------------------------------------------------------
 int main(int argc, char **argv) {
     model m;
-    int nSteps=5;
+    int nSteps=1000;
     auto start=timeReporter::getTime();
     for (int step=0;step<nSteps;step++){
         m.step(step);
