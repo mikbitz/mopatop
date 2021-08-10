@@ -89,6 +89,7 @@ public:
 };
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+class travelSchedule;
 class agent{
 public:
     int ID;
@@ -97,8 +98,8 @@ public:
     std::vector<place*>places;
     placeTypes currentPlace;
 
-    //where we have got to through the schedule ?? needs modification...
-    int schedule;
+    //the default schdule - currently every agent has the same - needs modification...(singleton?)
+    travelSchedule* schedule;
     //disease parameters
     bool diseased,immune;
     agent(){
@@ -106,24 +107,13 @@ public:
         //this has to be the same size as the placeTypes enum
         places.resize(3);
     }
-    void initTravelSchedule(){       
-        schedule=0;
-    }
     void moveTo(placeTypes location){
         places[currentPlace]->remove(this);
         places[location]->add(this);
         currentPlace=location;
     }
-    void update(){
-        //Use the base travel schedule - initialised at home for everyone
-        moveTo(home);//travel[schedule]->update();//MODIFY to use new default travel sched.
-        schedule++;
-        //schedule=schedule % travel.size();
-        if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
-        if (currentPlace==vehicle)inTransit();
-        if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver 
-        
-    }
+    void update();
+    void initTravelSchedule();
     void cough(){
         //breathInto(place) - masks could go here (what about surfaces? -second contamination factor?)
         if (diseased) places[currentPlace]->increaseContamination(0.01);
@@ -139,13 +129,13 @@ public:
         //immunity loss could go here...
     }
     void atHome(){
-        //if (ID==0)std::cout<<"at Home"<<std::endl;
+        if (ID==0)std::cout<<"at Home"<<std::endl;
     }
     void atWork(){
-        //if (ID==0)std::cout<<"at Work"<<std::endl;
+        if (ID==0)std::cout<<"at Work"<<std::endl;
     }
     void inTransit(){
-        //if (ID==0)std::cout<<"on Bus"<<std::endl;
+        if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
     void setHome(place* pu){
         //home=pu;
@@ -153,7 +143,6 @@ public:
         //start all agents at home - if using the occupants list, add to the home place
         //pu->add(this);
         currentPlace=home;
-        if (ID==0)std::cout<<"'ome! "<<places[home]<<std::endl;
     }
     void setWork(place* pu){
         //work=pu;
@@ -185,24 +174,51 @@ void place::show(bool listAll=false){
 class travelSchedule{
     //holds the default travel schedule
     std::vector<agent::placeTypes> destinations;
+    agent::placeTypes currentDestination;
+    //index into destinations vector
+    int index;
 public:
     travelSchedule(){
         destinations.push_back(agent::vehicle);//load people into busstop (or transportHub) rather than direct into bus? - here they would wait
         destinations.push_back(agent::work);//trip chaining? how to handle trips across multiple transport hubs? how to do schools (do parents load up childer?) and shops? - use a stack to modify default schedule!
         destinations.push_back(agent::vehicle);
         destinations.push_back(agent::home);
+        currentDestination=agent::home;
+        index=3;//start at home
     }
-    void gotoNextLocation(agent* a,agent::placeTypes i){
-        a->moveTo(destinations[i]);
+    agent::placeTypes getNextLocation(){
+        index++;
+        index=index%destinations.size();
+        currentDestination=destinations[index];
+        return currentDestination;
     }
 
 };
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+//defined here so as to be after travellSchedule
+void agent::update()
+{
+
+
+        //Use the base travel schedule - initialised at home for everyone
+        //expensive - only needed if agents need direct agnt-to-agent interactions in a place -moveTo(home);//travel[schedule]->update();//MODIFY to use new default travel sched.
+        currentPlace=schedule->getNextLocation();
+        //schedule=schedule % travel.size();
+        if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
+        if (currentPlace==vehicle)inTransit();
+        if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver 
+        
+}
+void agent::initTravelSchedule(){       
+   schedule=new  travelSchedule();   
+}
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
-    int nAgents=600000;
+    int nAgents=60;
     std::ofstream output;
 public:
     model(){
