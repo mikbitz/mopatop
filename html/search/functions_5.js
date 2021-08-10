@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['travelschedule',['travelSchedule',['../classtravelSchedule.html#a9e0c7cd53fdb01767bdb20c0d42772b0',1,'travelSchedule']]]
+  ['place',['place',['../classplace.html#ad927c2f191b36a3ed0d19457cb945161',1,'place']]]
 ];

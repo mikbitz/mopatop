@@ -21,7 +21,7 @@
 //------------------------------------------------------------------------
 /** 
  * @brief Simple static class to abstract the clunky C++ chrono system
- * This class allows a variable to be created that will store the current run-time at the point it is created. \n
+ * @details This class allows a variable to be created that will store the current run-time at the point it is created. \n
  * A second call later on then allows for the elapsed time to be calculated and show with the \ref showInterval method. \n
  * For example:-
  * \code
@@ -49,7 +49,7 @@ public:
 //------------------------------------------------------------------------
 /**
  * @brief Set up a wrapper class that will provide uniform pseudo-random numbers between 0 and 1 \n
- * As usual with rando mnumber generators, the sequence is actually periodic iwth a very long period.
+ * @details As usual with random number generators, the sequence is actually periodic iwth a very long period.
  * By setting the seed one can generate the same sequence repeatedly by using the same seed.
  * The C++ random number generators are rather complicated. This class allows selection of one of the available generators \n
  * without needing to look up the detail. It generates a random double between 0 and 1 using the mersenne twister generator. \n
@@ -111,38 +111,66 @@ randomizer* randomizer::instance=NULL;
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //Forward declaration of agent as they are needed in place class
+//This is a C++ idiom where two classes refer to each other, so neither can be cleanly set up first
+//This declaration allows the place class to know that agents exist, but not their structure
 class agent;
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /**
  * @brief Places can have a list of occupants, and store disease contamination
+ * @details At the moment places are disjoint from each other - agents travel between them on a schedule, but don't interact with other not in the same place. \n
+ * At present the interaction is indirect through contamination that agents in a given place can leave there, if they are carying a disease. \n
+ * Places incliude mobile entities such as buses - so the schedule for movement between places needs to include explicit getting into vehicles, and a specifcation of time spent there, \n
+ * as contamination level should depend on the duration of stay in a given place.
 */
 class place{
 public:
-    int ID;
-    float contaminationLevel,fractionalDecrement;
-    //unique list of current people in this place
-    //currently this is not used...seems to add about 20% to memory requirement
+    /** Unique identifier for a place - should be able to go up to about 4e9 */
+    unsigned long ID;
+    /** An arbitrary number giving how infectious a given place currently might be - needs calibration to get a suitable per-unit-time value. \n 
+     One might expect it to vary with the size of a given location
+     */
+    float contaminationLevel;
+    /** Rate of decrease of contamination - per time step \n */
+    float fractionalDecrement;
+    /** unique list of current people in this place - intended for direct agent-agent interaction \n
+     * For the current disease model this is not needed, as the agents need only know where they are to contaminate a place \n
+     * currently this is not used...seems to add about 20% to memory requirement if populated. \n
+     * A std::set is unique - so the same agent can be added many times but will only apear once.\n
+     * The set uses the pointer to a given agent as the key, so its easy to insert or remove arbitrary agents */
     std::set<agent*> occupants;
-
+    /** set up the place. Assumed initially clean. The decrement vlaue might very with place type and ventialtion level... */
     place(){
         ID=0;
         contaminationLevel=0.;
         fractionalDecrement=0.1;        
     }
+    /**Add an agent to the list currently here 
+     @param a a pointer to the agent to be added */
     void add(agent* a){
         occupants.insert(a);
     }
+    /**Remove an agent from the list currently here 
+     @param a a pointer to the agent to be removed */
     void remove(agent* a){
         occupants.erase(a);
     }
+    /** A function to allow agents (or any other thing that points at this place) to add contamination that spreads disease
+     *  Essentially a proxy for droplets in the air or surface contamination \n
+     *  Agents that are infected will increase this level while this is their currentPlace , offsetting the decrease in \ref update */
     void increaseContamination(float amount){
         contaminationLevel+=amount;
     }
+    /** Get the current level of contamination here
+     *@return Floating point value of current contamination level. */
     float getContaminationLevel(){return contaminationLevel;}
-    //contamination decays exponentially
+    /** The contamination in each place decays exponentially. This function shoudl be called every time step \n
+     *  This way places without any currently infected agents gradually lose their infectiveness
+     * */
     void update(){contaminationLevel*=fractionalDecrement;}
+    /** Function to show the current status of a place - use with caution if there are many thousands of places! */
     void show(bool);//defined below once agents are defined
+    //Because of the forward declaration of class agent, the full definition of this function has to wait until after the agent class is completed
 };
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
@@ -174,7 +202,7 @@ class travelSchedule;
 */
 class agent{
 public:
-    int ID;
+    unsigned long ID;
     //transport vehicles are places, albeit moveable!
     enum placeTypes{home,work,vehicle};
     std::vector<place*>places;
@@ -233,6 +261,7 @@ public:
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //needed here for places as agents are pre-declared before place class
+/** @param listAll Optional argument to show every place - only useful if there are just a few! */
 void place::show(bool listAll=false){
     std::cout<<"Place ID "<<ID<<" has "<<occupants.size()<<" occupants"<<std::endl;
     if (listAll){

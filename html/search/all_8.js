@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['randomizer',['randomizer',['../classrandomizer.html',1,'randomizer'],['../classrandomizer.html#afc354a3a2a255d4e1ba952239d411023',1,'randomizer::randomizer()']]]
+  ['occupants',['occupants',['../classplace.html#a9944f734ac0bf19a4ab086d94fc061bc',1,'place']]]
 ];

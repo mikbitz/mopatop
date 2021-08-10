@@ -69,9 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Simple static class to abstract the clunky C++ chrono system This class allows a variable to be created that will store the current run-time at the point it is created. <br />
-A second call later on then allows for the elapsed time to be calculated and show with the <a class="el" href="classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04">showInterval</a> method. <br />
-For example:-.  
+<p>Simple static class to abstract the clunky C++ chrono system.  
  <a href="classtimeReporter.html#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for timeReporter:</div>
@@ -87,10 +85,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a2d18911f0ef9b37724cac84cfddc6b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Simple static class to abstract the clunky C++ chrono system This class allows a variable to be created that will store the current run-time at the point it is created. <br />
+<div class="textblock"><p>Simple static class to abstract the clunky C++ chrono system. </p>
+<p>This class allows a variable to be created that will store the current run-time at the point it is created. <br />
 A second call later on then allows for the elapsed time to be calculated and show with the <a class="el" href="classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04">showInterval</a> method. <br />
-For example:-. </p>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> start=<a class="code" href="classtimeReporter.html#a8e60766761487fbdbc7027b3a6b67eeb">timeReporter::getTime</a>();</div><div class="line">... <span class="keywordflow">do</span> some stuff ...</div><div class="line">auto end=<a class="code" href="classtimeReporter.html#a8e60766761487fbdbc7027b3a6b67eeb">timeReporter::getTime</a>();</div><div class="line"><a class="code" href="classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04">showInterval</a>(<span class="stringliteral">&quot;time taken was&quot;</span>,start,end);</div></div><!-- fragment --><p> Note the use of "auto" so that the datatype of start and end doesn't need to be remembered! </p>
+For example:- </p><div class="fragment"><div class="line"><span class="keyword">auto</span> start=<a class="code" href="classtimeReporter.html#a8e60766761487fbdbc7027b3a6b67eeb">timeReporter::getTime</a>();</div><div class="line">... <span class="keywordflow">do</span> some stuff ...</div><div class="line">auto end=<a class="code" href="classtimeReporter.html#a8e60766761487fbdbc7027b3a6b67eeb">timeReporter::getTime</a>();</div><div class="line"><a class="code" href="classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04">showInterval</a>(<span class="stringliteral">&quot;time taken was&quot;</span>,start,end);</div></div><!-- fragment --><p> Note the use of "auto" so that the datatype of start and end doesn't need to be remembered! </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8e60766761487fbdbc7027b3a6b67eeb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e60766761487fbdbc7027b3a6b67eeb">&#9670;&nbsp;</a></span>getTime()</h2>

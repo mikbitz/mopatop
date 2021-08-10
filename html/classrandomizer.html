@@ -74,9 +74,7 @@ $(function() {
 <div class="contents">
 
 <p>Set up a wrapper class that will provide uniform pseudo-random numbers between 0 and 1 <br />
-As usual with rando mnumber generators, the sequence is actually periodic iwth a very long period. By setting the seed one can generate the same sequence repeatedly by using the same seed. The C++ random number generators are rather complicated. This class allows selection of one of the available generators <br />
-without needing to look up the detail. It generates a random double between 0 and 1 using the mersenne twister generator. <br />
-The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a> Example:-.  
+.  
  <a href="classrandomizer.html#details">More...</a></p>
 <div class="dynheader">
 Collaboration diagram for randomizer:</div>
@@ -120,10 +118,10 @@ Static Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Set up a wrapper class that will provide uniform pseudo-random numbers between 0 and 1 <br />
-As usual with rando mnumber generators, the sequence is actually periodic iwth a very long period. By setting the seed one can generate the same sequence repeatedly by using the same seed. The C++ random number generators are rather complicated. This class allows selection of one of the available generators <br />
+. </p>
+<p>As usual with random number generators, the sequence is actually periodic iwth a very long period. By setting the seed one can generate the same sequence repeatedly by using the same seed. The C++ random number generators are rather complicated. This class allows selection of one of the available generators <br />
 without needing to look up the detail. It generates a random double between 0 and 1 using the mersenne twister generator. <br />
-The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a> Example:-. </p>
-<div class="fragment"><div class="line"><a class="code" href="classrandomizer.html">randomizer</a> r=<a class="code" href="classrandomizer.html#a01d852120098a534926d04db6bf74790">randomizer::getInstance</a>();</div><div class="line">r.<a class="code" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a>(12991);</div><div class="line"><span class="keywordtype">double</span> randomvalue=r.<a class="code" href="classrandomizer.html#ae175fffeb1c48d064973e33b3e11b9a0">number</a>();</div></div><!-- fragment --><p> Use a singleton so there is only one random sequence across all agents </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>(?works for llel execution with openMP??) </dd></dl>
+The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a> Example:- </p><div class="fragment"><div class="line"><a class="code" href="classrandomizer.html">randomizer</a> r=<a class="code" href="classrandomizer.html#a01d852120098a534926d04db6bf74790">randomizer::getInstance</a>();</div><div class="line">r.<a class="code" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a>(12991);</div><div class="line"><span class="keywordtype">double</span> randomvalue=r.<a class="code" href="classrandomizer.html#ae175fffeb1c48d064973e33b3e11b9a0">number</a>();</div></div><!-- fragment --><p> Use a singleton so there is only one random sequence across all agents </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>(?works for llel execution with openMP??) </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afc354a3a2a255d4e1ba952239d411023"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afc354a3a2a255d4e1ba952239d411023">&#9670;&nbsp;</a></span>randomizer()</h2>

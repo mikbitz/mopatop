@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['timereporter',['timeReporter',['../classtimeReporter.html',1,'']]],
-  ['timespent',['timeSpent',['../classtravelSchedule.html#a1e83e138f40c6dd14248e3c755cb7d4d',1,'travelSchedule']]],
-  ['todo_20list',['Todo List',['../todo.html',1,'']]],
-  ['travelschedule',['travelSchedule',['../classtravelSchedule.html',1,'travelSchedule'],['../classtravelSchedule.html#a9e0c7cd53fdb01767bdb20c0d42772b0',1,'travelSchedule::travelSchedule()']]],
-  ['twister',['twister',['../classrandomizer.html#a8c1820ea3c64a67bf48fca01cb68a310',1,'randomizer']]]
+  ['randomizer',['randomizer',['../classrandomizer.html',1,'randomizer'],['../classrandomizer.html#afc354a3a2a255d4e1ba952239d411023',1,'randomizer::randomizer()']]],
+  ['remove',['remove',['../classplace.html#ac81d6af0bf64305a3a4a843d7d176920',1,'place']]]
 ];

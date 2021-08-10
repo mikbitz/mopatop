@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['clean',['clean',['../classrandomizer.html#a5e33cd61c749f88bcc6b2e780668c7d3',1,'randomizer']]]
+  ['add',['add',['../classplace.html#a0d9b53a0aa38224ab82514b4aae39817',1,'place']]]
 ];
