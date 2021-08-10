@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['model',['model',['../classmodel.html',1,'']]]
+  ['disease',['disease',['../classdisease.html',1,'']]]
 ];

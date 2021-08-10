@@ -16,6 +16,7 @@
 #include<set>
 #include<string>
 #include<assert.h>
+#include<omp.h>
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /** 
@@ -34,7 +35,7 @@ public:
 //------------------------------------------------------------------------
 /**
  * @brief Set up a wrapper class that will provide uniform random numbers between 0 and 1
- * Use a singleton so there is only one random seqeunce across all agents
+ * Use a singleton so there is only one random sequence across all agents (?works for llel execution with openMP??)
 */
 class randomizer {
 public:
@@ -166,13 +167,13 @@ public:
         //immunity loss could go here...
     }
     void atHome(){
-        if (ID==0)std::cout<<"at Home"<<std::endl;
+        //if (ID==0)std::cout<<"at Home"<<std::endl;
     }
     void atWork(){
-        if (ID==0)std::cout<<"at Work"<<std::endl;
+        //if (ID==0)std::cout<<"at Work"<<std::endl;
     }
     void inTransit(){
-        if (ID==0)std::cout<<"on Bus"<<std::endl;
+        //if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
     void setHome(place* pu){
         places[home]=pu;
@@ -270,7 +271,7 @@ void agent::cough()
 class model{
     std::vector<agent*> agents;
     std::vector<place*> places;
-    int nAgents=60;
+    int nAgents=6000000;
     std::ofstream output;
 public:
     model(){
@@ -332,8 +333,11 @@ public:
         //set off the disease!
         agents[0]->diseased=true;
     }
+
     void step(int num){
+
         //update the places - changes contamination level
+
         for (int i=0;i<places.size();i++){
             places[i]->update();
         }
@@ -341,22 +345,30 @@ public:
         int infected=0,recovered=0;
         //do disease - synchronous update (i.e. all agents contaminate before getting infected) so that no agent gets to infect ahead of others.
         //alternatively could be randomized...depends on the idea of how a location works...places could be sub-divided to mimic spatial extent for example.
+        
         for (int i=0;i<agents.size();i++){
             agents[i]->cough();
         }
         //the disease progresses
+        
         for (int i=0;i<agents.size();i++){
             agents[i]->disease();
+        }
+        //accumulate totals
+        for (int i=0;i<agents.size();i++){
             if (agents[i]->diseased)infected++;
             if (agents[i]->immune)recovered++;
         }
         //move around, do other things in a location
+        
         for (int i=0;i<agents.size();i++){
             agents[i]->update();
         }
+
         //output a summary .csv file
         output<<num<<","<<agents.size()-infected-recovered<<","<<infected<<","<<recovered<<std::endl;
         //show the step number every 10 steps
+
         if (num%10==0)std::cout<<"Step "<<num<<std::endl;
         
         for (int i=0;i<places.size();i++){
@@ -375,9 +387,10 @@ int main(int argc, char **argv) {
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
 
     model m;
-    int nSteps=1000;
-;
+    int nSteps=10;
+    //start a timer to record the execution time
     auto start=timeReporter::getTime();
+    //loop over time steps
     for (int step=0;step<nSteps;step++){
         m.step(step);
     }
@@ -388,17 +401,20 @@ int main(int argc, char **argv) {
 /**
  * @mainpage
  * @section intro_sec Introduction
- * This model is aimed at representing the patterns of movement and interaction of agents that represent individual people as they go about their daily activities.
+ * This model is aimed at representing the patterns of movement and interaction of agents that represent individual people as they go about their daily activities. \n
+ * The current version is intended to show how this can be done using a simple C++  program (using this language for speed of execution) \n
+ * For this reason at the moment all code is in a single file. this can become unwieldy in a larger application though. \n
  * 
  * The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country.
  * @subsection Main Main ideas
- * Agents move between places according to a given travel schedule. Places include transport vehicles.
- * In each location, agents with a disease can add contamination, which then decays exponentially over time.
- * The release of contamination depends linearly on a time spent in each location.
+ * Agents move between places according to a given fixed travel schedule. Places include transport vehicles. \n
+ * In each place, agents with a disease can add contamination, which then decays exponentially over time. \n
+ * The release of total contamination depends linearly on time spent in each location. \n
  * In a contaminated location, susceptible agents can pick up the infection - they then recover with a fixed chance per timestep, and are subsequently immune.
  * @subsection Compiling Compiling the model
- * The model uses the CMake to generate a Makefile
+ * On a linux system with g++ installed just do \n
+ * g++ -o agentModel -O3 main.cpp
  * @subsection Run Running the model
- * At present this is a simple command-line application - just type the executable name and then return.
+ * At present this is a simple command-line application - just type the executable name (agentModel above) and then return.
  **/
 

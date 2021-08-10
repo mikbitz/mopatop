@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['randomizer',['randomizer',['../classrandomizer.html',1,'']]]
+  ['place',['place',['../classplace.html',1,'']]]
 ];
