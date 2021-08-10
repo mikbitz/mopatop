@@ -104,6 +104,23 @@ public:
 };
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+/**
+ * @brief Simple static class to represent a disease
+*/
+class disease{
+public:
+    //get the time now
+    static bool recover (){
+      if (0.002>randomizer::getInstance().number())return true;else return false;
+    }
+    //show the interval between two time points in milliseconds
+    static bool infect(float contamination){
+      if (contamination >randomizer::getInstance().number()) return true; else return false;
+    }
+
+};
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
 class travelSchedule;
 /**
  * @brief The main agent class - each agent represents one person
@@ -122,6 +139,7 @@ public:
     bool diseased,immune;
     agent(){
         diseased=false;
+        immune=false;
         //this has to be the same size as the placeTypes enum
         places.resize(3);
     }
@@ -137,10 +155,10 @@ public:
         //very very simple disease...
         //recovery
         if (diseased){
-            if (0.002>randomizer::getInstance().number()) {diseased=false ; immune=true;}
+            if (disease::recover()) {diseased=false ; immune=true;}
         }
         //infection
-        if (places[currentPlace]->getContaminationLevel()>randomizer::getInstance().number() && !immune)diseased=true;
+        if (disease::infect(places[currentPlace]->getContaminationLevel()) && !immune)diseased=true;
         //immunity loss could go here...
     }
     void atHome(){
@@ -223,8 +241,6 @@ public:
 //defined here so as to be after travelSchedule
 void agent::update()
 {
-
-
         //Use the base travel schedule - initialised at home for everyone
         currentPlace=schedule->getNextLocation();
         //expensive - only needed if agents need direct agnt-to-agent interactions in a place -
@@ -317,6 +333,7 @@ public:
         for (int i=0;i<places.size();i++){
             places[i]->update();
         }
+        //counts the totals
         int infected=0,recovered=0;
         //do disease - synchronous update (i.e. all agents contaminate before getting infected) so that no agent gets to infect ahead of others.
         //alternatively could be randomized...depends on the idea of how a location works...places could be sub-divided to mimic spatial extent for example.
@@ -352,7 +369,7 @@ int main(int argc, char **argv) {
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
 
     model m;
-    int nSteps=2;
+    int nSteps=1000;
 ;
     auto start=timeReporter::getTime();
     for (int step=0;step<nSteps;step++){
