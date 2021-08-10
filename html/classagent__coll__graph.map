@@ -1,0 +1,3 @@
+<map id="agent" name="agent">
+<area shape="rect" id="node2" href="$classtravelSchedule.html" title="{travelSchedule\n|&#45; destinations\l&#45; timeSpent\l&#45; currentDestination\l&#45; index\l|+ travelSchedule()\l+ getNextLocation()\l+ getTimeAtCurrentPlaceInHours()\l}" alt="" coords="5,5,229,156"/>
+</map>
