@@ -105,20 +105,25 @@ public:
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /**
- * @brief Simple static class to represent a disease
+ * @brief Simple static class to represent a very very simple disease
 */
 class disease{
+    static float recoveryRate;
+    static float infectionShedLoad;
 public:
     //recover with a fixed chance in a given timestep
     static bool recover (){
-      if (0.002>randomizer::getInstance().number())return true;else return false;
+      if (recoveryRate>randomizer::getInstance().number())return true;else return false;
     }
     //contract disease if contamination is large enough (note it could be >1)
     static bool infect(float contamination){
       if (contamination >randomizer::getInstance().number()) return true; else return false;
     }
+    static float shedInfection(){return infectionShedLoad;}
 
 };
+float disease::recoveryRate=0.002;
+float disease::infectionShedLoad=0.1;
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 class travelSchedule;
@@ -152,7 +157,6 @@ public:
     void initTravelSchedule();
     void cough();
     void disease(){
-        //very very simple disease...
         //recovery
         if (diseased){
             if (disease::recover()) {diseased=false ; immune=true;}
@@ -256,7 +260,7 @@ void agent::initTravelSchedule(){
 void agent::cough()
 {
         //breathInto(place) - scale linearly with the time spent there - masks could go here as a scaling on contamination increase (what about surfaces? -second contamination factor?)
-        if (diseased) places[currentPlace]->increaseContamination(0.1*schedule->getTimeAtCurrentPlaceInHours()/24.);
+        if (diseased) places[currentPlace]->increaseContamination(disease::shedInfection()*schedule->getTimeAtCurrentPlaceInHours()/24.);
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
@@ -273,7 +277,7 @@ public:
         randomizer r=randomizer::getInstance();
         r.setSeed(1);
         //output file
-        output.open("diseaseSummary");
+        output.open("diseaseSummary.csv");
         //header line
         output<<"step,susceptible,infected,recovered"<<std::endl;
         //Initialisation can be slow - check the timing
@@ -350,7 +354,9 @@ public:
         for (int i=0;i<agents.size();i++){
             agents[i]->update();
         }
+        //output a summary .csv file
         output<<num<<","<<agents.size()-infected-recovered<<","<<infected<<","<<recovered<<std::endl;
+        //show the step number every 10 steps
         if (num%10==0)std::cout<<"Step "<<num<<std::endl;
         
         for (int i=0;i<places.size();i++){
