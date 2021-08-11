@@ -401,7 +401,7 @@ class model{
     /** A container to hold the places */
     std::vector<place*> places;
     /** The number of agents to be created */
-    int nAgents=600000;
+    int nAgents=6000000;
     /** The output file stream */
     std::ofstream output;
 public:
@@ -482,6 +482,7 @@ public:
         auto end=start;
         //update the places - changes contamination level
         if (num==0)start=timeReporter::getTime();
+        //note the pragma statement here allows openmp to parallelise this lopp over several threads 
         #pragma omp parallel for
         for (int i=0;i<places.size();i++){
             places[i]->update();
@@ -552,6 +553,7 @@ public:
 };
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+/** set up and run the model */
 int main(int argc, char **argv) {
     
     std::cout<<"Model version -0.9"<<std::endl;
@@ -560,8 +562,12 @@ int main(int argc, char **argv) {
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
     //create and initialise the model
     model m;
+    //increase the number here if using openmp to parallelise any loops.
+    //Note number of threads needs to be <= to number of cores/threads supported on the local machine
+    omp_set_num_threads(1);
+    
     //total time steps to run for
-    int nSteps=1000;
+    int nSteps=100;
     //start a timer to record the execution time
     auto start=timeReporter::getTime();
     //loop over time steps
@@ -588,9 +594,8 @@ int main(int argc, char **argv) {
  * @subsection Compiling Compiling the model
  * On a linux system with g++ installed just do \n
  * g++ -o agentModel -O3 -fopenmp main.cpp\n
- * If using openmp (parallelised loops) then set the  number of threads using\n
- * export OMP_NUM_THREADS=n\n
- * where n is the number of cores to be used (<= number supported by the lcaol machine!)
+ * If using openmp (parallelised loops) then set the  number of threads in the main function.
+ * note the number of cores to be used (<= number supported by the local machine!)
  * @subsection Run Running the model
  * At present this is a simple command-line application - just type the executable name (agentModel above) and then return.
  **/
