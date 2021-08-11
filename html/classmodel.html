@@ -97,15 +97,15 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a321162248a312d98a6a62a19b6856e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee72909ff27b56311f1165d87955f16f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classplace.html">place</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#aee72909ff27b56311f1165d87955f16f">places</a></td></tr>
 <tr class="separator:aee72909ff27b56311f1165d87955f16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a963a35123dd2c0d243402d552f60acb8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a963a35123dd2c0d243402d552f60acb8">nAgents</a> =6000000</td></tr>
+<tr class="memitem:a963a35123dd2c0d243402d552f60acb8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a963a35123dd2c0d243402d552f60acb8">nAgents</a> =600000</td></tr>
 <tr class="separator:a963a35123dd2c0d243402d552f60acb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memItemLeft" align="right" valign="top">std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ac722a1dffbe6a56f2a934ef627e4e773">output</a></td></tr>
 <tr class="separator:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The model contains all the agents and places, and steps them through time. </p>
-<p>At the moment time steps are not even in length (since the schedule values are not of the smae lenght for work/home/transport)<br />
-</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Sort the time steppping - make sure the decay rate at places matches - at the moment 1 hour of decay on a bus is equivalent to 14 hours at home! </dd></dl>
+<p>At the moment time steps are not even in length (since the schedule values are not of the same length for work/home/transport)<br />
+</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Sort the time stepping - make sure the decay rate at places matches - at the moment 1 hour of decay on a bus is equivalent to 14 hours at home! </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a89150458364164cfaf05f700365c1416"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a89150458364164cfaf05f700365c1416">&#9670;&nbsp;</a></span>model()</h2>
@@ -193,8 +193,13 @@ This simple intializer puts three agents in each home, 10 agents in each workpla
 <p>Advance the model time step <br />
 . </p>
 <p>split up the timestep into update of places, contamination of places by agents, infection and progress of disease and finally update of agent locations <br />
-These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP (although this version doesn't scale well as yet)<br />
-Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. </p>
+These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP <br />
+Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>The timestep number passed in from the model class </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -232,7 +237,7 @@ Also to avoid any systematic biases, agents need to all finish their contaminati
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int model::nAgents =6000000</td>
+          <td class="memname">int model::nAgents =600000</td>
         </tr>
       </table>
   </td>

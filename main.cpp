@@ -56,24 +56,26 @@ public:
  * The seed defaults to 0 but can be reset with \ref setSeed
  * Example:-
  * \code
- * randomizer r=randomizer::getInstance();
+ * randomizer r=randomizer::getInstance(0);
  * r.setSeed(12991);
  * double randomvalue=r.number();
  * \endcode
- * Use a singleton so there is only one random sequence across all agents 
- * @todo (?works for llel execution with openMP??)
+ * Uses a  map to define multiple independent generators, so there is only one random sequence across all agents for a given value of the short integer parameter i 
+ * The idea is that in a multi-threaded application, each thread can have its own RNG - although note there is only one instance of twister (and hence the seed) for all.
+ * Using the thread number leads to a small improvement in speed.
 */
 class randomizer {
 public:
-    /** @brief get a reference to the random number generator.
-     * If no instance yet exists, create it
-     * @return A reference to the single available instance
+    /** @brief get a reference to one of a set of random number generators.
+     * If no appropriate instance yet exists, create it
+     * @return A reference to the available instance
      * */
-    static randomizer& getInstance(){ 
-        if (instance==NULL){
-            instance=new randomizer();
+    static randomizer& getInstance(){
+        short i=omp_get_thread_num();
+        if (instance[i]==nullptr){
+            instance[i]=new randomizer();
         }
-        return *instance;
+        return *instance[i];
     }
     /** The distribution to be generated is uniform from 0 to 1 */
     std::uniform_real_distribution<> uniform_dist;
@@ -95,7 +97,7 @@ public:
     }
 private:
     /** The instance of this class. As this is a singleton (there can only ever be one of this class anywhere in the code) the actual instance is hidden from the user of the class */
-    static randomizer* instance;
+    static std::map<short,randomizer*> instance;
     /** The constructor makes the class instance - again private so that access can be controlled. The class is used through the getInstance method */
     randomizer(){
         uniform_dist=std::uniform_real_distribution<> (0,1);
@@ -103,11 +105,11 @@ private:
         twister.seed(0);
     }
     /** if needed, clean up the pointer - however, given there is only one, it will just get deleted at end of program execution. */
-    void clean(){if (instance!=nullptr) {delete instance;instance=nullptr;}}
+    //void clean(){if (instance!=nullptr) {delete instance;instance=nullptr;}}
 };
 //------------------------------------------------------------------------
 //static class members have to be initialized
-randomizer* randomizer::instance=NULL;
+std::map<short,randomizer*> randomizer::instance;
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //Forward declaration of agent as they are needed in place class
@@ -390,7 +392,7 @@ void agent::cough()
 //------------------------------------------------------------------------
 /**
  * @brief The model contains all the agents and places, and steps them through time
- * @details At the moment time steps are not even in length (since the schedule values are not of the same lenght for work/home/transport)\n
+ * @details At the moment time steps are not even in length (since the schedule values are not of the same length for work/home/transport)\n
  * @todo Sort the time stepping -  make sure the decay rate at places matches - at the moment 1 hour of decay on a bus is equivalent to 14 hours at home!
 */
 class model{
@@ -399,7 +401,7 @@ class model{
     /** A container to hold the places */
     std::vector<place*> places;
     /** The number of agents to be created */
-    int nAgents=6000000;
+    int nAgents=600000;
     /** The output file stream */
     std::ofstream output;
 public:
@@ -472,43 +474,74 @@ public:
     }
     /** @brief Advance the model time step \n
     *   @details split up the timestep into update of places, contamination of places by agents, infection and progress of disease and finally update of agent locations \n
-        These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP (although this version doesn't scale well as yet)\n
-        Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. */
+        These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP \n
+        Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. 
+        @param num The timestep number passed in from the model class*/
     void step(int num){
-
+        auto start=timeReporter::getTime();
+        auto end=start;
         //update the places - changes contamination level
-
+        if (num==0)start=timeReporter::getTime();
+        #pragma omp parallel for
         for (int i=0;i<places.size();i++){
             places[i]->update();
+        }
+        if (num==0){
+            end=timeReporter::getTime();
+            timeReporter::showInterval("Time updating places: ",start,end);
+            start=end;
         }
         //counts the totals
         int infected=0,recovered=0;
         //do disease - synchronous update (i.e. all agents contaminate before getting infected) so that no agent gets to infect ahead of others.
         //alternatively could be randomized...depends on the idea of how a location works...places could be sub-divided to mimic spatial extent for example.
-        
+        #pragma omp parallel for
         for (int i=0;i<agents.size();i++){
             agents[i]->cough();
         }
+        if(num==0){
+            end=timeReporter::getTime();
+            timeReporter::showInterval("Time coughing: ",start,end);
+            start=end;
+        }
         //the disease progresses
-        
+        #pragma omp parallel for
         for (int i=0;i<agents.size();i++){
             agents[i]->disease();
+        }
+        if (num==0){
+            end=timeReporter::getTime();
+            timeReporter::showInterval("Time being diseased: ",start,end);
+            start=end;
         }
         //accumulate totals
         for (int i=0;i<agents.size();i++){
             if (agents[i]->diseased)infected++;
             if (agents[i]->immune)recovered++;
         }
+        if (num==0){
+            end=timeReporter::getTime();
+            timeReporter::showInterval("Time on accumulating disease totals: ",start,end);
+            start=end;
+        }
         //move around, do other things in a location
-        
+        #pragma omp parallel for
         for (int i=0;i<agents.size();i++){
             agents[i]->update();
         }
-
+        if (num==0){
+            end=timeReporter::getTime();
+            timeReporter::showInterval("Time updating agents: ",start,end);
+            start=end;
+        }
         //output a summary .csv file
         output<<num<<","<<agents.size()-infected-recovered<<","<<infected<<","<<recovered<<std::endl;
         //show the step number every 10 steps
-
+        if (num==0){
+            end=timeReporter::getTime();
+            timeReporter::showInterval("Time on file I/O: ",start,end);
+        }
+      
         if (num%10==0)std::cout<<"Step "<<num<<std::endl;
         //show places - just for testing really so commented out at present
         for (int i=0;i<places.size();i++){
@@ -528,7 +561,7 @@ int main(int argc, char **argv) {
     //create and initialise the model
     model m;
     //total time steps to run for
-    int nSteps=10;
+    int nSteps=1000;
     //start a timer to record the execution time
     auto start=timeReporter::getTime();
     //loop over time steps
@@ -554,7 +587,10 @@ int main(int argc, char **argv) {
  * In a contaminated location, susceptible agents can pick up the infection - they then recover with a fixed chance per timestep, and are subsequently immune.
  * @subsection Compiling Compiling the model
  * On a linux system with g++ installed just do \n
- * g++ -o agentModel -O3 main.cpp
+ * g++ -o agentModel -O3 -fopenmp main.cpp\n
+ * If using openmp (parallelised loops) then set the  number of threads using\n
+ * export OMP_NUM_THREADS=n\n
+ * where n is the number of cores to be used (<= number supported by the lcaol machine!)
  * @subsection Run Running the model
  * At present this is a simple command-line application - just type the executable name (agentModel above) and then return.
  **/

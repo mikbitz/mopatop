@@ -80,7 +80,10 @@ In a contaminated location, susceptible agents can pick up the infection - they 
 <h2><a class="anchor" id="Compiling"></a>
 Compiling the model</h2>
 <p>On a linux system with g++ installed just do <br />
-g++ -o agentModel -O3 <a class="el" href="main_8cpp.html" title="File containing all classes and the main function. ">main.cpp</a> </p>
+g++ -o agentModel -O3 -fopenmp <a class="el" href="main_8cpp.html" title="File containing all classes and the main function. ">main.cpp</a><br />
+If using openmp (parallelised loops) then set the number of threads using<br />
+export OMP_NUM_THREADS=n<br />
+where n is the number of cores to be used (&lt;= number supported by the lcaol machine!) </p>
 <h2><a class="anchor" id="Run"></a>
 Running the model</h2>
 <p>At present this is a simple command-line application - just type the executable name (agentModel above) and then return. </p>
