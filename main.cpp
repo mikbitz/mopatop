@@ -80,20 +80,21 @@ public:
     /** The distribution to be generated is uniform from 0 to 1 */
     std::uniform_real_distribution<> uniform_dist;
     /**  Use mersenne twister with fixed seed as the random number engine */
-    std::mt19937 twister;
+    std::mt19937* twister;
 public:
     //~randomizer(){
     //  clean();
    // }
     /** @brief return the next pseudo-random number in the current sequence */
     double number(){
-     return uniform_dist(twister);
+     return uniform_dist(*twister);
     }
     /** Set the seed that starts off a given random sequence 
      *param s The starting integer - any value can be used that fits with the size of int*/
     void setSeed(int s){
         std::cout<<"randomizer seed set to "<<s <<std::endl;
-        twister.seed(s);
+        delete twister;
+        twister=new std::mt19937(s);
     }
 private:
     /** The instance of this class. As this is a singleton (there can only ever be one of this class anywhere in the code) the actual instance is hidden from the user of the class */
@@ -102,7 +103,7 @@ private:
     randomizer(){
         uniform_dist=std::uniform_real_distribution<> (0,1);
         std::cout<<"A randomizer was set up with seed 0" <<std::endl;
-        twister.seed(0);
+        twister=new std::mt19937(0);
     }
     /** if needed, clean up the pointer - however, given there is only one, it will just get deleted at end of program execution. */
     //void clean(){if (instance!=nullptr) {delete instance;instance=nullptr;}}
@@ -163,6 +164,12 @@ public:
     void increaseContamination(float amount){
         contaminationLevel+=amount;
     }
+    /** A function to allow agents (or any other thing that points at this place) to completely clean up the contamination ina given place.
+     * The level gets reset to zero
+     * */
+    void cleanContamination(){
+        contaminationLevel=0.;
+    }
     /** Get the current level of contamination here
      *@return Floating point value of current contamination level. */
     float getContaminationLevel(){return contaminationLevel;}
@@ -194,6 +201,7 @@ public:
     }
     /** contract disease if contamination is large enough (note it could be >1) - again called very time step */
     static bool infect(float contamination){
+       std::cout<< randomizer::getInstance().number()<<std::endl;
       if (contamination >randomizer::getInstance().number()) return true; else return false;
     }
     /** contribute infection to the place if diseased - called every timestep by infected agents */
@@ -401,22 +409,24 @@ class model{
     /** A container to hold the places */
     std::vector<place*> places;
     /** The number of agents to be created */
-    int nAgents=6000000;
+    int nAgents;
     /** The output file stream */
     std::ofstream output;
 public:
     /** Constructor for the model - set up the random seed and the output file, then call \ref init to define the agents and the places \n
         The time reporter class is used to check how long it takes to set up everything */
-    model(){
+    model(std::map<std::string,float> parameters){
         randomizer r=randomizer::getInstance();
-        r.setSeed(1);
+        nAgents=parameters["nAgents"];
+        r.setSeed(parameters["randomSeed"]);
         //output file
+        //output.open(parameters["outputFile"].c_str());
         output.open("diseaseSummary.csv");
         //header line
         output<<"step,susceptible,infected,recovered"<<std::endl;
         //Initialisation can be slow - check the timing
         auto start=timeReporter::getTime();
-        init();
+        init(parameters);
         auto end=timeReporter::getTime();
         timeReporter::showInterval("Initialisation took: ", start,end);
     }
@@ -425,7 +435,7 @@ public:
      *  will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale \n
      * This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
      */
-    void init(){
+    void init(std::map<std::string,float> parameters){
         //create homes - one third of the agent number
         for (int i=0;i<nAgents/3;i++){
             place* p=new place();
@@ -477,7 +487,8 @@ public:
         These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP \n
         Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. 
         @param num The timestep number passed in from the model class*/
-    void step(int num){
+    void step(int num,std::map<std::string,float> parameters){
+        //set some timers so loop relative times can be compared - note disease loop tends to get slower as more agents get infected.
         auto start=timeReporter::getTime();
         auto end=start;
         //update the places - changes contamination level
@@ -560,19 +571,29 @@ int main(int argc, char **argv) {
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
+    std::map<std::string,float>parameters;
+    //total time steps to run for
+    parameters["nSteps"]=1000;
+    //number of agents to create
+    parameters["nAgents"]=60;
+    //number of OMP threads to use
+    parameters["nThreads"]=1;
+    //random seed
+    parameters["randomSeed"]=1;
+    //path to the output file
+    //parameters["outputFile"]="diseaseSummary.csv";
+
     //create and initialise the model
-    model m;
+    model m(parameters);
     //increase the number here if using openmp to parallelise any loops.
     //Note number of threads needs to be <= to number of cores/threads supported on the local machine
-    omp_set_num_threads(1);
+    omp_set_num_threads(parameters["nThreads"]);
     
-    //total time steps to run for
-    int nSteps=100;
     //start a timer to record the execution time
     auto start=timeReporter::getTime();
     //loop over time steps
-    for (int step=0;step<nSteps;step++){
-        m.step(step);
+    for (int step=0;step<parameters["nSteps"];step++){
+        m.step(step,parameters);
     }
     auto end=timeReporter::getTime();
     timeReporter::showInterval("Execution time after initialisation: ",start,end);
