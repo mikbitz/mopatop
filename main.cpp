@@ -118,6 +118,8 @@ std::map<short,randomizer*> randomizer::instance;
 /**
  * @brief ParameterSettings is a class designed to hold all the parameters for the model
  * @details At present these are hard coded here, but more usefully these could be delegated to an input file.
+ * At the moment all parameters are strings, so need to be converted at point of use - \n
+ * however, returning different data types depending on parameter name is a little tricky...
 */
 class parameterSettings{
     std::map<std::string,std::string>parameters;
@@ -127,7 +129,8 @@ public:
     parameters["nSteps"]="1000";
     //number of agents to create
     parameters["nAgents"]="600";
-    //number of OMP threads to use
+    //number of OMP threads to use increase the number here if using openmp to parallelise any loops.
+    //Note number of threads needs to be <= to number of cores/threads supported on the local machine
     parameters["nThreads"]="1";
     //random seed
     parameters["randomSeed"]="0";
@@ -142,13 +145,16 @@ public:
  * parameterSettings p;
  * std::string filename=p("outputFile");
  * \endcode
- * At the moment all parameters are strings, so need to be converted at point of use
  * function fails if the requested parameter not been defined - the program halts
  */
     std::string operator ()(std::string s){
         auto it = parameters.find(s);
-        //check that the parameter exists
-        assert(it != mymap.end());
+        //check that the parameter exist
+        if(it == parameters.end()){
+           std::cout<<"Invalid parameter: "<<s<<std::endl ;
+           exit(1);
+        }
+
         return parameters[s];
     }
 };
@@ -460,8 +466,8 @@ public:
         nAgents=std::stoi(parameters("nAgents"));
         r.setSeed(std::stoi(parameters("randomSeed")));
         //output file
-        output.open(parameters("outputFile").c_str());
-        //output.open("diseaseSummary.csv");
+        output.open(parameters("outputFile"));
+
         //header line
         output<<"step,susceptible,infected,recovered"<<std::endl;
         //Initialisation can be slow - check the timing
@@ -612,12 +618,10 @@ int main(int argc, char **argv) {
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
     parameterSettings parameters;
-
-
+    
     //create and initialise the model
     model m(parameters);
-    //increase the number here if using openmp to parallelise any loops.
-    //Note number of threads needs to be <= to number of cores/threads supported on the local machine
+
     omp_set_num_threads(std::stoi(parameters("nThreads")));
     
     //start a timer to record the execution time

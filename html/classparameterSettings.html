@@ -76,8 +76,6 @@ $(function() {
 Collaboration diagram for parameterSettings:</div>
 <div class="dyncontent">
 <div class="center"><img src="classparameterSettings__coll__graph.png" border="0" usemap="#parameterSettings_coll__map" alt="Collaboration graph"/></div>
-<map name="parameterSettings_coll__map" id="parameterSettings_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -94,7 +92,8 @@ std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" va
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ParameterSettings is a class designed to hold all the parameters for the model. </p>
-<p>At present these are hard coded here, but more usefully these could be delegated to an input file. </p>
+<p>At present these are hard coded here, but more usefully these could be delegated to an input file. At the moment all parameters are strings, so need to be converted at point of use - <br />
+however, returning different data types depending on parameter name is a little tricky... </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1dea97ae4df5508220d1df5623553ab5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1dea97ae4df5508220d1df5623553ab5">&#9670;&nbsp;</a></span>operator()()</h2>
@@ -124,7 +123,7 @@ std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" va
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>the name of the parameter requested.<ul>
-<li>Example:- <div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> p;</div><div class="line">std::string filename=p(<span class="stringliteral">&quot;outputFile&quot;</span>);</div></div><!-- fragment --> At the moment all parameters are strings, so need to be converted at point of use function fails if the requested parameter not been defined - the program halts </li>
+<li>Example:- <div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> p;</div><div class="line">std::string filename=p(<span class="stringliteral">&quot;outputFile&quot;</span>);</div></div><!-- fragment --> function fails if the requested parameter not been defined - the program halts </li>
 </ul>
 </td></tr>
   </table>
