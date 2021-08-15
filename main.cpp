@@ -53,7 +53,7 @@ public:
  * By setting the seed one can generate the same sequence repeatedly by using the same seed.
  * The C++ random number generators are rather complicated. This class allows selection of one of the available generators \n
  * without needing to look up the detail. It generates a random double between 0 and 1 using the mersenne twister generator. \n
- * The seed defaults to 0 but can be reset with \ref setSeed
+ * The seed defaults to 0 but can be reset with \ref setSeed - note this seems to need the twister to be completely re-created, hence the use of a pointer
  * Example:-
  * \code
  * randomizer r=randomizer::getInstance(0);
@@ -164,7 +164,7 @@ public:
     void increaseContamination(float amount){
         contaminationLevel+=amount;
     }
-    /** A function to allow agents (or any other thing that points at this place) to completely clean up the contamination ina given place.
+    /** A function to allow agents (or any other thing that points at this place) to completely clean up the contamination in a given place.
      * The level gets reset to zero
      * */
     void cleanContamination(){
