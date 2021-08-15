@@ -67,7 +67,9 @@ public:
 class randomizer {
 public:
     /** @brief get a reference to one of a set of random number generators.
-     * If no appropriate instance yet exists, create it
+     * If no appropriate instance yet exists, create it. \n
+     * Instances are currently parameterized by omp thread number by calling omp_get_thread_num()\n
+     * (which returns zero if only one thread)
      * @return A reference to the available instance
      * */
     static randomizer& getInstance(){
@@ -111,6 +113,45 @@ private:
 //------------------------------------------------------------------------
 //static class members have to be initialized
 std::map<short,randomizer*> randomizer::instance;
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+/**
+ * @brief ParameterSettings is a class designed to hold all the parameters for the model
+ * @details At present these are hard coded here, but more usefully these could be delegated to an input file.
+*/
+class parameterSettings{
+    std::map<std::string,std::string>parameters;
+public:
+    parameterSettings(){
+    //total time steps to run for
+    parameters["nSteps"]="1000";
+    //number of agents to create
+    parameters["nAgents"]="600";
+    //number of OMP threads to use
+    parameters["nThreads"]="1";
+    //random seed
+    parameters["randomSeed"]="0";
+    //path to the output file
+    parameters["outputFile"]="diseaseSummary.csv";
+    }
+//------------------------------------------------------------------------
+/** @brief allow parameters to be returned using an instance of class parameters using a string
+ *  @param s the name of the parameter requested.
+ *  * Example:-
+ * \code
+ * parameterSettings p;
+ * std::string filename=p("outputFile");
+ * \endcode
+ * At the moment all parameters are strings, so need to be converted at point of use
+ * function fails if the requested parameter not been defined - the program halts
+ */
+    std::string operator ()(std::string s){
+        auto it = parameters.find(s);
+        //check that the parameter exists
+        assert(it != mymap.end());
+        return parameters[s];
+    }
+};
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //Forward declaration of agent as they are needed in place class
@@ -185,7 +226,7 @@ public:
 //------------------------------------------------------------------------
 /**
  * @brief Simple static class to represent a very very simple disease
- * @details Use of static class allws some of teh details of the disease to be abstracted here, without needed a separate disease object in every agent \n
+ * @details Use of static class allws some of the details of the disease to be abstracted here, without needed a separate disease object in every agent \n
  * The disadvantage of this is that the parameters are fixed outside teh class definition (a requiremnet of C++ for static (i.e. class-based rather than instance-based) variables) \n
  * @todo update this so that parameters can be set, e.g. from a parameter file
 */
@@ -414,13 +455,13 @@ class model{
 public:
     /** Constructor for the model - set up the random seed and the output file, then call \ref init to define the agents and the places \n
         The time reporter class is used to check how long it takes to set up everything */
-    model(std::map<std::string,float> parameters){
+    model(parameterSettings parameters){
         randomizer r=randomizer::getInstance();
-        nAgents=parameters["nAgents"];
-        r.setSeed(parameters["randomSeed"]);
+        nAgents=std::stoi(parameters("nAgents"));
+        r.setSeed(std::stoi(parameters("randomSeed")));
         //output file
-        //output.open(parameters["outputFile"].c_str());
-        output.open("diseaseSummary.csv");
+        output.open(parameters("outputFile").c_str());
+        //output.open("diseaseSummary.csv");
         //header line
         output<<"step,susceptible,infected,recovered"<<std::endl;
         //Initialisation can be slow - check the timing
@@ -434,7 +475,7 @@ public:
      *  will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale \n
      * This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
      */
-    void init(std::map<std::string,float> parameters){
+    void init(parameterSettings parameters){
         //create homes - one third of the agent number
         for (int i=0;i<nAgents/3;i++){
             place* p=new place();
@@ -486,7 +527,7 @@ public:
         These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP \n
         Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. 
         @param num The timestep number passed in from the model class*/
-    void step(int num,std::map<std::string,float> parameters){
+    void step(int num,parameterSettings parameters){
         //set some timers so loop relative times can be compared - note disease loop tends to get slower as more agents get infected.
         auto start=timeReporter::getTime();
         auto end=start;
@@ -512,7 +553,7 @@ public:
         }
         if(num==0){
             end=timeReporter::getTime();
-            timeReporter::showInterval("Time coughing: ",start,end);
+            timeReporter::showInterval("Run time coughing: ",start,end);
             start=end;
         }
         //the disease progresses
@@ -522,7 +563,7 @@ public:
         }
         if (num==0){
             end=timeReporter::getTime();
-            timeReporter::showInterval("Time being diseased: ",start,end);
+            timeReporter::showInterval("Run time being diseased: ",start,end);
             start=end;
         }
         //accumulate totals
@@ -532,7 +573,7 @@ public:
         }
         if (num==0){
             end=timeReporter::getTime();
-            timeReporter::showInterval("Time on accumulating disease totals: ",start,end);
+            timeReporter::showInterval("Run time on accumulating disease totals: ",start,end);
             start=end;
         }
         //move around, do other things in a location
@@ -542,7 +583,7 @@ public:
         }
         if (num==0){
             end=timeReporter::getTime();
-            timeReporter::showInterval("Time updating agents: ",start,end);
+            timeReporter::showInterval("Run time updating agents: ",start,end);
             start=end;
         }
         //output a summary .csv file
@@ -550,7 +591,7 @@ public:
         //show the step number every 10 steps
         if (num==0){
             end=timeReporter::getTime();
-            timeReporter::showInterval("Time on file I/O: ",start,end);
+            timeReporter::showInterval("Run time on file I/O: ",start,end);
         }
       
         if (num%10==0)std::cout<<"Step "<<num<<std::endl;
@@ -570,28 +611,19 @@ int main(int argc, char **argv) {
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
-    std::map<std::string,float>parameters;
-    //total time steps to run for
-    parameters["nSteps"]=1000;
-    //number of agents to create
-    parameters["nAgents"]=6000;
-    //number of OMP threads to use
-    parameters["nThreads"]=1;
-    //random seed
-    parameters["randomSeed"]=0;
-    //path to the output file
-    //parameters["outputFile"]="diseaseSummary.csv";
+    parameterSettings parameters;
+
 
     //create and initialise the model
     model m(parameters);
     //increase the number here if using openmp to parallelise any loops.
     //Note number of threads needs to be <= to number of cores/threads supported on the local machine
-    omp_set_num_threads(parameters["nThreads"]);
+    omp_set_num_threads(std::stoi(parameters("nThreads")));
     
     //start a timer to record the execution time
     auto start=timeReporter::getTime();
     //loop over time steps
-    for (int step=0;step<parameters["nSteps"];step++){
+    for (int step=0;step<std::stoi(parameters("nSteps"));step++){
         m.step(step,parameters);
     }
     auto end=timeReporter::getTime();
