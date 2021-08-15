@@ -201,7 +201,6 @@ public:
     }
     /** contract disease if contamination is large enough (note it could be >1) - again called very time step */
     static bool infect(float contamination){
-       std::cout<< randomizer::getInstance().number()<<std::endl;
       if (contamination >randomizer::getInstance().number()) return true; else return false;
     }
     /** contribute infection to the place if diseased - called every timestep by infected agents */
@@ -575,11 +574,11 @@ int main(int argc, char **argv) {
     //total time steps to run for
     parameters["nSteps"]=1000;
     //number of agents to create
-    parameters["nAgents"]=60;
+    parameters["nAgents"]=6000;
     //number of OMP threads to use
     parameters["nThreads"]=1;
     //random seed
-    parameters["randomSeed"]=1;
+    parameters["randomSeed"]=0;
     //path to the output file
     //parameters["outputFile"]="diseaseSummary.csv";
 
