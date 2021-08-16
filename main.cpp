@@ -138,6 +138,7 @@ std::map<short,randomizer*> randomizer::instance;
  * however, returning different data types depending on parameter name is a little tricky...
 */
 class parameterSettings{
+    /** @brief a map from parameter names to parameter values, all currently strings */
     std::map<std::string,std::string>parameters;
 public:
     parameterSettings(){
@@ -156,7 +157,7 @@ public:
 //------------------------------------------------------------------------
 /** @brief allow parameters to be returned using an instance of class parameters using a string
  *  @param s the name of the parameter requested.
- *  * Example:-
+ *   Example:-
  * \code
  * parameterSettings p;
  * std::string filename=p("outputFile");
@@ -472,7 +473,7 @@ void agent::cough()
 /**
  * @brief The model contains all the agents and places, and steps them through time
  * @details At the moment time steps are not even in length (since the schedule values are not of the same length for work/home/transport)\n
- * @todo Sort the time stepping -  make sure the decay rate at places matches - at the moment 1 hour of decay on a bus is equivalent to 14 hours at home!
+
 */
 class model{
     /** A container to hold pointers to all the agents */
@@ -557,7 +558,7 @@ public:
     *   @details split up the timestep into update of places, contamination of places by agents, infection and progress of disease and finally update of agent locations \n
         These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP \n
         Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. 
-        @param num The timestep number passed in from the model class*/
+        @param stepNumber The timestep number passed in from the model class*/
     void step(int stepNumber, parameterSettings parameters){
         //set some timers so loop relative times can be compared - note disease loop tends to get slower as more agents get infected.
         auto start=timeReporter::getTime();
@@ -680,7 +681,34 @@ int main(int argc, char **argv) {
  * If using openmp (parallelised loops) then set the  number of threads in the main function.
  * note the number of cores to be used (<= number supported by the local machine!)
  * @subsection Run Running the model
- * At present this is a simple command-line application - just type the executable name (agentModel above) and then return.
- *  
- **/
+ * At present this is a simple command-line application - just type the executable name (agentModel above) and then return.\n
+ * For more detail see  @ref ODD
+ * @page ODD ODD description
+ * @section odd_intro Introduction
+ * This page describes the model in more detial using the ODD+D formalism (Overview, Design Concepts and Details + Decisions) \n
+ * as suggested in Muller et al https://doi.org/10.1016/j.envsoft.2013.06.003\n
+ * @subsection over Overview
+ * @subsubsection purp Purpose
+ * @subsubsection enti Entities, State variables and Scales
+ * @subsubsection proc Process Overview and Scheduling
+ * @subsection desi Design concepts
+ * @subsubsection theo Theoretical and Empirical Background
+ * @subsubsection indiv Individual Decision Making
+ * @subsubsection lear Learning
+ * @subsubsection indis Individual sensing
+ * @subsubsection indip Individual prediction
+ * @subsubsection inte Interaction
+ * @subsubsection colle Collectives
+ * @subsubsection hete Heterogeneity
+ * @subsubsection stoc Stochasticity
+ * @subsubsection obse Observation
+ * @subsection deta Details
+ * @subsubsection imple Implementation Details
+ * @subsubsection init Initialisation
+ * @subsubsection inpu Input Data
+ * @subsubsection subm Submodels
+ */
+ //   how to do equations... \f$\frac {dx}{dt} (x_1,y_1)\f$ and \f$(x_2,y_2)\f$ is 
+ // \f$\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\f$.
+ // **/
 

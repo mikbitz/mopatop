@@ -12,6 +12,12 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -87,7 +93,8 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:af44a6618aa323c3ff58052e65c654f17"><td class="memItemLeft" align="right" valign="top"><a id="af44a6618aa323c3ff58052e65c654f17"></a>
-std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>parameters</b></td></tr>
+std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#af44a6618aa323c3ff58052e65c654f17">parameters</a></td></tr>
+<tr class="memdesc:af44a6618aa323c3ff58052e65c654f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">a map from parameter names to parameter values, all currently strings <br /></td></tr>
 <tr class="separator:af44a6618aa323c3ff58052e65c654f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -122,10 +129,7 @@ however, returning different data types depending on parameter name is a little 
 <p>allow parameters to be returned using an instance of class parameters using a string </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>the name of the parameter requested.<ul>
-<li>Example:- <div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> p;</div><div class="line">std::string filename=p(<span class="stringliteral">&quot;outputFile&quot;</span>);</div></div><!-- fragment --> function fails if the requested parameter not been defined - the program halts </li>
-</ul>
-</td></tr>
+    <tr><td class="paramname">s</td><td>the name of the parameter requested. Example:- <div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> p;</div><div class="line">std::string filename=p(<span class="stringliteral">&quot;outputFile&quot;</span>);</div></div><!-- fragment --> function fails if the requested parameter not been defined - the program halts </td></tr>
   </table>
   </dd>
 </dl>

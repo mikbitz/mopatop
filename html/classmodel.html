@@ -12,6 +12,12 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -105,7 +111,7 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The model contains all the agents and places, and steps them through time. </p>
 <p>At the moment time steps are not even in length (since the schedule values are not of the same length for work/home/transport)<br />
-</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Sort the time stepping - make sure the decay rate at places matches - at the moment 1 hour of decay on a bus is equivalent to 14 hours at home! </dd></dl>
+</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac1936437880182e9c676817b15790063"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1936437880182e9c676817b15790063">&#9670;&nbsp;</a></span>model()</h2>
@@ -130,7 +136,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructor for the model - set up the random seed and the output file, then call <a class="el" href="classmodel.html#af42303eeaa7dbbe289a5a5ecd33d67ee">init</a> to define the agents and the places <br />
+<p>Constructor for the model - set up the random seed and the output file, then call <a class="el" href="ODD.html#init">Initialisation</a> to define the agents and the places <br />
 The time reporter class is used to check how long it takes to set up everything </p>
 
 </div>
@@ -208,7 +214,7 @@ This simple intializer puts three agents in each home, 10 agents in each workpla
 These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP <br />
 Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">num</td><td>The timestep number passed in from the model class </td></tr>
+    <tr><td class="paramname">stepNumber</td><td>The timestep number passed in from the model class </td></tr>
   </table>
   </dd>
 </dl>

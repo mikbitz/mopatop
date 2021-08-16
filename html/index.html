@@ -12,6 +12,12 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -86,7 +92,8 @@ g++ -o agentModel -O3 -fopenmp <a class="el" href="main_8cpp.html" title="File c
 If using openmp (parallelised loops) then set the number of threads in the main function. note the number of cores to be used (&lt;= number supported by the local machine!) </p>
 <h2><a class="anchor" id="Run"></a>
 Running the model</h2>
-<p>At present this is a simple command-line application - just type the executable name (agentModel above) and then return. </p>
+<p>At present this is a simple command-line application - just type the executable name (agentModel above) and then return.<br />
+For more detail see <a class="el" href="ODD.html">ODD description</a> </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

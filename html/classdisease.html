@@ -12,6 +12,12 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -89,9 +95,9 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:af4bf8070d12d8520054a25abb3fe27eb"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#af4bf8070d12d8520054a25abb3fe27eb">recoveryRate</a> =0.002</td></tr>
+<tr class="memitem:af4bf8070d12d8520054a25abb3fe27eb"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#af4bf8070d12d8520054a25abb3fe27eb">recoveryRate</a> =0.0008</td></tr>
 <tr class="separator:af4bf8070d12d8520054a25abb3fe27eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3074a4bb5159116fe3ec0aabcbd30e18"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a3074a4bb5159116fe3ec0aabcbd30e18">infectionShedLoad</a> =0.01</td></tr>
+<tr class="memitem:a3074a4bb5159116fe3ec0aabcbd30e18"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a3074a4bb5159116fe3ec0aabcbd30e18">infectionShedLoad</a> =0.001</td></tr>
 <tr class="separator:a3074a4bb5159116fe3ec0aabcbd30e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -190,7 +196,7 @@ The disadvantage of this is that the parameters are fixed outside teh class defi
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float disease::infectionShedLoad =0.01</td>
+          <td class="memname">float disease::infectionShedLoad =0.001</td>
         </tr>
       </table>
   </td>
@@ -213,7 +219,7 @@ The disadvantage of this is that the parameters are fixed outside teh class defi
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float disease::recoveryRate =0.002</td>
+          <td class="memname">float disease::recoveryRate =0.0008</td>
         </tr>
       </table>
   </td>
