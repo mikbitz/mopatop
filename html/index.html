@@ -70,11 +70,13 @@ Introduction</h1>
 <p>This model is aimed at representing the patterns of movement and interaction of agents that represent individual people as they go about their daily activities. <br />
 The current version is intended to show how this can be done using a simple C++ program (using this language for speed of execution) <br />
 For this reason at the moment all code is in a single file. This can become unwieldy in a larger application though. <br />
- The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country. </p>
+ The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country.<br />
+Lopp parallelisation with openMP is used to accelerate execution if needed. </p>
 <h2><a class="anchor" id="Main"></a>
 Main ideas</h2>
 <p>Agents move between places according to a given fixed travel schedule. Places include transport vehicles. <br />
-In each place, agents with a disease can add contamination, which then decays exponentially over time. <br />
+In each place, agents with a disease can add contamination, which then decays exponentially over time <br />
+(or else it can be reset to zero at the start of each step - disease transmission then just depends on number of agents in any location)<br />
 The release of total contamination depends linearly on time spent in each location. <br />
 In a contaminated location, susceptible agents can pick up the infection - they then recover with a fixed chance per timestep, and are subsequently immune. </p>
 <h2><a class="anchor" id="Compiling"></a>

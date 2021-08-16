@@ -128,7 +128,7 @@ public:
     //total time steps to run for
     parameters["nSteps"]="1000";
     //number of agents to create
-    parameters["nAgents"]="600";
+    parameters["nAgents"]="60";
     //number of OMP threads to use increase the number here if using openmp to parallelise any loops.
     //Note number of threads needs to be <= to number of cores/threads supported on the local machine
     parameters["nThreads"]="1";
@@ -220,7 +220,7 @@ public:
     /** Get the current level of contamination here
      *@return Floating point value of current contamination level. */
     float getContaminationLevel(){return contaminationLevel;}
-    /** The contamination in each place decays exponentially. This function shoudl be called every time step \n
+    /** The contamination in each place decays exponentially. This function shoudl be called every (uniform) time step \n
      *  This way places without any currently infected agents gradually lose their infectiveness
      * */
     void update(){contaminationLevel*=fractionalDecrement;}
@@ -255,7 +255,7 @@ public:
 
 };
 float disease::recoveryRate=0.002;
-float disease::infectionShedLoad=0.1;
+float disease::infectionShedLoad=0.01;
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //Forward declaration of travelSchedule class, so agents know it exists - even though the travelSchedule also needs to know about agents
@@ -282,6 +282,9 @@ public:
     /** the default travel schedule - currently every agent has the same - 
      * @todo needs modification...(singleton?) */
     travelSchedule* schedule;
+    /** Counts down the time spent at the current location
+     */    
+    int counter=0;
     /** flag set to true if the agent has the disease */
     bool diseased;
     /** flag set to false initially, and true when the agent recovers from disease */
@@ -321,15 +324,15 @@ public:
     }
     /** do any things that need to be done at home */
     void atHome(){
-        //if (ID==0)std::cout<<"at Home"<<std::endl;
+        if (ID==0)std::cout<<"at Home"<<std::endl;
     }
     /** do any things that need to be done at work */
     void atWork(){
-        //if (ID==0)std::cout<<"at Work"<<std::endl;
+        if (ID==0)std::cout<<"at Work"<<std::endl;
     }
     /** do any things that need to be done while travelling */
     void inTransit(){
-        //if (ID==0)std::cout<<"on Bus"<<std::endl;
+        if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
     /** set up the place vector to include being at home - needs to be called when places are being created by the model class 
      @param pu a pointer to the specific home location for this agent */
@@ -405,7 +408,7 @@ public:
         destinations.push_back(agent::home);
         timeSpent.push_back(14);
         currentDestination=agent::home;
-        index=3;//start at home
+        index=2;//start on the bus to home - call to initTravelSchedule in agent constructor will move the agent to home for the first step
     }
     /** advance the schedule to the next place and return the placeType for that place */
     agent::placeTypes getNextLocation(){
@@ -426,7 +429,11 @@ public:
 void agent::update()
 {
         //Use the base travel schedule - initialised at home for everyone
-        currentPlace=schedule->getNextLocation();
+        counter--;
+        if (counter==0){
+            currentPlace=schedule->getNextLocation();
+            counter=schedule->getTimeAtCurrentPlaceInHours();
+        }
         //expensive - only needed if agents need direct agnt-to-agent interactions in a place -
         //moveTo(currentPlace);
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
@@ -435,12 +442,14 @@ void agent::update()
         
 }
 void agent::initTravelSchedule(){       
-   schedule=new  travelSchedule();   
+   schedule=new  travelSchedule();
+   currentPlace=schedule->getNextLocation();
+   counter=schedule->getTimeAtCurrentPlaceInHours();
 }
 void agent::cough()
 {
-        //breathInto(place) - scale linearly with the time spent there - masks could go here as a scaling on contamination increase (what about surfaces? -second contamination factor?)
-        if (diseased) places[currentPlace]->increaseContamination(disease::shedInfection()*schedule->getTimeAtCurrentPlaceInHours()/24.);
+        //breathInto(place) - scales linearly with the time spent there (using uniform timesteps) - masks could go here as a scaling on contamination increase (what about surfaces? -second contamination factor?)
+        if (diseased) places[currentPlace]->increaseContamination(disease::shedInfection());
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
@@ -533,18 +542,19 @@ public:
         These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP \n
         Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. 
         @param num The timestep number passed in from the model class*/
-    void step(int num,parameterSettings parameters){
+    void step(int stepNumber, parameterSettings parameters){
         //set some timers so loop relative times can be compared - note disease loop tends to get slower as more agents get infected.
         auto start=timeReporter::getTime();
         auto end=start;
+        if (stepNumber%10==0)std::cout<<"Start of step "<<stepNumber<<std::endl;
         //update the places - changes contamination level
-        if (num==0)start=timeReporter::getTime();
+        if (stepNumber==0)start=timeReporter::getTime();
         //note the pragma statement here allows openmp to parallelise this lopp over several threads 
         #pragma omp parallel for
         for (int i=0;i<places.size();i++){
             places[i]->update();
         }
-        if (num==0){
+        if (stepNumber==0){
             end=timeReporter::getTime();
             timeReporter::showInterval("Time updating places: ",start,end);
             start=end;
@@ -557,7 +567,7 @@ public:
         for (int i=0;i<agents.size();i++){
             agents[i]->cough();
         }
-        if(num==0){
+        if(stepNumber==0){
             end=timeReporter::getTime();
             timeReporter::showInterval("Run time coughing: ",start,end);
             start=end;
@@ -567,7 +577,7 @@ public:
         for (int i=0;i<agents.size();i++){
             agents[i]->disease();
         }
-        if (num==0){
+        if (stepNumber==0){
             end=timeReporter::getTime();
             timeReporter::showInterval("Run time being diseased: ",start,end);
             start=end;
@@ -577,7 +587,7 @@ public:
             if (agents[i]->diseased)infected++;
             if (agents[i]->immune)recovered++;
         }
-        if (num==0){
+        if (stepNumber==0){
             end=timeReporter::getTime();
             timeReporter::showInterval("Run time on accumulating disease totals: ",start,end);
             start=end;
@@ -587,20 +597,19 @@ public:
         for (int i=0;i<agents.size();i++){
             agents[i]->update();
         }
-        if (num==0){
+        if (stepNumber==0){
             end=timeReporter::getTime();
             timeReporter::showInterval("Run time updating agents: ",start,end);
             start=end;
         }
         //output a summary .csv file
-        output<<num<<","<<agents.size()-infected-recovered<<","<<infected<<","<<recovered<<std::endl;
+        output<<stepNumber<<","<<agents.size()-infected-recovered<<","<<infected<<","<<recovered<<std::endl;
         //show the step number every 10 steps
-        if (num==0){
+        if (stepNumber==0){
             end=timeReporter::getTime();
             timeReporter::showInterval("Run time on file I/O: ",start,end);
         }
       
-        if (num%10==0)std::cout<<"Step "<<num<<std::endl;
         //show places - just for testing really so commented out at present
         for (int i=0;i<places.size();i++){
             //places[i]->show();
@@ -641,10 +650,12 @@ int main(int argc, char **argv) {
  * The current version is intended to show how this can be done using a simple C++  program (using this language for speed of execution) \n
  * For this reason at the moment all code is in a single file. This can become unwieldy in a larger application though. \n
  * 
- * The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country.
+ * The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country.\n
+ * Lopp parallelisation with openMP is used to accelerate execution if needed.
  * @subsection Main Main ideas
  * Agents move between places according to a given fixed travel schedule. Places include transport vehicles. \n
- * In each place, agents with a disease can add contamination, which then decays exponentially over time. \n
+ * In each place, agents with a disease can add contamination, which then decays exponentially over time \n
+ * (or else it can be reset to zero at the start of each step - disease transmission then just depends on number of agents in any location)\n
  * The release of total contamination depends linearly on time spent in each location. \n
  * In a contaminated location, susceptible agents can pick up the infection - they then recover with a fixed chance per timestep, and are subsequently immune.
  * @subsection Compiling Compiling the model
