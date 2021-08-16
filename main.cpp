@@ -1,3 +1,19 @@
+/* A program to model agents moveing between places
+    Copyright (C) 2021  Mike Bithell
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    */
 /**
  * @file main.cpp 
  * @brief File containing all classes and the main function
@@ -126,9 +142,9 @@ class parameterSettings{
 public:
     parameterSettings(){
     //total time steps to run for
-    parameters["nSteps"]="1000";
+    parameters["nSteps"]="4800";
     //number of agents to create
-    parameters["nAgents"]="60";
+    parameters["nAgents"]="600";
     //number of OMP threads to use increase the number here if using openmp to parallelise any loops.
     //Note number of threads needs to be <= to number of cores/threads supported on the local machine
     parameters["nThreads"]="1";
@@ -254,8 +270,8 @@ public:
     static float shedInfection(){return infectionShedLoad;}
 
 };
-float disease::recoveryRate=0.002;
-float disease::infectionShedLoad=0.01;
+float disease::recoveryRate=0.0008;
+float disease::infectionShedLoad=0.001;
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //Forward declaration of travelSchedule class, so agents know it exists - even though the travelSchedule also needs to know about agents
@@ -665,5 +681,6 @@ int main(int argc, char **argv) {
  * note the number of cores to be used (<= number supported by the local machine!)
  * @subsection Run Running the model
  * At present this is a simple command-line application - just type the executable name (agentModel above) and then return.
+ *  
  **/
 
