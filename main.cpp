@@ -27,42 +27,12 @@
 #include <map>
 #include<fstream>
 #include<vector>
-#include<chrono>
-#include<ctime>
 #include<set>
 #include<string>
 #include<assert.h>
 #include<omp.h>
 #include "parameters.h"
-//------------------------------------------------------------------------
-//------------------------------------------------------------------------
-/** 
- * @brief Simple static class to abstract the clunky C++ chrono system
- * @details This class allows a variable to be created that will store the current run-time at the point it is created. \n
- * A second call later on then allows for the elapsed time to be calculated and show with the \ref showInterval method. \n
- * For example:-
- * \code
- * auto start=timeReporter::getTime();
- * ... do some stuff ...
- * auto end=timeReporter::getTime();
- * showInterval("time taken was",start,end);
- * \endcode
- * Note the use of "auto" so that the datatype of start and end doesn't need to be remembered!
- */
-class timeReporter{
-public:
-    /** get the time now */
-    static std::chrono::time_point<std::chrono::steady_clock> getTime(){return std::chrono::steady_clock::now();}
-    /** show the interval between two time points in seconds (to the nearest millsecond) using standard output to the terminal
-     @param s A string containing the message to show describing this time interval
-     @param start The start of the interval as reported by \ref getTime
-     @param end The correspinding end of the interval
-     */
-    static void showInterval(std::string s,std::chrono::time_point<std::chrono::steady_clock> start,std::chrono::time_point<std::chrono::steady_clock> end){
-        std::cout<<s<<float(std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count())/1000<<" seconds"<<std::endl;
-    }
-
-};
+#include "timereporter.h"
 //------------------------------------------------------------------------
 /**
  * @brief Set up a wrapper class that will provide uniform pseudo-random numbers between 0 and 1 \n
