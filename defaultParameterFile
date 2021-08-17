@@ -1,0 +1,22 @@
+#Model parameters
+#lines starting with any amount of white space, followed by # are comments
+#Lines with no = will also be skipped
+#Format is "label=value" on each line
+#Attempts to set parameters not defined in the code will cause code execution to halt
+
+#Number of agents to create
+nAgents=60
+
+#Number of steps to run for
+nSteps=10
+
+#number of OMP threads to use. Increase the number here if using openmp to parallelise any loops.
+#Note number of threads needs to be <= to number of cores/threads supported on the local machine
+nThreads=1
+
+#random seed - change to vary the stochastic parts of the model
+#runs with the same seed should produce the same output...although maybe not if nThreads>1
+randomSeed=0
+
+#path to the output file
+outputFile=diseaseSummary.csv

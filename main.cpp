@@ -479,7 +479,7 @@ int main(int argc, char **argv) {
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
-    parameterSettings parameters("parameterInputFile");
+    parameterSettings parameters("../defaultParameterFile");
 
     //create and initialise the model
     model m(parameters);

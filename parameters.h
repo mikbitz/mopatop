@@ -108,8 +108,7 @@ void readParameters(std::string inputFileName){
     }
 }
 //Notes
-//s.erase(std::remove_if(s.begin(), s.end(), ::isspace), s.end());
-// convert string to lower case -use std::toupper for upper case
+// convert string to lower case (use std::toupper for upper case) using a lamba function 
 //std::for_each(s.begin(), s.end(), [](char & c) {c = std::tolower(c);});
 //------------------------------------------------------------------------
     /** @brief sets the default names, values and types of the model parameters */
