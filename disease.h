@@ -23,12 +23,13 @@
  **/
 #ifndef DISEASE_H_INCLUDED
 #define DISEASE_H_INCLUDED
+#include"randomizer.h"
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /**
  * @brief Simple static class to represent a very very simple disease
- * @details Use of static class allws some of the details of the disease to be abstracted here, without needed a separate disease object in every agent \n
- * The disadvantage of this is that the parameters are fixed outside teh class definition (a requiremnet of C++ for static (i.e. class-based rather than instance-based) variables) \n
+ * @details Use of static class allows some of the details of the disease to be abstracted here, without needed a separate disease object in every agent \n
+ * The disadvantage of this is that the parameters are fixed outside the class definition (a requiremnet of C++ for static (i.e. class-based rather than instance-based) variables) \n
  * @todo update this so that parameters can be set, e.g. from a parameter file
 */
 class disease{

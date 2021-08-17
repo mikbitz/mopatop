@@ -319,8 +319,8 @@ class model{
 public:
     /** Constructor for the model - set up the random seed and the output file, then call \ref init to define the agents and the places \n
         The time reporter class is used to check how long it takes to set up everything \n
-        @param parameters A class that holds all the possible parameter settings for the model */
-    model(parameterSettings parameters){
+        @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
+    model(parameterSettings& parameters){
         randomizer r=randomizer::getInstance();
         nAgents=parameters.get<int>("nAgents");
         r.setSeed(parameters.get<int>("randomSeed"));
@@ -336,12 +336,12 @@ public:
         timeReporter::showInterval("Initialisation took: ", start,end);
     }
     /** @brief Set up the agents and places, and allocate agents to homes, workplaces, vehicles. \n
-     * @param parameters A class that holds all the possible parameter settings for the model.
-     * @details The relative structure of the places, size homes and workplaces and the number and size of transport vehicles, together with the schedule, \n
+     *  @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied
+     *  @details The relative structure of the places, size homes and workplaces and the number and size of transport vehicles, together with the schedule, \n
      *  will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale \n
-     * This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
+     *  This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
      */
-    void init(parameterSettings parameters){
+    void init(parameterSettings& parameters){
         //create homes - one third of the agent number
         for (int i=0;i<nAgents/3;i++){
             place* p=new place();
@@ -393,8 +393,8 @@ public:
         These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP \n
         Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. 
         @param stepNumber The timestep number passed in from the model class
-        @param parameters A class that holds all the possible parameter settings for the model.*/
-    void step(int stepNumber, parameterSettings parameters){
+        @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
+    void step(int stepNumber, parameterSettings& parameters){
         //set some timers so loop relative times can be compared - note disease loop tends to get slower as more agents get infected.
         auto start=timeReporter::getTime();
         auto end=start;
@@ -479,7 +479,7 @@ int main(int argc, char **argv) {
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
-    parameterSettings parameters;
+    parameterSettings parameters("parameterInputFile");
 
     //create and initialise the model
     model m(parameters);

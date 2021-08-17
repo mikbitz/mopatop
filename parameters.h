@@ -23,11 +23,11 @@
  **/
 #ifndef PARAMETERS_H_INCLUDED
 #define PARAMETERS_H_INCLUDED
-
+#include<fstream>
 /**
  * @brief ParameterSettings is a class designed to hold all the parameters for the model
- * @details At present these are hard coded here, but more usefully these could be delegated to an input file.
- * At the moment all parameters are strings (with the idea that arbitrary strings can be read from a parameter file), so need to be converted at point of use - \n
+ * @details At present these are hard coded here, but more usefully these could be delegated to an input file.\n
+ * All parameters are strings (with the idea that arbitrary strings can be read from a parameter file), so need to be converted at point of use - \n
  * however, returning different data types depending on parameter name is a little tricky...this is done by having an overloaded \ref get method\n
  * the correct get method can then be called depending on the the parameter type required (e.g. int, float).\n
  * The possible types are kept by the typeID enum - for each parameter, the type can then be stored in \ref parameterType - these are \n
@@ -41,9 +41,11 @@ class parameterSettings{
     std::map<std::string,std::string>parameters;
     /** @brief stores the expected type of the relevant parameter */
     std::map<std::string,typeID>parameterType;
+    /** @brief File handle for the input parameter file */
+
+//------------------------------------------------------------------------
     /** @brief function to check whether a requiested parameter name exists.\n
-        If not exit the program.
-        */
+        If not exit the program.        */
     bool is_valid(std::string s){
         auto it = parameters.find(s);
         //check that the parameter exist
@@ -54,19 +56,52 @@ class parameterSettings{
         return true;
     }
 public:
-    parameterSettings(){
+//------------------------------------------------------------------------
+    /** @brief the constructor - set up defaults and then read in any other values. A filename is \b required when the parameterSettings object is created
+        @param inputFilename A string giving the path to the input file. The code will fail if the file does not exist (but it could be empty) 
+        @details Currently you could set up several objects like this, with different input files, so take care that the filename is correct! */
+    parameterSettings(std::string inputFileName){
+        setDefaults();
+        std::cout<<"Expecting to find model parameters in file: "<<inputFileName<<std::endl;
+        readParameters(inputFileName);
 
-    //total time steps to run for
-    parameters["nSteps"]="4800";parameterType["nSteps"]=i;
-    //number of agents to create
-    parameters["nAgents"]="600";parameterType["nAgents"]=i;
-    //number of OMP threads to use increase the number here if using openmp to parallelise any loops.
-    //Note number of threads needs to be <= to number of cores/threads supported on the local machine
-    parameters["nThreads"]="1";parameterType["nThreads"]=i;
-    //random seed
-    parameters["randomSeed"]="0";parameterType["randomSeed"]=i;
-    //path to the output file
-    parameters["outputFile"]="diseaseSummary.csv";parameterType["outputFile"]=s;
+    }
+//------------------------------------------------------------------------
+    /** @brief Read in any values from the parameter file */
+    void readParameters(std::string inputFileName){
+        std::fstream infile;
+        infile.open(inputFileName,std::ios::in);
+        assert(!infile.fail());
+        std::string label,value;
+        while (!infile.eof()){
+            std::string label;
+            infile>>label;
+            //set # as comment character
+            if (label[ 0 ] != '#'){
+                std::cout<<label<<std::endl;
+                infile>>value;
+                parameters[label]=value;
+                bool success=false;
+            }else{
+                //ignore all text on lines beginning with #
+                infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+        }
+    }
+//------------------------------------------------------------------------
+    /** @brief sets the default names, values and types of the model parameters */
+    void setDefaults(){
+        //total time steps to run for
+        parameters["nSteps"]="1";parameterType["nSteps"]=i;
+        //number of agents to create
+        parameters["nAgents"]="600";parameterType["nAgents"]=i;
+        //number of OMP threads to use increase the number here if using openmp to parallelise any loops.
+        //Note number of threads needs to be <= to number of cores/threads supported on the local machine
+        parameters["nThreads"]="1";parameterType["nThreads"]=i;
+        //random seed
+        parameters["randomSeed"]="0";parameterType["randomSeed"]=i;
+        //path to the output file
+        parameters["outputFile"]="diseaseSummary.csv";parameterType["outputFile"]=s;
     }
 //------------------------------------------------------------------------
 /** @brief allow parameters to be returned using an instance of class parameters using a string
@@ -87,18 +122,22 @@ public:
 /** @brief allow parameters to be returned with a given type conversion, in this case double\n
  *  @param s the name of the parameter requested.
  *  @details Since the parameters are stored as strings, but may represent other types, the get function allows\n
- *  them to be converted safely, with different function versions for each possble datatype
- *   Example:-
+ *  them to be converted safely, with different function versions for each possble datatype.
+ *  The enable_if statment allows the compiler to workout that this version should be used if the\n
+ *  datatype, T, is set to double.
+ *  Example:-
  * \code
  * parameterSettings p;
  * std::string rate=p.get<double>("rate");
  * \endcode
- * function fails if the requested parameter not been defined - the program halts\n
+ * function fails if the requested parameter not been defined or the tyep is incorrect - the program halts\n
  */
     template <typename T>
     typename std::enable_if<std::is_same<T,double>::value, T>::type
     get(std::string s){
+        //check the parameter name exists
         is_valid(s);
+        //make sure the type is as expected
         assert(parameterType[s]==d);
         return stod(parameters[s]);
     }
