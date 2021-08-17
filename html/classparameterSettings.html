@@ -69,6 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classparameterSettings-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -89,9 +90,49 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1dea97ae4df5508220d1df5623553ab5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a1dea97ae4df5508220d1df5623553ab5">operator()</a> (std::string s)</td></tr>
 <tr class="memdesc:a1dea97ae4df5508220d1df5623553ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">allow parameters to be returned using an instance of class parameters using a string  <a href="#a1dea97ae4df5508220d1df5623553ab5">More...</a><br /></td></tr>
 <tr class="separator:a1dea97ae4df5508220d1df5623553ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a417e5df1124a130366c687c451cd2b40"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a417e5df1124a130366c687c451cd2b40"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; T, double &gt;::value, T &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a> (std::string s)</td></tr>
+<tr class="memdesc:a417e5df1124a130366c687c451cd2b40"><td class="mdescLeft">&#160;</td><td class="mdescRight">allow parameters to be returned with a given type conversion, in this case double<br />
+ <a href="#a417e5df1124a130366c687c451cd2b40">More...</a><br /></td></tr>
+<tr class="separator:a417e5df1124a130366c687c451cd2b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1bca448c7289d3c40a71926c2d71ae3"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad1bca448c7289d3c40a71926c2d71ae3"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; T, float &gt;::value, T &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#ad1bca448c7289d3c40a71926c2d71ae3">get</a> (std::string s)</td></tr>
+<tr class="memdesc:ad1bca448c7289d3c40a71926c2d71ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialisation of get for floats<br />
+.  <a href="#ad1bca448c7289d3c40a71926c2d71ae3">More...</a><br /></td></tr>
+<tr class="separator:ad1bca448c7289d3c40a71926c2d71ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a684f724ba1254694ec9693d71fe2a2c8"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a684f724ba1254694ec9693d71fe2a2c8"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; T, int &gt;::value, T &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a684f724ba1254694ec9693d71fe2a2c8">get</a> (std::string s)</td></tr>
+<tr class="memdesc:a684f724ba1254694ec9693d71fe2a2c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialisation of get for int<br />
+.  <a href="#a684f724ba1254694ec9693d71fe2a2c8">More...</a><br /></td></tr>
+<tr class="separator:a684f724ba1254694ec9693d71fe2a2c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cfc75aa4cd453d973cae2bfa13d1719"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a0cfc75aa4cd453d973cae2bfa13d1719"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; T, long &gt;::value, T &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a0cfc75aa4cd453d973cae2bfa13d1719">get</a> (std::string s)</td></tr>
+<tr class="memdesc:a0cfc75aa4cd453d973cae2bfa13d1719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialisation of get for long integers<br />
+.  <a href="#a0cfc75aa4cd453d973cae2bfa13d1719">More...</a><br /></td></tr>
+<tr class="separator:a0cfc75aa4cd453d973cae2bfa13d1719"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75db51f35ffa143deba085c4ac071d22"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a75db51f35ffa143deba085c4ac071d22"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; T, unsigned &gt;::value, T &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a75db51f35ffa143deba085c4ac071d22">get</a> (std::string s)</td></tr>
+<tr class="memdesc:a75db51f35ffa143deba085c4ac071d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialisation of get for unsigned integers<br />
+.  <a href="#a75db51f35ffa143deba085c4ac071d22">More...</a><br /></td></tr>
+<tr class="separator:a75db51f35ffa143deba085c4ac071d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73c7e3c79bb37d53214467bf083281f6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a73c7e3c79bb37d53214467bf083281f6">get</a> (std::string s)</td></tr>
+<tr class="memdesc:a73c7e3c79bb37d53214467bf083281f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default get just returns the string value<br />
+.  <a href="#a73c7e3c79bb37d53214467bf083281f6">More...</a><br /></td></tr>
+<tr class="separator:a73c7e3c79bb37d53214467bf083281f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a6a2e02d9f1cc6ce098208b6a95dc04b9"><td class="memItemLeft" align="right" valign="top"><a id="a6a2e02d9f1cc6ce098208b6a95dc04b9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a6a2e02d9f1cc6ce098208b6a95dc04b9">is_valid</a> (std::string s)</td></tr>
+<tr class="memdesc:a6a2e02d9f1cc6ce098208b6a95dc04b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">function to check whether a requiested parameter name exists.<br />
+If not exit the program. <br /></td></tr>
+<tr class="separator:a6a2e02d9f1cc6ce098208b6a95dc04b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:afedfd181cbe64fa2a0c96cf05f351475"><td class="memItemLeft" align="right" valign="top"><a id="afedfd181cbe64fa2a0c96cf05f351475"></a>
+const std::type_info &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>ti1</b> = typeid(int)</td></tr>
+<tr class="separator:afedfd181cbe64fa2a0c96cf05f351475"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af44a6618aa323c3ff58052e65c654f17"><td class="memItemLeft" align="right" valign="top"><a id="af44a6618aa323c3ff58052e65c654f17"></a>
 std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#af44a6618aa323c3ff58052e65c654f17">parameters</a></td></tr>
 <tr class="memdesc:af44a6618aa323c3ff58052e65c654f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">a map from parameter names to parameter values, all currently strings <br /></td></tr>
@@ -102,6 +143,229 @@ std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" va
 <p>At present these are hard coded here, but more usefully these could be delegated to an input file. At the moment all parameters are strings, so need to be converted at point of use - <br />
 however, returning different data types depending on parameter name is a little tricky... </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a417e5df1124a130366c687c451cd2b40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a417e5df1124a130366c687c451cd2b40">&#9670;&nbsp;</a></span>get() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;T,double&gt;::value, T&gt;::type parameterSettings::get </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>allow parameters to be returned with a given type conversion, in this case double<br />
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the name of the parameter requested.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Since the parameters are stored as strings, but may represent other types, the get function allows<br />
+ them to be converted safely, with different function versions for each possble datatype Example:- </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> p;</div><div class="line">std::string rate=p.<a class="code" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a>&lt;<span class="keywordtype">double</span>&gt;(<span class="stringliteral">&quot;rate&quot;</span>);</div></div><!-- fragment --><p> function fails if the requested parameter not been defined - the program halts<br />
+</p>
+
+</div>
+</div>
+<a id="ad1bca448c7289d3c40a71926c2d71ae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1bca448c7289d3c40a71926c2d71ae3">&#9670;&nbsp;</a></span>get() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;T, float&gt;::value, T&gt;::type parameterSettings::get </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specialisation of get for floats<br />
+. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the name of the parameter requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a684f724ba1254694ec9693d71fe2a2c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a684f724ba1254694ec9693d71fe2a2c8">&#9670;&nbsp;</a></span>get() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;T, int&gt;::value, T&gt;::type parameterSettings::get </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specialisation of get for int<br />
+. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the name of the parameter requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0cfc75aa4cd453d973cae2bfa13d1719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cfc75aa4cd453d973cae2bfa13d1719">&#9670;&nbsp;</a></span>get() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;T, long&gt;::value, T&gt;::type parameterSettings::get </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specialisation of get for long integers<br />
+. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the name of the parameter requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a75db51f35ffa143deba085c4ac071d22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75db51f35ffa143deba085c4ac071d22">&#9670;&nbsp;</a></span>get() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;T, unsigned&gt;::value, T&gt;::type parameterSettings::get </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specialisation of get for unsigned integers<br />
+. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the name of the parameter requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a73c7e3c79bb37d53214467bf083281f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73c7e3c79bb37d53214467bf083281f6">&#9670;&nbsp;</a></span>get() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string parameterSettings::get </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The default get just returns the string value<br />
+. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the name of the parameter requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a1dea97ae4df5508220d1df5623553ab5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1dea97ae4df5508220d1df5623553ab5">&#9670;&nbsp;</a></span>operator()()</h2>
 
@@ -129,7 +393,8 @@ however, returning different data types depending on parameter name is a little 
 <p>allow parameters to be returned using an instance of class parameters using a string </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>the name of the parameter requested. Example:- <div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> p;</div><div class="line">std::string filename=p(<span class="stringliteral">&quot;outputFile&quot;</span>);</div></div><!-- fragment --> function fails if the requested parameter not been defined - the program halts </td></tr>
+    <tr><td class="paramname">s</td><td>the name of the parameter requested. Example:- <div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> p;</div><div class="line">std::string filename=p(<span class="stringliteral">&quot;outputFile&quot;</span>);</div></div><!-- fragment --> function fails if the requested parameter not been defined - the program halts<br />
+This version returns only the string variant of the parmeter value </td></tr>
   </table>
   </dd>
 </dl>

@@ -74,48 +74,58 @@ $(function() {
 <div class="textblock"><h1><a class="anchor" id="odd_intro"></a>
 Introduction</h1>
 <p>This page describes the model in more detial using the ODD+D formalism (Overview, Design Concepts and Details + Decisions) <br />
-as suggested in Muller et al <a href="https://doi.org/10.1016/j.envsoft.2013.06.003">https://doi.org/10.1016/j.envsoft.2013.06.003</a><br />
-</p>
-<h2><a class="anchor" id="over"></a>
-Overview</h2>
-<h3><a class="anchor" id="purp"></a>
-Purpose</h3>
-<h3><a class="anchor" id="enti"></a>
-Entities, State variables and Scales</h3>
-<h3><a class="anchor" id="proc"></a>
-Process Overview and Scheduling</h3>
-<h2><a class="anchor" id="desi"></a>
-Design concepts</h2>
-<h3><a class="anchor" id="theo"></a>
-Theoretical and Empirical Background</h3>
-<h3><a class="anchor" id="indiv"></a>
-Individual Decision Making</h3>
-<h3><a class="anchor" id="lear"></a>
-Learning</h3>
-<h3><a class="anchor" id="indis"></a>
-Individual sensing</h3>
-<h3><a class="anchor" id="indip"></a>
-Individual prediction</h3>
-<h3><a class="anchor" id="inte"></a>
-Interaction</h3>
-<h3><a class="anchor" id="colle"></a>
-Collectives</h3>
-<h3><a class="anchor" id="hete"></a>
-Heterogeneity</h3>
-<h3><a class="anchor" id="stoc"></a>
-Stochasticity</h3>
-<h3><a class="anchor" id="obse"></a>
-Observation</h3>
-<h2><a class="anchor" id="deta"></a>
-Details</h2>
-<h3><a class="anchor" id="imple"></a>
-Implementation Details</h3>
-<h3><a class="anchor" id="init"></a>
-Initialisation</h3>
-<h3><a class="anchor" id="inpu"></a>
-Input Data</h3>
-<h3><a class="anchor" id="subm"></a>
-Submodels</h3>
+as suggested in Grimm et al <a href="https://doi.org/10.1016/j.ecolmodel.2010.08.019">https://doi.org/10.1016/j.ecolmodel.2010.08.019</a> and extended by Muller et al <a href="https://doi.org/10.1016/j.envsoft.2013.06.003">https://doi.org/10.1016/j.envsoft.2013.06.003</a><br />
+ </p>
+<h1><a class="anchor" id="over"></a>
+Overview</h1>
+<h2><a class="anchor" id="purp"></a>
+Purpose</h2>
+<h2><a class="anchor" id="enti"></a>
+Entities, State variables and Scales</h2>
+<h2><a class="anchor" id="proc"></a>
+Process Overview and Scheduling</h2>
+<h1><a class="anchor" id="desi"></a>
+Design concepts</h1>
+<h2><a class="anchor" id="basi"></a>
+Basic Principles</h2>
+<h2><a class="anchor" id="theo"></a>
+Theoretical and Empirical Background</h2>
+<h2><a class="anchor" id="indiv"></a>
+Individual Decision Making</h2>
+<h2><a class="anchor" id="lear"></a>
+Learning</h2>
+<h2><a class="anchor" id="indis"></a>
+Individual sensing</h2>
+<h2><a class="anchor" id="indip"></a>
+Individual prediction</h2>
+<h2><a class="anchor" id="objec"></a>
+Objectives</h2>
+<h2><a class="anchor" id="inte"></a>
+Interaction</h2>
+<h2><a class="anchor" id="colle"></a>
+Collectives</h2>
+<h2><a class="anchor" id="emer"></a>
+Emergence</h2>
+<h2><a class="anchor" id="adap"></a>
+Adaptation</h2>
+<h2><a class="anchor" id="hete"></a>
+Heterogeneity</h2>
+<h2><a class="anchor" id="stoc"></a>
+Stochasticity</h2>
+<h2><a class="anchor" id="obse"></a>
+Observation</h2>
+<h1><a class="anchor" id="imple"></a>
+Implementation Details</h1>
+<h2><a class="anchor" id="init"></a>
+Initialisation</h2>
+<h2><a class="anchor" id="inpu"></a>
+Input Data</h2>
+<h2><a class="anchor" id="subm"></a>
+Submodels</h2>
+<h3><a class="anchor" id="cont"></a>
+Contamination</h3>
+<p>Places have a contamination level which is added to when agents local to the place cough. The level then decreases at a fixed rate over time.<br />
+ \(\frac {dc}{dt} = \sum_{agents}shedInfection-fractionalDecrement * c\) </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

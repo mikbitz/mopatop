@@ -138,10 +138,24 @@ std::map<short,randomizer*> randomizer::instance;
  * however, returning different data types depending on parameter name is a little tricky...
 */
 class parameterSettings{
+const std::type_info& ti1 = typeid(int);
     /** @brief a map from parameter names to parameter values, all currently strings */
     std::map<std::string,std::string>parameters;
+    /** @brief function to check whether a requiested parameter name exists.\n
+        If not exit the program.
+        */
+    bool is_valid(std::string s){
+        auto it = parameters.find(s);
+        //check that the parameter exist
+        if(it == parameters.end()){
+            std::cout<<"Invalid parameter: "<<s<<std::endl ;
+            exit(1);
+        }
+        return true;
+    }
 public:
     parameterSettings(){
+
     //total time steps to run for
     parameters["nSteps"]="4800";
     //number of agents to create
@@ -162,16 +176,78 @@ public:
  * parameterSettings p;
  * std::string filename=p("outputFile");
  * \endcode
- * function fails if the requested parameter not been defined - the program halts
+ * function fails if the requested parameter not been defined - the program halts\n
+ * This version returns only the string variant of the parmeter value
  */
     std::string operator ()(std::string s){
-        auto it = parameters.find(s);
-        //check that the parameter exist
-        if(it == parameters.end()){
-           std::cout<<"Invalid parameter: "<<s<<std::endl ;
-           exit(1);
-        }
-
+        is_valid(s);
+        return parameters[s];
+    }
+//------------------------------------------------------------------------
+/** @brief allow parameters to be returned with a given type conversion, in this case double\n
+ *  @param s the name of the parameter requested.
+ *  @details Since the parameters are stored as strings, but may represent other types, the get function allows\n
+ *  them to be converted safely, with different function versions for each possble datatype
+ *   Example:-
+ * \code
+ * parameterSettings p;
+ * std::string rate=p.get<double>("rate");
+ * \endcode
+ * function fails if the requested parameter not been defined - the program halts\n
+ */
+    template <typename T>
+    typename std::enable_if<std::is_same<T,double>::value, T>::type
+    get(std::string s){
+        is_valid(s);
+        return stod(parameters[s]);
+    }
+//------------------------------------------------------------------------
+/** @brief Specialisation of get for floats\n
+ *  @param s the name of the parameter requested.
+ */
+    template <typename T>
+    typename std::enable_if<std::is_same<T, float>::value, T>::type
+    get(std::string s){
+        is_valid(s);
+        return stof(parameters[s]);
+    }
+//------------------------------------------------------------------------
+/** @brief Specialisation of get for int\n
+ *  @param s the name of the parameter requested.
+ */
+    template <typename T>
+    typename std::enable_if<std::is_same<T, int>::value, T>::type
+    get(std::string s){
+        is_valid(s);
+        return stoi(parameters[s]);
+    }
+//------------------------------------------------------------------------
+/** @brief Specialisation of get for long integers\n
+ *  @param s the name of the parameter requested.
+ */
+    template <typename T>
+    typename std::enable_if<std::is_same<T, long>::value, T>::type
+    get(std::string s){
+        is_valid(s);
+        return stol(parameters[s]);
+    }
+//------------------------------------------------------------------------
+/** @brief Specialisation of get for unsigned integers\n
+ *  @param s the name of the parameter requested.
+ */
+    template <typename T>
+    typename std::enable_if<std::is_same<T, unsigned>::value, T>::type
+    get(std::string s){
+        is_valid(s);
+        //seems there is no conversion just to unsigned, so use unsigned long
+        return stoul(parameters[s]);
+    }
+//------------------------------------------------------------------------
+/** @brief The default get just returns the string value\n
+ *  @param s the name of the parameter requested.
+ */
+        std::string get(std::string s){
+        is_valid(s);
         return parameters[s];
     }
 };
@@ -486,11 +562,12 @@ class model{
     std::ofstream output;
 public:
     /** Constructor for the model - set up the random seed and the output file, then call \ref init to define the agents and the places \n
-        The time reporter class is used to check how long it takes to set up everything */
+        The time reporter class is used to check how long it takes to set up everything \n
+        @param parameters A class that holds all the possible parameter settings for the model */
     model(parameterSettings parameters){
         randomizer r=randomizer::getInstance();
-        nAgents=std::stoi(parameters("nAgents"));
-        r.setSeed(std::stoi(parameters("randomSeed")));
+        nAgents=parameters.get<int>("nAgents");
+        r.setSeed(parameters.get<int>("randomSeed"));
         //output file
         output.open(parameters("outputFile"));
 
@@ -503,6 +580,7 @@ public:
         timeReporter::showInterval("Initialisation took: ", start,end);
     }
     /** @brief Set up the agents and places, and allocate agents to homes, workplaces, vehicles. \n
+     * @param parameters A class that holds all the possible parameter settings for the model.
      * @details The relative structure of the places, size homes and workplaces and the number and size of transport vehicles, together with the schedule, \n
      *  will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale \n
      * This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
@@ -558,7 +636,8 @@ public:
     *   @details split up the timestep into update of places, contamination of places by agents, infection and progress of disease and finally update of agent locations \n
         These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP \n
         Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. 
-        @param stepNumber The timestep number passed in from the model class*/
+        @param stepNumber The timestep number passed in from the model class
+        @param parameters A class that holds all the possible parameter settings for the model.*/
     void step(int stepNumber, parameterSettings parameters){
         //set some timers so loop relative times can be compared - note disease loop tends to get slower as more agents get infected.
         auto start=timeReporter::getTime();
@@ -638,22 +717,23 @@ public:
 //------------------------------------------------------------------------
 /** set up and run the model */
 int main(int argc, char **argv) {
-    
+
+
     std::cout<<"Model version -0.9"<<std::endl;
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
     parameterSettings parameters;
-    
+
     //create and initialise the model
     model m(parameters);
 
-    omp_set_num_threads(std::stoi(parameters("nThreads")));
+    omp_set_num_threads(parameters.get<int>("nThreads"));
     
     //start a timer to record the execution time
     auto start=timeReporter::getTime();
     //loop over time steps
-    for (int step=0;step<std::stoi(parameters("nSteps"));step++){
+    for (int step=0;step<parameters.get<int>("nSteps");step++){
         m.step(step,parameters);
     }
     auto end=timeReporter::getTime();
@@ -668,7 +748,7 @@ int main(int argc, char **argv) {
  * For this reason at the moment all code is in a single file. This can become unwieldy in a larger application though. \n
  * 
  * The current objective is to be able to model a simple disease, and to tie this to agent behaviour at the scale of an entire country.\n
- * Lopp parallelisation with openMP is used to accelerate execution if needed.
+ * Loop parallelisation with openMP is used to accelerate execution if needed.
  * @subsection Main Main ideas
  * Agents move between places according to a given fixed travel schedule. Places include transport vehicles. \n
  * In each place, agents with a disease can add contamination, which then decays exponentially over time \n
@@ -678,37 +758,42 @@ int main(int argc, char **argv) {
  * @subsection Compiling Compiling the model
  * On a linux system with g++ installed just do \n
  * g++ -o agentModel -O3 -fopenmp main.cpp\n
- * If using openmp (parallelised loops) then set the  number of threads in the main function.
- * note the number of cores to be used (<= number supported by the local machine!)
+ * If using openmp (parallelised loops) then set the  number of threads in the parameterSettings class.\n
+ * Note the number of cores to be used must be <= number supported by the local machine!
  * @subsection Run Running the model
  * At present this is a simple command-line application - just type the executable name (agentModel above) and then return.\n
- * For more detail see  @ref ODD
+ * @subsection dett Detailed Description
+ * For a formalised description of the model  see  @ref ODD
  * @page ODD ODD description
  * @section odd_intro Introduction
- * This page describes the model in more detial using the ODD+D formalism (Overview, Design Concepts and Details + Decisions) \n
- * as suggested in Muller et al https://doi.org/10.1016/j.envsoft.2013.06.003\n
- * @subsection over Overview
- * @subsubsection purp Purpose
- * @subsubsection enti Entities, State variables and Scales
- * @subsubsection proc Process Overview and Scheduling
- * @subsection desi Design concepts
- * @subsubsection theo Theoretical and Empirical Background
- * @subsubsection indiv Individual Decision Making
- * @subsubsection lear Learning
- * @subsubsection indis Individual sensing
- * @subsubsection indip Individual prediction
- * @subsubsection inte Interaction
- * @subsubsection colle Collectives
- * @subsubsection hete Heterogeneity
- * @subsubsection stoc Stochasticity
- * @subsubsection obse Observation
- * @subsection deta Details
- * @subsubsection imple Implementation Details
- * @subsubsection init Initialisation
- * @subsubsection inpu Input Data
- * @subsubsection subm Submodels
+ * This page describes the model in more detail using the ODD+D formalism (Overview, Design Concepts and Details + Decisions) \n
+ * as suggested in Grimm et al https://doi.org/10.1016/j.ecolmodel.2010.08.019 and extended by Muller et al https://doi.org/10.1016/j.envsoft.2013.06.003\n 
+ * @section over Overview
+ * @subsection purp Purpose
+ * @subsection enti Entities, State variables and Scales
+ * @subsection proc Process Overview and Scheduling
+ * @section desi Design concepts
+ * @subsection basi Basic Principles
+ * @subsection theo Theoretical and Empirical Background
+ * @subsection indiv Individual Decision Making
+ * @subsection lear Learning
+ * @subsection indis Individual sensing
+ * @subsection indip Individual prediction
+ * @subsection objec Objectives
+ * @subsection inte Interaction
+ * @subsection colle Collectives
+ * @subsection emer Emergence
+ * @subsection adap Adaptation
+ * @subsection hete Heterogeneity
+ * @subsection stoc Stochasticity
+ * @subsection obse Observation
+ * @section imple Implementation Details
+ * @subsection init Initialisation
+ * @subsection inpu Input Data
+ * @subsection subm Submodels
+ * @subsubsection cont Contamination
+ * Places have a contamination level which is added to when agents local to the place cough. The level then decreases at a fixed rate over time.\n
+ * \f$\frac {dc}{dt} = \sum_{agents}shedInfection-fractionalDecrement * c\f$
  */
- //   how to do equations... \f$\frac {dx}{dt} (x_1,y_1)\f$ and \f$(x_2,y_2)\f$ is 
- // \f$\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\f$.
- // **/
+
 
