@@ -24,6 +24,8 @@
 #ifndef PARAMETERS_H_INCLUDED
 #define PARAMETERS_H_INCLUDED
 #include<fstream>
+#include<algorithm>
+#include<cctype>
 /**
  * @brief ParameterSettings is a class designed to hold all the parameters for the model
  * @details At present these are hard coded here, but more usefully these could be delegated to an input file.\n
@@ -58,7 +60,7 @@ class parameterSettings{
 public:
 //------------------------------------------------------------------------
     /** @brief the constructor - set up defaults and then read in any other values. A filename is \b required when the parameterSettings object is created
-        @param inputFilename A string giving the path to the input file. The code will fail if the file does not exist (but it could be empty) 
+        @param inputFileName A string giving the path to the input file. The code will fail if the file does not exist (but it could be empty) 
         @details Currently you could set up several objects like this, with different input files, so take care that the filename is correct! */
     parameterSettings(std::string inputFileName){
         setDefaults();
@@ -67,7 +69,10 @@ public:
 
     }
 //------------------------------------------------------------------------
-/** @brief Read in any values from the parameter file */
+/** @brief Read in any values from the parameter file
+ *    @param inputFileName A string giving the path to the input file.
+ *    @details The parameter file is a set of lines with name:value pairs on each line, using ":" to separate the two.\n
+ *    lines beginning with # are ignored and can be used for comments. Any line with no ":" will also be ignored*/
 void readParameters(std::string inputFileName){
     std::fstream infile;
     infile.open(inputFileName,std::ios::in);
@@ -75,26 +80,34 @@ void readParameters(std::string inputFileName){
     std::string label,value,line;
     while (!infile.eof()){
         std::getline( infile, line );
-        //set # as comment character
-        if (line[ 0 ] != '#'){
+
+        //set # as comment character - need to check end of file again as the above read may have actually been at file end.
+        if (!infile.eof() && line[ 0 ] != '#'){
+            
             //separator between parameter name and value is :
             auto pos = line.find(':');
-            //ignore if no : is found
+            
+            //ignore if no ":" is found
             if (pos!=std::string::npos){
-                //get string of length pos from position zero - so : will be ignored
+                //get string of length pos from position zero - so ":" will be ignored
                 label=line.substr(0,pos);
-                //get from place after : to the end of the line
+                //get from place after ":" to the end of the line
                 value=line.substr(pos+1);
                 std::cout<<label<<" "<<value<<std::endl;
-                parameters[label]=value;
+                //set the parameter if it exists
+                if (is_valid(label))parameters[label]=value;
                 bool success=true;
             }
-        }else{
-            //ignore all text on lines beginning with #
-            infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            
         }
     }
 }
+//Notes
+//how to remove all whitespace from a string - need to include cctype and algorithm
+//std::string s;
+//s.erase(std::remove_if(s.begin(), s.end(), ::isspace), s.end());
+// convert string to lower case -use std::toupper for upper case
+//std::for_each(s.begin(), s.end(), [](char & c) {c = std::tolower(c);});
 //------------------------------------------------------------------------
     /** @brief sets the default names, values and types of the model parameters */
     void setDefaults(){

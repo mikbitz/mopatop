@@ -93,9 +93,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acdc133b21ba9439fee99781b32f8d476"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#acdc133b21ba9439fee99781b32f8d476">parameterSettings</a> (std::string inputFileName)</td></tr>
 <tr class="memdesc:acdc133b21ba9439fee99781b32f8d476"><td class="mdescLeft">&#160;</td><td class="mdescRight">the constructor - set up defaults and then read in any other values. A filename is <b>required</b> when the <a class="el" href="classparameterSettings.html" title="ParameterSettings is a class designed to hold all the parameters for the model. ">parameterSettings</a> object is created  <a href="#acdc133b21ba9439fee99781b32f8d476">More...</a><br /></td></tr>
 <tr class="separator:acdc133b21ba9439fee99781b32f8d476"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a934aa5c26195e52aa69c5a524a1af9db"><td class="memItemLeft" align="right" valign="top"><a id="a934aa5c26195e52aa69c5a524a1af9db"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a> (std::string inputFileName)</td></tr>
-<tr class="memdesc:a934aa5c26195e52aa69c5a524a1af9db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read in any values from the parameter file. <br /></td></tr>
+<tr class="memitem:a934aa5c26195e52aa69c5a524a1af9db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a> (std::string inputFileName)</td></tr>
+<tr class="memdesc:a934aa5c26195e52aa69c5a524a1af9db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read in any values from the parameter file.  <a href="#a934aa5c26195e52aa69c5a524a1af9db">More...</a><br /></td></tr>
 <tr class="separator:a934aa5c26195e52aa69c5a524a1af9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64baa7eba110c8ac37f1d6687c04deaa"><td class="memItemLeft" align="right" valign="top"><a id="a64baa7eba110c8ac37f1d6687c04deaa"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a64baa7eba110c8ac37f1d6687c04deaa">setDefaults</a> ()</td></tr>
@@ -228,7 +227,7 @@ then checked by the get method to make sure that there is no unexpected attempt 
 <p>the constructor - set up defaults and then read in any other values. A filename is <b>required</b> when the <a class="el" href="classparameterSettings.html" title="ParameterSettings is a class designed to hold all the parameters for the model. ">parameterSettings</a> object is created </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inputFilename</td><td>A string giving the path to the input file. The code will fail if the file does not exist (but it could be empty)</td></tr>
+    <tr><td class="paramname">inputFileName</td><td>A string giving the path to the input file. The code will fail if the file does not exist (but it could be empty)</td></tr>
   </table>
   </dd>
 </dl>
@@ -523,6 +522,42 @@ This version returns only the string variant of the parmeter value </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a934aa5c26195e52aa69c5a524a1af9db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a934aa5c26195e52aa69c5a524a1af9db">&#9670;&nbsp;</a></span>readParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void parameterSettings::readParameters </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>inputFileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read in any values from the parameter file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputFileName</td><td>A string giving the path to the input file.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The parameter file is a set of lines with name:value pairs on each line, using ":" to separate the two.<br />
+ lines beginning with # are ignored and can be used for comments. Any line with no ":" will also be ignored </p>
 
 </div>
 </div>
