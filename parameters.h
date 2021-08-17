@@ -67,27 +67,34 @@ public:
 
     }
 //------------------------------------------------------------------------
-    /** @brief Read in any values from the parameter file */
-    void readParameters(std::string inputFileName){
-        std::fstream infile;
-        infile.open(inputFileName,std::ios::in);
-        assert(!infile.fail());
-        std::string label,value;
-        while (!infile.eof()){
-            std::string label;
-            infile>>label;
-            //set # as comment character
-            if (label[ 0 ] != '#'){
-                std::cout<<label<<std::endl;
-                infile>>value;
+/** @brief Read in any values from the parameter file */
+void readParameters(std::string inputFileName){
+    std::fstream infile;
+    infile.open(inputFileName,std::ios::in);
+    assert(!infile.fail());
+    std::string label,value,line;
+    while (!infile.eof()){
+        std::getline( infile, line );
+        //set # as comment character
+        if (line[ 0 ] != '#'){
+            //separator between parameter name and value is :
+            auto pos = line.find(':');
+            //ignore if no : is found
+            if (pos!=std::string::npos){
+                //get string of length pos from position zero - so : will be ignored
+                label=line.substr(0,pos);
+                //get from place after : to the end of the line
+                value=line.substr(pos+1);
+                std::cout<<label<<" "<<value<<std::endl;
                 parameters[label]=value;
-                bool success=false;
-            }else{
-                //ignore all text on lines beginning with #
-                infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                bool success=true;
             }
+        }else{
+            //ignore all text on lines beginning with #
+            infile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     }
+}
 //------------------------------------------------------------------------
     /** @brief sets the default names, values and types of the model parameters */
     void setDefaults(){
