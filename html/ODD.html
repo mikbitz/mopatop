@@ -73,59 +73,215 @@ $(function() {
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="odd_intro"></a>
 Introduction</h1>
-<p>This page describes the model in more detial using the ODD+D formalism (Overview, Design Concepts and Details + Decisions) <br />
-as suggested in Grimm et al <a href="https://doi.org/10.1016/j.ecolmodel.2010.08.019">https://doi.org/10.1016/j.ecolmodel.2010.08.019</a> and extended by Muller et al <a href="https://doi.org/10.1016/j.envsoft.2013.06.003">https://doi.org/10.1016/j.envsoft.2013.06.003</a><br />
+<p>This page describes the model in more detail using the ODD+D formalism (Overview, Design Concepts and Details + Decisions) <br />
+as suggested in Grimm et al <a href="https://doi.org/10.1016/j.ecolmodel.2010.08.019">https://doi.org/10.1016/j.ecolmodel.2010.08.019</a> <br />
+and extended by M&uuml;ller et al <a href="https://doi.org/10.1016/j.envsoft.2013.06.003">https://doi.org/10.1016/j.envsoft.2013.06.003</a><br />
  </p>
 <h1><a class="anchor" id="over"></a>
 Overview</h1>
+<p>This is an agent-based model of movement and respiratory infectious disease-spread. </p>
 <h2><a class="anchor" id="purp"></a>
 Purpose</h2>
+<p>To model the spread of disease through a population of individual people as they move between <br />
+the places where they do their daily activites.The model is intended to scale to large numbers <br />
+of agents, at least the scale of a medium sized country, without requiring too much run-time. </p>
 <h2><a class="anchor" id="enti"></a>
 Entities, State variables and Scales</h2>
+<h2><a class="anchor" id="sp"></a>
+space</h2>
+<p>The model currently has no notion of spatial scale, except as implicitly represented by time <br />
+spend in vehicles when travelling between places, Individual places have no internal spatial<br />
+structure - they are assumed completely mixed, so that all agents a can in principle access all others. </p>
+<h2><a class="anchor" id="ti"></a>
+time</h2>
+<p>There is a fixed time step, representing one hour of real-world time. Every place and agent and disease <br />
+is updated synchronously at each step. This ensures that a)Updates to contamination take place regularly<br />
+even if there are no agents present b)Agents do not need to co-ordinate in terms of times spent in places<br />
+(which otherwise require o(n squared) interactions in each place), and can meet by chance within a timestep<br />
+c)outputs are easily set up at regular times. Care is required to make sure this does not lead to agents<br />
+preferentially always "acting first", so may either require the order of agents activity to be randomised, or<br />
+for particular activities to be completed for ALL agents before subsequent ones (e.g.all agents need to complete<br />
+coughing in a place before any are allowed to update their infection status)<br />
+However, agents also have an event-based schedule - so the regular timestep does not preclude agents having <br />
+heterogenous activities with respect to travel or other actions, provided that the schedule time-grain is not shorter<br />
+than the main timestep (or the schedule has its own sub-time steps for taking forward an activity). </p>
+<h2><a class="anchor" id="rd"></a>
+random numbers</h2>
+<p>A single pseudo random number sequence is generated using the mersenne twister algorithm </p>
+<h2><a class="anchor" id="tr"></a>
+benchmarking</h2>
+<p>A simple <a class="el" href="classtimeReporter.html">timeReporter</a> class is set up that can be used to report the run-time of different parts of the model<br />
+Useful for benchmarking and understading which parts are the most comu[puationally expensive. </p>
+<h2><a class="anchor" id="pa"></a>
+parameters</h2>
+<p>All of the model parameters are currently hard coded, but (except for disease/contamination)<br />
+They are all collected into a single <a class="el" href="classparameterSettings.html">parameterSettings</a> class - this includes things like<br />
+random seed, number of agents, number of steps to run for. </p>
+<h2><a class="anchor" id="pl"></a>
+places</h2>
+<p>Places are at present simple containers that can take any number of agents. Agents keep a flag pointing to their<br />
+current place, so that they can add contamination, or examine the contamination level inorder to become infected.<br />
+Places are also containers for the contamination, and evolve its level over time.<br />
+In a more complex model places could have substructure (e.g. a canteen, multiple buildings in a hospital) and a <br />
+topology (which place is next to which other, are there floors with differnt access) and geometry (how far away are <br />
+other places).<br />
+At present there are three types of place - home, work and vehicle - others could be added (e.g. shops, hospitals). </p>
+<h2><a class="anchor" id="ag"></a>
+agents</h2>
+<p>Agents are individual people with just a few attributes - their current place, whether they are infected or immune, <br />
+a travel schedule, and a count-down to the next travel-schedule event. They also have a list of known places <br />
+(home, work,vehicle) which can differ for each agent - in practice some of them will share a home, a workplace, or a <br />
+travel vehicle (e.g. a bus), and this allows for the spread of the disease. </p>
+<h2><a class="anchor" id="di"></a>
+disease</h2>
+<p>A single simple disease allows agents interrogate it and discover whether they to recover at a hard-coded fixed average<br />
+rate, to be infected if there is contamination and to shed infection into a place, again at a hard-coded rate per unit time.<br />
+ </p>
+<h2><a class="anchor" id="ts"></a>
+travelSchedule</h2>
+<p>Each agent has their own copy of a travel schedule - at present, though, this is identical for every agent.<br />
+The schedule has an ordered list of place types representing destination for travel, and a time to be spent<br />
+in each place of a given type. Agents use the place type to select their own particular place to travel to <br />
+when the scheduled time in their current place has expired. </p>
 <h2><a class="anchor" id="proc"></a>
 Process Overview and Scheduling</h2>
+<h2><a class="anchor" id="up"></a>
+update places</h2>
+<p>At the start of the timestep all places update their contamination level </p>
+<h2><a class="anchor" id="cu"></a>
+cough</h2>
+<p>Once places are updated, all agents with disease shed contamination into their current place. </p>
+<h2><a class="anchor" id="pds"></a>
+progress disease</h2>
+<p>After the contamination step completes, agents get the chance to recover, or to be infected if susceptible. </p>
+<h2><a class="anchor" id="ua"></a>
+update agents</h2>
+<p>Other activities can now take place (placeholders functions exist for actions at home, at work or in transit) </p>
 <h1><a class="anchor" id="desi"></a>
 Design concepts</h1>
 <h2><a class="anchor" id="basi"></a>
 Basic Principles</h2>
+<p>Infectious diseases are spread by individuals shedding infectious material into an environment.<br />
+In the case of respiratory diseases this is by coughing or sneezing, which distributes infectious <br />
+droplets into the space they currently occupy. Over time, if they stay in the same place, and it <br />
+is not well ventilated, then the infectiousness of the place may increase (especially if, for example, <br />
+air-conditioning keeps particles suspended). However, such particles will gradually settle out onto <br />
+surfaces, and then lose their infecitousness over time.Other susceptible individuals moving into the <br />
+contaminated space may become infected, possibly some time after the original infectious agent has left.<br />
+Once individuals are infected, they too can spread the disease, but they have a constant rate per unit<br />
+time possibility of recovering.Recovered individuals acquire some level of immunity to re-infection, that<br />
+eventually may cause the disease to disappear. <br />
+People travel between different locations during their daily activity, and these places may have <br />
+different occupancy levels, depending on the type of activity they represent.These places are in <br />
+many cases largely separated from other locations in terms of the possibility of spreading disease,<br />
+so act to an extent as closed environments in which disease can spread.Such places include collectively<br />
+shared transport, such as buses trains and cars (but not, for example, bicycles, except maybe tandems).<br />
+The spatial relationship of these locations only matters to the extent that this determines how long <br />
+people spend in transport vehicles, and what potential there is for moving between locations(e.g. <br />
+ whether there are nearby restaurants, coffee shops etc.) </p>
 <h2><a class="anchor" id="theo"></a>
 Theoretical and Empirical Background</h2>
+<p>The model is related to the classical SIR compartmental disease models, but varies from these in that the <br />
+population is not assumed to be completely mixed (although one can emulate this by having a single place for<br />
+agents to occupy, and therbey check this model against a SIR model, since places in this model are currently<br />
+assumed completely mixed internally). Respiratory infectious diseases such as COVID-19 seem to depend not just<br />
+on the characteristics of individual, but what kind of space is occupied, how long people spend jointly in the<br />
+space, and how confined it is. </p>
 <h2><a class="anchor" id="indiv"></a>
 Individual Decision Making</h2>
+<p>Agents decide to move to a new place when the time in the current place expires (as set by the travel schedule). </p>
 <h2><a class="anchor" id="lear"></a>
 Learning</h2>
+<p>None. </p>
 <h2><a class="anchor" id="indis"></a>
 Individual sensing</h2>
+<p>Agents detect the level of contamination at the current location. </p>
 <h2><a class="anchor" id="indip"></a>
 Individual prediction</h2>
+<p>None. </p>
 <h2><a class="anchor" id="objec"></a>
 Objectives</h2>
+<p>Agents just follow a fixed travel schedule. </p>
 <h2><a class="anchor" id="inte"></a>
 Interaction</h2>
+<p>Interaction is indirect through contamination levels in the various places </p>
 <h2><a class="anchor" id="colle"></a>
 Collectives</h2>
+<p>Agents collectively occupy places such as work, home and transport, at different times. </p>
 <h2><a class="anchor" id="emer"></a>
 Emergence</h2>
+<p>The progress of the disease emerges as a result of contamination of places and subsequent catching of infection by agents </p>
 <h2><a class="anchor" id="adap"></a>
 Adaptation</h2>
+<p>None. </p>
 <h2><a class="anchor" id="hete"></a>
 Heterogeneity</h2>
+<p>Agents differ by their home, work and transport places, and whether they currently have the disease. Places differ by contamination level. </p>
 <h2><a class="anchor" id="stoc"></a>
 Stochasticity</h2>
+<p>The initial work places for agents are assigned at random irresective of home address.<br />
+Disease infection and recovery are controlled by pseudo-random numbers. </p>
 <h2><a class="anchor" id="obse"></a>
 Observation</h2>
+<p>Total numbers susceptible, infected and recovered are output to a csv file, along with the timestep </p>
 <h1><a class="anchor" id="imple"></a>
 Implementation Details</h1>
 <h2><a class="anchor" id="init"></a>
 Initialisation</h2>
+<ul>
+<li>First homes are created - enough for 3 agents per home.<br />
+</li>
+<li>Agents are then created and allocated 3 to a home untilt the list of agents is exhausted.<br />
+</li>
+<li>Work places are then created, enough for 10 agents per workplace.<br />
+</li>
+<li>The agents list is shuffled randomly, then agents are allocated to work places 10 at a time in order.<br />
+</li>
+<li>Vehicles are created representing buses, with a capacity of 30 agents. Agents are allocated to<br />
+ buses in the same order as to work places<br />
+</li>
+<li>Travel schedules are initialised with Agents on the bus heading home - every agents has the same<br />
+schedule with the exact same time spent in each place.<br />
+</li>
+<li>One agent (agent 0) is infected with the disease<br />
+</li>
+</ul>
 <h2><a class="anchor" id="inpu"></a>
 Input Data</h2>
+<p>None. </p>
 <h2><a class="anchor" id="subm"></a>
 Submodels</h2>
+<h3><a class="anchor" id="dise"></a>
+Disease</h3>
+<ul>
+<li>Agents are infected if contamination &gt; a uniform random number between 0 and 1, and not immune<br />
+</li>
+<li>Agents recover if infected and recovery rate &gt; a uniform random number between 0 and 1 <br />
+</li>
+<li>Agents add a fixed value <a class="el" href="classdisease.html#a3074a4bb5159116fe3ec0aabcbd30e18">disease::infectionShedLoad</a> to a place, if infected. </li>
+</ul>
 <h3><a class="anchor" id="cont"></a>
 Contamination</h3>
-<p>Places have a contamination level which is added to when agents local to the place cough. The level then decreases at a fixed rate over time.<br />
- \(\frac {dc}{dt} = \sum_{agents}shedInfection-fractionalDecrement * c\) </p>
+<ul>
+<li>Places have a contamination level which is added to when agents local to the place cough.<br />
+</li>
+<li>The level then decreases at a fixed rate over time.<br />
+ \(\frac {dc}{dt} = \sum_{agents}infectionShedLoad-fractionalDecrement * c\) <br />
+</li>
+<li>Places can have contamination reset to zero - if this is done every timestep, but before<br />
+agents cough, then the level just becomes proportional to the number of agents in a place. </li>
+</ul>
+<h3><a class="anchor" id="trvl"></a>
+travel</h3>
+<ul>
+<li>Agents set a counter whenever they move, which is the time to be spent in the place the move to<br />
+</li>
+<li>Every time step, the counter is decremented by the time step size. Once the counter reaches zero<br />
+agents query the travel schedule for the next place type to move to and then go there.<br />
+</li>
+<li>Structure is included to allow agents to add and remove themsleves from a list of agents in each place<br />
+but at present this is not needed (and the add and remove process is computationally quite expensive). </li>
+</ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -82,9 +82,10 @@ Loop parallelisation with openMP is used to accelerate execution if needed. </p>
 Main ideas</h2>
 <p>Agents move between places according to a given fixed travel schedule. Places include transport vehicles. <br />
 In each place, agents with a disease can add contamination, which then decays exponentially over time <br />
-(or else it can be reset to zero at the start of each step - disease transmission then just depends on number of agents in any location)<br />
-The release of total contamination depends linearly on time spent in each location. <br />
-In a contaminated location, susceptible agents can pick up the infection - they then recover with a fixed chance per timestep, and are subsequently immune. </p>
+(or else it can be reset to zero at the start of each step - disease transmission then just depends on <br />
+number of agents in any location). The release of total contamination depends linearly on time spent in <br />
+each location. In a contaminated location, susceptible agents can pick up the infection - they then recover<br />
+with a fixed chance per timestep, and are subsequently immune. </p>
 <h2><a class="anchor" id="Compiling"></a>
 Compiling the model</h2>
 <p>On a linux system with g++ installed just do <br />

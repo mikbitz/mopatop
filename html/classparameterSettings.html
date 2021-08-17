@@ -69,6 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classparameterSettings-members.html">List of all members</a>  </div>
@@ -120,6 +121,21 @@ Public Member Functions</h2></td></tr>
 .  <a href="#a73c7e3c79bb37d53214467bf083281f6">More...</a><br /></td></tr>
 <tr class="separator:a73c7e3c79bb37d53214467bf083281f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a1dfc46877043d607fb9bfce38ccf503a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a1dfc46877043d607fb9bfce38ccf503a">typeID</a> { <br />
+&#160;&#160;<b>s</b>, 
+<b>f</b>, 
+<b>d</b>, 
+<b>u</b>, 
+<br />
+&#160;&#160;<b>l</b>, 
+<b>i</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:a1dfc46877043d607fb9bfce38ccf503a"><td class="mdescLeft">&#160;</td><td class="mdescRight">a list of names that can be used in the parameterType map  <a href="classparameterSettings.html#a1dfc46877043d607fb9bfce38ccf503a">More...</a><br /></td></tr>
+<tr class="separator:a1dfc46877043d607fb9bfce38ccf503a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a6a2e02d9f1cc6ce098208b6a95dc04b9"><td class="memItemLeft" align="right" valign="top"><a id="a6a2e02d9f1cc6ce098208b6a95dc04b9"></a>
@@ -130,19 +146,49 @@ If not exit the program. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:afedfd181cbe64fa2a0c96cf05f351475"><td class="memItemLeft" align="right" valign="top"><a id="afedfd181cbe64fa2a0c96cf05f351475"></a>
-const std::type_info &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>ti1</b> = typeid(int)</td></tr>
-<tr class="separator:afedfd181cbe64fa2a0c96cf05f351475"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af44a6618aa323c3ff58052e65c654f17"><td class="memItemLeft" align="right" valign="top"><a id="af44a6618aa323c3ff58052e65c654f17"></a>
 std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#af44a6618aa323c3ff58052e65c654f17">parameters</a></td></tr>
 <tr class="memdesc:af44a6618aa323c3ff58052e65c654f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">a map from parameter names to parameter values, all currently strings <br /></td></tr>
 <tr class="separator:af44a6618aa323c3ff58052e65c654f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a052e5248bd9ada02541c544e2d43011c"><td class="memItemLeft" align="right" valign="top"><a id="a052e5248bd9ada02541c544e2d43011c"></a>
+std::map&lt; std::string, <a class="el" href="classparameterSettings.html#a1dfc46877043d607fb9bfce38ccf503a">typeID</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a052e5248bd9ada02541c544e2d43011c">parameterType</a></td></tr>
+<tr class="memdesc:a052e5248bd9ada02541c544e2d43011c"><td class="mdescLeft">&#160;</td><td class="mdescRight">stores the expected type of the relevant parameter <br /></td></tr>
+<tr class="separator:a052e5248bd9ada02541c544e2d43011c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ParameterSettings is a class designed to hold all the parameters for the model. </p>
-<p>At present these are hard coded here, but more usefully these could be delegated to an input file. At the moment all parameters are strings, so need to be converted at point of use - <br />
-however, returning different data types depending on parameter name is a little tricky... </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<p>At present these are hard coded here, but more usefully these could be delegated to an input file. At the moment all parameters are strings (with the idea that arbitrary strings can be read from a parameter file), so need to be converted at point of use - <br />
+however, returning different data types depending on parameter name is a little tricky...this is done by having an overloaded <a class="el" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a> method<br />
+the correct get method can then be called depending on the the parameter type required (e.g. int, float).<br />
+The possible types are kept by the typeID enum - for each parameter, the type can then be stored in <a class="el" href="classparameterSettings.html#a052e5248bd9ada02541c544e2d43011c">parameterType</a> - these are <br />
+then checked by the get method to make sure that there is no unexpected attempt to convert the type incorrectly. </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a1dfc46877043d607fb9bfce38ccf503a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dfc46877043d607fb9bfce38ccf503a">&#9670;&nbsp;</a></span>typeID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classparameterSettings.html#a1dfc46877043d607fb9bfce38ccf503a">parameterSettings::typeID</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>a list of names that can be used in the parameterType map </p>
+<p>to avoid c++ reserved words just the first letter is kept - e.g. i==int, d==double, f==float - see the <a class="el" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a> methods </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a417e5df1124a130366c687c451cd2b40"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a417e5df1124a130366c687c451cd2b40">&#9670;&nbsp;</a></span>get() <span class="overload">[1/6]</span></h2>
 
