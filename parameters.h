@@ -61,7 +61,8 @@ public:
 //------------------------------------------------------------------------
     /** @brief the constructor - set up defaults and then read in any other values. A filename is \b required when the parameterSettings object is created
         @param inputFileName A string giving the path to the input file. The code will fail if the file does not exist (but it could be empty) 
-        @details Currently you could set up several objects like this, with different input files, so take care that the filename is correct! */
+        @details Currently you could set up several objects like this, with different input files, so take care that the filename is correct! \n
+        Note that only parameters whose names are defined in setDefaults can be imported from the parameter file - invalid names will cause the code to exit */
     parameterSettings(std::string inputFileName){
         setDefaults();
         std::cout<<"Expecting to find model parameters in file: "<<inputFileName<<std::endl;
@@ -81,30 +82,32 @@ void readParameters(std::string inputFileName){
     while (!infile.eof()){
         std::getline( infile, line );
 
-        //set # as comment character - need to check end of file again as the above read may have actually been at file end.
-        if (!infile.eof() && line[ 0 ] != '#'){
+        //set # as comment character - strip all white space from the test string, so that lines can start with spaces followed by #
+        std::string test=line;
+        test.erase(std::remove_if(test.begin(), test.end(), ::isspace), test.end());
+        //need to check end of file again as the above getline may have actually gone past it, if previous read got to the file end
+        if (!infile.eof() && test[ 0 ] != '#'){
             
             //separator between parameter name and value is :
-            auto pos = line.find(':');
+            auto pos = line.find('=');
             
-            //ignore if no ":" is found
+            //ignore if no "=" is found - npos is the end of the string
             if (pos!=std::string::npos){
-                //get string of length pos from position zero - so ":" will be ignored
+                //get string of length pos from position zero - so "=" will not be included in the parameter name
                 label=line.substr(0,pos);
-                //get from place after ":" to the end of the line
+                //get from place after "=" to the end of the line
                 value=line.substr(pos+1);
-                std::cout<<label<<" "<<value<<std::endl;
+                std::cout<<label<<"="<<value<<std::endl;
                 //set the parameter if it exists
-                if (is_valid(label))parameters[label]=value;
-                bool success=true;
+                if (is_valid(label)){
+                    parameters[label]=value;
+                }
             }
             
         }
     }
 }
 //Notes
-//how to remove all whitespace from a string - need to include cctype and algorithm
-//std::string s;
 //s.erase(std::remove_if(s.begin(), s.end(), ::isspace), s.end());
 // convert string to lower case -use std::toupper for upper case
 //std::for_each(s.begin(), s.end(), [](char & c) {c = std::tolower(c);});
@@ -115,7 +118,7 @@ void readParameters(std::string inputFileName){
         parameters["nSteps"]="1";parameterType["nSteps"]=i;
         //number of agents to create
         parameters["nAgents"]="600";parameterType["nAgents"]=i;
-        //number of OMP threads to use increase the number here if using openmp to parallelise any loops.
+        //number of OMP threads to use. increase the number here if using openmp to parallelise any loops.
         //Note number of threads needs to be <= to number of cores/threads supported on the local machine
         parameters["nThreads"]="1";parameterType["nThreads"]=i;
         //random seed
