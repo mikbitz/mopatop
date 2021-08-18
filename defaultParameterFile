@@ -4,19 +4,44 @@
 #Format is "label=value" on each line
 #Attempts to set parameters not defined in the code will cause code execution to halt
 
-#Number of agents to create
+#Number of agents to create - integer
 nAgents=60
 
-#Number of steps to run for
+#Number of steps to run for - integer
 nSteps=10
 
-#number of OMP threads to use. Increase the number here if using openmp to parallelise any loops.
+#number of OMP threads to use - integer
+#Increase the number here if using openmp to parallelise any loops.
 #Note number of threads needs to be <= to number of cores/threads supported on the local machine
 nThreads=1
 
-#random seed - change to vary the stochastic parts of the model
+#random seed - integer
+#change to vary the stochastic parts of the model
 #runs with the same seed should produce the same output...although maybe not if nThreads>1
 randomSeed=0
 
-#path to the output file
-outputFile=diseaseSummary.csv
+#-------------------------------
+#output
+#-------------------------------
+#Unique name for this set of model runs, if desired - string
+experiment.name=default
+
+#location for the output files - subdirectory will be created called experiment.<name> - string
+experiment.output.directory=./output
+
+#short text to outline experiment purpose - string
+experiment.description= The default parameter set was used
+
+#run number - allows runs with above name to be grouped into sets (experiments!) - integer
+#if this value is set (uncomment line below) oldfiles may be overwritten. The directory for all runs with this file will be fixed
+#Otherwise new directories will be auto-created for each run starting at 0000, and incrementing automatically
+#experiment.run.number=0000
+
+#Experiments are assumed to be numbered 0000 to 9999 - integer
+#if more (or fewer) are needed, specify the maximum number of runs here 
+#to the nearest power of 10 (using e.g. 100 or 1000 - the leading 1 will be removed - so don't just put 1!)
+#if you exceed this number, directory names will still increment, but they won't be all a nice tidy length
+#experiment.run.prefix=10
+
+#name of the output file - string
+outputFile=diseaseSummary
