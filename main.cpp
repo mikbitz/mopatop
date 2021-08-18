@@ -382,6 +382,7 @@ public:
         _filePrefix= _filePrefix+m00+"/";
         _filePostfix="";
         std::cout<<"Outputfiles will be named "<<_filePrefix<<"<Data Name>"<<_filePostfix<<".<filenameExtension>"<<std::endl;
+        parameters.saveParameters(_filePrefix);
     }
     //------------------------------------------------------------------------
     /** @brief Set up the agents and places, and allocate agents to homes, workplaces, vehicles. \n
@@ -535,6 +536,7 @@ int main(int argc, char **argv) {
     //set up the parameters using an optional command-line argument
     //first set defaults
     parameterSettings parameters;
+    parameters.setParameter("model.version","v0.2");
     //now read from a file
     if (argc ==1){
         std::cout<<"Using default parameter file"<<std::endl;

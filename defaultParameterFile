@@ -2,7 +2,13 @@
 #lines starting with any amount of white space, followed by # are comments
 #Lines with no = will also be skipped
 #Format is "label=value" on each line
-#Attempts to set parameters not defined in the code will cause code execution to halt
+#Label is generally <category>.name
+#These values will be output alphabetically to a filecalled "RunParameters"
+#So <Category> helps to group parameters together in this file
+
+#Parameters that exist in the code but not set here will assume default values (see parameters.h)
+
+#Attempts to set parameters not already defined in the code will cause code execution to halt
 
 #Number of agents to create - integer
 nAgents=60
@@ -38,9 +44,10 @@ experiment.description= The default parameter set was used
 #experiment.run.number=0000
 
 #Experiments are assumed to be numbered 0000 to 9999 - integer
+#Paths will look like experiment.output.directory/experiment.name/run_0000 etc.
 #if more (or fewer) are needed, specify the maximum number of runs here 
 #to the nearest power of 10 (using e.g. 100 or 1000 - the leading 1 will be removed - so don't just put 1!)
-#if you exceed this number, directory names will still increment, but they won't be all a nice tidy length
+#if you exceed this number, directory names will still increment by run number, but they won't be all a nice tidy length
 #experiment.run.prefix=10
 
 #name of the output file - string
