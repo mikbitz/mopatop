@@ -59,22 +59,21 @@ class parameterSettings{
     }
 public:
 //------------------------------------------------------------------------
-    /** @brief the constructor - set up defaults and then read in any other values. A filename is \b required when the parameterSettings object is created
-        @param inputFileName A string giving the path to the input file. The code will fail if the file does not exist (but it could be empty) 
+    /** @brief the constructor - set up defaults. A filename is \b required when the parameterSettings object is created
         @details Currently you could set up several objects like this, with different input files, so take care that the filename is correct! \n
-        Note that only parameters whose names are defined in setDefaults can be imported from the parameter file - invalid names will cause the code to exit */
-    parameterSettings(std::string inputFileName){
+        Note that only parameters whose names are defined in \ref setDefaults can be imported from the parameter file - invalid names will cause the code to exit\n
+        Parameter types have to also be correctly set up in the \ref setDefaults method*/
+    parameterSettings(){
         setDefaults();
-        std::cout<<"Expecting to find model parameters in file: "<<inputFileName<<std::endl;
-        readParameters(inputFileName);
-
     }
 //------------------------------------------------------------------------
 /** @brief Read in any values from the parameter file
- *    @param inputFileName A string giving the path to the input file.
+ *    @param inputFileName A string giving the path to the input file. The code will fail if the file does not exist (but it could be empty) 
  *    @details The parameter file is a set of lines with name:value pairs on each line, using ":" to separate the two.\n
  *    lines beginning with # are ignored and can be used for comments. Any line with no ":" will also be ignored*/
 void readParameters(std::string inputFileName){
+    std::cout<<"Expecting to find model parameters in file: "<<inputFileName<<std::endl;
+    std::cout<<"Parameter settings are:- "<<std::endl;
     std::fstream infile;
     infile.open(inputFileName,std::ios::in);
     assert(!infile.fail());
@@ -113,6 +112,7 @@ void readParameters(std::string inputFileName){
 //------------------------------------------------------------------------
     /** @brief sets the default names, values and types of the model parameters */
     void setDefaults(){
+        std::cout<<"Setting default parameters..."<<std::endl;
         //total time steps to run for
         parameters["nSteps"]="1";parameterType["nSteps"]=i;
         //number of agents to create

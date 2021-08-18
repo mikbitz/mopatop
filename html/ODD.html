@@ -114,9 +114,12 @@ benchmarking</h2>
 Useful for benchmarking and understading which parts are the most comu[puationally expensive. </p>
 <h2><a class="anchor" id="pa"></a>
 parameters</h2>
-<p>All of the model parameters are currently hard coded, but (except for disease/contamination)<br />
+<p>All of the model parameters are obtained from a parameter file (except for disease/contamination)<br />
 They are all collected into a single <a class="el" href="classparameterSettings.html">parameterSettings</a> class - this includes things like<br />
-random seed, number of agents, number of steps to run for. </p>
+random seed, number of agents, number of steps to run for. To include a new parameter, add it to the code<br />
+in the setDefaults method in <a class="el" href="parameters_8h.html">parameters.h</a>. You can then configure it in the parameter file<br />
+The parameter file name is by default (!) defaultParameterFile. <br />
+</p>
 <h2><a class="anchor" id="pl"></a>
 places</h2>
 <p>Places are at present simple containers that can take any number of agents. Agents keep a flag pointing to their<br />

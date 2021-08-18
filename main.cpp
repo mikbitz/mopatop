@@ -30,6 +30,7 @@
 #include<string>
 #include<assert.h>
 #include<omp.h>
+#include<filesystem>
 #include"parameters.h"
 #include"timereporter.h"
 #include"randomizer.h"
@@ -475,11 +476,20 @@ public:
 int main(int argc, char **argv) {
 
 
-    std::cout<<"Model version 0.1"<<std::endl;
+    std::cout<<"Model version 0.2"<<std::endl;
+
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
-    parameterSettings parameters("../defaultParameterFile");
+    parameterSettings parameters;
+    if (argc ==1){
+        std::cout<<"Using default parameter file"<<std::endl;
+        parameters.readParameters("../defaultParameterFile");
+    }else{
+        std::cout<<"Default parameter file overridden on command line"<<std::endl;
+        parameters.readParameters(argv[1]);
+    }
+
 
     //create and initialise the model
     model m(parameters);
@@ -494,6 +504,8 @@ int main(int argc, char **argv) {
     }
     auto end=timeReporter::getTime();
     timeReporter::showInterval("Execution time after initialisation: ",start,end);
+    t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
+    std::cout<<"Run finished at: "<<ctime(&t)<<std::endl;
     return 0;
 }
 /**
@@ -514,11 +526,16 @@ int main(int argc, char **argv) {
  * with a fixed chance per timestep, and are subsequently immune.
  * @subsection Compiling Compiling the model
  * On a linux system with g++ installed just do \n
- * g++ -o agentModel -O3 -fopenmp main.cpp\n
+ * g++ -o agentModel -O3 -fopenmp -std=c++17 main.cpp\n
+ * Note the current version requires g++>= and c++17 in order for the filesystem function to work (for creating new directories etc.)
  * If using openmp (parallelised loops) then set the  number of threads in the parameterSettings class.\n
  * Note the number of cores to be used must be <= number supported by the local machine!
  * @subsection Run Running the model
  * At present this is a simple command-line application - just type the executable name (agentModel above) and then return.\n
+ * This will use the default parameter file. To use an alternative specify the file name after the executable name:- \n
+ * \code
+ * agentModel parameterFileName
+ * \endcode
  * @subsection dett Detailed Description
  * For a formalised description of the model  see  @ref ODD
  * @page ODD ODD description
@@ -555,9 +572,11 @@ int main(int argc, char **argv) {
  * A simple \ref timeReporter class is set up that can be used to report the run-time of different parts of the model\n
  * Useful for benchmarking and understading which parts are the most comu[puationally expensive.
  * @subsection pa parameters
- * All of the model parameters are currently hard coded, but (except for disease/contamination)\n
+ * All of the model parameters are obtained from a parameter file (except for disease/contamination)\n
  * They are all collected into a single \ref parameterSettings class - this includes things like\n
- * random seed, number of agents, number of steps to run for.
+ * random seed, number of agents, number of steps to run for. To include a new parameter, add it to the code\n
+ * in the \ref setDefaults method in \ref parameters.h. You can then configure it in the parameter file\n
+ * The parameter file name is by default (!) defaultParameterFile.  
  * @subsection pl places
  * Places are at present simple containers that can take any number of agents. Agents keep a flag pointing to their\n
  * current place, so that they can add contamination, or examine the contamination level inorder to become infected.\n
