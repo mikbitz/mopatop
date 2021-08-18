@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['destinations',['destinations',['../classtravelSchedule.html#ae2f5c0bdfbafdfd95cc3e08e40f1e83d',1,'travelSchedule']]],
-  ['disease',['disease',['../classdisease.html',1,'disease'],['../classagent.html#aeb3206d3dff2d3c23c998a7c341019f7',1,'agent::disease()']]],
-  ['disease_2eh',['disease.h',['../disease_8h.html',1,'']]],
-  ['diseased',['diseased',['../classagent.html#ac6c663bf79440b5dc58d548801ff86ea',1,'agent']]]
+  ['cleancontamination',['cleanContamination',['../classplace.html#a8725d893d278015c93e8d5982ab2e505',1,'place']]],
+  ['contaminationlevel',['contaminationLevel',['../classplace.html#a469c6655f3f469703a5ac70f64641bf2',1,'place']]],
+  ['cough',['cough',['../classagent.html#a958d3d4ffc3c372136459b08f5e4a457',1,'agent']]],
+  ['counter',['counter',['../classagent.html#a00cccd3131aa23008526107ce4a58025',1,'agent']]],
+  ['currentdestination',['currentDestination',['../classtravelSchedule.html#a2d62c8f71557a55ad93427f7606d72fa',1,'travelSchedule']]],
+  ['currentplace',['currentPlace',['../classagent.html#a6c07bfb8b610ad493a4704643b4dcbcf',1,'agent']]]
 ];

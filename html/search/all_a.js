@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['randomizer',['randomizer',['../classrandomizer.html',1,'randomizer'],['../classrandomizer.html#afc354a3a2a255d4e1ba952239d411023',1,'randomizer::randomizer()']]],
-  ['randomizer_2eh',['randomizer.h',['../randomizer_8h.html',1,'']]],
-  ['readparameters',['readParameters',['../classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db',1,'parameterSettings']]],
-  ['recover',['recover',['../classdisease.html#a903bf900fa3cc67599ad82626f15354c',1,'disease']]],
-  ['recoveryrate',['recoveryRate',['../classdisease.html#af4bf8070d12d8520054a25abb3fe27eb',1,'disease']]],
-  ['remove',['remove',['../classplace.html#ac81d6af0bf64305a3a4a843d7d176920',1,'place']]]
+  ['parameters',['parameters',['../classparameterSettings.html#af44a6618aa323c3ff58052e65c654f17',1,'parameterSettings']]],
+  ['parameters_2eh',['parameters.h',['../parameters_8h.html',1,'']]],
+  ['parametersettings',['parameterSettings',['../classparameterSettings.html',1,'parameterSettings'],['../classparameterSettings.html#a9b8e13d37c1cc98c00b36cadefba8274',1,'parameterSettings::parameterSettings()']]],
+  ['parametertype',['parameterType',['../classparameterSettings.html#a052e5248bd9ada02541c544e2d43011c',1,'parameterSettings']]],
+  ['place',['place',['../classplace.html',1,'place'],['../classplace.html#ad927c2f191b36a3ed0d19457cb945161',1,'place::place()']]],
+  ['places',['places',['../classagent.html#a4c741951d20af843a264d2dd8dc750d2',1,'agent::places()'],['../classmodel.html#aee72909ff27b56311f1165d87955f16f',1,'model::places()']]],
+  ['placetypes',['placeTypes',['../classagent.html#ae4db97692e30c160de5af4be250d06b4',1,'agent']]]
 ];

@@ -2,6 +2,8 @@ var searchData=
 [
   ['setdefaults',['setDefaults',['../classparameterSettings.html#a64baa7eba110c8ac37f1d6687c04deaa',1,'parameterSettings']]],
   ['sethome',['setHome',['../classagent.html#a99f7643279e1522a11bd01b210eb7a03',1,'agent']]],
+  ['setoutputfilepaths',['setOutputFilePaths',['../classmodel.html#ac31306234831b32bd7e8606fe5266479',1,'model']]],
+  ['setparameter',['setParameter',['../classparameterSettings.html#a0b10412299911ad090c87c97a5daf471',1,'parameterSettings']]],
   ['setseed',['setSeed',['../classrandomizer.html#ad360ae291abce71d660ca8cadb344b00',1,'randomizer']]],
   ['settransport',['setTransport',['../classagent.html#a000bee8a37f8ab7ff9a74cd8db1a3a75',1,'agent']]],
   ['setwork',['setWork',['../classagent.html#a8784dcb12921be1b29d67c54747b78ac',1,'agent']]],

@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['fractionaldecrement',['fractionalDecrement',['../classplace.html#a48f7ab4799f665cec1be6ff77131fc4a',1,'place']]]
+  ['destinations',['destinations',['../classtravelSchedule.html#ae2f5c0bdfbafdfd95cc3e08e40f1e83d',1,'travelSchedule']]],
+  ['disease',['disease',['../classdisease.html',1,'disease'],['../classagent.html#aeb3206d3dff2d3c23c998a7c341019f7',1,'agent::disease()']]],
+  ['disease_2eh',['disease.h',['../disease_8h.html',1,'']]],
+  ['diseased',['diseased',['../classagent.html#ac6c663bf79440b5dc58d548801ff86ea',1,'agent']]]
 ];

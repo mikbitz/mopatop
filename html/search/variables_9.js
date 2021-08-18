@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['schedule',['schedule',['../classagent.html#a210486017d5e7d710adc8468df9b7369',1,'agent']]]
+  ['recoveryrate',['recoveryRate',['../classdisease.html#af4bf8070d12d8520054a25abb3fe27eb',1,'disease']]]
 ];

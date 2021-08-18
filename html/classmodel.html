@@ -88,6 +88,9 @@ Collaboration diagram for model:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0d17950ec72bcd00ae9710c73768866b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a0d17950ec72bcd00ae9710c73768866b">model</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters)</td></tr>
 <tr class="separator:a0d17950ec72bcd00ae9710c73768866b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac31306234831b32bd7e8606fe5266479"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ac31306234831b32bd7e8606fe5266479">setOutputFilePaths</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters)</td></tr>
+<tr class="memdesc:ac31306234831b32bd7e8606fe5266479"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the system of directories for model experiments and their outputs.  <a href="#ac31306234831b32bd7e8606fe5266479">More...</a><br /></td></tr>
+<tr class="separator:ac31306234831b32bd7e8606fe5266479"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c93dce1ca10fbfa99f9eec481ea55df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a9c93dce1ca10fbfa99f9eec481ea55df">init</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters)</td></tr>
 <tr class="memdesc:a9c93dce1ca10fbfa99f9eec481ea55df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up the agents and places, and allocate agents to homes, workplaces, vehicles. <br />
 .  <a href="#a9c93dce1ca10fbfa99f9eec481ea55df">More...</a><br /></td></tr>
@@ -105,6 +108,10 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aee72909ff27b56311f1165d87955f16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a963a35123dd2c0d243402d552f60acb8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a963a35123dd2c0d243402d552f60acb8">nAgents</a></td></tr>
 <tr class="separator:a963a35123dd2c0d243402d552f60acb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a361a901c3aa70774e254457065ebeb0e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a361a901c3aa70774e254457065ebeb0e">_filePrefix</a></td></tr>
+<tr class="separator:a361a901c3aa70774e254457065ebeb0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5e7e93a6aeb1584eda754f91b1cdd4e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ae5e7e93a6aeb1584eda754f91b1cdd4e">_filePostfix</a></td></tr>
+<tr class="separator:ae5e7e93a6aeb1584eda754f91b1cdd4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memItemLeft" align="right" valign="top">std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ac722a1dffbe6a56f2a934ef627e4e773">output</a></td></tr>
 <tr class="separator:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -188,6 +195,48 @@ This simple intializer puts three agents in each home, 10 agents in each workpla
 
 </div>
 </div>
+<a id="ac31306234831b32bd7e8606fe5266479"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac31306234831b32bd7e8606fe5266479">&#9670;&nbsp;</a></span>setOutputFilePaths()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void model::setOutputFilePaths </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;&#160;</td>
+          <td class="paramname"><em>parameters</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create the system of directories for model experiments and their outputs. </p>
+<p>A system of directories gets created, starting from the top level experiment.output.directory. <br />
+To this is added the name of an experiment, which is assumed to consist of a number of separate runs with <br />
+different parameter values (e.g. random seed). By default a max. of 10000 runs is assumed - this gives tidy names<br />
+like ./output/experiment.test/run_0000 ./output/experiment.test/run_0001 ... ./output/experiment.test/run_9999 <br />
+More then 10000 will be ok, but the directory names will spill over to ./output/experiment.test/run_10000 etc. <br />
+The number can be customised using experiment.run.prefix, which should be set to a power of 10.<br />
+A single run can be specified by setting experiment.run.number - if this coincides with and existing run/directory<br />
+then the files there may be overwritten (unless explicit output file names are changed). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parameters</td><td>A <b>reference</b> to a class that holds all the possible parameter settings for the model.<br />
+ Using a reference ensures the values don't need to be copied </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a20ff630d7f86b28f8d45a2a37b91695f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a20ff630d7f86b28f8d45a2a37b91695f">&#9670;&nbsp;</a></span>step()</h2>
 
@@ -238,6 +287,52 @@ Also to avoid any systematic biases, agents need to all finish their contaminati
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae5e7e93a6aeb1584eda754f91b1cdd4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5e7e93a6aeb1584eda754f91b1cdd4e">&#9670;&nbsp;</a></span>_filePostfix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string model::_filePostfix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A string containing any extra default characters to come after the filename </p>
+
+</div>
+</div>
+<a id="a361a901c3aa70774e254457065ebeb0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a361a901c3aa70774e254457065ebeb0e">&#9670;&nbsp;</a></span>_filePrefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string model::_filePrefix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A string containing the file path for output, for a given experiment, to be put before specific file names </p>
+
+</div>
+</div>
 <a id="a321162248a312d98a6a62a19b6856e9f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a321162248a312d98a6a62a19b6856e9f">&#9670;&nbsp;</a></span>agents</h2>
 

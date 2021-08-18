@@ -70,7 +70,8 @@ public:
 /** @brief Read in any values from the parameter file
  *    @param inputFileName A string giving the path to the input file. The code will fail if the file does not exist (but it could be empty) 
  *    @details The parameter file is a set of lines with name:value pairs on each line, using ":" to separate the two.\n
- *    lines beginning with # are ignored and can be used for comments. Any line with no ":" will also be ignored*/
+ *    lines beginning with # are ignored and can be used for comments. Any line with no ":" will also be ignored \n
+       needs to be called from \ref main to ensure settings are captured */
 void readParameters(std::string inputFileName){
     std::cout<<"Expecting to find model parameters in file: "<<inputFileName<<std::endl;
     std::cout<<"Parameter settings are:- "<<std::endl;
@@ -124,6 +125,30 @@ void readParameters(std::string inputFileName){
         parameters["randomSeed"]="0";parameterType["randomSeed"]=i;
         //path to the output file
         parameters["outputFile"]="diseaseSummary.csv";parameterType["outputFile"]=s;
+        //path to location of output files
+        parameters["experiment.output.directory"]="./output";parameterType["experiment.output.directory"]=s;
+        //a name for all runs in this experiment
+        parameters["experiment.name"]="default";parameterType["experiment.name"]=s;
+        //the number of the current run
+        parameters["experiment.run.number"]="";parameterType["experiment.run.number"]=i;
+        //brief indication of what this experiment is about
+        parameters["experiment.description"]="The default parameter set was used";parameterType["experiment.description"]=s;
+        //String to use whne numbering runs - this default value allows for max. 10,000 runs numbered 0000 to 9999
+        parameters["experiment.run.prefix"]="10000";parameterType["experiment.run.prefix"]=i;
+    }
+    //------------------------------------------------------------------------
+    /** @brief reset the value of an existing parameter
+     *  @param name A string giving the name of the parameter
+     *  @param value A string containing the new value - NB if this is to be converted later e.g. to int or float, make sure the string has a valid value!
+        @details for example to change the random seed when a new model is created \n
+        \code
+        parameters.setParameter("randomSeed","10");
+        \endcode
+        Note that there is currently no type checking! The will lead to a fail later if the wrong \ref get method is called */
+    void setParameter(std::string name,std::string value){
+        std::cout<<"Setting parameter: "<<name<<" to: "<<value<<std::endl;
+        is_valid(name);
+        parameters[name]=value;
     }
 //------------------------------------------------------------------------
 /** @brief allow parameters to be returned using an instance of class parameters using a string

@@ -315,6 +315,10 @@ class model{
     std::vector<place*> places;
     /** The number of agents to be created */
     int nAgents;
+    /** A string containing the file path for output, for a given experiment, to be put before specific file names */
+    std::string _filePrefix;
+    /** A string containing any extra default characters to come after the filename */
+    std::string _filePostfix;
     /** The output file stream */
     std::ofstream output;
 public:
@@ -325,9 +329,10 @@ public:
         randomizer r=randomizer::getInstance();
         nAgents=parameters.get<int>("nAgents");
         r.setSeed(parameters.get<int>("randomSeed"));
+        //create the directories and paths for the current experiment
+        setOutputFilePaths(parameters);
         //output file
-        output.open(parameters("outputFile"));
-
+        output.open(_filePrefix+parameters("outputFile")+_filePostfix+".csv");
         //header line
         output<<"step,susceptible,infected,recovered"<<std::endl;
         //Initialisation can be slow - check the timing
@@ -336,6 +341,49 @@ public:
         auto end=timeReporter::getTime();
         timeReporter::showInterval("Initialisation took: ", start,end);
     }
+    //------------------------------------------------------------------------
+    /** @brief Create the system of directories for model experiments and their outputs
+     *  @details A system of directories gets created, starting from the top level experiment.output.directory. \n
+     *  To this is added the name of an experiment, which is assumed to consist of a number of separate runs with \n
+     *  different parameter values (e.g. random seed). By default a max. of 10000 runs is assumed - this gives tidy names\n
+     *  like ./output/experiment.test/run_0000 ./output/experiment.test/run_0001 ... ./output/experiment.test/run_9999 \n
+     *  More then 10000 will be ok, but the directory names will spill over to ./output/experiment.test/run_10000 etc. \n
+     *  The number can be customised using experiment.run.prefix, which should be set to a power of 10.\n
+     *  A single run can be specified by setting experiment.run.number - if this coincides with and existing run/directory\n
+     *  then the files there may be overwritten (unless explicit output file names are changed).
+        @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
+    void setOutputFilePaths(parameterSettings& parameters){
+        //naming convention for output files
+        _filePrefix=   parameters.get("experiment.output.directory")+"/experiment."+parameters.get("experiment.name");
+        if (!std::filesystem::exists(_filePrefix))std::filesystem::create_directories(_filePrefix);
+        std::string runNumber= parameters.get("experiment.run.number");
+        std::string m00="/run_";
+        if (runNumber!=""){
+            m00=m00+runNumber;
+        }else{
+            //auto-increment run number if run.number is not set
+            int i=0;
+            //allow for userdefined number of total runs - expected to be a power of ten
+            std::string zeros=parameters("experiment.run.prefix");
+            //add just the zero part (strip off expected leading 1)
+            m00="/run_"+zeros.substr(1);
+            // Find a new directory name - then next in numerical order
+            while(std::filesystem::exists(_filePrefix+m00)){    
+                i++;
+                std::stringstream ss;
+                int zeroIndex=stoi(zeros)/10;while(zeroIndex>i && zeroIndex>1){ss<<"0";zeroIndex=zeroIndex/10;}
+                ss<<i;
+                runNumber=ss.str();
+                m00="/run_"+runNumber;
+            }
+        }
+        if (!std::filesystem::exists(_filePrefix+m00))std::filesystem::create_directories(_filePrefix+m00);
+        parameters.setParameter("experiment.run.number",runNumber);
+        _filePrefix= _filePrefix+m00+"/";
+        _filePostfix="";
+        std::cout<<"Outputfiles will be named "<<_filePrefix<<"<Data Name>"<<_filePostfix<<".<filenameExtension>"<<std::endl;
+    }
+    //------------------------------------------------------------------------
     /** @brief Set up the agents and places, and allocate agents to homes, workplaces, vehicles. \n
      *  @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied
      *  @details The relative structure of the places, size homes and workplaces and the number and size of transport vehicles, together with the schedule, \n
@@ -389,6 +437,7 @@ public:
         //set off the disease! - one agent is infected at the start.
         agents[0]->diseased=true;
     }
+    //------------------------------------------------------------------------
     /** @brief Advance the model time step \n
     *   @details split up the timestep into update of places, contamination of places by agents, infection and progress of disease and finally update of agent locations \n
         These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP \n
@@ -472,7 +521,9 @@ public:
 };
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-/** set up and run the model */
+/** set up and run the model 
+ @param argc The number of command line arguments - at the moment only 1 can be handled
+ @param argv The argument values - expected to be just the name of the parameter file */
 int main(int argc, char **argv) {
 
 
@@ -481,7 +532,10 @@ int main(int argc, char **argv) {
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
+    //set up the parameters using an optional command-line argument
+    //first set defaults
     parameterSettings parameters;
+    //now read from a file
     if (argc ==1){
         std::cout<<"Using default parameter file"<<std::endl;
         parameters.readParameters("../defaultParameterFile");
@@ -489,7 +543,6 @@ int main(int argc, char **argv) {
         std::cout<<"Default parameter file overridden on command line"<<std::endl;
         parameters.readParameters(argv[1]);
     }
-
 
     //create and initialise the model
     model m(parameters);
@@ -527,7 +580,7 @@ int main(int argc, char **argv) {
  * @subsection Compiling Compiling the model
  * On a linux system with g++ installed just do \n
  * g++ -o agentModel -O3 -fopenmp -std=c++17 main.cpp\n
- * Note the current version requires g++>= and c++17 in order for the filesystem function to work (for creating new directories etc.)
+ * Note the current version requires g++>= and c++17 in order for the filesystem function to work (for creating new directories etc.)\n
  * If using openmp (parallelised loops) then set the  number of threads in the parameterSettings class.\n
  * Note the number of cores to be used must be <= number supported by the local machine!
  * @subsection Run Running the model
@@ -575,7 +628,7 @@ int main(int argc, char **argv) {
  * All of the model parameters are obtained from a parameter file (except for disease/contamination)\n
  * They are all collected into a single \ref parameterSettings class - this includes things like\n
  * random seed, number of agents, number of steps to run for. To include a new parameter, add it to the code\n
- * in the \ref setDefaults method in \ref parameters.h. You can then configure it in the parameter file\n
+ * in the \ref parameterSettings::setDefaults method in \ref parameters.h. You can then configure it in the parameter file\n
  * The parameter file name is by default (!) defaultParameterFile.  
  * @subsection pl places
  * Places are at present simple containers that can take any number of agents. Agents keep a flag pointing to their\n
