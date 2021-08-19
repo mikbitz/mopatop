@@ -637,8 +637,10 @@ int main(int argc, char **argv) {
  * current place, so that they can add contamination, or examine the contamination level inorder to become infected.\n
  * Places are also containers for the contamination, and evolve its level over time.\n
  * In a more complex model places could have substructure (e.g. a canteen, multiple buildings in a hospital) and a \n
- * topology (which place is next to which other, are there floors with differnt access) and geometry (how far away are \n
- * other places).\n
+ * topology (which building is next to which other, are there floors with differnt access) and geometry (how far away are \n
+ * other buildings).\n
+ * Note that as a result of the travel Schedule there is an implicit topology of connections between places, and an associated\n
+ * implict induced social network, beyond that which woudl exist purely in households\n
  * At present there are three types of place - home, work and vehicle - others could be added (e.g. shops, hospitals).
  * @subsection ag agents
  * Agents are individual people with just a few attributes - their current place, whether they are infected or immune, \n
