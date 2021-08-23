@@ -88,6 +88,8 @@ $(function() {
 Collaboration diagram for randomizer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrandomizer__coll__graph.png" border="0" usemap="#randomizer_coll__map" alt="Collaboration graph"/></div>
+<map name="randomizer_coll__map" id="randomizer_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -104,7 +106,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a01d852120098a534926d04db6bf74790"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classrandomizer.html">randomizer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#a01d852120098a534926d04db6bf74790">getInstance</a> ()</td></tr>
 <tr class="memdesc:a01d852120098a534926d04db6bf74790"><td class="mdescLeft">&#160;</td><td class="mdescRight">get a reference to one of a set of random number generators. If no appropriate instance yet exists, create it. <br />
 Instances are currently parameterized by omp thread number by calling omp_get_thread_num()<br />
-(which returns zero if only one thread)  <a href="#a01d852120098a534926d04db6bf74790">More...</a><br /></td></tr>
+(which returns zero if only one thread) - NB this is currently not used as it may cause crashes on multiple runs.  <a href="#a01d852120098a534926d04db6bf74790">More...</a><br /></td></tr>
 <tr class="separator:a01d852120098a534926d04db6bf74790"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -118,6 +120,8 @@ Public Attributes</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:afc354a3a2a255d4e1ba952239d411023"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#afc354a3a2a255d4e1ba952239d411023">randomizer</a> ()</td></tr>
 <tr class="separator:afc354a3a2a255d4e1ba952239d411023"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e33cd61c749f88bcc6b2e780668c7d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#a5e33cd61c749f88bcc6b2e780668c7d3">clean</a> ()</td></tr>
+<tr class="separator:a5e33cd61c749f88bcc6b2e780668c7d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -158,6 +162,32 @@ The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5e33cd61c749f88bcc6b2e780668c7d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e33cd61c749f88bcc6b2e780668c7d3">&#9670;&nbsp;</a></span>clean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void randomizer::clean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>if needed, clean up the pointer - otherwise it will just get deleted at end of program execution. this seems fualty for multiple threads at present </p>
+
+</div>
+</div>
 <a id="a01d852120098a534926d04db6bf74790"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01d852120098a534926d04db6bf74790">&#9670;&nbsp;</a></span>getInstance()</h2>
 
@@ -183,7 +213,7 @@ The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer
 
 <p>get a reference to one of a set of random number generators. If no appropriate instance yet exists, create it. <br />
 Instances are currently parameterized by omp thread number by calling omp_get_thread_num()<br />
-(which returns zero if only one thread) </p>
+(which returns zero if only one thread) - NB this is currently not used as it may cause crashes on multiple runs. </p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the available instance </dd></dl>
 
 </div>

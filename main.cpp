@@ -205,16 +205,16 @@ public:
     }
     /** do any things that need to be done at home */
     void atHome(){
-        if (ID==0)std::cout<<"at Home "<<std::endl;
+        //if (ID==0)std::cout<<"at Home "<<std::endl;
         
     }
     /** do any things that need to be done at work */
     void atWork(){
-        if (ID==0)std::cout<<"at Work"<<std::endl;
+        //if (ID==0)std::cout<<"at Work"<<std::endl;
     }
     /** do any things that need to be done while travelling */
     void inTransit(){
-        if (ID==0)std::cout<<"on Bus"<<std::endl;
+        //if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
     /** set up the place vector to include being at home - needs to be called when places are being created by the model class 
      @param pu a pointer to the specific home location for this agent */
@@ -487,7 +487,6 @@ public:
         //set some timers so loop relative times can be compared - note disease loop tends to get slower as more agents get infected.
         auto start=timeReporter::getTime();
         auto end=start;
-        if (stepNumber%10==0)std::cout<<"Start of step "<<stepNumber<<std::endl;
         //update the places - changes contamination level
         if (stepNumber==0)start=timeReporter::getTime();
         //note the pragma statement here allows openmp to parallelise this lopp over several threads 
@@ -570,7 +569,7 @@ int main(int argc, char **argv) {
 
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
-    std::cout<<"Run started at: "<<ctime(&t)<<std::endl;
+    std::cout<<"Run set started at: "<<ctime(&t)<<std::endl;
     //set up the parameters using an optional command-line argument
     //first set defaults
     parameterSettings parameters;
@@ -597,25 +596,32 @@ int main(int argc, char **argv) {
     int increment=parameters.get<int>("run.randomIncrement");
     
     for (int runs=0;runs<parameters.get<int>("run.nRepeats");runs++){
-        std::cout<<"Run repeat number: "<<runs+1<<std::endl;
+        std::time_t tr=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
+        std::cout<<"Run repeat number: "<<runs+1<<" started at"<<ctime(&tr)<<std::endl;
         //increment the random seed value - note intially runs=0, so the default seed gets used
         parameters.setParameter("run.randomSeed",std::to_string(seed+runs*increment));
         //If number of runs>1, clear out the run number so that it will get set to auto-increment on each run.
         //This is needed to get the directory structure right - see model::setOutputFilePaths
         if(runs>0)parameters.setParameter("experiment.run.number","");
         //create and initialise a new model
+        //any variations to parameter values should happen before this, so that the values
+        //get properly saved to the output RunParameters file (created by model::setOutputFilePaths)
         model m(parameters);
         //start a timer to record the execution time
         auto start=timeReporter::getTime();
         //loop over time steps
         for (int step=0;step<parameters.get<int>("run.nSteps");step++){
+            if (step%1000==0)std::cout<<"Start of step "<<step<<std::endl;
             m.step(step,parameters);
         }
         auto end=timeReporter::getTime();
         timeReporter::showInterval("Execution time after initialisation: ",start,end);
         t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
-        std::cout<<"Run finished at: "<<ctime(&t)<<std::endl;
+        std::cout<<"Run finished at: "<<ctime(&tr)<<std::endl;
     }
+    //work out the finish time
+    t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
+    std::cout<<"Run set finished at: "<<ctime(&t)<<std::endl;
     return 0;
 }
 

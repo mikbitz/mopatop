@@ -47,11 +47,11 @@ public:
     /** @brief get a reference to one of a set of random number generators.
      * If no appropriate instance yet exists, create it. \n
      * Instances are currently parameterized by omp thread number by calling omp_get_thread_num()\n
-     * (which returns zero if only one thread)
+     * (which returns zero if only one thread) - NB this is currently not used as it may cause crashes on multiple runs.
      * @return A reference to the available instance
      * */
     static randomizer& getInstance(){
-        short i=omp_get_thread_num();
+        short i=0;//omp_get_thread_num();
         if (instance[i]==nullptr){
             instance[i]=new randomizer();
         }
@@ -62,9 +62,9 @@ public:
     /**  Use mersenne twister with fixed seed as the random number engine */
     std::mt19937* twister;
 public:
-    //~randomizer(){
-    //  clean();
-   // }
+    ~randomizer(){
+      clean();
+    }
     /** @brief return the next pseudo-random number in the current sequence */
     double number(){
      return uniform_dist(*twister);
@@ -85,8 +85,11 @@ private:
         std::cout<<"A randomizer was set up with seed 0" <<std::endl;
         twister=new std::mt19937(0);
     }
-    /** if needed, clean up the pointer - however, given there is only one, it will just get deleted at end of program execution. */
-    //void clean(){if (instance!=nullptr) {delete instance;instance=nullptr;}}
+    /** if needed, clean up the pointer - otherwise it will just get deleted at end of program execution. 
+      this seems fualty for multiple threads at present*/
+    void clean(){
+        instance.clear();
+    }
 };
 //------------------------------------------------------------------------
 //static class members have to be initialized
