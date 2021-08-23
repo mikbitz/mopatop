@@ -96,9 +96,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a934aa5c26195e52aa69c5a524a1af9db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a> (std::string inputFileName)</td></tr>
 <tr class="memdesc:a934aa5c26195e52aa69c5a524a1af9db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read in any values from the parameter file.  <a href="#a934aa5c26195e52aa69c5a524a1af9db">More...</a><br /></td></tr>
 <tr class="separator:a934aa5c26195e52aa69c5a524a1af9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64baa7eba110c8ac37f1d6687c04deaa"><td class="memItemLeft" align="right" valign="top"><a id="a64baa7eba110c8ac37f1d6687c04deaa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a64baa7eba110c8ac37f1d6687c04deaa">setDefaults</a> ()</td></tr>
-<tr class="memdesc:a64baa7eba110c8ac37f1d6687c04deaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the default names, values and types of the model parameters <br /></td></tr>
+<tr class="memitem:a64baa7eba110c8ac37f1d6687c04deaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a64baa7eba110c8ac37f1d6687c04deaa">setDefaults</a> ()</td></tr>
+<tr class="memdesc:a64baa7eba110c8ac37f1d6687c04deaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the default names, values and types of the model parameters  <a href="#a64baa7eba110c8ac37f1d6687c04deaa">More...</a><br /></td></tr>
 <tr class="separator:a64baa7eba110c8ac37f1d6687c04deaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b10412299911ad090c87c97a5daf471"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a0b10412299911ad090c87c97a5daf471">setParameter</a> (std::string name, std::string value)</td></tr>
 <tr class="memdesc:a0b10412299911ad090c87c97a5daf471"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset the value of an existing parameter  <a href="#a0b10412299911ad090c87c97a5daf471">More...</a><br /></td></tr>
@@ -576,6 +575,37 @@ This version returns only the string variant of the parmeter value </td></tr>
 </dl>
 <p>saving out the full parameter list automatically with each run helps to identify what went into a given set of output files<br />
 and hopefully allows for results to be reproduced if necessary </p>
+
+</div>
+</div>
+<a id="a64baa7eba110c8ac37f1d6687c04deaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64baa7eba110c8ac37f1d6687c04deaa">&#9670;&nbsp;</a></span>setDefaults()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void parameterSettings::setDefaults </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>sets the default names, values and types of the model parameters </p>
+<p>It is assumed that all parameters are initially specified as strings (to help with reading from a file)<br />
+results will be cast to the specified paramter type in the appropraite get function. At the moment the code will<br />
+halt if either the initial type of the parameter is not a string, or if the type requested in the get function<br />
+cannot be converted to the requested type. </p>
 
 </div>
 </div>

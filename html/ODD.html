@@ -118,8 +118,11 @@ parameters</h2>
 They are all collected into a single <a class="el" href="classparameterSettings.html">parameterSettings</a> class - this includes things like<br />
 random seed, number of agents, number of steps to run for. To include a new parameter, add it to the code<br />
 in the <a class="el" href="classparameterSettings.html#a64baa7eba110c8ac37f1d6687c04deaa">parameterSettings::setDefaults</a> method in <a class="el" href="parameters_8h.html">parameters.h</a>. You can then configure it in the parameter file<br />
-The parameter file name is by default (!) defaultParameterFile. <br />
-</p>
+The parameter file name is by default (!) defaultParameterFile.<br />
+Multiple repeat runs with different random seeds but all other parameters the same can be specified from the parameter file.<br />
+Experiments can be set up in the parameter file so that output from each run goes automatically into a separate directory, <br />
+with the paramters used stored along with the output <br />
+See the documentation in defaultParameterFile for details. </p>
 <h2><a class="anchor" id="pl"></a>
 places</h2>
 <p>Places are at present simple containers that can take any number of agents. Agents keep a flag pointing to their<br />
@@ -224,7 +227,7 @@ Heterogeneity</h2>
 <p>Agents differ by their home, work and transport places, and whether they currently have the disease. Places differ by contamination level. </p>
 <h2><a class="anchor" id="stoc"></a>
 Stochasticity</h2>
-<p>The initial work places for agents are assigned at random irresective of home address.<br />
+<p>The initial work places for agents are assigned at random irrespective of home address.<br />
 Disease infection and recovery are controlled by pseudo-random numbers. </p>
 <h2><a class="anchor" id="obse"></a>
 Observation</h2>

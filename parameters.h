@@ -112,18 +112,22 @@ public:
     // convert string to lower case (use std::toupper for upper case) using a lamba function 
     //std::for_each(s.begin(), s.end(), [](char & c) {c = std::tolower(c);});
     //------------------------------------------------------------------------
-    /** @brief sets the default names, values and types of the model parameters */
+    /** @brief sets the default names, values and types of the model parameters
+     @details It is assumed that all parameters are initially specified as strings (to help with reading from a file)\n
+     results will be cast to the specified paramter type in the appropraite get function. At the moment the code will\n
+     halt if either the initial type of the parameter is not a string, or if the type requested in the get function\n
+     cannot be converted to the requested type.*/
     void setDefaults(){
         std::cout<<"Setting default parameters..."<<std::endl;
         //total time steps to run for
-        parameters["nSteps"]="1";parameterType["nSteps"]=i;
+        parameters["run.nSteps"]="1";parameterType["run.nSteps"]=i;
         //number of agents to create
-        parameters["nAgents"]="600";parameterType["nAgents"]=i;
+        parameters["run.nAgents"]="600";parameterType["run.nAgents"]=l;
         //number of OMP threads to use. increase the number here if using openmp to parallelise any loops.
         //Note number of threads needs to be <= to number of cores/threads supported on the local machine
-        parameters["nThreads"]="1";parameterType["nThreads"]=i;
+        parameters["run.nThreads"]="1";parameterType["run.nThreads"]=i;
         //random seed
-        parameters["randomSeed"]="0";parameterType["randomSeed"]=i;
+        parameters["run.randomSeed"]="0";parameterType["run.randomSeed"]=i;
         //path to the output file
         parameters["outputFile"]="diseaseSummary.csv";parameterType["outputFile"]=s;
         //path to location of output files
@@ -138,6 +142,10 @@ public:
         parameters["experiment.run.prefix"]="10000";parameterType["experiment.run.prefix"]=i;
         //The model version should be set by the main program, once the parameter defaults have been set
         parameters["model.version"]="Unknown";parameterType["model.version"]=s;
+        //Number of times the run will be repeated with the same parameter set but different random seeds
+        parameters["run.nRepeats"]="1";parameterType["run.nRepeats"]=i;
+        //Number of times the run will be repeated with the same parameter set but different random seeds
+        parameters["run.randomIncrement"]="1";parameterType["run.randomIncrement"]=i;
     }
     //------------------------------------------------------------------------
     /** @brief reset the value of an existing parameter

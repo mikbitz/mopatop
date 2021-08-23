@@ -6,25 +6,39 @@
 #These values will be output alphabetically to a filecalled "RunParameters"
 #So <Category> helps to group parameters together in this file
 
-#Parameters that exist in the code but not set here will assume default values (see parameters.h)
+#Parameters that exist in the code but not set here will assume default values 
+#see parameters.h - add new parameters to the setDefaults method before trying to set them here
 
 #Attempts to set parameters not already defined in the code will cause code execution to halt
 
+#-------------------------------
+#run control
+#-------------------------------
 #Number of agents to create - integer
-nAgents=60
+run.nAgents=60
 
 #Number of steps to run for - integer
-nSteps=10
+run.nSteps=10000
 
 #number of OMP threads to use - integer
 #Increase the number here if using openmp to parallelise any loops.
 #Note number of threads needs to be <= to number of cores/threads supported on the local machine
-nThreads=1
+run.nThreads=1
 
 #random seed - integer
 #change to vary the stochastic parts of the model
 #runs with the same seed should produce the same output...although maybe not if nThreads>1
-randomSeed=0
+run.randomSeed=0
+
+#how many times to repeat the run with these parameters - integer
+#Leave this set to 1 unles you want multiple runs with different random seeds
+#If > 1 the same parameters will be used for nRepeats, but with different random seeds starting from
+#run.randomSeed above, and then adding run.randomIncrement for each run
+#Values <=0 here will get set to 1
+run.nRepeats=3
+#Add this value to the seed for each successive run - integer
+run.randomIncrement=57
+#NB setting repeats to more than 1 will set experiment.run.number irrespective of any value set below. 
 
 #-------------------------------
 #output
@@ -39,7 +53,8 @@ experiment.output.directory=./output
 experiment.description= The default parameter set was used
 
 #run number - allows runs with above name to be grouped into sets (experiments!) - integer
-#if this value is set (uncomment line below) oldfiles may be overwritten. The directory for all runs with this file will be fixed
+#If this value is set (uncomment line below) oldfiles may be overwritten. The directory for all runs with this file will be fixed,
+#unless repeats is setto more then 1 above.
 #Otherwise new directories will be auto-created for each run starting at 0000, and incrementing automatically
 #experiment.run.number=0000
 
