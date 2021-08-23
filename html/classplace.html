@@ -82,8 +82,6 @@ $(function() {
 Collaboration diagram for place:</div>
 <div class="dyncontent">
 <div class="center"><img src="classplace__coll__graph.png" border="0" usemap="#place_coll__map" alt="Collaboration graph"/></div>
-<map name="place_coll__map" id="place_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -108,6 +106,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f376daee9d0bd3bf8a9c66a98b4df66"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a1f376daee9d0bd3bf8a9c66a98b4df66">getContaminationLevel</a> ()</td></tr>
 <tr class="separator:a1f376daee9d0bd3bf8a9c66a98b4df66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af75692e262dbc627001eef78bc887bb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#af75692e262dbc627001eef78bc887bb7">update</a> ()</td></tr>
+<tr class="memdesc:af75692e262dbc627001eef78bc887bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The contamination in each place decays exponentially, or is reset to zero.  <a href="#af75692e262dbc627001eef78bc887bb7">More...</a><br /></td></tr>
 <tr class="separator:af75692e262dbc627001eef78bc887bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad237fd8ac1ef3ca1ba3abaaba6ff61d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#ad237fd8ac1ef3ca1ba3abaaba6ff61d5">show</a> (bool)</td></tr>
 <tr class="separator:ad237fd8ac1ef3ca1ba3abaaba6ff61d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -418,8 +417,12 @@ Agents that are infected will increase this level while this is their currentPla
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The contamination in each place decays exponentially. This function shoudl be called every (uniform) time step <br />
-This way places without any currently infected agents gradually lose their infectiveness </p>
+
+<p>The contamination in each place decays exponentially, or is reset to zero. </p>
+<p>. This function should be called every (uniform) time step <br />
+ This way places without any currently infected agents gradually lose their infectiveness, or else if <br />
+ <a class="el" href="classplace.html#a6bc57da25f0c357caa3fd93e0fbcd079">cleanEveryStep</a> is set, the place has all contamination removed - useful if caontamination shoudl only be present<br />
+ as long as agents are present, and amount should be directly given by the number of agents. </p>
 
 </div>
 </div>

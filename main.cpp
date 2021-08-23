@@ -123,8 +123,11 @@ public:
     float getContaminationLevel(){
         return contaminationLevel;
     }
-    /** The contamination in each place decays exponentially. This function shoudl be called every (uniform) time step \n
-     *  This way places without any currently infected agents gradually lose their infectiveness
+    /** @brief The contamination in each place decays exponentially, or is reset to zero
+     * @details. This function should be called every (uniform) time step \n
+     *  This way places without any currently infected agents gradually lose their infectiveness, or else if \n
+     *  \ref cleanEveryStep is set, the place has all contamination removed - useful if caontamination shoudl only be present\n
+     *  as long as agents are present, and amount should be directly given by the number of agents.
      * */
     void update(){
         if (cleanEveryStep)cleanContamination();
