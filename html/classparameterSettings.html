@@ -86,6 +86,8 @@ $(function() {
 Collaboration diagram for parameterSettings:</div>
 <div class="dyncontent">
 <div class="center"><img src="classparameterSettings__coll__graph.png" border="0" usemap="#parameterSettings_coll__map" alt="Collaboration graph"/></div>
+<map name="parameterSettings_coll__map" id="parameterSettings_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -137,6 +139,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a75db51f35ffa143deba085c4ac071d22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialisation of get for unsigned integers<br />
 .  <a href="#a75db51f35ffa143deba085c4ac071d22">More...</a><br /></td></tr>
 <tr class="separator:a75db51f35ffa143deba085c4ac071d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acab437a0c02567836fba8055fc682b39"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:acab437a0c02567836fba8055fc682b39"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; T, bool &gt;::value, T &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#acab437a0c02567836fba8055fc682b39">get</a> (std::string s)</td></tr>
+<tr class="memdesc:acab437a0c02567836fba8055fc682b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialisation of get for boolean values integers<br />
+.  <a href="#acab437a0c02567836fba8055fc682b39">More...</a><br /></td></tr>
+<tr class="separator:acab437a0c02567836fba8055fc682b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73c7e3c79bb37d53214467bf083281f6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a73c7e3c79bb37d53214467bf083281f6">get</a> (std::string s)</td></tr>
 <tr class="memdesc:a73c7e3c79bb37d53214467bf083281f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default get just returns the string value<br />
 .  <a href="#a73c7e3c79bb37d53214467bf083281f6">More...</a><br /></td></tr>
@@ -151,7 +158,8 @@ Private Types</h2></td></tr>
 <b>u</b>, 
 <br />
 &#160;&#160;<b>l</b>, 
-<b>i</b>
+<b>i</b>, 
+<b>b</b>
 <br />
  }</td></tr>
 <tr class="memdesc:a1dfc46877043d607fb9bfce38ccf503a"><td class="mdescLeft">&#160;</td><td class="mdescRight">a list of names that can be used in the parameterType map  <a href="classparameterSettings.html#a1dfc46877043d607fb9bfce38ccf503a">More...</a><br /></td></tr>
@@ -247,7 +255,7 @@ then checked by the get method to make sure that there is no unexpected attempt 
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a417e5df1124a130366c687c451cd2b40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a417e5df1124a130366c687c451cd2b40">&#9670;&nbsp;</a></span>get() <span class="overload">[1/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a417e5df1124a130366c687c451cd2b40">&#9670;&nbsp;</a></span>get() <span class="overload">[1/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,7 +296,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="ad1bca448c7289d3c40a71926c2d71ae3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1bca448c7289d3c40a71926c2d71ae3">&#9670;&nbsp;</a></span>get() <span class="overload">[2/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1bca448c7289d3c40a71926c2d71ae3">&#9670;&nbsp;</a></span>get() <span class="overload">[2/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -325,7 +333,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a684f724ba1254694ec9693d71fe2a2c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a684f724ba1254694ec9693d71fe2a2c8">&#9670;&nbsp;</a></span>get() <span class="overload">[3/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a684f724ba1254694ec9693d71fe2a2c8">&#9670;&nbsp;</a></span>get() <span class="overload">[3/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -362,7 +370,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a0cfc75aa4cd453d973cae2bfa13d1719"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0cfc75aa4cd453d973cae2bfa13d1719">&#9670;&nbsp;</a></span>get() <span class="overload">[4/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cfc75aa4cd453d973cae2bfa13d1719">&#9670;&nbsp;</a></span>get() <span class="overload">[4/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -399,7 +407,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a75db51f35ffa143deba085c4ac071d22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75db51f35ffa143deba085c4ac071d22">&#9670;&nbsp;</a></span>get() <span class="overload">[5/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a75db51f35ffa143deba085c4ac071d22">&#9670;&nbsp;</a></span>get() <span class="overload">[5/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -435,8 +443,46 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a id="acab437a0c02567836fba8055fc682b39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acab437a0c02567836fba8055fc682b39">&#9670;&nbsp;</a></span>get() <span class="overload">[6/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;T, bool&gt;::value, T&gt;::type parameterSettings::get </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specialisation of get for boolean values integers<br />
+. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the name of the parameter requested.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>treat the conversion to boll carefully in case the user input something like "True " </p>
+
+</div>
+</div>
 <a id="a73c7e3c79bb37d53214467bf083281f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73c7e3c79bb37d53214467bf083281f6">&#9670;&nbsp;</a></span>get() <span class="overload">[6/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a73c7e3c79bb37d53214467bf083281f6">&#9670;&nbsp;</a></span>get() <span class="overload">[7/7]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

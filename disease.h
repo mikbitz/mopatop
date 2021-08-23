@@ -38,6 +38,15 @@ class disease{
     /** fixed per timespte contribution to contamination at a site */
     static float infectionShedLoad;
 public:
+    disease(){
+        //defaults if no parameters given
+        recoveryRate=0.0008;
+        infectionShedLoad=0.001;
+    }
+    disease(parameterSettings p){
+        recoveryRate=p.get<double>("disease.simplistic.recoveryRate");
+        infectionShedLoad=p.get<double>("disease.simplistic.infectionShedLoad");
+    }
     /** recover with a fixed chance in a given timestep - this function needs to be called every timestep by infected agents*/
     static bool recover (){
       if (recoveryRate>randomizer::getInstance().number())return true;else return false;

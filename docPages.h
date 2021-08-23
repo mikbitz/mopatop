@@ -76,7 +76,7 @@
  * @subsection pl places
  * Places are at present simple containers that can take any number of agents. Agents keep a flag pointing to their\n
  * current place, so that they can add contamination, or examine the contamination level inorder to become infected.\n
- * Places are also containers for the contamination, and evolve its level over time.\n
+ * Places are also containers for the contamination, and evolve its level over time - current;y is just decreases exponentially.\n
  * In a more complex model places could have substructure (e.g. a canteen, multiple buildings in a hospital) and a \n
  * topology (which building is next to which other, are there floors with differnt access) and geometry (how far away are \n
  * other buildings).\n
@@ -89,8 +89,8 @@
  * (home, work,vehicle) which can differ for each agent - in practice some of them will share a home, a workplace, or a \n
  * travel vehicle (e.g. a bus), and this allows for the spread of the disease.
  * @subsection di disease
- * A single simple disease allows agents interrogate it and discover whether they to recover at a hard-coded fixed average\n
- * rate, to be infected if there is contamination and to shed infection into a place, again at a hard-coded rate per unit time.\n 
+ * A single simple disease allows agents interrogate it and discover whether they to recover at a fixed average\n
+ * rate, to be infected if there is contamination and to shed infection into a place, again at a rate per unit time.\n 
  * @subsection ts travelSchedule
  * Each agent has their own copy of a travel schedule - at present, though, this is identical for every agent.\n
  * The schedule has an ordered list of place types representing destination for travel, and a time to be spent\n

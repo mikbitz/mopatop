@@ -38,7 +38,7 @@
 class parameterSettings{
     /** @brief a list of names that can be used in the parameterType map 
      *  @details to avoid c++ reserved words just the first letter is kept - e.g. i==int, d==double, f==float - see the \ref get methods */
-    enum typeID{s,f,d,u,l,i};
+    enum typeID{s,f,d,u,l,i,b};
     /** @brief a map from parameter names to parameter values, all currently strings */
     std::map<std::string,std::string>parameters;
     /** @brief stores the expected type of the relevant parameter */
@@ -108,9 +108,6 @@ public:
         }
         printParameters();
     }
-    //Notes
-    // convert string to lower case (use std::toupper for upper case) using a lamba function 
-    //std::for_each(s.begin(), s.end(), [](char & c) {c = std::tolower(c);});
     //------------------------------------------------------------------------
     /** @brief sets the default names, values and types of the model parameters
      @details It is assumed that all parameters are initially specified as strings (to help with reading from a file)\n
@@ -146,6 +143,13 @@ public:
         parameters["run.nRepeats"]="1";parameterType["run.nRepeats"]=i;
         //Number of times the run will be repeated with the same parameter set but different random seeds
         parameters["run.randomIncrement"]="1";parameterType["run.randomIncrement"]=i;
+        //settings for the simp;est possible disease parameterisation
+        parameters["disease.simplistic.recoveryRate"]="0.0007";parameterType["disease.simplistic.recoveryRate"]=d;
+        parameters["disease.simplistic.infectionShedLoad"]="0.001";parameterType["disease.simplistic.infectionShedLoad"]=d;
+        //decrement rate for contamination in all places
+        parameters["places.disease.simplistic.fractionalDecrement"]="0.1";parameterType["places.disease.simplistic.fractionalDecrement"]=d;
+        //if set this flag will cause contamination to be reset to zero every timestep
+        parameters["places.cleanContamination"]="false";parameterType["places.cleanContamination"]=b;
     }
     //------------------------------------------------------------------------
     /** @brief reset the value of an existing parameter
@@ -276,6 +280,24 @@ public:
         assert(parameterType[s]==u);
         //seems there is no conversion just to unsigned, so use unsigned long
         return stoul(parameters[s]);
+    }
+    //------------------------------------------------------------------------
+    /** @brief Specialisation of get for boolean values integers\n
+     *  @param s the name of the parameter requested.
+     *  @details treat the conversion to boll carefully in case the user input something like "True "
+     */
+    template <typename T>
+    typename std::enable_if<std::is_same<T, bool>::value, T>::type
+    get(std::string s){
+        is_valid(s);
+        assert(parameterType[s]==b);
+        std::string lval=parameters[s];
+        //make sure the string is all lower case and has no leadin gor trainling spaces
+        std::for_each(lval.begin(), lval.end(), [](char & c) {c = std::tolower(c);});
+        lval.erase(std::remove_if(lval.begin(), lval.end(), ::isspace), lval.end());
+        //seems there is no conversion just to unsigned, so use unsigned long
+        if (lval=="true") return true;
+        return false;
     }
     //------------------------------------------------------------------------
     /** @brief The default get just returns the string value\n

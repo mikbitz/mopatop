@@ -52,26 +52,49 @@ class agent;
  * as contamination level should depend on the duration of stay in a given place.
 */
 class place{
-public:
+
     /** Unique identifier for a place - should be able to go up to about 4e9 */
     unsigned long ID;
     /** An arbitrary number giving how infectious a given place currently might be - needs calibration to get a suitable per-unit-time value. \n 
      One might expect it to vary with the size of a given location
      */
-    float contaminationLevel;
+    double contaminationLevel;
     /** Rate of decrease of contamination - per time step \n */
-    float fractionalDecrement;
+    double fractionalDecrement;
+    /** @brief This flag is used to clear out any contamination at the start of every timestep, if required
+     * @details for example, if one wants the contamination level to be just proportional to the current number\n
+     * of agents in a place at the opint where agents test for infection, set this to true.  
+     */
+    bool cleanEveryStep;
     /** unique list of current people in this place - intended for direct agent-agent interaction \n
      * For the current disease model this is not needed, as the agents need only know where they are to contaminate a place \n
      * currently this is not used...seems to add about 20% to memory requirement if populated. \n
      * A std::set is unique - so the same agent can be added many times but will only apear once.\n
      * The set uses the pointer to a given agent as the key, so its easy to insert or remove arbitrary agents */
     std::set<agent*> occupants;
-    /** set up the place. Assumed initially clean. The decrement vlaue might very with place type and ventialtion level... */
+public:
+    /** @brief set up the place. 
+     *  @details Assumed initially clean. The decrement value might very with place type and ventialtion level...\n
+        but here is set to a fixed number*/
     place(){
         ID=0;
         contaminationLevel=0.;
-        fractionalDecrement=0.1;        
+        fractionalDecrement=0.1;
+        cleanEveryStep=false;
+    }
+    /** @brief set up the place. 
+     *  @param p parameter Settings read from the parameter file 
+     *  @details Assumed initially clean. The decrement value is here imported from the parameter settings */
+    place(parameterSettings p){
+        ID=0;
+        contaminationLevel=0.;
+        fractionalDecrement=p.get<double>("places.disease.simplistic.fractionalDecrement");
+        cleanEveryStep=p.get<bool>("places.cleanContamination");        
+    }
+    /** @brief set the place ID number
+     *  @details care shoudl be taken that ths value set here is unique! */
+    void setID(long i){
+        ID=i;
     }
     /**Add an agent to the list currently here 
      @param a a pointer to the agent to be added */
@@ -86,7 +109,7 @@ public:
     /** A function to allow agents (or any other thing that points at this place) to add contamination that spreads disease
      *  Essentially a proxy for droplets in the air or surface contamination \n
      *  Agents that are infected will increase this level while this is their currentPlace , offsetting the decrease in \ref update */
-    void increaseContamination(float amount){
+    void increaseContamination(double amount){
         contaminationLevel+=amount;
     }
     /** A function to allow agents (or any other thing that points at this place) to completely clean up the contamination in a given place.
@@ -97,11 +120,16 @@ public:
     }
     /** Get the current level of contamination here
      *@return Floating point value of current contamination level. */
-    float getContaminationLevel(){return contaminationLevel;}
+    float getContaminationLevel(){
+        return contaminationLevel;
+    }
     /** The contamination in each place decays exponentially. This function shoudl be called every (uniform) time step \n
      *  This way places without any currently infected agents gradually lose their infectiveness
      * */
-    void update(){contaminationLevel*=fractionalDecrement;}
+    void update(){
+        if (cleanEveryStep)cleanContamination();
+        else contaminationLevel*=fractionalDecrement;
+    }
     /** Function to show the current status of a place - use with caution if there are many thousands of places! */
     void show(bool);//defined below once agents are defined
     //Because of the forward declaration of class agent, the full definition of this function has to wait until after the agent class is completed
@@ -174,7 +202,8 @@ public:
     }
     /** do any things that need to be done at home */
     void atHome(){
-        if (ID==0)std::cout<<"at Home"<<std::endl;
+        if (ID==0)std::cout<<"at Home "<<std::endl;
+        
     }
     /** do any things that need to be done at work */
     void atWork(){
@@ -245,7 +274,8 @@ class travelSchedule{
     int index;
 public:
     /** @brief Constructor to build the schedule 
-     *  add the placeTypes to be visited in order to the destinations vector, and the corresponding time that will be spent in each place to the timeSpent vector \n
+     *  add the placeTypes to be visited in order to the destinations vector, and the corresponding time that will be spent in each place to the timeSpent vector. \n
+     *  schedule time in a given place should be an integer nultiple of the timestep.\n
      *  Index is set to point to the last place so that a call to getNextLocation will run the schedule back to the top.
      */
     travelSchedule(){
@@ -399,9 +429,9 @@ public:
     void init(parameterSettings& parameters){
         //create homes - one third of the agent number
         for (int i=0;i<nAgents/3;i++){
-            place* p=new place();
+            place* p=new place(parameters);
             places.push_back(p);
-            places[i]->ID=i;
+            places[i]->setID(i);
         }
         //allocate 3 agents per home
         for (int i=0;i<nAgents;i++){
@@ -412,9 +442,9 @@ public:
         }
         //create work places - one tenth as many as agents - add them on to the end of the place list.
         for (int i=nAgents/3;i<nAgents/3+nAgents/10;i++){
-            place* p=new place();
+            place* p=new place(parameters);
             places.push_back(p);
-            places[i]->ID=i;
+            places[i]->setID(i);
         }
         //shuffle agents so household members get different workplaces
         random_shuffle(agents.begin(),agents.end());
@@ -425,9 +455,9 @@ public:
         }
         //create buses - one thirtieth since 30 agents per bus. add them to the and of the place list again
         for (int i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
-            place* p=new place();
+            place* p=new place(parameters);
             places.push_back(p);
-            places[i]->ID=i;
+            places[i]->setID(i);
         }
         //allocate 30 agents per bus - since agents aren't shuffled, those in similar workplaces will tend to share buses. 
         for (int i=0;i<agents.size();i++){
@@ -557,6 +587,8 @@ int main(int argc, char **argv) {
     if (parameters.get<int>("run.nRepeats")<=0){
         parameters.setParameter("run.nRepeats","1");
     }
+    //initialise the disease
+    disease d(parameters);
     //repeat the model run nRepeats times with different random seeds
     int seed=parameters.get<int>("run.randomSeed");
     int increment=parameters.get<int>("run.randomIncrement");

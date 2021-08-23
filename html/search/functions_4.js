@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['increasecontamination',['increaseContamination',['../classplace.html#a8777240e93780174b6e41cc4fdba53bc',1,'place']]],
+  ['increasecontamination',['increaseContamination',['../classplace.html#a44c505d367808c9c0085cf8d8ece5f51',1,'place']]],
   ['infect',['infect',['../classdisease.html#a1db74e7081cffd6d3d198542c7fabae5',1,'disease']]],
   ['init',['init',['../classmodel.html#a9c93dce1ca10fbfa99f9eec481ea55df',1,'model']]],
   ['inittravelschedule',['initTravelSchedule',['../classagent.html#ae48983da3bd44f76516304ad7971292a',1,'agent']]],
