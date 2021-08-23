@@ -100,13 +100,14 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="separator:ae175fffeb1c48d064973e33b3e11b9a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad360ae291abce71d660ca8cadb344b00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a> (int s)</td></tr>
 <tr class="separator:ad360ae291abce71d660ca8cadb344b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e33cd61c749f88bcc6b2e780668c7d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#a5e33cd61c749f88bcc6b2e780668c7d3">clean</a> ()</td></tr>
+<tr class="separator:a5e33cd61c749f88bcc6b2e780668c7d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a01d852120098a534926d04db6bf74790"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classrandomizer.html">randomizer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#a01d852120098a534926d04db6bf74790">getInstance</a> ()</td></tr>
 <tr class="memdesc:a01d852120098a534926d04db6bf74790"><td class="mdescLeft">&#160;</td><td class="mdescRight">get a reference to one of a set of random number generators. If no appropriate instance yet exists, create it. <br />
-Instances are currently parameterized by omp thread number by calling omp_get_thread_num()<br />
-(which returns zero if only one thread) - NB this is currently not used as it may cause crashes on multiple runs.  <a href="#a01d852120098a534926d04db6bf74790">More...</a><br /></td></tr>
+ <a href="#a01d852120098a534926d04db6bf74790">More...</a><br /></td></tr>
 <tr class="separator:a01d852120098a534926d04db6bf74790"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -120,20 +121,19 @@ Public Attributes</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:afc354a3a2a255d4e1ba952239d411023"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#afc354a3a2a255d4e1ba952239d411023">randomizer</a> ()</td></tr>
 <tr class="separator:afc354a3a2a255d4e1ba952239d411023"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e33cd61c749f88bcc6b2e780668c7d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#a5e33cd61c749f88bcc6b2e780668c7d3">clean</a> ()</td></tr>
-<tr class="separator:a5e33cd61c749f88bcc6b2e780668c7d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:a2e98e8d2b72931b16e734f8876c3a03d"><td class="memItemLeft" align="right" valign="top">static std::map&lt; short, <a class="el" href="classrandomizer.html">randomizer</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#a2e98e8d2b72931b16e734f8876c3a03d">instance</a></td></tr>
-<tr class="separator:a2e98e8d2b72931b16e734f8876c3a03d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6f6b071b2e9492ee84c248a04cb25a9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classrandomizer.html">randomizer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#ab6f6b071b2e9492ee84c248a04cb25a9">instance</a></td></tr>
+<tr class="separator:ab6f6b071b2e9492ee84c248a04cb25a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Set up a wrapper class that will provide uniform pseudo-random numbers between 0 and 1 <br />
 . </p>
 <p>As usual with random number generators, the sequence is actually periodic iwth a very long period. By setting the seed one can generate the same sequence repeatedly by using the same seed. The C++ random number generators are rather complicated. This class allows selection of one of the available generators <br />
 without needing to look up the detail. It generates a random double between 0 and 1 using the mersenne twister generator. <br />
-The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a> - note this seems to need the twister to be completely re-created, hence the use of a pointer Example:- </p><div class="fragment"><div class="line"><a class="code" href="classrandomizer.html">randomizer</a> r=<a class="code" href="classrandomizer.html#a01d852120098a534926d04db6bf74790">randomizer::getInstance</a>(0);</div><div class="line">r.<a class="code" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a>(12991);</div><div class="line"><span class="keywordtype">double</span> randomvalue=r.<a class="code" href="classrandomizer.html#ae175fffeb1c48d064973e33b3e11b9a0">number</a>();</div></div><!-- fragment --><p> Uses a map to define multiple independent generators, so there is only one random sequence across all agents for a given value of the short integer parameter i The idea is that in a multi-threaded application, each thread can have its own RNG - although note there is only one instance of twister (and hence the seed) for all. Using the thread number leads to a small improvement in speed. </p>
+The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a> - note this seems to need the twister to be completely re-created, hence the use of a pointer Example:- </p><div class="fragment"><div class="line"><a class="code" href="classrandomizer.html">randomizer</a> r=<a class="code" href="classrandomizer.html#a01d852120098a534926d04db6bf74790">randomizer::getInstance</a>(0);</div><div class="line">r.<a class="code" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a>(12991);</div><div class="line"><span class="keywordtype">double</span> randomvalue=r.<a class="code" href="classrandomizer.html#ae175fffeb1c48d064973e33b3e11b9a0">number</a>();</div></div><!-- fragment --><p> Seems to be ok on multiple threads, but takes something of a hit from being only one RNG across them - would be faster if each<br />
+thread had its own RNG but this seems tricky to get right across multiple runs, </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afc354a3a2a255d4e1ba952239d411023"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afc354a3a2a255d4e1ba952239d411023">&#9670;&nbsp;</a></span>randomizer()</h2>
@@ -180,11 +180,11 @@ The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>if needed, clean up the pointer - otherwise it will just get deleted at end of program execution. this seems fualty for multiple threads at present </p>
+<p>if needed, clean up the pointer - otherwise it will just get deleted at end of program execution. this seems faulty for multiple threads at present </p>
 
 </div>
 </div>
@@ -212,8 +212,7 @@ The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer
 </div><div class="memdoc">
 
 <p>get a reference to one of a set of random number generators. If no appropriate instance yet exists, create it. <br />
-Instances are currently parameterized by omp thread number by calling omp_get_thread_num()<br />
-(which returns zero if only one thread) - NB this is currently not used as it may cause crashes on multiple runs. </p>
+</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the available instance </dd></dl>
 
 </div>
@@ -246,8 +245,8 @@ Instances are currently parameterized by omp thread number by calling omp_get_th
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a2e98e8d2b72931b16e734f8876c3a03d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e98e8d2b72931b16e734f8876c3a03d">&#9670;&nbsp;</a></span>instance</h2>
+<a id="ab6f6b071b2e9492ee84c248a04cb25a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6f6b071b2e9492ee84c248a04cb25a9">&#9670;&nbsp;</a></span>instance</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -256,7 +255,7 @@ Instances are currently parameterized by omp thread number by calling omp_get_th
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt; short, <a class="el" href="classrandomizer.html">randomizer</a> * &gt; randomizer::instance</td>
+          <td class="memname"><a class="el" href="classrandomizer.html">randomizer</a> * randomizer::instance</td>
         </tr>
       </table>
   </td>

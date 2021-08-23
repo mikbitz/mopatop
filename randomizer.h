@@ -38,24 +38,20 @@
  * r.setSeed(12991);
  * double randomvalue=r.number();
  * \endcode
- * Uses a  map to define multiple independent generators, so there is only one random sequence across all agents for a given value of the short integer parameter i 
- * The idea is that in a multi-threaded application, each thread can have its own RNG - although note there is only one instance of twister (and hence the seed) for all.
- * Using the thread number leads to a small improvement in speed.
+ * Seems to be ok on multiple threads, but takes something of a hit from being only one RNG across them - would be faster if each\n
+ * thread had its own RNG but this seems tricky to get right across multiple runs,
 */
 class randomizer {
 public:
     /** @brief get a reference to one of a set of random number generators.
      * If no appropriate instance yet exists, create it. \n
-     * Instances are currently parameterized by omp thread number by calling omp_get_thread_num()\n
-     * (which returns zero if only one thread) - NB this is currently not used as it may cause crashes on multiple runs.
      * @return A reference to the available instance
      * */
     static randomizer& getInstance(){
-        short i=0;//omp_get_thread_num();
-        if (instance[i]==nullptr){
-            instance[i]=new randomizer();
+        if (instance==nullptr){
+            instance=new randomizer();
         }
-        return *instance[i];
+        return *instance;
     }
     /** The distribution to be generated is uniform from 0 to 1 */
     std::uniform_real_distribution<> uniform_dist;
@@ -63,7 +59,7 @@ public:
     std::mt19937* twister;
 public:
     ~randomizer(){
-      clean();
+      //if (omp_get_thread_num()==0)instance.clear();
     }
     /** @brief return the next pseudo-random number in the current sequence */
     double number(){
@@ -76,22 +72,24 @@ public:
         delete twister;
         twister=new std::mt19937(s);
     }
+    /** if needed, clean up the pointer - otherwise it will just get deleted at end of program execution. 
+      this seems faulty for multiple threads at present*/
+    void clean(){
+       //randomizer* r = instance[omp_get_thread_num()];
+       //delete r;
+    }
 private:
     /** The instance of this class. As this is a singleton (there can only ever be one of this class anywhere in the code) the actual instance is hidden from the user of the class */
-    static std::map<short,randomizer*> instance;
+    static randomizer* instance;
     /** The constructor makes the class instance - again private so that access can be controlled. The class is used through the getInstance method */
     randomizer(){
         uniform_dist=std::uniform_real_distribution<> (0,1);
         std::cout<<"A randomizer was set up with seed 0" <<std::endl;
         twister=new std::mt19937(0);
     }
-    /** if needed, clean up the pointer - otherwise it will just get deleted at end of program execution. 
-      this seems fualty for multiple threads at present*/
-    void clean(){
-        instance.clear();
-    }
+
 };
 //------------------------------------------------------------------------
 //static class members have to be initialized
-std::map<short,randomizer*> randomizer::instance;
+randomizer* randomizer::instance;
 #endif // RANDOMIZER_H_INCLUDED
