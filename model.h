@@ -44,8 +44,15 @@ class model{
     std::string _filePostfix;
     /** The output file stream */
     std::ofstream output;
-    /** variable to hold the random number generator for this model */
+    /** @brief variable to hold the random number generator for this model
+        @details This is currently directly created with default seed 0, rather than being a singleton (accessible from anywhere in the code)\n
+        see \ref randomizerSingleton.h for singleton code. At the moment a singleton is not used as it seems a little tricky in multi-threaded cases\n
+        as a result model randomizers have to be passed into client functions*/
     randomizer r;
+    /** @brief multi threaded runs are faster if each thread has its own RNG
+      @details Each RNG is created with its own seed, seeds being separated by 1 incrementally. This means that  multi-threaded runs\n
+      can be reproduced if the same number of threads is used (and the same start random seed), but runs with different numbers of threads\n
+      will typically produce different output (to the extent that output is stochastic)*/
     std::vector<randomizer> randoms;
 public:
     /** Constructor for the model - set up the random seed and the output file, then call \ref init to define the agents and the places \n
@@ -54,7 +61,7 @@ public:
     model(parameterSettings& parameters){
 
         nAgents=parameters.get<long>("run.nAgents");
-
+        //create mutiple RNG for many threaded runs
         for (int i=0;i<parameters.get<int>("run.nThreads");i++){
             randomizer r(parameters.get<int>("run.randomSeed")+i);
             randoms.push_back(r);
@@ -65,7 +72,7 @@ public:
         //output file
         output.open(_filePrefix+parameters("outputFile")+_filePostfix+".csv");
         //header line
-        output<<"step,susceptible,infected,recovered"<<std::endl;
+        output<<"step,susceptible,infected,recovered,dead"<<std::endl;
         //Initialisation can be slow - check the timing
         auto start=timeReporter::getTime();
         init(parameters);
@@ -199,7 +206,7 @@ public:
             start=end;
         }
         //counts the totals
-        int infected=0,recovered=0;
+        int infected=0,recovered=0,dead=0;
         //do disease - synchronous update (i.e. all agents contaminate before getting infected) so that no agent gets to infect ahead of others.
         //alternatively could be randomized...depends on the idea of how a location works...places could be sub-divided to mimic spatial extent for example.
         #pragma omp parallel for
@@ -224,8 +231,12 @@ public:
         }
         //accumulate totals
         for (int i=0;i<agents.size();i++){
-            if (agents[i]->diseased)infected++;
-            if (agents[i]->immune)recovered++;
+            if (agents[i]->alive){
+                if (agents[i]->diseased)infected++;
+                if (agents[i]->immune)recovered++;
+            }else{
+                dead++;
+            }
         }
         if (stepNumber==0){
             end=timeReporter::getTime();
@@ -243,7 +254,7 @@ public:
             start=end;
         }
         //output a summary .csv file
-        output<<stepNumber<<","<<agents.size()-infected-recovered<<","<<infected<<","<<recovered<<std::endl;
+        output<<stepNumber<<","<<agents.size()-infected-recovered-dead<<","<<infected<<","<<recovered<<","<<dead<<std::endl;
         //show the step number every 10 steps
         if (stepNumber==0){
             end=timeReporter::getTime();

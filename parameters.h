@@ -143,8 +143,9 @@ public:
         parameters["run.nRepeats"]="1";parameterType["run.nRepeats"]=i;
         //Number of times the run will be repeated with the same parameter set but different random seeds
         parameters["run.randomIncrement"]="1";parameterType["run.randomIncrement"]=i;
-        //settings for the simp;est possible disease parameterisation
+        //settings for the simplest possible disease parameterisation
         parameters["disease.simplistic.recoveryRate"]="0.0007";parameterType["disease.simplistic.recoveryRate"]=d;
+        parameters["disease.simplistic.deathRate"]="0.0007";parameterType["disease.simplistic.deathRate"]=d;
         parameters["disease.simplistic.infectionShedLoad"]="0.001";parameterType["disease.simplistic.infectionShedLoad"]=d;
         //decrement rate for contamination in all places
         parameters["places.disease.simplistic.fractionalDecrement"]="0.1";parameterType["places.disease.simplistic.fractionalDecrement"]=d;

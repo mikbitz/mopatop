@@ -124,9 +124,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memItemLeft" align="right" valign="top">std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ac722a1dffbe6a56f2a934ef627e4e773">output</a></td></tr>
 <tr class="separator:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2103a6bc9833b98e5d6ff607c5feea60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrandomizer.html">randomizer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a2103a6bc9833b98e5d6ff607c5feea60">r</a></td></tr>
+<tr class="memdesc:a2103a6bc9833b98e5d6ff607c5feea60"><td class="mdescLeft">&#160;</td><td class="mdescRight">variable to hold the random number generator for this model  <a href="#a2103a6bc9833b98e5d6ff607c5feea60">More...</a><br /></td></tr>
 <tr class="separator:a2103a6bc9833b98e5d6ff607c5feea60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86a89dcd7a5d26b3912974f67e01fb0f"><td class="memItemLeft" align="right" valign="top"><a id="a86a89dcd7a5d26b3912974f67e01fb0f"></a>
-std::vector&lt; <a class="el" href="classrandomizer.html">randomizer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>randoms</b></td></tr>
+<tr class="memitem:a86a89dcd7a5d26b3912974f67e01fb0f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classrandomizer.html">randomizer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a86a89dcd7a5d26b3912974f67e01fb0f">randoms</a></td></tr>
+<tr class="memdesc:a86a89dcd7a5d26b3912974f67e01fb0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">multi threaded runs are faster if each thread has its own RNG  <a href="#a86a89dcd7a5d26b3912974f67e01fb0f">More...</a><br /></td></tr>
 <tr class="separator:a86a89dcd7a5d26b3912974f67e01fb0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -458,7 +459,38 @@ Also to avoid any systematic biases, agents need to all finish their contaminati
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>variable to hold the random number generator for this model </p>
+<p>This is currently directly created with default seed 0, rather than being a singleton (accessible from anywhere in the code)<br />
+see <a class="el" href="randomizerSingleton_8h_source.html">randomizerSingleton.h</a> for singleton code. At the moment a singleton is not used as it seems a little tricky in multi-threaded cases<br />
+as a result model randomizers have to be passed into client functions </p>
+
+</div>
+</div>
+<a id="a86a89dcd7a5d26b3912974f67e01fb0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86a89dcd7a5d26b3912974f67e01fb0f">&#9670;&nbsp;</a></span>randoms</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classrandomizer.html">randomizer</a>&gt; model::randoms</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>multi threaded runs are faster if each thread has its own RNG </p>
+<p>Each RNG is created with its own seed, seeds being separated by 1 incrementally. This means that multi-threaded runs<br />
+can be reproduced if the same number of threads is used (and the same start random seed), but runs with different numbers of threads<br />
+will typically produce different output (to the extent that output is stochastic) </p>
 
 </div>
 </div>

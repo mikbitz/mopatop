@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7emodel',['~model',['../classmodel.html#a23a7dbff52aedc7c5fbd1c81d419688f',1,'model']]]
+  ['update',['update',['../classplace.html#af75692e262dbc627001eef78bc887bb7',1,'place::update()'],['../classagent.html#ae20b0b8a169fb7a459c7b195bb970d80',1,'agent::update()']]]
 ];

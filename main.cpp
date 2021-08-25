@@ -166,6 +166,8 @@ public:
     /** Counts down the time spent at the current location
      */    
     int counter=0;
+    /** flag set to true if the agent is alive */
+    bool alive=true;
     /** flag set to true if the agent has the disease */
     bool diseased;
     /** flag set to false initially, and true when the agent recovers from disease */
@@ -176,6 +178,7 @@ public:
     agent(){
         diseased=false;
         immune=false;
+        alive=true;
         //this has to be the same size as the placeTypes enum
         places.resize(3);
     }
@@ -197,10 +200,11 @@ public:
     void process_disease(randomizer& r){
         //recovery
         if (diseased){
-            if (disease::recover(r)) {diseased=false ; immune=true;}
+            if (disease::die(r))              {diseased=false ; immune=false; alive=false;}
+            if (alive && disease::recover(r)) {diseased=false ; immune=true;}
         }
         //infection
-        if (disease::infect(places[currentPlace]->getContaminationLevel(),r) && !immune)diseased=true;
+        if (alive && !immune && disease::infect(places[currentPlace]->getContaminationLevel(),r) )diseased=true;
         //immunity loss could go here...
     }
     /** do any things that need to be done at home */

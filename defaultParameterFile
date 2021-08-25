@@ -18,7 +18,7 @@
 run.nAgents=60
 
 #Number of steps to run for - integer
-run.nSteps=50
+run.nSteps=1000
 
 #number of OMP threads to use - integer
 #Increase the number here if using openmp to parallelise any loops.
@@ -35,8 +35,9 @@ run.randomSeed=0
 #If > 1 the same parameters will be used for nRepeats, but with different random seeds starting from
 #run.randomSeed above, and then adding run.randomIncrement for each run
 #Values <=0 here will get set to 1
-run.nRepeats=1
+run.nRepeats=2
 #Add this value to the seed for each successive run - integer
+#Note in a multithreaded run run.Nthreads RNG are created each separated by an increment of 1 in the seed
 run.randomIncrement=57
 #NB setting repeats to more than 1 will set experiment.run.number irrespective of any value set below. 
 
@@ -73,9 +74,11 @@ outputFile=diseaseSummary
 #-------------------------------
 #In the simplest case recovery in any timestep will happen if a random number drawn from (0,1) is less than this value
 disease.simplistic.recoveryRate=0.0008
-#and infected individual will add this much contamination to any place every timestep
+#an infected individual will add this much contamination to any place every timestep
+disease.simplistic.deathRate=0.
+#an infected individual will add this much contamination to any place every timestep
 disease.simplistic.infectionShedLoad=0.001
-#any place contaminated with disease will lose contamination exponentially at this rate per timestep
+#any place contaminated with disease will lose contamination exponentially being multiplied by this value every timestep
 places.disease.simplistic.fractionalDecrement=0.5
 #if this flag is set to true any contamination in a places gets removed at the start of each timestep
-places.cleanContamination=false
+places.cleanContamination=true
