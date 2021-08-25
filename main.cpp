@@ -59,7 +59,7 @@ class place{
      One might expect it to vary with the size of a given location
      */
     double contaminationLevel;
-    /** Rate of decrease of contamination - per time step \n */
+    /** Rate of decrease of contamination - per time step (exponential) \n */
     double fractionalDecrement;
     /** @brief This flag is used to clear out any contamination at the start of every timestep, if required
      * @details for example, if one wants the contamination level to be just proportional to the current number\n
@@ -126,12 +126,12 @@ public:
     /** @brief The contamination in each place decays exponentially, or is reset to zero
      * @details. This function should be called every (uniform) time step \n
      *  This way places without any currently infected agents gradually lose their infectiveness, or else if \n
-     *  \ref cleanEveryStep is set, the place has all contamination removed - useful if caontamination shoudl only be present\n
+     *  \ref cleanEveryStep is set, the place has all contamination removed - useful if contamination shoudl only be present\n
      *  as long as agents are present, and amount should be directly given by the number of agents.
      * */
     void update(){
         if (cleanEveryStep)cleanContamination();
-        else contaminationLevel*=fractionalDecrement;
+        else contaminationLevel*=exp(-fractionalDecrement);
     }
     /** Function to show the current status of a place - use with caution if there are many thousands of places! */
     void show(bool);//defined below once agents are defined
@@ -340,6 +340,7 @@ void agent::cough()
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+//include the model header file here so it knows the definitions of agent/place etc.
 #include "model.h"
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------

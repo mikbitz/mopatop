@@ -421,7 +421,7 @@ Agents that are infected will increase this level while this is their currentPla
 <p>The contamination in each place decays exponentially, or is reset to zero. </p>
 <p>. This function should be called every (uniform) time step <br />
  This way places without any currently infected agents gradually lose their infectiveness, or else if <br />
- <a class="el" href="classplace.html#a6bc57da25f0c357caa3fd93e0fbcd079">cleanEveryStep</a> is set, the place has all contamination removed - useful if caontamination shoudl only be present<br />
+ <a class="el" href="classplace.html#a6bc57da25f0c357caa3fd93e0fbcd079">cleanEveryStep</a> is set, the place has all contamination removed - useful if contamination shoudl only be present<br />
  as long as agents are present, and amount should be directly given by the number of agents. </p>
 
 </div>
@@ -496,7 +496,7 @@ of agents in a place at the opint where agents test for infection, set this to t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Rate of decrease of contamination - per time step <br />
+<p>Rate of decrease of contamination - per time step (exponential) <br />
  </p>
 
 </div>

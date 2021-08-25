@@ -188,7 +188,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ParameterSettings is a class designed to hold all the parameters for the model. </p>
-<p>At present these are hard coded here, but more usefully these could be delegated to an input file.<br />
+<p>Parameter defaults are set here, but the may be overridden by reading from the parameterfile .<br />
 All parameters are strings (with the idea that arbitrary strings can be read from a parameter file), so need to be converted at point of use - <br />
 however, returning different data types depending on parameter name is a little tricky...this is done by having an overloaded <a class="el" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a> method<br />
 the correct get method can then be called depending on the the parameter type required (e.g. int, float).<br />

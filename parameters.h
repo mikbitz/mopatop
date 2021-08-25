@@ -28,7 +28,7 @@
 #include<cctype>
 /**
  * @brief ParameterSettings is a class designed to hold all the parameters for the model
- * @details At present these are hard coded here, but more usefully these could be delegated to an input file.\n
+ * @details Parameter defaults are set here, but the may be overridden by reading from the parameterfile .\n
  * All parameters are strings (with the idea that arbitrary strings can be read from a parameter file), so need to be converted at point of use - \n
  * however, returning different data types depending on parameter name is a little tricky...this is done by having an overloaded \ref get method\n
  * the correct get method can then be called depending on the the parameter type required (e.g. int, float).\n
