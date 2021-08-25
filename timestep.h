@@ -25,7 +25,7 @@ class timeStep{
     static double minutes;
     static double seconds;
     static double dt;
-    std::string units;
+    static std::string units;
 public:
 
     /** Default constructor sets timestep to be  in hours */
@@ -68,102 +68,107 @@ public:
             
     }
     //------------------------------------------------------------------------
-    /** @brief report the tiestep value in seconds - so that the user need not know that this is the representation  */
+    /** @brief report the timestep unit currently in use */
+    static std::string timeStepUnit(){
+        return units;
+    }
+    //------------------------------------------------------------------------
+    /** @brief report the timestep value in seconds - so that the user need not know that this is the representation  */
     static double deltaT(){
-        return timeStep::dt;
+        return dt;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of seconds for a (365 day )year - so that the user need not know that this is the representation  */
     static double year(){
-        return timeStep::years;
+        return years;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of seconds for a nominal (30 day) month - so that the user need not know that this is the representation  */
     static double month(){
-        return timeStep::months;
+        return months;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of seconds for a day - so that the user need not know that this is the representation  */
     static double day(){
-        return timeStep::days;
+        return days;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of seconds for an hour - so that the user need not know that this is the representation  */
     static double hour(){
-        return timeStep::hours;
+        return hours;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of seconds for a minute- so that the user need not know that this is the representation  */
     static double minute(){
-        return timeStep::minutes;
+        return minutes;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of seconds for a second - so that the user need not know that this is the representation  */
     static double second(){
-        return timeStep::seconds;
+        return seconds;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of years that would be represented by a timestep 
         @details e.g if the time step is one day, report 1./365 */
     static double yearsPerTimeStep(){
-        return timeStep::dt/timeStep::years;
+        return dt/years;
     }
     //------------------------------------------------------------------------
    /** @brief report the number of months that would be represented by a timestep 
        @details e.g if the time step is one day, report 1./30  (so not really months!)*/
     static double monthsPerTimeStep(){
-        return timeStep::dt/timeStep::months;
+        return dt/months;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of days that would be represented by a timestep 
        @details e.g if the time step is two days, report 2.  */
     static double daysPerTimeStep(){
-        return timeStep::dt/timeStep::days;
+        return dt/days;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of hours that would be represented by a timestep */
     static double hoursPerTimeStep(){
-        return timeStep::dt/timeStep::hours;
+        return dt/hours;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of minutes that would be represented by a timestep */
     static double minutesPerTimeStep(){
-        return timeStep::dt/timeStep::minutes;
+        return dt/minutes;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of seconds that would be represented by a timestep */
     static double secondsPerTimeStep(){
-        return timeStep::dt/timeStep::seconds;
+        return dt/seconds;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of timesteps that would fit into a (365 day) year */
     static double TimeStepsPerYear(){
-        return timeStep::years/timeStep::dt;
+        return years/dt;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of timesteps that would fit into a nominal (30 day) month */
     static double TimeStepsPerMonth(){
-        return timeStep::months/timeStep::dt;
+        return months/dt;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of timesteps that would fit into a day */
     static double TimeStepsPerDay(){
-        return timeStep::days/timeStep::dt;
+        return days/dt;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of timesteps that would fit into an aah */
     static double TimeStepsPerHour(){
-        return timeStep::hours/timeStep::dt;
+        return hours/dt;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of timesteps that would fit into a minute */
     static double TimeStepsPerMinutes(){
-        return timeStep::minutes/timeStep::dt;
+        return minutes/dt;
     }
     //------------------------------------------------------------------------
     /** @brief report the number of timesteps that would fit into a second */
     static double TimeStepsPerSecond(){
-        return timeStep::seconds/timeStep::dt;
+        return seconds/dt;
     }
 };
 //setup dt to be 1 hour if nothing else is specified
@@ -174,4 +179,5 @@ double timeStep::hours=3600;
 double timeStep::minutes=60;
 double timeStep::seconds=1;
 double timeStep::dt=3600;
+std::string timeStep::units="hours";
 #endif // TIMESTEP_H_INCLUDED

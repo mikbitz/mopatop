@@ -70,7 +70,6 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classtimeStep-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -86,6 +85,8 @@ $(function() {
 Collaboration diagram for timeStep:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtimeStep__coll__graph.png" border="0" usemap="#timeStep_coll__map" alt="Collaboration graph"/></div>
+<map name="timeStep_coll__map" id="timeStep_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -99,9 +100,13 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a56874870aaf366cd705aa94771108c30"><td class="memItemLeft" align="right" valign="top"><a id="a56874870aaf366cd705aa94771108c30"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a56874870aaf366cd705aa94771108c30">timeStepUnit</a> ()</td></tr>
+<tr class="memdesc:a56874870aaf366cd705aa94771108c30"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the timestep unit currently in use <br /></td></tr>
+<tr class="separator:a56874870aaf366cd705aa94771108c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43049a6eb016155b1b2152b2b62f42bc"><td class="memItemLeft" align="right" valign="top"><a id="a43049a6eb016155b1b2152b2b62f42bc"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a43049a6eb016155b1b2152b2b62f42bc">deltaT</a> ()</td></tr>
-<tr class="memdesc:a43049a6eb016155b1b2152b2b62f42bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the tiestep value in seconds - so that the user need not know that this is the representation <br /></td></tr>
+<tr class="memdesc:a43049a6eb016155b1b2152b2b62f42bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the timestep value in seconds - so that the user need not know that this is the representation <br /></td></tr>
 <tr class="separator:a43049a6eb016155b1b2152b2b62f42bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ad9543ec76c240d41a18511890d70be"><td class="memItemLeft" align="right" valign="top"><a id="a7ad9543ec76c240d41a18511890d70be"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a7ad9543ec76c240d41a18511890d70be">year</a> ()</td></tr>
@@ -173,12 +178,6 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr class="memdesc:ad7a12c8669c253929f46bc27cf86857a"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of timesteps that would fit into a second <br /></td></tr>
 <tr class="separator:ad7a12c8669c253929f46bc27cf86857a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a76d26edeca85e16b1d159fe75fa6177f"><td class="memItemLeft" align="right" valign="top"><a id="a76d26edeca85e16b1d159fe75fa6177f"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>units</b></td></tr>
-<tr class="separator:a76d26edeca85e16b1d159fe75fa6177f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a6b0f346c527da85bef5a0cce0fad24a3"><td class="memItemLeft" align="right" valign="top"><a id="a6b0f346c527da85bef5a0cce0fad24a3"></a>
@@ -202,6 +201,9 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><b>seconds</b> 
 <tr class="memitem:a3992450a8bb7b8da9919193c637a3ae1"><td class="memItemLeft" align="right" valign="top"><a id="a3992450a8bb7b8da9919193c637a3ae1"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><b>dt</b> =3600</td></tr>
 <tr class="separator:a3992450a8bb7b8da9919193c637a3ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76d26edeca85e16b1d159fe75fa6177f"><td class="memItemLeft" align="right" valign="top"><a id="a76d26edeca85e16b1d159fe75fa6177f"></a>
+static std::string&#160;</td><td class="memItemRight" valign="bottom"><b>units</b> =&quot;hours&quot;</td></tr>
+<tr class="separator:a76d26edeca85e16b1d159fe75fa6177f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A static class to set up the real-world times that apply to a timestep. </p>

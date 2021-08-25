@@ -10,6 +10,7 @@ var searchData=
   ['timestepspermonth',['TimeStepsPerMonth',['../classtimeStep.html#acd5bc2b6752c983530b48517e1e33cbd',1,'timeStep']]],
   ['timestepspersecond',['TimeStepsPerSecond',['../classtimeStep.html#ad7a12c8669c253929f46bc27cf86857a',1,'timeStep']]],
   ['timestepsperyear',['TimeStepsPerYear',['../classtimeStep.html#adb9f80dd277009f09fc89ca2d3892df6',1,'timeStep']]],
+  ['timestepunit',['timeStepUnit',['../classtimeStep.html#a56874870aaf366cd705aa94771108c30',1,'timeStep']]],
   ['todo_20list',['Todo List',['../todo.html',1,'']]],
   ['travelschedule',['travelSchedule',['../classtravelSchedule.html',1,'travelSchedule'],['../classtravelSchedule.html#a9e0c7cd53fdb01767bdb20c0d42772b0',1,'travelSchedule::travelSchedule()']]],
   ['twister',['twister',['../classrandomizer.html#a8c1820ea3c64a67bf48fca01cb68a310',1,'randomizer::twister()'],['../classrandomizer.html#a48aa6ac4606cbb594e184eed3441fd33',1,'randomizer::twister()']]],
