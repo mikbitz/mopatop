@@ -4,7 +4,7 @@ var searchData=
   ['immune',['immune',['../classagent.html#a3dd3064ae93b574be71a3c8418c4ef4e',1,'agent']]],
   ['increasecontamination',['increaseContamination',['../classplace.html#a44c505d367808c9c0085cf8d8ece5f51',1,'place']]],
   ['index',['index',['../classtravelSchedule.html#a3f7cf11aafc4cee326c034200908645c',1,'travelSchedule']]],
-  ['infect',['infect',['../classdisease.html#a1db74e7081cffd6d3d198542c7fabae5',1,'disease']]],
+  ['infect',['infect',['../classdisease.html#a8d1d09ac1b3f48e2c1e3db798392bc06',1,'disease']]],
   ['infectionshedload',['infectionShedLoad',['../classdisease.html#a3074a4bb5159116fe3ec0aabcbd30e18',1,'disease']]],
   ['init',['init',['../classmodel.html#a9c93dce1ca10fbfa99f9eec481ea55df',1,'model']]],
   ['inittravelschedule',['initTravelSchedule',['../classagent.html#ae48983da3bd44f76516304ad7971292a',1,'agent']]],

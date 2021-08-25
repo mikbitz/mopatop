@@ -194,13 +194,13 @@ public:
     /** if you have the disease, contaminate the current place  - call every timestep */
     void cough();
     /** call the disease functions, specified for this agent */
-    void disease(){
+    void process_disease(randomizer& r){
         //recovery
         if (diseased){
-            if (disease::recover()) {diseased=false ; immune=true;}
+            if (disease::recover(r)) {diseased=false ; immune=true;}
         }
         //infection
-        if (disease::infect(places[currentPlace]->getContaminationLevel()) && !immune)diseased=true;
+        if (disease::infect(places[currentPlace]->getContaminationLevel(),r) && !immune)diseased=true;
         //immunity loss could go here...
     }
     /** do any things that need to be done at home */
@@ -336,227 +336,7 @@ void agent::cough()
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-/**
- * @brief The model contains all the agents and places, and steps them through time
- * @details At the moment time steps are not even in length (since the schedule values are not of the same length for work/home/transport)\n
-
-*/
-class model{
-    /** A container to hold pointers to all the agents */
-    std::vector<agent*> agents;
-    /** A container to hold the places */
-    std::vector<place*> places;
-    /** The number of agents to be created */
-    long nAgents;
-    /** A string containing the file path for output, for a given experiment, to be put before specific file names */
-    std::string _filePrefix;
-    /** A string containing any extra default characters to come after the filename */
-    std::string _filePostfix;
-    /** The output file stream */
-    std::ofstream output;
-public:
-    /** Constructor for the model - set up the random seed and the output file, then call \ref init to define the agents and the places \n
-        The time reporter class is used to check how long it takes to set up everything \n
-        @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
-    model(parameterSettings& parameters){
-        randomizer r=randomizer::getInstance();
-        nAgents=parameters.get<long>("run.nAgents");
-        r.setSeed(parameters.get<int>("run.randomSeed"));
-        //create the directories and paths for the current experiment
-        setOutputFilePaths(parameters);
-        //output file
-        output.open(_filePrefix+parameters("outputFile")+_filePostfix+".csv");
-        //header line
-        output<<"step,susceptible,infected,recovered"<<std::endl;
-        //Initialisation can be slow - check the timing
-        auto start=timeReporter::getTime();
-        init(parameters);
-        auto end=timeReporter::getTime();
-        timeReporter::showInterval("Initialisation took: ", start,end);
-    }
-    //------------------------------------------------------------------------
-    /** @brief destructor - make sure output files are porperly closed */
-    ~model(){
-        output.close();
-    }
-    //------------------------------------------------------------------------
-    /** @brief Create the system of directories for model experiments and their outputs
-     *  @details A system of directories gets created, starting from the top level experiment.output.directory. \n
-     *  To this is added the name of an experiment, which is assumed to consist of a number of separate runs with \n
-     *  different parameter values (e.g. random seed). By default a max. of 10000 runs is assumed - this gives tidy names\n
-     *  like ./output/experiment.test/run_0000 ./output/experiment.test/run_0001 ... ./output/experiment.test/run_9999 \n
-     *  More then 10000 will be ok, but the directory names will spill over to ./output/experiment.test/run_10000 etc. \n
-     *  The number can be customised using experiment.run.prefix, which should be set to a power of 10.\n
-     *  A single run can be specified by setting experiment.run.number - if this coincides with and existing run/directory\n
-     *  then the files there may be overwritten (unless explicit output file names are changed).
-        @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
-    void setOutputFilePaths(parameterSettings& parameters){
-        //naming convention for output files
-        _filePrefix=   parameters.get("experiment.output.directory")+"/experiment."+parameters.get("experiment.name");
-        if (!std::filesystem::exists(_filePrefix))std::filesystem::create_directories(_filePrefix);
-        std::string runNumber= parameters.get("experiment.run.number");
-        std::string m00="/run_";
-        if (runNumber!=""){
-            m00=m00+runNumber;
-        }else{
-            //auto-increment run number if run.number is not set
-            int i=0;
-            //allow for userdefined number of total runs - expected to be a power of ten
-            std::string zeros=parameters("experiment.run.prefix");
-            //add just the zero part (strip off expected leading 1)
-            m00="/run_"+zeros.substr(1);
-            // Find a new directory name - then next in numerical order
-            while(std::filesystem::exists(_filePrefix+m00)){    
-                i++;
-                std::stringstream ss;
-                int zeroIndex=stoi(zeros)/10;while(zeroIndex>i && zeroIndex>1){ss<<"0";zeroIndex=zeroIndex/10;}
-                ss<<i;
-                runNumber=ss.str();
-                m00="/run_"+runNumber;
-            }
-        }
-        if (!std::filesystem::exists(_filePrefix+m00))std::filesystem::create_directories(_filePrefix+m00);
-        parameters.setParameter("experiment.run.number",runNumber);
-        _filePrefix= _filePrefix+m00+"/";
-        _filePostfix="";
-        std::cout<<"Outputfiles will be named "<<_filePrefix<<"<Data Name>"<<_filePostfix<<".<filenameExtension>"<<std::endl;
-        parameters.saveParameters(_filePrefix);
-    }
-    //------------------------------------------------------------------------
-    /** @brief Set up the agents and places, and allocate agents to homes, workplaces, vehicles. \n
-     *  @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied
-     *  @details The relative structure of the places, size homes and workplaces and the number and size of transport vehicles, together with the schedule, \n
-     *  will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale \n
-     *  This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
-     */
-    void init(parameterSettings& parameters){
-        //create homes - one third of the agent number
-        for (int i=0;i<nAgents/3;i++){
-            place* p=new place(parameters);
-            places.push_back(p);
-            places[i]->setID(i);
-        }
-        //allocate 3 agents per home
-        for (int i=0;i<nAgents;i++){
-            agent* a=new agent();
-            agents.push_back(a);
-            agents[i]->ID=i;
-            agents[i]->setHome(places[i/3]);
-        }
-        //create work places - one tenth as many as agents - add them on to the end of the place list.
-        for (int i=nAgents/3;i<nAgents/3+nAgents/10;i++){
-            place* p=new place(parameters);
-            places.push_back(p);
-            places[i]->setID(i);
-        }
-        //shuffle agents so household members get different workplaces
-        random_shuffle(agents.begin(),agents.end());
-        //allocate 10 agents per workplace
-        for (int i=0;i<agents.size();i++){
-            assert(places[i/10+nAgents/3]!=0);
-            agents[i]->setWork(places[i/10+nAgents/3]);
-        }
-        //create buses - one thirtieth since 30 agents per bus. add them to the and of the place list again
-        for (int i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
-            place* p=new place(parameters);
-            places.push_back(p);
-            places[i]->setID(i);
-        }
-        //allocate 30 agents per bus - since agents aren't shuffled, those in similar workplaces will tend to share buses. 
-        for (int i=0;i<agents.size();i++){
-            assert(places[i/30+nAgents/3+nAgents/10]!=0);
-            agents[i]->setTransport(places[i/30+nAgents/3+nAgents/10]);
-        }
-        //set up travel schedule - same for every agent at the moment - so agents are all on the bus, at work or at home at exactly the same times
-        for (int i=0;i<agents.size();i++){
-            agents[i]->initTravelSchedule();
-        }
-        //report intialization to std out 
-        std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
-        //set off the disease! - one agent is infected at the start.
-        agents[0]->diseased=true;
-    }
-    //------------------------------------------------------------------------
-    /** @brief Advance the model time step \n
-    *   @details split up the timestep into update of places, contamination of places by agents, infection and progress of disease and finally update of agent locations \n
-        These loops are separated so they can be individually timed and so that they can in principle be individually parallelised with openMP \n
-        Also to avoid any systematic biases, agents need to all finish their contamination step before any can get infected. 
-        @param stepNumber The timestep number passed in from the model class
-        @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
-    void step(int stepNumber, parameterSettings& parameters){
-        //set some timers so loop relative times can be compared - note disease loop tends to get slower as more agents get infected.
-        auto start=timeReporter::getTime();
-        auto end=start;
-        //update the places - changes contamination level
-        if (stepNumber==0)start=timeReporter::getTime();
-        //note the pragma statement here allows openmp to parallelise this lopp over several threads 
-        #pragma omp parallel for
-        for (int i=0;i<places.size();i++){
-            places[i]->update();
-        }
-        if (stepNumber==0){
-            end=timeReporter::getTime();
-            timeReporter::showInterval("Time updating places: ",start,end);
-            start=end;
-        }
-        //counts the totals
-        int infected=0,recovered=0;
-        //do disease - synchronous update (i.e. all agents contaminate before getting infected) so that no agent gets to infect ahead of others.
-        //alternatively could be randomized...depends on the idea of how a location works...places could be sub-divided to mimic spatial extent for example.
-        #pragma omp parallel for
-        for (int i=0;i<agents.size();i++){
-            agents[i]->cough();
-        }
-        if(stepNumber==0){
-            end=timeReporter::getTime();
-            timeReporter::showInterval("Run time coughing: ",start,end);
-            start=end;
-        }
-        //the disease progresses
-        #pragma omp parallel for
-        for (int i=0;i<agents.size();i++){
-            agents[i]->disease();
-        }
-        if (stepNumber==0){
-            end=timeReporter::getTime();
-            timeReporter::showInterval("Run time being diseased: ",start,end);
-            start=end;
-        }
-        //accumulate totals
-        for (int i=0;i<agents.size();i++){
-            if (agents[i]->diseased)infected++;
-            if (agents[i]->immune)recovered++;
-        }
-        if (stepNumber==0){
-            end=timeReporter::getTime();
-            timeReporter::showInterval("Run time on accumulating disease totals: ",start,end);
-            start=end;
-        }
-        //move around, do other things in a location
-        #pragma omp parallel for
-        for (int i=0;i<agents.size();i++){
-            agents[i]->update();
-        }
-        if (stepNumber==0){
-            end=timeReporter::getTime();
-            timeReporter::showInterval("Run time updating agents: ",start,end);
-            start=end;
-        }
-        //output a summary .csv file
-        output<<stepNumber<<","<<agents.size()-infected-recovered<<","<<infected<<","<<recovered<<std::endl;
-        //show the step number every 10 steps
-        if (stepNumber==0){
-            end=timeReporter::getTime();
-            timeReporter::showInterval("Run time on file I/O: ",start,end);
-        }
-      
-        //show places - just for testing really so commented out at present
-        for (int i=0;i<places.size();i++){
-            //places[i]->show();
-        }
-    }
-    
-};
+#include "model.h"
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /** set up and run the model 
@@ -570,6 +350,8 @@ int main(int argc, char **argv) {
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run set started at: "<<ctime(&t)<<std::endl;
+    //time the whole set of runs
+    auto startSet=timeReporter::getTime();
     //set up the parameters using an optional command-line argument
     //first set defaults
     parameterSettings parameters;
@@ -611,7 +393,7 @@ int main(int argc, char **argv) {
         auto start=timeReporter::getTime();
         //loop over time steps
         for (int step=0;step<parameters.get<int>("run.nSteps");step++){
-            if (step%1000==0)std::cout<<"Start of step "<<step<<std::endl;
+            if (step%100==0)std::cout<<"Start of step "<<step<<std::endl;
             m.step(step,parameters);
         }
         auto end=timeReporter::getTime();
@@ -619,6 +401,9 @@ int main(int argc, char **argv) {
         t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
         std::cout<<"Run finished at: "<<ctime(&tr)<<std::endl;
     }
+    //report overall time taken
+    auto endSet=timeReporter::getTime();
+    timeReporter::showInterval("Total execution time for all runs: ",startSet,endSet);
     //work out the finish time
     t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
     std::cout<<"Run set finished at: "<<ctime(&t)<<std::endl;

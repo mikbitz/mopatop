@@ -78,10 +78,15 @@ $(function() {
 
 <p>The model contains all the agents and places, and steps them through time.  
  <a href="classmodel.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="model_8h_source.html">model.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for model:</div>
 <div class="dyncontent">
 <div class="center"><img src="classmodel__coll__graph.png" border="0" usemap="#model_coll__map" alt="Collaboration graph"/></div>
+<map name="model_coll__map" id="model_coll__map">
+<area shape="rect" id="node2" href="classrandomizer.html" title="Set up a wrapper class that will provide uniform pseudo&#45;random numbers between 0 and 1 &#160;..." alt="" coords="25,5,140,244"/>
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -118,6 +123,11 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ae5e7e93a6aeb1584eda754f91b1cdd4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memItemLeft" align="right" valign="top">std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ac722a1dffbe6a56f2a934ef627e4e773">output</a></td></tr>
 <tr class="separator:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2103a6bc9833b98e5d6ff607c5feea60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrandomizer.html">randomizer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a2103a6bc9833b98e5d6ff607c5feea60">r</a></td></tr>
+<tr class="separator:a2103a6bc9833b98e5d6ff607c5feea60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86a89dcd7a5d26b3912974f67e01fb0f"><td class="memItemLeft" align="right" valign="top"><a id="a86a89dcd7a5d26b3912974f67e01fb0f"></a>
+std::vector&lt; <a class="el" href="classrandomizer.html">randomizer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>randoms</b></td></tr>
+<tr class="separator:a86a89dcd7a5d26b3912974f67e01fb0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The model contains all the agents and places, and steps them through time. </p>
@@ -429,8 +439,31 @@ Also to avoid any systematic biases, agents need to all finish their contaminati
 
 </div>
 </div>
+<a id="a2103a6bc9833b98e5d6ff607c5feea60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2103a6bc9833b98e5d6ff607c5feea60">&#9670;&nbsp;</a></span>r</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrandomizer.html">randomizer</a> model::r</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>variable to hold the random number generator for this model </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="main_8cpp.html">main.cpp</a></li>
+<li><a class="el" href="model_8h_source.html">model.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

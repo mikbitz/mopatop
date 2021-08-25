@@ -108,8 +108,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae48983da3bd44f76516304ad7971292a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a958d3d4ffc3c372136459b08f5e4a457"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a958d3d4ffc3c372136459b08f5e4a457">cough</a> ()</td></tr>
 <tr class="separator:a958d3d4ffc3c372136459b08f5e4a457"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb3206d3dff2d3c23c998a7c341019f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#aeb3206d3dff2d3c23c998a7c341019f7">disease</a> ()</td></tr>
-<tr class="separator:aeb3206d3dff2d3c23c998a7c341019f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d78e171145c665b59c6cb604b467cab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a0d78e171145c665b59c6cb604b467cab">process_disease</a> (<a class="el" href="classrandomizer.html">randomizer</a> &amp;r)</td></tr>
+<tr class="separator:a0d78e171145c665b59c6cb604b467cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36efb38a3411908da18bb1b98071dc66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a36efb38a3411908da18bb1b98071dc66">atHome</a> ()</td></tr>
 <tr class="separator:a36efb38a3411908da18bb1b98071dc66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1911596a9fc1d9ad237060ef265cac10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a1911596a9fc1d9ad237060ef265cac10">atWork</a> ()</td></tr>
@@ -260,32 +260,6 @@ these are set later, as the places need to be created before they can be allocat
 
 </div>
 </div>
-<a id="aeb3206d3dff2d3c23c998a7c341019f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb3206d3dff2d3c23c998a7c341019f7">&#9670;&nbsp;</a></span>disease()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void agent::disease </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>call the disease functions, specified for this agent </p>
-
-</div>
-</div>
 <a id="ae48983da3bd44f76516304ad7971292a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae48983da3bd44f76516304ad7971292a">&#9670;&nbsp;</a></span>initTravelSchedule()</h2>
 
@@ -354,6 +328,33 @@ these are set later, as the places need to be created before they can be allocat
 </table>
 </div><div class="memdoc">
 <p>Function to change the agent from one place's list of occupants to another - not used just at present - this function is very expensive on compute time </p>
+
+</div>
+</div>
+<a id="a0d78e171145c665b59c6cb604b467cab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d78e171145c665b59c6cb604b467cab">&#9670;&nbsp;</a></span>process_disease()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void agent::process_disease </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classrandomizer.html">randomizer</a> &amp;&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>call the disease functions, specified for this agent </p>
 
 </div>
 </div>

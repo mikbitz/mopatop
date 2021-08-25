@@ -48,12 +48,12 @@ public:
         infectionShedLoad=p.get<double>("disease.simplistic.infectionShedLoad");
     }
     /** recover with a fixed chance in a given timestep - this function needs to be called every timestep by infected agents*/
-    static bool recover (){
-      if (recoveryRate>randomizer::getInstance().number())return true;else return false;
+    static bool recover (randomizer& r){
+      if (recoveryRate>r.number())return true;else return false;
     }
     /** contract disease if contamination is large enough (note it could be >1) - again called very time step */
-    static bool infect(float contamination){
-      if (contamination >randomizer::getInstance().number()) return true; else return false;
+    static bool infect(float contamination,randomizer& r){
+      if (contamination >r.number()) return true; else return false;
     }
     /** contribute infection to the place if diseased - called every timestep by infected agents */
     static float shedInfection(){return infectionShedLoad;}

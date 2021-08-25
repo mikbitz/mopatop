@@ -95,10 +95,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a903bf900fa3cc67599ad82626f15354c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a903bf900fa3cc67599ad82626f15354c">recover</a> ()</td></tr>
-<tr class="separator:a903bf900fa3cc67599ad82626f15354c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1db74e7081cffd6d3d198542c7fabae5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a1db74e7081cffd6d3d198542c7fabae5">infect</a> (float contamination)</td></tr>
-<tr class="separator:a1db74e7081cffd6d3d198542c7fabae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb413c0c05f7714e0dd2d6cf1d8265d7"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#adb413c0c05f7714e0dd2d6cf1d8265d7">recover</a> (<a class="el" href="classrandomizer.html">randomizer</a> &amp;r)</td></tr>
+<tr class="separator:adb413c0c05f7714e0dd2d6cf1d8265d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d1d09ac1b3f48e2c1e3db798392bc06"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a8d1d09ac1b3f48e2c1e3db798392bc06">infect</a> (float contamination, <a class="el" href="classrandomizer.html">randomizer</a> &amp;r)</td></tr>
+<tr class="separator:a8d1d09ac1b3f48e2c1e3db798392bc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a0dea757c15ccfb19227ffa3b94c6f67d">shedInfection</a> ()</td></tr>
 <tr class="separator:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -115,8 +115,8 @@ Static Private Attributes</h2></td></tr>
 The disadvantage of this is that the parameters are fixed outside the class definition (a requiremnet of C++ for static (i.e. class-based rather than instance-based) variables) <br />
 </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>update this so that parameters can be set, e.g. from a parameter file </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1db74e7081cffd6d3d198542c7fabae5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1db74e7081cffd6d3d198542c7fabae5">&#9670;&nbsp;</a></span>infect()</h2>
+<a id="a8d1d09ac1b3f48e2c1e3db798392bc06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d1d09ac1b3f48e2c1e3db798392bc06">&#9670;&nbsp;</a></span>infect()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -128,8 +128,18 @@ The disadvantage of this is that the parameters are fixed outside the class defi
           <td class="memname">static bool disease::infect </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>contamination</em></td><td>)</td>
+          <td class="paramname"><em>contamination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classrandomizer.html">randomizer</a> &amp;&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -142,8 +152,8 @@ The disadvantage of this is that the parameters are fixed outside the class defi
 
 </div>
 </div>
-<a id="a903bf900fa3cc67599ad82626f15354c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a903bf900fa3cc67599ad82626f15354c">&#9670;&nbsp;</a></span>recover()</h2>
+<a id="adb413c0c05f7714e0dd2d6cf1d8265d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb413c0c05f7714e0dd2d6cf1d8265d7">&#9670;&nbsp;</a></span>recover()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -154,7 +164,8 @@ The disadvantage of this is that the parameters are fixed outside the class defi
         <tr>
           <td class="memname">static bool disease::recover </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classrandomizer.html">randomizer</a> &amp;&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
           <td></td>
         </tr>
       </table>

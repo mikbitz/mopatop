@@ -7,7 +7,7 @@ var searchData=
   ['setid',['setID',['../classplace.html#a47cd6ea0d6ed7e76a62c8fc667f82f1f',1,'place']]],
   ['setoutputfilepaths',['setOutputFilePaths',['../classmodel.html#ac31306234831b32bd7e8606fe5266479',1,'model']]],
   ['setparameter',['setParameter',['../classparameterSettings.html#a0b10412299911ad090c87c97a5daf471',1,'parameterSettings']]],
-  ['setseed',['setSeed',['../classrandomizer.html#ad360ae291abce71d660ca8cadb344b00',1,'randomizer']]],
+  ['setseed',['setSeed',['../classrandomizer.html#ad360ae291abce71d660ca8cadb344b00',1,'randomizer::setSeed(int s)'],['../classrandomizer.html#ad360ae291abce71d660ca8cadb344b00',1,'randomizer::setSeed(int s)']]],
   ['settransport',['setTransport',['../classagent.html#a000bee8a37f8ab7ff9a74cd8db1a3a75',1,'agent']]],
   ['setwork',['setWork',['../classagent.html#a8784dcb12921be1b29d67c54747b78ac',1,'agent']]],
   ['shedinfection',['shedInfection',['../classdisease.html#a0dea757c15ccfb19227ffa3b94c6f67d',1,'disease']]],

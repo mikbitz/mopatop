@@ -15,16 +15,16 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
     */
 /**
- * @file randomizer.h 
- * @brief File containing a wrapper class for random numbers
+ * @file randomizerSingelton.h 
+ * @brief File containing a wrapper class for random numbers using a singleton
  * 
  * @author Mike Bithell
  * @date 17/08/2021
  **/
-#ifndef RANDOMIZER_H_INCLUDED
-#define RANDOMIZER_H_INCLUDED
-
+#ifndef RANDOMIZERSINGLE_H_INCLUDED
+#define RANDOMIZERSINGLE_H_INCLUDED
 #include <random>
+#include<iostream>
 //------------------------------------------------------------------------
 /**
  * @brief Set up a wrapper class that will provide uniform pseudo-random numbers between 0 and 1 \n
@@ -35,7 +35,7 @@
  * The seed defaults to 0 but can be reset with \ref setSeed - note this seems to need the twister to be completely re-created, hence the use of a pointer
  * Example:-
  * \code
- * randomizer r;
+ * randomizer r=randomizer::getInstance(0);
  * r.setSeed(12991);
  * double randomvalue=r.number();
  * \endcode
@@ -44,34 +44,53 @@
 */
 class randomizer {
 public:
+    /** @brief get a reference a random number generator.
+     * If no appropriate instance yet exists, create it. \n
+     * @return A reference to the available instance
+     * */
+    static randomizer& getInstance(){
+        if (instance==nullptr){
+            instance=new randomizer();
+        }
+        return *instance;
+    }
     /** The distribution to be generated is uniform from 0 to 1 */
     std::uniform_real_distribution<> uniform_dist;
     /**  Use mersenne twister with fixed seed as the random number engine */
-    std::mt19937 twister;
+    std::mt19937* twister;
 public:
-    /** The constructor makes the class instance - optionally provide a seed*/
-    randomizer(int s=0){
-        uniform_dist=std::uniform_real_distribution<> (0,1);
-        std::cout<<"A randomizer was set up with seed 0" <<std::endl;
-        twister.seed(s);
-    }
     ~randomizer(){
-      //delete twister;
+      //if (omp_get_thread_num()==0)instance.clear();
     }
     /** @brief return the next pseudo-random number in the current sequence */
     double number(){
-     return uniform_dist(twister);
+     return uniform_dist(*twister);
     }
     /** Set the seed that starts off a given random sequence 
      *param s The starting integer - any value can be used that fits with the size of int*/
     void setSeed(int s){
         std::cout<<"randomizer seed set to "<<s <<std::endl;
-        //delete twister;
-        twister.seed(s);
+        delete twister;
+        twister=new std::mt19937(s);
+    }
+    /** if needed, clean up the pointer - otherwise it will just get deleted at end of program execution. 
+      this seems faulty for multiple threads at present*/
+    void clean(){
+       //randomizer* r = instance[omp_get_thread_num()];
+       //delete r;
+    }
+private:
+    /** The instance of this class. As this is a singleton (there can only ever be one of this class anywhere in the code) the actual instance is hidden from the user of the class */
+    static randomizer* instance;
+    /** The constructor makes the class instance - again private so that access can be controlled. The class is used through the getInstance method */
+    randomizer(){
+        uniform_dist=std::uniform_real_distribution<> (0,1);
+        std::cout<<"A randomizer was set up with seed 0" <<std::endl;
+        twister=new std::mt19937(0);
     }
 
 };
 //------------------------------------------------------------------------
-
-
-#endif // RANDOMIZER_H_INCLUDED
+//static class members have to be initialized
+randomizer* randomizer::instance;
+#endif // RANDOMIZERSINGLE_H_INCLUDED

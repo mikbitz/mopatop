@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['get',['get',['../classparameterSettings.html#a417e5df1124a130366c687c451cd2b40',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#ad1bca448c7289d3c40a71926c2d71ae3',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#a684f724ba1254694ec9693d71fe2a2c8',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#a0cfc75aa4cd453d973cae2bfa13d1719',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#a75db51f35ffa143deba085c4ac071d22',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#acab437a0c02567836fba8055fc682b39',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#a73c7e3c79bb37d53214467bf083281f6',1,'parameterSettings::get(std::string s)']]],
-  ['getcontaminationlevel',['getContaminationLevel',['../classplace.html#a1f376daee9d0bd3bf8a9c66a98b4df66',1,'place']]],
-  ['getinstance',['getInstance',['../classrandomizer.html#a01d852120098a534926d04db6bf74790',1,'randomizer']]],
-  ['getnextlocation',['getNextLocation',['../classtravelSchedule.html#a5d765167c1c2ea9cddc291adf82150fc',1,'travelSchedule']]],
-  ['gettime',['getTime',['../classtimeReporter.html#a8e60766761487fbdbc7027b3a6b67eeb',1,'timeReporter']]],
-  ['gettimeatcurrentplaceinhours',['getTimeAtCurrentPlaceInHours',['../classtravelSchedule.html#a2ae020e4af6ae76c800267a11f5583fb',1,'travelSchedule']]]
+  ['increasecontamination',['increaseContamination',['../classplace.html#a44c505d367808c9c0085cf8d8ece5f51',1,'place']]],
+  ['infect',['infect',['../classdisease.html#a8d1d09ac1b3f48e2c1e3db798392bc06',1,'disease']]],
+  ['init',['init',['../classmodel.html#a9c93dce1ca10fbfa99f9eec481ea55df',1,'model']]],
+  ['inittravelschedule',['initTravelSchedule',['../classagent.html#ae48983da3bd44f76516304ad7971292a',1,'agent']]],
+  ['intransit',['inTransit',['../classagent.html#a4e61866b28fbc7cf1cbdbcba8c3dc6ce',1,'agent']]],
+  ['is_5fvalid',['is_valid',['../classparameterSettings.html#a6a2e02d9f1cc6ce098208b6a95dc04b9',1,'parameterSettings']]]
 ];
