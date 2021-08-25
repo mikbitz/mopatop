@@ -15,10 +15,10 @@
 #run control
 #-------------------------------
 #Number of agents to create - integer
-run.nAgents=6000
+run.nAgents=600
 
 #Number of steps to run for - integer
-run.nSteps=5000
+run.nSteps=1403
 
 #number of OMP threads to use - integer
 #Increase the number here if using openmp to parallelise any loops.
@@ -35,7 +35,7 @@ run.randomSeed=0
 #If > 1 the same parameters will be used for nRepeats, but with different random seeds starting from
 #run.randomSeed above, and then adding run.randomIncrement for each run
 #Values <=0 here will get set to 1
-run.nRepeats=10
+run.nRepeats=1
 
 #Add this value to the seed for each successive run - integer
 #Note in a multithreaded run run.Nthreads RNG are created each separated by an increment of 1 in the seed
@@ -48,7 +48,7 @@ run.randomIncrement=57
 #-------------------------------
 #units to use to determine how much real time is represetned by each model timestep
 #valid values are years,months,days,hours,minutes or seconds
-timeStep.units=hours;
+timeStep.units=hours
 
 #the actual time duration of each step in the above units - integer
 #so if this is set to 2 and the above units set to hours, each timestep will represent 2 hours of real time

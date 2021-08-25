@@ -82,6 +82,8 @@ $(function() {
 Collaboration diagram for travelSchedule:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtravelSchedule__coll__graph.png" border="0" usemap="#travelSchedule_coll__map" alt="Collaboration graph"/></div>
+<map name="travelSchedule_coll__map" id="travelSchedule_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -89,20 +91,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="memItemLeft" align="right" valign="top"><a id="a9e0c7cd53fdb01767bdb20c0d42772b0"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a9e0c7cd53fdb01767bdb20c0d42772b0">travelSchedule</a> ()</td></tr>
 <tr class="memdesc:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to build the schedule add the placeTypes to be visited in order to the destinations vector, and the corresponding time that will be spent in each place to the timeSpent vector. <br />
-schedule time in a given place should be an integer nultiple of the timestep.<br />
+schedule time in a given place should be an integer multiple of the timestep. Note values here are currently set in hours - sincce one should use real time<br />
+units to map onto actual output times<br />
 Index is set to point to the last place so that a call to getNextLocation will run the schedule back to the top. <br /></td></tr>
 <tr class="separator:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d765167c1c2ea9cddc291adf82150fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">agent::placeTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a5d765167c1c2ea9cddc291adf82150fc">getNextLocation</a> ()</td></tr>
 <tr class="separator:a5d765167c1c2ea9cddc291adf82150fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ae020e4af6ae76c800267a11f5583fb"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a2ae020e4af6ae76c800267a11f5583fb">getTimeAtCurrentPlaceInHours</a> ()</td></tr>
-<tr class="separator:a2ae020e4af6ae76c800267a11f5583fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b38b8f1a9398b22502a8fef115391b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#ae5b38b8f1a9398b22502a8fef115391b">getTimeAtCurrentPlace</a> ()</td></tr>
+<tr class="separator:ae5b38b8f1a9398b22502a8fef115391b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ae2f5c0bdfbafdfd95cc3e08e40f1e83d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">agent::placeTypes</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#ae2f5c0bdfbafdfd95cc3e08e40f1e83d">destinations</a></td></tr>
 <tr class="separator:ae2f5c0bdfbafdfd95cc3e08e40f1e83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e83e138f40c6dd14248e3c755cb7d4d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; short &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a1e83e138f40c6dd14248e3c755cb7d4d">timeSpent</a></td></tr>
-<tr class="separator:a1e83e138f40c6dd14248e3c755cb7d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89b59984896c230bfcb2606f62686c7b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a89b59984896c230bfcb2606f62686c7b">timeSpent</a></td></tr>
+<tr class="separator:a89b59984896c230bfcb2606f62686c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d62c8f71557a55ad93427f7606d72fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">agent::placeTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a2d62c8f71557a55ad93427f7606d72fa">currentDestination</a></td></tr>
 <tr class="separator:a2d62c8f71557a55ad93427f7606d72fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f7cf11aafc4cee326c034200908645c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a3f7cf11aafc4cee326c034200908645c">index</a></td></tr>
@@ -142,8 +145,8 @@ Every time <a class="el" href="classtravelSchedule.html#a5d765167c1c2ea9cddc291a
 
 </div>
 </div>
-<a id="a2ae020e4af6ae76c800267a11f5583fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ae020e4af6ae76c800267a11f5583fb">&#9670;&nbsp;</a></span>getTimeAtCurrentPlaceInHours()</h2>
+<a id="ae5b38b8f1a9398b22502a8fef115391b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5b38b8f1a9398b22502a8fef115391b">&#9670;&nbsp;</a></span>getTimeAtCurrentPlace()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -152,7 +155,7 @@ Every time <a class="el" href="classtravelSchedule.html#a5d765167c1c2ea9cddc291a
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">short travelSchedule::getTimeAtCurrentPlaceInHours </td>
+          <td class="memname">double travelSchedule::getTimeAtCurrentPlace </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -240,8 +243,8 @@ Note that vector indices start at 0 </p>
 
 </div>
 </div>
-<a id="a1e83e138f40c6dd14248e3c755cb7d4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e83e138f40c6dd14248e3c755cb7d4d">&#9670;&nbsp;</a></span>timeSpent</h2>
+<a id="a89b59984896c230bfcb2606f62686c7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89b59984896c230bfcb2606f62686c7b">&#9670;&nbsp;</a></span>timeSpent</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -250,7 +253,7 @@ Note that vector indices start at 0 </p>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;short&gt; travelSchedule::timeSpent</td>
+          <td class="memname">std::vector&lt;double&gt; travelSchedule::timeSpent</td>
         </tr>
       </table>
   </td>
@@ -259,7 +262,7 @@ Note that vector indices start at 0 </p>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>For each place there is a time spent at each location (in hours at the moment), held here A short integer, so only up to 255 placeTypes can be held in one schedule at present! </p>
+<p>For each place there is a time spent at each location (in hours at the moment), held here </p>
 
 </div>
 </div>

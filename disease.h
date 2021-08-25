@@ -32,6 +32,12 @@
  * @details Use of static class allows some of the details of the disease to be abstracted here, without needed a separate disease object in every agent \n
  * The disadvantage of this is that the parameters are fixed outside the class definition (a requirement of C++ for static (i.e. class-based rather than instance-based) variables) \n
  * but they can still be set in the constructor using a parameter file.
+ * Configure this once at the start of the code by creating an object and feeding it the \ref parameterSettings object
+ * \code
+ * parameterSettings parameters;
+ * parameters.readParameters("../defaultParameterFile");
+ * disease d(parameters);
+ * \endcode
 */
 class disease{
     /** per timestep chance of recovery */

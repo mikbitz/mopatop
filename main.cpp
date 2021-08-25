@@ -36,7 +36,7 @@
 #include"randomizer.h"
 #include"disease.h"
 #include"places.h"
-
+#include"timestep.h"
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //Forward declaration of travelSchedule class, so agents know it exists - even though the travelSchedule also needs to know about agents
@@ -65,7 +65,7 @@ public:
     travelSchedule* schedule;
     /** Counts down the time spent at the current location
      */    
-    int counter=0;
+    double counter=0;
     /** flag set to true if the agent is alive */
     bool alive=true;
     /** flag set to true if the agent has the disease */
@@ -109,16 +109,16 @@ public:
     }
     /** do any things that need to be done at home */
     void atHome(){
-        //if (ID==0)std::cout<<"at Home "<<std::endl;
+        if (ID==0)std::cout<<"at Home "<<std::endl;
         
     }
     /** do any things that need to be done at work */
     void atWork(){
-        //if (ID==0)std::cout<<"at Work"<<std::endl;
+        if (ID==0)std::cout<<"at Work"<<std::endl;
     }
     /** do any things that need to be done while travelling */
     void inTransit(){
-        //if (ID==0)std::cout<<"on Bus"<<std::endl;
+        if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
     /** set up the place vector to include being at home - needs to be called when places are being created by the model class 
      @param pu a pointer to the specific home location for this agent */
@@ -171,10 +171,8 @@ class travelSchedule{
      * Note that vector indices start at 0
      */
     std::vector<agent::placeTypes> destinations; 
-    /** For each place there is a time spent at each location (in hours at the moment), held here
-     *  A short integer, so only up to 255 placeTypes can be held  in one schedule at present!
-     */
-    std::vector<short>timeSpent;
+    /** For each place there is a time spent at each location (in hours at the moment), held here     */
+    std::vector<double>timeSpent;
     /** The name of the destination currently pointed at by this travel schedule */
     agent::placeTypes currentDestination;
     /** An index into destinations and/or timeSpent vector for the current destination */
@@ -182,18 +180,19 @@ class travelSchedule{
 public:
     /** @brief Constructor to build the schedule 
      *  add the placeTypes to be visited in order to the destinations vector, and the corresponding time that will be spent in each place to the timeSpent vector. \n
-     *  schedule time in a given place should be an integer nultiple of the timestep.\n
+     *  schedule time in a given place should be an integer multiple of the timestep. Note values here are currently set in hours - sincce one should use real time\n
+     *  units to map onto actual output times\n
      *  Index is set to point to the last place so that a call to getNextLocation will run the schedule back to the top.
      */
     travelSchedule(){
         destinations.push_back(agent::vehicle);//load people into busstop (or transportHub) rather than direct into bus? - here they would wait
-        timeSpent.push_back(1);
+        timeSpent.push_back(1*timeStep::hour());
         destinations.push_back(agent::work);//trip chaining? how to handle trips across multiple transport hubs? how to do schools (do parents load up childer?) and shops? - use a stack to modify default schedule!
-        timeSpent.push_back(8);
+        timeSpent.push_back(8*timeStep::hour());
         destinations.push_back(agent::vehicle);
-        timeSpent.push_back(1);
+        timeSpent.push_back(1*timeStep::hour());
         destinations.push_back(agent::home);
-        timeSpent.push_back(14);
+        timeSpent.push_back(14*timeStep::hour());
         currentDestination=agent::home;
         index=2;//start on the bus to home - call to initTravelSchedule in agent constructor will move the agent to home for the first step
     }
@@ -205,7 +204,7 @@ public:
         return currentDestination;
     }
     /** report the time spent at the current place */
-    short getTimeAtCurrentPlaceInHours(){
+    double getTimeAtCurrentPlace(){
         return timeSpent[index];
     }
 
@@ -216,12 +215,14 @@ public:
 void agent::update()
 {
         //Use the base travel schedule - initialised at home for everyone
-        counter--;
-        if (counter==0){
+        counter-=timeStep::deltaT();//reduce by actual time represented by this timestep (since schedule is defined in hours rater than timesteps)
+        if (counter<=0){
             currentPlace=schedule->getNextLocation();
-            counter=schedule->getTimeAtCurrentPlaceInHours();
+            counter=schedule->getTimeAtCurrentPlace();
         }
-        //expensive - only needed if agents need direct agnt-to-agent interactions in a place -
+        //expensive - only needed if agents need direct agent-to-agent interactions in a place -
+        //might be made cheaper by alowing agents to be present in multiple places, but only active in one.
+        //(this could allow for remote meetings/phone calls?!)
         //moveTo(currentPlace);
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
         if (currentPlace==vehicle)inTransit();
@@ -231,7 +232,7 @@ void agent::update()
 void agent::initTravelSchedule(){       
    schedule=new  travelSchedule();
    currentPlace=schedule->getNextLocation();
-   counter=schedule->getTimeAtCurrentPlaceInHours();
+   counter=schedule->getTimeAtCurrentPlace();
 }
 void agent::cough()
 {

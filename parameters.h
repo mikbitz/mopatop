@@ -129,7 +129,7 @@ public:
         //the units for the timestep - valid are years,months,days,hours,minutes or seconds
         parameters["timeStep.units"]="hours";parameterType["timeStep.units"]=s;
         //the actual time duration of each step in the above units
-        parameters["timeStep.dt"]="1";parameterType["timeStep.dt"]=i;
+        parameters["timeStep.dt"]="1";parameterType["timeStep.dt"]=d;
         //path to the output file
         parameters["outputFile"]="diseaseSummary.csv";parameterType["outputFile"]=s;
         //path to location of output files

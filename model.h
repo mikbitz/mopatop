@@ -72,7 +72,7 @@ public:
         //output file
         output.open(_filePrefix+parameters("outputFile")+_filePostfix+".csv");
         //header line
-        output<<"step,susceptible,infected,recovered,dead"<<std::endl;
+        output<<"step,time(hours),susceptible,infected,recovered,dead"<<std::endl;
         //Initialisation can be slow - check the timing
         auto start=timeReporter::getTime();
         init(parameters);
@@ -256,7 +256,7 @@ public:
             start=end;
         }
         //output a summary .csv file
-        output<<stepNumber<<","<<agents.size()-infected-recovered-dead<<","<<infected<<","<<recovered<<","<<dead<<std::endl;
+        output<<stepNumber<<","<<stepNumber*timeStep::hoursPerTimeStep()<<","<<agents.size()-infected-recovered-dead<<","<<infected<<","<<recovered<<","<<dead<<std::endl;
         //show the step number every 10 steps
         if (stepNumber==0){
             end=timeReporter::getTime();

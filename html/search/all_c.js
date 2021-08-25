@@ -1,17 +1,11 @@
 var searchData=
 [
-  ['saveparameters',['saveParameters',['../classparameterSettings.html#af386af25c8ed781ca89bf50468e3cf0c',1,'parameterSettings']]],
-  ['schedule',['schedule',['../classagent.html#a210486017d5e7d710adc8468df9b7369',1,'agent']]],
-  ['setdefaults',['setDefaults',['../classparameterSettings.html#a64baa7eba110c8ac37f1d6687c04deaa',1,'parameterSettings']]],
-  ['sethome',['setHome',['../classagent.html#a99f7643279e1522a11bd01b210eb7a03',1,'agent']]],
-  ['setid',['setID',['../classplace.html#a47cd6ea0d6ed7e76a62c8fc667f82f1f',1,'place']]],
-  ['setoutputfilepaths',['setOutputFilePaths',['../classmodel.html#ac31306234831b32bd7e8606fe5266479',1,'model']]],
-  ['setparameter',['setParameter',['../classparameterSettings.html#a0b10412299911ad090c87c97a5daf471',1,'parameterSettings']]],
-  ['setseed',['setSeed',['../classrandomizer.html#ad360ae291abce71d660ca8cadb344b00',1,'randomizer::setSeed(int s)'],['../classrandomizer.html#ad360ae291abce71d660ca8cadb344b00',1,'randomizer::setSeed(int s)']]],
-  ['settransport',['setTransport',['../classagent.html#a000bee8a37f8ab7ff9a74cd8db1a3a75',1,'agent']]],
-  ['setwork',['setWork',['../classagent.html#a8784dcb12921be1b29d67c54747b78ac',1,'agent']]],
-  ['shedinfection',['shedInfection',['../classdisease.html#a0dea757c15ccfb19227ffa3b94c6f67d',1,'disease']]],
-  ['show',['show',['../classplace.html#ad237fd8ac1ef3ca1ba3abaaba6ff61d5',1,'place']]],
-  ['showinterval',['showInterval',['../classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04',1,'timeReporter']]],
-  ['step',['step',['../classmodel.html#a20ff630d7f86b28f8d45a2a37b91695f',1,'model']]]
+  ['r',['r',['../classmodel.html#a2103a6bc9833b98e5d6ff607c5feea60',1,'model']]],
+  ['randomizer',['randomizer',['../classrandomizer.html',1,'randomizer'],['../classrandomizer.html#acb623bdac274bd888c78f93e0ca66c32',1,'randomizer::randomizer(int s=0)'],['../classrandomizer.html#afc354a3a2a255d4e1ba952239d411023',1,'randomizer::randomizer()']]],
+  ['randomizer_2eh',['randomizer.h',['../randomizer_8h.html',1,'']]],
+  ['randoms',['randoms',['../classmodel.html#a86a89dcd7a5d26b3912974f67e01fb0f',1,'model']]],
+  ['readparameters',['readParameters',['../classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db',1,'parameterSettings']]],
+  ['recover',['recover',['../classdisease.html#adb413c0c05f7714e0dd2d6cf1d8265d7',1,'disease']]],
+  ['recoveryrate',['recoveryRate',['../classdisease.html#af4bf8070d12d8520054a25abb3fe27eb',1,'disease']]],
+  ['remove',['remove',['../classplace.html#ac81d6af0bf64305a3a4a843d7d176920',1,'place']]]
 ];
