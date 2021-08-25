@@ -18,7 +18,7 @@
 run.nAgents=60
 
 #Number of steps to run for - integer
-run.nSteps=1000
+run.nSteps=5000
 
 #number of OMP threads to use - integer
 #Increase the number here if using openmp to parallelise any loops.
@@ -75,9 +75,11 @@ outputFile=diseaseSummary
 #In the simplest case recovery in any timestep will happen if a random number drawn from (0,1) is less than this value
 disease.simplistic.recoveryRate=0.0008
 #an infected individual will add this much contamination to any place every timestep
-disease.simplistic.deathRate=0.
+disease.simplistic.deathRate=0.001
 #an infected individual will add this much contamination to any place every timestep
 disease.simplistic.infectionShedLoad=0.001
+#how many (randomly allocated) agents have the disease at the start of the run
+disease.simplistic.initialNumberInfected=1
 #any place contaminated with disease will lose contamination exponentially being multiplied by this value every timestep
 places.disease.simplistic.fractionalDecrement=0.5
 #if this flag is set to true any contamination in a places gets removed at the start of each timestep

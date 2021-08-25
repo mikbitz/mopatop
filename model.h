@@ -179,8 +179,10 @@ public:
         }
         //report intialization to std out 
         std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
-        //set off the disease! - one agent is infected at the start.
-        agents[0]->diseased=true;
+        //set off the disease! - some number of agents (default 1) is infected at the start.
+        //shuffle things so agents are allocated at random
+        random_shuffle(agents.begin(),agents.end());
+        for (int i=0;i<parameters.get<int>("disease.simplistic.initialNumberInfected");i++)agents[i]->diseased=true;
     }
     //------------------------------------------------------------------------
     /** @brief Advance the model time step \n

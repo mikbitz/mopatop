@@ -147,8 +147,9 @@ public:
         parameters["disease.simplistic.recoveryRate"]="0.0007";parameterType["disease.simplistic.recoveryRate"]=d;
         parameters["disease.simplistic.deathRate"]="0.0007";parameterType["disease.simplistic.deathRate"]=d;
         parameters["disease.simplistic.infectionShedLoad"]="0.001";parameterType["disease.simplistic.infectionShedLoad"]=d;
+        parameters["disease.simplistic.initialNumberInfected"]="0.01";parameterType["disease.simplistic.initialNumberInfected"]=i;
         //decrement rate for contamination in all places
-        parameters["places.disease.simplistic.fractionalDecrement"]="0.1";parameterType["places.disease.simplistic.fractionalDecrement"]=d;
+        parameters["places.disease.simplistic.fractionalDecrement"]="1";parameterType["places.disease.simplistic.fractionalDecrement"]=d;
         //if set this flag will cause contamination to be reset to zero every timestep
         parameters["places.cleanContamination"]="false";parameterType["places.cleanContamination"]=b;
     }
