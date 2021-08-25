@@ -4,11 +4,11 @@
 *   @details The idea here is that the code will use a timestep in seconds, but the user need not know this\n
 *   the value of any time can be set in the relevant units by using the static variables e.g. to get a time of 8 hours
 *\code
-*double time_needed=8*timeStep::hours
+*double time_needed=8*timeStep::hour()
 *\endcode
 * Similarly, to add the current value of the timestep to a given time, use timestep::dt
 * \code
-* double time= 4* timeStep::hours + timestep::dt
+* double time= 4* timeStep::hour() + timeStep::deltaT()
 * \endcode
 * Configure this once at the start of the code by creating an object and feeding it the \ref parameterSettings object
  * \code

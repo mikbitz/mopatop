@@ -47,7 +47,7 @@
  * spend in vehicles when travelling between places, Individual places have no internal spatial\n
  * structure - they are assumed completely mixed, so that all agents a can in principle access all others.
  * @subsection ti time
- * There is a time step, representing a customiseable of real-world time (see \ref timeStep.h). Every place and agent and disease \n
+ * There is a time step, representing a customiseable of real-world time (see \ref timestep.h). Every place and agent and disease \n
  * is updated synchronously at each step. This ensures that a)Updates to contamination take place regularly\n
  * even if there are no agents present b)Agents do not need to co-ordinate in terms of times spent in places\n
  * (which otherwise require o(n squared) interactions in each place), and can meet by chance within a timestep\n
@@ -126,9 +126,9 @@
  * people spend in transport vehicles, and what potential there is for moving between locations(e.g. \n 
  * whether there are nearby restaurants, coffee shops etc.)
  * @subsection theo Theoretical and Empirical Background
- * The model is related to the classical SIR compartmental disease models, but varies from these in that the \n
+ * The model is related to the classical SIR(D) compartmental disease models, but varies from these in that the \n
  * population is not assumed to be completely mixed (although one can emulate this by having a single place for\n
- * agents to occupy, and therbey check this model against a SIR model, since places in this model are currently\n
+ * agents to occupy, and thereby check this model against a SIR model, since places in this model are currently\n
  * assumed completely mixed internally). Respiratory infectious diseases such as COVID-19 seem to depend not just\n
  * on the characteristics of individual, but what kind of space is occupied, how long people spend jointly in the\n
  * space, and how confined it is. 
@@ -175,6 +175,7 @@
  * @subsubsection dise Disease
  * - Agents are infected if contamination > a uniform random number between 0 and 1, and not immune\n
  * - Agents recover if infected and recovery rate > a uniform random number between 0 and 1 \n
+ * - Agents die if infected and death rate > a uniform random number between 0 and 1 \n
  * - Agents add a fixed value \ref disease::infectionShedLoad to a place, if infected.
  * @subsubsection cont Contamination
  * - Places have a contamination level which is added to when agents local to the place cough.\n
@@ -185,7 +186,8 @@
  * @subsubsection trvl travel
  * - Agents set a counter whenever they move, which is the time to be spent in the place the move to\n
  * - Every time step, the counter is decremented by the time step size. Once the counter reaches zero\n
- * agents query the travel schedule for the next place type to move to and then go there.\n
+ * agents query the travel schedule for the next place type to move to and then go there. It is assumed that\n
+ * the time set in the schedule is an exact multiple of the timestep
  * - Structure is included to allow agents to add and remove themsleves from a list of agents in each place\n
  * but at present this is not needed (and the add and remove process is computationally quite expensive).
  */

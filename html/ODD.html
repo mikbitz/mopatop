@@ -94,7 +94,7 @@ spend in vehicles when travelling between places, Individual places have no inte
 structure - they are assumed completely mixed, so that all agents a can in principle access all others. </p>
 <h2><a class="anchor" id="ti"></a>
 time</h2>
-<p>There is a time step, representing a customiseable of real-world time (see timeStep.h). Every place and agent and disease <br />
+<p>There is a time step, representing a customiseable of real-world time (see <a class="el" href="timestep_8h_source.html">timestep.h</a>). Every place and agent and disease <br />
 is updated synchronously at each step. This ensures that a)Updates to contamination take place regularly<br />
 even if there are no agents present b)Agents do not need to co-ordinate in terms of times spent in places<br />
 (which otherwise require o(n squared) interactions in each place), and can meet by chance within a timestep<br />
@@ -189,9 +189,9 @@ people spend in transport vehicles, and what potential there is for moving betwe
  whether there are nearby restaurants, coffee shops etc.) </p>
 <h2><a class="anchor" id="theo"></a>
 Theoretical and Empirical Background</h2>
-<p>The model is related to the classical SIR compartmental disease models, but varies from these in that the <br />
+<p>The model is related to the classical SIR(D) compartmental disease models, but varies from these in that the <br />
 population is not assumed to be completely mixed (although one can emulate this by having a single place for<br />
-agents to occupy, and therbey check this model against a SIR model, since places in this model are currently<br />
+agents to occupy, and thereby check this model against a SIR model, since places in this model are currently<br />
 assumed completely mixed internally). Respiratory infectious diseases such as COVID-19 seem to depend not just<br />
 on the characteristics of individual, but what kind of space is occupied, how long people spend jointly in the<br />
 space, and how confined it is. </p>
@@ -266,6 +266,8 @@ Disease</h3>
 </li>
 <li>Agents recover if infected and recovery rate &gt; a uniform random number between 0 and 1 <br />
 </li>
+<li>Agents die if infected and death rate &gt; a uniform random number between 0 and 1 <br />
+</li>
 <li>Agents add a fixed value <a class="el" href="classdisease.html#a3074a4bb5159116fe3ec0aabcbd30e18">disease::infectionShedLoad</a> to a place, if infected. </li>
 </ul>
 <h3><a class="anchor" id="cont"></a>
@@ -285,8 +287,8 @@ travel</h3>
 <li>Agents set a counter whenever they move, which is the time to be spent in the place the move to<br />
 </li>
 <li>Every time step, the counter is decremented by the time step size. Once the counter reaches zero<br />
-agents query the travel schedule for the next place type to move to and then go there.<br />
-</li>
+agents query the travel schedule for the next place type to move to and then go there. It is assumed that<br />
+the time set in the schedule is an exact multiple of the timestep</li>
 <li>Structure is included to allow agents to add and remove themsleves from a list of agents in each place<br />
 but at present this is not needed (and the add and remove process is computationally quite expensive). </li>
 </ul>
