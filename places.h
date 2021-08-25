@@ -1,3 +1,5 @@
+#ifndef PLACES_H_INCLUDED
+#define PLACES_H_INCLUDED
 /* A program to model agents moving between places
     Copyright (C) 2021  Mike Bithell
 
@@ -27,8 +29,7 @@
 //Forward declaration of agent as they are needed in place class
 //This is a C++ idiom where two classes refer to each other, so neither can be cleanly set up first
 //This declaration allows the place class to know that agents exist, but not their structure
-#ifndef PLACES_H_INCLUDED
-#define PLACES_H_INCLUDED
+
 
 class agent;
 //------------------------------------------------------------------------

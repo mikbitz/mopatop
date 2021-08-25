@@ -1,3 +1,5 @@
+#ifndef RANDOMIZER_H_INCLUDED
+#define RANDOMIZER_H_INCLUDED
 /* A program to model agents moveing between places
     Copyright (C) 2021  Mike Bithell
 
@@ -21,8 +23,7 @@
  * @author Mike Bithell
  * @date 17/08/2021
  **/
-#ifndef RANDOMIZER_H_INCLUDED
-#define RANDOMIZER_H_INCLUDED
+
 
 #include <random>
 //------------------------------------------------------------------------

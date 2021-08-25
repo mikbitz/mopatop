@@ -16,7 +16,7 @@
     */
 /**
  * @file main.cpp 
- * @brief File containing all classes and the main function
+ * @brief File containing some classes and method definitions and the main function
  * 
  * @author Mike Bithell
  * @date 10/08/2021
@@ -276,7 +276,7 @@ int main(int argc, char **argv) {
     if (parameters.get<int>("run.nRepeats")<=0){
         parameters.setParameter("run.nRepeats","1");
     }
-    //initialise the disease
+    //initialise the disease - since this is a static class, this just need to be done for a single instance
     disease d(parameters);
     //repeat the model run nRepeats times with different random seeds
     int seed=parameters.get<int>("run.randomSeed");

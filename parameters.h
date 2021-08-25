@@ -1,3 +1,5 @@
+#ifndef PARAMETERS_H_INCLUDED
+#define PARAMETERS_H_INCLUDED
 /* A program to model agents moving between places
  *    Copyright (C) 2021  Mike Bithell
  * 
@@ -21,8 +23,7 @@
  * @author Mike Bithell
  * @date 17/08/2021
  **/
-#ifndef PARAMETERS_H_INCLUDED
-#define PARAMETERS_H_INCLUDED
+
 #include<fstream>
 #include<algorithm>
 #include<cctype>
@@ -125,6 +126,10 @@ public:
         parameters["run.nThreads"]="1";parameterType["run.nThreads"]=i;
         //random seed
         parameters["run.randomSeed"]="0";parameterType["run.randomSeed"]=i;
+        //the units for the timestep - valid are years,months,days,hours,minutes or seconds
+        parameters["timeStep.units"]="hours";parameterType["timeStep.units"]=s;
+        //the actual time duration of each step in the above units
+        parameters["timeStep.dt"]="1";parameterType["timeStep.dt"]=i;
         //path to the output file
         parameters["outputFile"]="diseaseSummary.csv";parameterType["outputFile"]=s;
         //path to location of output files

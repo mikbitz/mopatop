@@ -1,3 +1,5 @@
+#ifndef DISEASE_H_INCLUDED
+#define DISEASE_H_INCLUDED
 /* A program to model agents moving between places
     Copyright (C) 2021  Mike Bithell
 
@@ -21,8 +23,7 @@
  * @author Mike Bithell
  * @date 17/08/2021
  **/
-#ifndef DISEASE_H_INCLUDED
-#define DISEASE_H_INCLUDED
+
 #include"randomizer.h"
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
@@ -47,9 +48,9 @@ public:
         deathRate=0.;
     }
     disease(parameterSettings p){
-        recoveryRate=p.get<double>("disease.simplistic.recoveryRate");
-        infectionShedLoad=p.get<double>("disease.simplistic.infectionShedLoad");
-        deathRate=p.get<double>("disease.simplistic.deathRate");
+        recoveryRate      = p.get<double>("disease.simplistic.recoveryRate");
+        infectionShedLoad = p.get<double>("disease.simplistic.infectionShedLoad");
+        deathRate         = p.get<double>("disease.simplistic.deathRate");
     }
     /** recover with a fixed chance in a given timestep - this function needs to be called every timestep by infected agents
      @param r A random number generator created by the \ref model class*/

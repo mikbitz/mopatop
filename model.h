@@ -1,3 +1,5 @@
+#ifndef MODEL_H_INCLUDED
+#define MODEL_H_INCLUDED
 /* A program to model agents moving between places
     Copyright (C) 2021  Mike Bithell
 
@@ -14,8 +16,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
     */
-#ifndef MODEL_H_INCLUDED
-#define MODEL_H_INCLUDED
 /**
  * @file model.h 
  * @brief File containing the definition model class
@@ -59,7 +59,7 @@ public:
         The time reporter class is used to check how long it takes to set up everything \n
         @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
     model(parameterSettings& parameters){
-
+        timeStep t(parameters);
         nAgents=parameters.get<long>("run.nAgents");
         //create mutiple RNG for many threaded runs
         for (int i=0;i<parameters.get<int>("run.nThreads");i++){
