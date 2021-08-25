@@ -47,7 +47,7 @@
  * spend in vehicles when travelling between places, Individual places have no internal spatial\n
  * structure - they are assumed completely mixed, so that all agents a can in principle access all others.
  * @subsection ti time
- * There is a fixed time step, representing one hour of real-world time. Every place and agent and disease \n
+ * There is a time step, representing a customiseable of real-world time (see \ref timeStep.h). Every place and agent and disease \n
  * is updated synchronously at each step. This ensures that a)Updates to contamination take place regularly\n
  * even if there are no agents present b)Agents do not need to co-ordinate in terms of times spent in places\n
  * (which otherwise require o(n squared) interactions in each place), and can meet by chance within a timestep\n
