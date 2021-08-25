@@ -96,12 +96,15 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:adb413c0c05f7714e0dd2d6cf1d8265d7"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#adb413c0c05f7714e0dd2d6cf1d8265d7">recover</a> (<a class="el" href="classrandomizer.html">randomizer</a> &amp;r)</td></tr>
+<tr class="memdesc:adb413c0c05f7714e0dd2d6cf1d8265d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">recover with a fixed chance in a given timestep  <a href="#adb413c0c05f7714e0dd2d6cf1d8265d7">More...</a><br /></td></tr>
 <tr class="separator:adb413c0c05f7714e0dd2d6cf1d8265d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a232f17f3926a118cf5e2a7d091c4318e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a232f17f3926a118cf5e2a7d091c4318e">die</a> (<a class="el" href="classrandomizer.html">randomizer</a> &amp;r)</td></tr>
+<tr class="memdesc:a232f17f3926a118cf5e2a7d091c4318e"><td class="mdescLeft">&#160;</td><td class="mdescRight">die with a fixed chance in a given timestep  <a href="#a232f17f3926a118cf5e2a7d091c4318e">More...</a><br /></td></tr>
 <tr class="separator:a232f17f3926a118cf5e2a7d091c4318e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d1d09ac1b3f48e2c1e3db798392bc06"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a8d1d09ac1b3f48e2c1e3db798392bc06">infect</a> (float contamination, <a class="el" href="classrandomizer.html">randomizer</a> &amp;r)</td></tr>
 <tr class="separator:a8d1d09ac1b3f48e2c1e3db798392bc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a0dea757c15ccfb19227ffa3b94c6f67d">shedInfection</a> ()</td></tr>
+<tr class="memdesc:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="mdescLeft">&#160;</td><td class="mdescRight">contribute infection to the place if diseased  <a href="#a0dea757c15ccfb19227ffa3b94c6f67d">More...</a><br /></td></tr>
 <tr class="separator:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
@@ -141,7 +144,9 @@ but they can still be set in the constructor using a parameter file. Configure t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>die with a fixed chance in a given timestep - this function needs to be called every timestep by infected agents </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>die with a fixed chance in a given timestep </p>
+<p>this function needs to be called every timestep by infected agents - rate is assumed to be <em>PER HOUR</em> </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">r</td><td>A random number generator created by the <a class="el" href="classmodel.html">model</a> class </td></tr>
   </table>
@@ -216,7 +221,9 @@ but they can still be set in the constructor using a parameter file. Configure t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>recover with a fixed chance in a given timestep - this function needs to be called every timestep by infected agents </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>recover with a fixed chance in a given timestep </p>
+<p>this function needs to be called every timestep by infected agents - rate is assumed to be <em>PER HOUR</em> </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">r</td><td>A random number generator created by the <a class="el" href="classmodel.html">model</a> class </td></tr>
   </table>
@@ -247,7 +254,9 @@ but they can still be set in the constructor using a parameter file. Configure t
   </tr>
 </table>
 </div><div class="memdoc">
-<p>contribute infection to the place if diseased - called every timestep by infected agents </p><dl class="section return"><dt>Returns</dt><dd>infectionshedLoad - the current amount of infection that an agent emits per timestep into the environment </dd></dl>
+
+<p>contribute infection to the place if diseased </p>
+<p>called every timestep by infected agents - shedding rate is assumed to be <em>PER HOUR</em> </p><dl class="section return"><dt>Returns</dt><dd>infectionshedLoad - the current amount of infection that an agent emits per timestep into the environment </dd></dl>
 
 </div>
 </div>

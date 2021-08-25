@@ -24,6 +24,7 @@
  * @author Mike Bithell
  * @date 17/08/2021
  **/
+#include "timestep.h"
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //Forward declaration of agent as they are needed in place class
@@ -118,10 +119,11 @@ public:
      *  This way places without any currently infected agents gradually lose their infectiveness, or else if \n
      *  \ref cleanEveryStep is set, the place has all contamination removed - useful if contamination shoudl only be present\n
      *  as long as agents are present, and amount should be directly given by the number of agents.
+     *  the decrement rate is assumed to be specified *PER HOUR*
      * */
     void update(){
         if (cleanEveryStep)cleanContamination();
-        else contaminationLevel*=exp(-fractionalDecrement);
+        else contaminationLevel*=exp(-fractionalDecrement*timeStep::deltaT()/timeStep::hour());
     }
     /** Function to show the current status of a place - use with caution if there are many thousands of places! */
     void show(bool);//defined below once agents are defined

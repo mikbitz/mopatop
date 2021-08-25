@@ -25,6 +25,7 @@
  **/
 
 #include"randomizer.h"
+#include "timestep.h"
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /**
@@ -58,15 +59,17 @@ public:
         infectionShedLoad = p.get<double>("disease.simplistic.infectionShedLoad");
         deathRate         = p.get<double>("disease.simplistic.deathRate");
     }
-    /** recover with a fixed chance in a given timestep - this function needs to be called every timestep by infected agents
+    /** @brief recover with a fixed chance in a given timestep 
+     *  @details this function needs to be called every timestep by infected agents - rate is assumed to be *PER HOUR*
      @param r A random number generator created by the \ref model class*/
     static bool recover (randomizer& r){
-      if (recoveryRate>r.number())return true;else return false;
+      if (recoveryRate*timeStep::deltaT()/timeStep::hour()>r.number())return true;else return false;
     }
-    /** die with a fixed chance in a given timestep - this function needs to be called every timestep by infected agents
+    /** @brief die with a fixed chance in a given timestep 
+     *  @details this function needs to be called every timestep by infected agents - rate is assumed to be *PER HOUR*
      @param r A random number generator created by the \ref model class*/
     static bool die (randomizer& r){
-      if (deathRate>r.number())return true;else return false;
+      if (deathRate*timeStep::deltaT()/timeStep::hour()>r.number())return true;else return false;
     }
     /** contract disease if contamination is large enough (note it could be >1) - again called very time step
      * @param r A random number generator created by the \ref model class
@@ -74,9 +77,10 @@ public:
     static bool infect(float contamination,randomizer& r){
       if (contamination >r.number()) return true; else return false;
     }
-    /** contribute infection to the place if diseased - called every timestep by infected agents 
+    /** @brief contribute infection to the place if diseased 
+     * @details called every timestep by infected agents - shedding rate is assumed to be *PER HOUR*
      @return infectionshedLoad - the current amount of infection that an agent emits per timestep into the environment */
-    static float shedInfection(){return infectionShedLoad;}
+    static float shedInfection(){return infectionShedLoad*timeStep::deltaT()/timeStep::hour();}
 
 };
 float disease::recoveryRate=0.0008;

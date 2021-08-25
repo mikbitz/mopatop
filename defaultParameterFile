@@ -18,7 +18,7 @@
 run.nAgents=600
 
 #Number of steps to run for - integer
-run.nSteps=1403
+run.nSteps=3000
 
 #number of OMP threads to use - integer
 #Increase the number here if using openmp to parallelise any loops.
@@ -35,7 +35,7 @@ run.randomSeed=0
 #If > 1 the same parameters will be used for nRepeats, but with different random seeds starting from
 #run.randomSeed above, and then adding run.randomIncrement for each run
 #Values <=0 here will get set to 1
-run.nRepeats=1
+run.nRepeats=10
 
 #Add this value to the seed for each successive run - integer
 #Note in a multithreaded run run.Nthreads RNG are created each separated by an increment of 1 in the seed
