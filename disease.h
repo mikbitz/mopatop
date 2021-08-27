@@ -48,13 +48,16 @@ class disease{
     /** per timestep chance of dying */
     static float deathRate;
 public:
+    /** @brief default constructor sets some reasonable values for parameters */
     disease(){
         //defaults if no parameters given
         recoveryRate=0.0008;
         infectionShedLoad=0.001;
         deathRate=0.;
     }
-    disease(parameterSettings p){
+    /** @brief the constructor sets the disease values from a \ref parameterSettings object 
+       @param p a reference to a \ref parameterSettings object*/
+    disease(parameterSettings& p){
         recoveryRate      = p.get<double>("disease.simplistic.recoveryRate");
         infectionShedLoad = p.get<double>("disease.simplistic.infectionShedLoad");
         deathRate         = p.get<double>("disease.simplistic.deathRate");
@@ -83,7 +86,5 @@ public:
     static float shedInfection(){return infectionShedLoad*timeStep::deltaT()/timeStep::hour();}
 
 };
-float disease::recoveryRate=0.0008;
-float disease::deathRate=0.;
-float disease::infectionShedLoad=0.001;
+
 #endif // DISEASE_H_INCLUDED

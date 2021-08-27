@@ -69,10 +69,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classrandomizer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">randomizer Class Reference</div>  </div>
@@ -88,6 +85,8 @@ $(function() {
 Collaboration diagram for randomizer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrandomizer__coll__graph.png" border="0" usemap="#randomizer_coll__map" alt="Collaboration graph"/></div>
+<map name="randomizer_coll__map" id="randomizer_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -100,21 +99,6 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="separator:ae175fffeb1c48d064973e33b3e11b9a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad360ae291abce71d660ca8cadb344b00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a> (int s)</td></tr>
 <tr class="separator:ad360ae291abce71d660ca8cadb344b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae175fffeb1c48d064973e33b3e11b9a0"><td class="memItemLeft" align="right" valign="top"><a id="ae175fffeb1c48d064973e33b3e11b9a0"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#ae175fffeb1c48d064973e33b3e11b9a0">number</a> ()</td></tr>
-<tr class="memdesc:ae175fffeb1c48d064973e33b3e11b9a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the next pseudo-random number in the current sequence <br /></td></tr>
-<tr class="separator:ae175fffeb1c48d064973e33b3e11b9a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad360ae291abce71d660ca8cadb344b00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a> (int s)</td></tr>
-<tr class="separator:ad360ae291abce71d660ca8cadb344b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e33cd61c749f88bcc6b2e780668c7d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#a5e33cd61c749f88bcc6b2e780668c7d3">clean</a> ()</td></tr>
-<tr class="separator:a5e33cd61c749f88bcc6b2e780668c7d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a01d852120098a534926d04db6bf74790"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classrandomizer.html">randomizer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#a01d852120098a534926d04db6bf74790">getInstance</a> ()</td></tr>
-<tr class="memdesc:a01d852120098a534926d04db6bf74790"><td class="mdescLeft">&#160;</td><td class="mdescRight">get a reference a random number generator. If no appropriate instance yet exists, create it. <br />
- <a href="#a01d852120098a534926d04db6bf74790">More...</a><br /></td></tr>
-<tr class="separator:a01d852120098a534926d04db6bf74790"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -122,18 +106,6 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a538d8fc8e95d8c64654d6b3354745194"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c1820ea3c64a67bf48fca01cb68a310"><td class="memItemLeft" align="right" valign="top">std::mt19937&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#a8c1820ea3c64a67bf48fca01cb68a310">twister</a></td></tr>
 <tr class="separator:a8c1820ea3c64a67bf48fca01cb68a310"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48aa6ac4606cbb594e184eed3441fd33"><td class="memItemLeft" align="right" valign="top">std::mt19937 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#a48aa6ac4606cbb594e184eed3441fd33">twister</a></td></tr>
-<tr class="separator:a48aa6ac4606cbb594e184eed3441fd33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:afc354a3a2a255d4e1ba952239d411023"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#afc354a3a2a255d4e1ba952239d411023">randomizer</a> ()</td></tr>
-<tr class="separator:afc354a3a2a255d4e1ba952239d411023"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
-Static Private Attributes</h2></td></tr>
-<tr class="memitem:ab6f6b071b2e9492ee84c248a04cb25a9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classrandomizer.html">randomizer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomizer.html#ab6f6b071b2e9492ee84c248a04cb25a9">instance</a></td></tr>
-<tr class="separator:ab6f6b071b2e9492ee84c248a04cb25a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Set up a wrapper class that will provide uniform pseudo-random numbers between 0 and 1 <br />
@@ -141,14 +113,10 @@ Static Private Attributes</h2></td></tr>
 <p>As usual with random number generators, the sequence is actually periodic with a very long period. By setting the seed one can generate the same sequence repeatedly by using the same seed. The C++ random number generators are rather complicated. This class allows selection of one of the available generators <br />
 without needing to look up the detail. It generates a random double between 0 and 1 using the mersenne twister generator. <br />
 The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a> - note this seems to need the twister to be completely re-created, hence the use of a pointer Example:- </p><div class="fragment"><div class="line"><a class="code" href="classrandomizer.html">randomizer</a> r;</div><div class="line">r.setSeed(12991);</div><div class="line"><span class="keywordtype">double</span> randomvalue=r.number();</div></div><!-- fragment --><p> Seems to be ok on multiple threads, but takes something of a hit from being only one RNG across them - would be faster if each<br />
-thread had its own RNG but this seems tricky to get right across multiple runs,</p>
-<p>As usual with random number generators, the sequence is actually periodic with a very long period. By setting the seed one can generate the same sequence repeatedly by using the same seed. The C++ random number generators are rather complicated. This class allows selection of one of the available generators <br />
-without needing to look up the detail. It generates a random double between 0 and 1 using the mersenne twister generator. <br />
-The seed defaults to 0 but can be reset with <a class="el" href="classrandomizer.html#ad360ae291abce71d660ca8cadb344b00">setSeed</a> - note this seems to need the twister to be completely re-created, hence the use of a pointer Example:- </p><div class="fragment"><div class="line"><a class="code" href="classrandomizer.html">randomizer</a> r=<a class="code" href="classrandomizer.html#a01d852120098a534926d04db6bf74790">randomizer::getInstance</a>(0);</div><div class="line">r.setSeed(12991);</div><div class="line"><span class="keywordtype">double</span> randomvalue=r.number();</div></div><!-- fragment --><p> Seems to be ok on multiple threads, but takes something of a hit from being only one RNG across them - would be faster if each<br />
 thread had its own RNG but this seems tricky to get right across multiple runs, </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acb623bdac274bd888c78f93e0ca66c32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb623bdac274bd888c78f93e0ca66c32">&#9670;&nbsp;</a></span>randomizer() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acb623bdac274bd888c78f93e0ca66c32">&#9670;&nbsp;</a></span>randomizer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,117 +142,9 @@ thread had its own RNG but this seems tricky to get right across multiple runs, 
 
 </div>
 </div>
-<a id="afc354a3a2a255d4e1ba952239d411023"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc354a3a2a255d4e1ba952239d411023">&#9670;&nbsp;</a></span>randomizer() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">randomizer::randomizer </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The constructor makes the class instance - again private so that access can be controlled. The class is used through the getInstance method </p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5e33cd61c749f88bcc6b2e780668c7d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e33cd61c749f88bcc6b2e780668c7d3">&#9670;&nbsp;</a></span>clean()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void randomizer::clean </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>if needed, clean up the pointer - otherwise it will just get deleted at end of program execution. this seems faulty for multiple threads at present </p>
-
-</div>
-</div>
-<a id="a01d852120098a534926d04db6bf74790"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01d852120098a534926d04db6bf74790">&#9670;&nbsp;</a></span>getInstance()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="classrandomizer.html">randomizer</a>&amp; randomizer::getInstance </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>get a reference a random number generator. If no appropriate instance yet exists, create it. <br />
-</p>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the available instance </dd></dl>
-
-</div>
-</div>
 <a id="ad360ae291abce71d660ca8cadb344b00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad360ae291abce71d660ca8cadb344b00">&#9670;&nbsp;</a></span>setSeed() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void randomizer::setSeed </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Set the seed that starts off a given random sequence param s The starting integer - any value can be used that fits with the size of int </p>
-
-</div>
-</div>
-<a id="ad360ae291abce71d660ca8cadb344b00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad360ae291abce71d660ca8cadb344b00">&#9670;&nbsp;</a></span>setSeed() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad360ae291abce71d660ca8cadb344b00">&#9670;&nbsp;</a></span>setSeed()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -311,52 +171,14 @@ thread had its own RNG but this seems tricky to get right across multiple runs, 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ab6f6b071b2e9492ee84c248a04cb25a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6f6b071b2e9492ee84c248a04cb25a9">&#9670;&nbsp;</a></span>instance</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classrandomizer.html">randomizer</a> * randomizer::instance</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The instance of this class. As this is a singleton (there can only ever be one of this class anywhere in the code) the actual instance is hidden from the user of the class </p>
-
-</div>
-</div>
 <a id="a8c1820ea3c64a67bf48fca01cb68a310"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c1820ea3c64a67bf48fca01cb68a310">&#9670;&nbsp;</a></span>twister <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c1820ea3c64a67bf48fca01cb68a310">&#9670;&nbsp;</a></span>twister</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">std::mt19937 randomizer::twister</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Use mersenne twister with fixed seed as the random number engine </p>
-
-</div>
-</div>
-<a id="a48aa6ac4606cbb594e184eed3441fd33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48aa6ac4606cbb594e184eed3441fd33">&#9670;&nbsp;</a></span>twister <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::mt19937* randomizer::twister</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -379,9 +201,8 @@ thread had its own RNG but this seems tricky to get right across multiple runs, 
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="randomizer_8h_source.html">randomizer.h</a></li>
-<li><a class="el" href="randomizerSingleton_8h_source.html">randomizerSingleton.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

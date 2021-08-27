@@ -27,6 +27,10 @@
 #include<fstream>
 #include<algorithm>
 #include<cctype>
+#include<assert.h>
+#include<map>
+#include<iostream>
+#include<chrono>
 /**
  * @brief ParameterSettings is a class designed to hold all the parameters for the model
  * @details Parameter defaults are set here, but the may be overridden by reading from the parameterfile .\n

@@ -24,6 +24,8 @@
  * @author Mike Bithell
  * @date 17/08/2021
  **/
+#include<set>
+#include<math.h>
 #include "timestep.h"
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
@@ -123,10 +125,11 @@ public:
      * */
     void update(){
         if (cleanEveryStep)cleanContamination();
-        else contaminationLevel*=exp(-fractionalDecrement*timeStep::deltaT()/timeStep::hour());
+        else contaminationLevel*=std::exp(-fractionalDecrement*timeStep::deltaT()/timeStep::hour());
     }
-    /** Function to show the current status of a place - use with caution if there are many thousands of places! */
-    void show(bool);//defined below once agents are defined
+    /** @brief Function to show the current status of a place - use with caution if there are many thousands of places! 
+        @details defined in \ref places.cpp once agents have been defined*/
+    void show(bool listAll=false);
     //Because of the forward declaration of class agent, the full definition of this function has to wait until after the agent class is completed
 };
 #endif // PLACES_H_INCLUDED

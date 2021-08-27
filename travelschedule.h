@@ -39,7 +39,7 @@
  * 
     @todo make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents...
 */
-
+#include<vector>
 
 class travelSchedule{
     /** A vector of named integers that holds the default travel destinations in the order that places will be visited \n

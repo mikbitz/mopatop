@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['timespent',['timeSpent',['../classtravelSchedule.html#a89b59984896c230bfcb2606f62686c7b',1,'travelSchedule']]],
-  ['twister',['twister',['../classrandomizer.html#a8c1820ea3c64a67bf48fca01cb68a310',1,'randomizer::twister()'],['../classrandomizer.html#a48aa6ac4606cbb594e184eed3441fd33',1,'randomizer::twister()']]]
+  ['r',['r',['../classmodel.html#a2103a6bc9833b98e5d6ff607c5feea60',1,'model']]],
+  ['randoms',['randoms',['../classmodel.html#a86a89dcd7a5d26b3912974f67e01fb0f',1,'model']]],
+  ['recoveryrate',['recoveryRate',['../classdisease.html#af4bf8070d12d8520054a25abb3fe27eb',1,'disease']]]
 ];

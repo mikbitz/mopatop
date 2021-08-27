@@ -1,6 +1,7 @@
 #ifndef AGENT_H_INCLUDED
 #define AGENT_H_INCLUDED
-
+#include"places.h"
+#include"disease.h"
 /* A program to model agents moving between places
     Copyright (C) 2021  Mike Bithell
 

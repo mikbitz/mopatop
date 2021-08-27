@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
     */
 /**
- * @file randomizerSingelton.h 
+ * @file randomizerSingleton.h 
  * @brief File containing a wrapper class for random numbers using a singleton
  * 
  * @author Mike Bithell
@@ -42,15 +42,15 @@
  * Seems to be ok on multiple threads, but takes something of a hit from being only one RNG across them - would be faster if each\n
  * thread had its own RNG but this seems tricky to get right across multiple runs,
 */
-class randomizer {
+class randomizerS {
 public:
     /** @brief get a reference a random number generator.
      * If no appropriate instance yet exists, create it. \n
      * @return A reference to the available instance
      * */
-    static randomizer& getInstance(){
+    static randomizerS& getInstance(){
         if (instance==nullptr){
-            instance=new randomizer();
+            instance=new randomizerS();
         }
         return *instance;
     }
@@ -59,7 +59,7 @@ public:
     /**  Use mersenne twister with fixed seed as the random number engine */
     std::mt19937* twister;
 public:
-    ~randomizer(){
+    ~randomizerS(){
       //if (omp_get_thread_num()==0)instance.clear();
     }
     /** @brief return the next pseudo-random number in the current sequence */
@@ -81,9 +81,9 @@ public:
     }
 private:
     /** The instance of this class. As this is a singleton (there can only ever be one of this class anywhere in the code) the actual instance is hidden from the user of the class */
-    static randomizer* instance;
+    static randomizerS* instance;
     /** The constructor makes the class instance - again private so that access can be controlled. The class is used through the getInstance method */
-    randomizer(){
+    randomizerS(){
         uniform_dist=std::uniform_real_distribution<> (0,1);
         std::cout<<"A randomizer was set up with seed 0" <<std::endl;
         twister=new std::mt19937(0);
@@ -92,5 +92,5 @@ private:
 };
 //------------------------------------------------------------------------
 //static class members have to be initialized
-randomizer* randomizer::instance;
+randomizerS* randomizerS::instance;
 #endif // RANDOMIZERSINGLE_H_INCLUDED

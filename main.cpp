@@ -34,61 +34,27 @@
 #include"parameters.h"
 #include"timereporter.h"
 #include"randomizer.h"
-#include"disease.h"
+#include"randomizerSingleton.h"
 #include"places.h"
 #include"timestep.h"
 #include"agent.h"
-#include"travelschedule.h"
-//------------------------------------------------------------------------
-//------------------------------------------------------------------------
-//needed here for places as agents are pre-declared before place class
-/** @param listAll Optional argument to show every place - only useful if there are just a few! */
-void place::show(bool listAll=false){
-    std::cout<<"Place ID "<<ID<<" has "<<occupants.size()<<" occupants"<<std::endl;
-    if (listAll){
-        std::cout<<"List of Occupant IDs:- "<<std::endl;
-        for (auto o : occupants){
-            std::cout <<o->ID<<std::endl;
-        }
-    }
-}
-//------------------------------------------------------------------------
-//------------------------------------------------------------------------
-
-//------------------------------------------------------------------------
-//------------------------------------------------------------------------
-//defined here so as to be after travelSchedule
-void agent::update()
-{
-        //Use the base travel schedule - initialised at home for everyone
-        counter-=timeStep::deltaT();//reduce by actual time represented by this timestep (since schedule is defined in hours rater than timesteps)
-        if (counter<=0){
-            currentPlace=schedule->getNextLocation();
-            counter=schedule->getTimeAtCurrentPlace();
-        }
-        //expensive - only needed if agents need direct agent-to-agent interactions in a place -
-        //might be made cheaper by alowing agents to be present in multiple places, but only active in one.
-        //(this could allow for remote meetings/phone calls?!)
-        //moveTo(currentPlace);
-        if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
-        if (currentPlace==vehicle)inTransit();
-        if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver 
-        
-}
-void agent::initTravelSchedule(){       
-   schedule=new  travelSchedule();
-   currentPlace=schedule->getNextLocation();
-   counter=schedule->getTimeAtCurrentPlace();
-}
-void agent::cough()
-{
-        //breathInto(place) - scales linearly with the time spent there (using uniform timesteps) - masks could go here as a scaling on contamination increase (what about surfaces? -second contamination factor?)
-        if (diseased) places[currentPlace]->increaseContamination(disease::shedInfection());
-}
-//------------------------------------------------------------------------
-//------------------------------------------------------------------------
-//include the model header file here so it knows the definitions of agent/place etc.
 #include "model.h"
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+//default variables from static classes - these are here to keep the linker happy
+//should really be in the header files, but at the moment the linker complains about multiple definitions
+float disease::recoveryRate=0.0008;
+float disease::deathRate=0.;
+float disease::infectionShedLoad=0.001;
+//setup dt to be 1 hour if nothing else is specified
+double timeStep::years=24*30*3600*365;
+double timeStep::months=24*30*3600;
+double timeStep::days=24*3600;
+double timeStep::hours=3600;
+double timeStep::minutes=60;
+double timeStep::seconds=1;
+double timeStep::dt=3600;
+std::string timeStep::units="hours";
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /** set up and run the model 

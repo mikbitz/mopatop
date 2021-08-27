@@ -1,8 +1,11 @@
 #ifndef TIMESTEP_H_INCLUDED
 #define TIMESTEP_H_INCLUDED
+#include<string>
+#include"parameters.h"
 /** @brief A static class to set up the real-world times that apply to a timestep
-*   @details The idea here is that the code will use a timestep in seconds, but the user need not know this\n
-*   the value of any time can be set in the relevant units by using the static variables e.g. to get a time of 8 hours
+*   @details The idea here is that the code will use a timestep in seconds, but the user need not know this.\n
+*   They can set values using a chosen time unit, and get the right number of timesteps in those using this class\n
+*   The value of any time can be set in the relevant units by using the static variables e.g. to get a time of 8 hours
 *\code
 *double time_needed=8*timeStep::hour()
 *\endcode
@@ -18,13 +21,22 @@
  * \endcode 
  Note that currently months (leap years) are not properly handled as they are all assumed to be 30 days (365 days), and dates are not available!*/ 
 class timeStep{
+    /** @brief number of seconds in a year */
     static double years;
+    /** @brief number of seconds in a month */
     static double months;
+    /** @brief number of seconds in a day */
     static double days;
+    /** @brief number of seconds in an aah */
     static double hours;
+    /** @brief number of seconds in a minute*/
     static double minutes;
+    /** @brief number of seconds in a second (!) */
     static double seconds;
+    /** @brief number of seconds in a timestep*/
     static double dt;
+    /** @brief Units for the timestep  - number of seconds in \ref dt will be set as required.
+        @details can be years,months,days,hours,minutes or seconds*/
     static std::string units;
 public:
 
@@ -39,7 +51,8 @@ public:
         seconds = 1;
         dt=3600;//the actual internal units here for timeStep is always seconds, so this value corresponds to one hour
     }
-    /** @brief Constructor to get the values from a \ref parameterSettings object */
+    /** @brief Constructor to get the values from a \ref parameterSettings object 
+     *  @param p a reference to a \ref parameterSettings object*/
     timeStep(parameterSettings& p){
         units     = p.get("timeStep.units");
         //make sure the string is all lower case and has no leadin gor trai ling spaces
@@ -171,13 +184,5 @@ public:
         return seconds/dt;
     }
 };
-//setup dt to be 1 hour if nothing else is specified
-double timeStep::years=24*30*3600*365;
-double timeStep::months=24*30*3600;
-double timeStep::days=24*3600;
-double timeStep::hours=3600;
-double timeStep::minutes=60;
-double timeStep::seconds=1;
-double timeStep::dt=3600;
-std::string timeStep::units="hours";
+
 #endif // TIMESTEP_H_INCLUDED

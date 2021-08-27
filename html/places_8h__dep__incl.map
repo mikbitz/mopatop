@@ -1,3 +1,6 @@
 <map id="places.h" name="places.h">
-<area shape="rect" id="node2" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="5,80,80,107"/>
+<area shape="rect" id="node2" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="135,80,200,107"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="218,155,293,181"/>
+<area shape="rect" id="node3" href="$agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ..." alt="" coords="5,155,84,181"/>
+<area shape="rect" id="node5" href="$places_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ..." alt="" coords="109,155,194,181"/>
 </map>

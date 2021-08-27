@@ -89,9 +89,13 @@ Collaboration diagram for disease:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aef88ffba5548cbcc7820884cefb8a39d"><td class="memItemLeft" align="right" valign="top"><a id="aef88ffba5548cbcc7820884cefb8a39d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>disease</b> (<a class="el" href="classparameterSettings.html">parameterSettings</a> p)</td></tr>
-<tr class="separator:aef88ffba5548cbcc7820884cefb8a39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcb9fcc5db67fd957dab69127296b2a2"><td class="memItemLeft" align="right" valign="top"><a id="adcb9fcc5db67fd957dab69127296b2a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#adcb9fcc5db67fd957dab69127296b2a2">disease</a> ()</td></tr>
+<tr class="memdesc:adcb9fcc5db67fd957dab69127296b2a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor sets some reasonable values for parameters <br /></td></tr>
+<tr class="separator:adcb9fcc5db67fd957dab69127296b2a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a869796dd27efc41c5815188188fe05bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a869796dd27efc41c5815188188fe05bd">disease</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;p)</td></tr>
+<tr class="memdesc:a869796dd27efc41c5815188188fe05bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">the constructor sets the disease values from a <a class="el" href="classparameterSettings.html">parameterSettings</a> object  <a href="#a869796dd27efc41c5815188188fe05bd">More...</a><br /></td></tr>
+<tr class="separator:a869796dd27efc41c5815188188fe05bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -120,7 +124,42 @@ Static Private Attributes</h2></td></tr>
 <div class="textblock"><p>Simple static class to represent a very very simple disease. </p>
 <p>Use of static class allows some of the details of the disease to be abstracted here, without needed a separate disease object in every agent <br />
 The disadvantage of this is that the parameters are fixed outside the class definition (a requirement of C++ for static (i.e. class-based rather than instance-based) variables) <br />
-but they can still be set in the constructor using a parameter file. Configure this once at the start of the code by creating an object and feeding it the <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> parameters;</div><div class="line">parameters.<a class="code" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a>(<span class="stringliteral">&quot;../defaultParameterFile&quot;</span>);</div><div class="line"><a class="code" href="classdisease.html">disease</a> d(parameters);</div></div><!-- fragment --> </div><h2 class="groupheader">Member Function Documentation</h2>
+but they can still be set in the constructor using a parameter file. Configure this once at the start of the code by creating an object and feeding it the <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> parameters;</div><div class="line">parameters.<a class="code" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a>(<span class="stringliteral">&quot;../defaultParameterFile&quot;</span>);</div><div class="line"><a class="code" href="classdisease.html">disease</a> d(parameters);</div></div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a869796dd27efc41c5815188188fe05bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a869796dd27efc41c5815188188fe05bd">&#9670;&nbsp;</a></span>disease()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">disease::disease </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the constructor sets the disease values from a <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>a reference to a <a class="el" href="classparameterSettings.html">parameterSettings</a> object </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a232f17f3926a118cf5e2a7d091c4318e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a232f17f3926a118cf5e2a7d091c4318e">&#9670;&nbsp;</a></span>die()</h2>
 
@@ -330,8 +369,9 @@ but they can still be set in the constructor using a parameter file. Configure t
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="disease_8h_source.html">disease.h</a></li>
+<li><a class="el" href="main_8cpp.html">main.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
