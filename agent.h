@@ -17,9 +17,12 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
     */
+
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
 /**
  * @file agent.h 
- * @brief File containing the definition agent class
+ * @brief File containing the definition of the agent class
  * 
  * @author Mike Bithell
  * @date 17/08/2021
