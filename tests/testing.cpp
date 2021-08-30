@@ -9,10 +9,11 @@
 #include <cppunit/TextTestProgressListener.h>
 #include "../places.h"
 #include<math.h>
-
+//fixtures allow setting up and tearing down of objects
 class placeTest : public CppUnit::TestFixture  {
     place* p;
 public:
+    //persistent objects to use during testing
     void setUp()
     {
         p = new place();
@@ -25,11 +26,24 @@ public:
     //automatically create a test suite to add tests to
     CPPUNIT_TEST_SUITE( placeTest );
     //add tests defined below
+    CPPUNIT_TEST( testDefaultConstructor );
     CPPUNIT_TEST( testID );
     CPPUNIT_TEST( testContamination );
     CPPUNIT_TEST_SUITE_END();
+    //define tests
+    void testDefaultConstructor()
+    {
+        //default ID is zero
+        CPPUNIT_ASSERT(0==p->getID());
+        CPPUNIT_ASSERT(0==p->getNumberOfOccupants());
+        CPPUNIT_ASSERT(std::abs(p->getContaminationLevel())<10*std::numeric_limits<double>::min());
+        CPPUNIT_ASSERT(0.1-std::abs(p->getFractionalDecrement())<10*std::numeric_limits<double>::min());
+        CPPUNIT_ASSERT(!p->getCleanEveryStep());
+    }
     void testID()
     {
+        //default ID is zero
+        CPPUNIT_ASSERT(0==p->getID());
         p->setID(1);
         CPPUNIT_ASSERT(1==p->getID());
     }
@@ -66,5 +80,4 @@ int main(){
   //run all test suites
   runner.run();
   return 0;
-;
 }

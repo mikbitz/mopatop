@@ -130,9 +130,21 @@ public:
     void unsetCleanEveryStep(){
         cleanEveryStep=false;
     }
+    /** Report whether the place cleans every step */
+    bool getCleanEveryStep(){
+        return cleanEveryStep;
+    }
     /** Set the rate of exponential decay of contamination */
     void setFractionalDecrement(double f){
         fractionalDecrement=f;
+    }
+    /** report the rate of exponential decay of contamination */
+    double getFractionalDecrement(){
+        return fractionalDecrement;
+    }
+    /** Report number of agents currentl in the occupant list */
+    unsigned getNumberOfOccupants(){
+        return occupants.size();
     }
     /** @brief The contamination in each place decays exponentially, or is reset to zero
      * @details. This function should be called every (uniform) time step \n
