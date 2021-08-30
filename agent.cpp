@@ -46,8 +46,9 @@ void agent::update()
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver 
         
 }
-void agent::initTravelSchedule(){       
+void agent::initTravelSchedule(parameterSettings& params){       
    schedule=new  travelSchedule();
+   schedule->switchTo(params("schedule.type"));
    currentPlace=schedule->getNextLocation();
    counter=schedule->getTimeAtCurrentPlace();
 }

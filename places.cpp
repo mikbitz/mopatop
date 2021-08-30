@@ -19,7 +19,7 @@
 //------------------------------------------------------------------------
 /**
  * @file places.cpp 
- * @brief File containing methods that requie definitions of other classes to be available
+ * @brief File containing methods that require definitions of other classes to be available
  * 
  * @author Mike Bithell
  * @date 17/08/2021

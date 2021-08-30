@@ -175,7 +175,7 @@ public:
         }
         //set up travel schedule - same for every agent at the moment - so agents are all on the bus, at work or at home at exactly the same times
         for (int i=0;i<agents.size();i++){
-            agents[i]->initTravelSchedule();
+            agents[i]->initTravelSchedule(parameters);
         }
         //report intialization to std out 
         std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;

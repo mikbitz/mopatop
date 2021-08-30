@@ -161,6 +161,8 @@ public:
         parameters["places.disease.simplistic.fractionalDecrement"]="1";parameterType["places.disease.simplistic.fractionalDecrement"]=d;
         //if set this flag will cause contamination to be reset to zero every timestep
         parameters["places.cleanContamination"]="false";parameterType["places.cleanContamination"]=b;
+        //if set this flag will cause contamination to be reset to zero every timestep
+        parameters["schedule.type"]="false";parameterType["schedule.type"]=s;
     }
     //------------------------------------------------------------------------
     /** @brief reset the value of an existing parameter

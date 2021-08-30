@@ -35,8 +35,8 @@
  * The schedule is simply an ordered list of the types of place to be visited. The actual places are stored with the individual agents, \n 
  * so that each agent can have a different location corresponding to a given type of place \n
  * Each agent sets up and stores its own copy of this schedule \n
- * Every time \ref getNextLocation is called, the schedule advances one place forward. When the end is reached the schedule resets to the first entry.
- * 
+ * Every time \ref getNextLocation is called, the schedule advances one place forward. When the end is reached the schedule resets to the first entry.\n
+ * Agents can switch between a limited number of pre-defined schedules, currently hard-coded here.
     @todo make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents...
 */
 #include<vector>
@@ -55,12 +55,32 @@ class travelSchedule{
     int index;
 public:
     /** @brief Constructor to build the schedule 
-     *  add the placeTypes to be visited in order to the destinations vector, and the corresponding time that will be spent in each place to the timeSpent vector. \n
+     *  @details add the placeTypes to be visited in order to the destinations vector, and the corresponding time that will be spent in each place to the timeSpent vector. \n
      *  schedule time in a given place should be an integer multiple of the timestep. Note values here are currently set in hours - sincce one should use real time\n
      *  units to map onto actual output times\n
      *  Index is set to point to the last place so that a call to getNextLocation will run the schedule back to the top.
+     *  The dault schedule is set to agents remaining in one place see \ref stationary
      */
     travelSchedule(){
+        stationary();
+    }
+    /** @brief Change the travel schedule, picking hte new one by name
+     *@param s The anme fo the schedule to be used from now on */
+    void switchTo(std::string s){
+        destinations.clear();
+        timeSpent.clear();
+        if (s=="mobile")mobile();
+        if (s=="stationary")stationary();
+    }
+    /** @brief A schedule where the agent just stays at home the entire time */
+    void stationary(){
+        destinations.push_back(agent::home);
+        timeSpent.push_back(24*timeStep::hour());
+        currentDestination=agent::home;
+        index=0;//stay at home the entire time
+    }
+    /** @brief A schedule where the agents moves between work and home using their chosen vehicle */
+    void mobile(){
         destinations.push_back(agent::vehicle);//load people into busstop (or transportHub) rather than direct into bus? - here they would wait
         timeSpent.push_back(1*timeStep::hour());
         destinations.push_back(agent::work);//trip chaining? how to handle trips across multiple transport hubs? how to do schools (do parents load up childer?) and shops? - use a stack to modify default schedule!

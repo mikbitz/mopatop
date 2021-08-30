@@ -85,8 +85,9 @@ public:
     /** Move through the travel schedule, and then do any actions specific to places (apart from disease) \n
      needs to be called every timestep */
     void update();
-    /** initialise the travel schedule  - this sets upt he list of places that will be visited, in order */
-    void initTravelSchedule();
+    /** @brief initialise the travel schedule  - this sets up the list of places that will be visited, in order 
+        @param params A reference to a parameterSettings object  */
+    void initTravelSchedule(parameterSettings& );
     /** if you have the disease, contaminate the current place  - call every timestep */
     void cough();
     /** call the disease functions, specified for this agent */
@@ -102,16 +103,16 @@ public:
     }
     /** do any things that need to be done at home */
     void atHome(){
-        //if (ID==0)std::cout<<"at Home "<<std::endl;
+        if (ID==0)std::cout<<"at Home "<<std::endl;
         
     }
     /** do any things that need to be done at work */
     void atWork(){
-        //if (ID==0)std::cout<<"at Work"<<std::endl;
+        if (ID==0)std::cout<<"at Work"<<std::endl;
     }
     /** do any things that need to be done while travelling */
     void inTransit(){
-        //if (ID==0)std::cout<<"on Bus"<<std::endl;
+        if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
     /** set up the place vector to include being at home - needs to be called when places are being created by the model class 
      @param pu a pointer to the specific home location for this agent */

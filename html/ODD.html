@@ -147,7 +147,9 @@ rate, to be infected if there is contamination and to shed infection into a plac
  </p>
 <h2><a class="anchor" id="ts"></a>
 travelSchedule</h2>
-<p>Each agent has their own copy of a travel schedule - at present, though, this is identical for every agent.<br />
+<p>Each agent has their own copy of a travel schedule - at present, though, this can only be switched between.<br />
+two types - one where the agents moves between a fixed set of places, and one where they remain permanently at home<br />
+The latter allows e.g. testing against a fully mixed disease model, if home is the same place for all agents.<br />
 The schedule has an ordered list of place types representing destination for travel, and a time to be spent<br />
 in each place of a given type. Agents use the place type to select their own particular place to travel to <br />
 when the scheduled time in their current place has expired. </p>

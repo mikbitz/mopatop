@@ -19,7 +19,7 @@
 /**
  * @file places.h 
  * @brief File containing the deinfition of the places class
- * @details Note that some of teh method implementations (that depend on the agent class) are currently in main.cpp
+ * @details Note that some of the method implementations (that depend on the agent class) are currently in agent.cpp
  * 
  * @author Mike Bithell
  * @date 17/08/2021

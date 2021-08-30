@@ -86,7 +86,7 @@ Collaboration diagram for agent:</div>
 <div class="dyncontent">
 <div class="center"><img src="classagent__coll__graph.png" border="0" usemap="#agent_coll__map" alt="Collaboration graph"/></div>
 <map name="agent_coll__map" id="agent_coll__map">
-<area shape="rect" id="node2" href="classtravelSchedule.html" title="A simple fixed travel schedule that rotates cyclically between places. " alt="" coords="5,5,184,156"/>
+<area shape="rect" id="node2" href="classtravelSchedule.html" title="A simple fixed travel schedule that rotates cyclically between places. " alt="" coords="5,5,184,200"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -106,8 +106,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3e3e837166683b9258688473c61a70d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae20b0b8a169fb7a459c7b195bb970d80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ae20b0b8a169fb7a459c7b195bb970d80">update</a> ()</td></tr>
 <tr class="separator:ae20b0b8a169fb7a459c7b195bb970d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae48983da3bd44f76516304ad7971292a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ae48983da3bd44f76516304ad7971292a">initTravelSchedule</a> ()</td></tr>
-<tr class="separator:ae48983da3bd44f76516304ad7971292a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9006452c1e818c84da70bbe52dfe2a1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a9006452c1e818c84da70bbe52dfe2a1a">initTravelSchedule</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;)</td></tr>
+<tr class="memdesc:a9006452c1e818c84da70bbe52dfe2a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise the travel schedule - this sets up the list of places that will be visited, in order  <a href="#a9006452c1e818c84da70bbe52dfe2a1a">More...</a><br /></td></tr>
+<tr class="separator:a9006452c1e818c84da70bbe52dfe2a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a958d3d4ffc3c372136459b08f5e4a457"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a958d3d4ffc3c372136459b08f5e4a457">cough</a> ()</td></tr>
 <tr class="separator:a958d3d4ffc3c372136459b08f5e4a457"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d78e171145c665b59c6cb604b467cab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a0d78e171145c665b59c6cb604b467cab">process_disease</a> (<a class="el" href="classrandomizer.html">randomizer</a> &amp;r)</td></tr>
@@ -264,8 +265,8 @@ these are set later, as the places need to be created before they can be allocat
 
 </div>
 </div>
-<a id="ae48983da3bd44f76516304ad7971292a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae48983da3bd44f76516304ad7971292a">&#9670;&nbsp;</a></span>initTravelSchedule()</h2>
+<a id="a9006452c1e818c84da70bbe52dfe2a1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9006452c1e818c84da70bbe52dfe2a1a">&#9670;&nbsp;</a></span>initTravelSchedule()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -273,12 +274,20 @@ these are set later, as the places need to be created before they can be allocat
         <tr>
           <td class="memname">void agent::initTravelSchedule </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;&#160;</td>
+          <td class="paramname"><em>params</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>initialise the travel schedule - this sets upt he list of places that will be visited, in order </p>
+
+<p>initialise the travel schedule - this sets up the list of places that will be visited, in order </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">params</td><td>A reference to a <a class="el" href="classparameterSettings.html" title="ParameterSettings is a class designed to hold all the parameters for the model. ">parameterSettings</a> object </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

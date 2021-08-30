@@ -14,5 +14,7 @@ var searchData=
   ['shedinfection',['shedInfection',['../classdisease.html#a0dea757c15ccfb19227ffa3b94c6f67d',1,'disease']]],
   ['show',['show',['../classplace.html#a20764b4e2d87910791f8e6ea38ede4ca',1,'place']]],
   ['showinterval',['showInterval',['../classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04',1,'timeReporter']]],
-  ['step',['step',['../classmodel.html#a20ff630d7f86b28f8d45a2a37b91695f',1,'model']]]
+  ['stationary',['stationary',['../classtravelSchedule.html#a6a3d237f39039c229e6e0afe97b795e0',1,'travelSchedule']]],
+  ['step',['step',['../classmodel.html#a20ff630d7f86b28f8d45a2a37b91695f',1,'model']]],
+  ['switchto',['switchTo',['../classtravelSchedule.html#aea45c3659278ab142d90463ecc6fe86c',1,'travelSchedule']]]
 ];

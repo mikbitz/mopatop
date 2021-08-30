@@ -88,13 +88,20 @@ Collaboration diagram for travelSchedule:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="memItemLeft" align="right" valign="top"><a id="a9e0c7cd53fdb01767bdb20c0d42772b0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a9e0c7cd53fdb01767bdb20c0d42772b0">travelSchedule</a> ()</td></tr>
-<tr class="memdesc:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to build the schedule add the placeTypes to be visited in order to the destinations vector, and the corresponding time that will be spent in each place to the timeSpent vector. <br />
-schedule time in a given place should be an integer multiple of the timestep. Note values here are currently set in hours - sincce one should use real time<br />
-units to map onto actual output times<br />
-Index is set to point to the last place so that a call to getNextLocation will run the schedule back to the top. <br /></td></tr>
+<tr class="memitem:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a9e0c7cd53fdb01767bdb20c0d42772b0">travelSchedule</a> ()</td></tr>
+<tr class="memdesc:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to build the schedule.  <a href="#a9e0c7cd53fdb01767bdb20c0d42772b0">More...</a><br /></td></tr>
 <tr class="separator:a9e0c7cd53fdb01767bdb20c0d42772b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea45c3659278ab142d90463ecc6fe86c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#aea45c3659278ab142d90463ecc6fe86c">switchTo</a> (std::string s)</td></tr>
+<tr class="memdesc:aea45c3659278ab142d90463ecc6fe86c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the travel schedule, picking hte new one by name.  <a href="#aea45c3659278ab142d90463ecc6fe86c">More...</a><br /></td></tr>
+<tr class="separator:aea45c3659278ab142d90463ecc6fe86c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a3d237f39039c229e6e0afe97b795e0"><td class="memItemLeft" align="right" valign="top"><a id="a6a3d237f39039c229e6e0afe97b795e0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a6a3d237f39039c229e6e0afe97b795e0">stationary</a> ()</td></tr>
+<tr class="memdesc:a6a3d237f39039c229e6e0afe97b795e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A schedule where the agent just stays at home the entire time. <br /></td></tr>
+<tr class="separator:a6a3d237f39039c229e6e0afe97b795e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c33cd7e99fe6f9b0c85097ca7fb1e85"><td class="memItemLeft" align="right" valign="top"><a id="a2c33cd7e99fe6f9b0c85097ca7fb1e85"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a2c33cd7e99fe6f9b0c85097ca7fb1e85">mobile</a> ()</td></tr>
+<tr class="memdesc:a2c33cd7e99fe6f9b0c85097ca7fb1e85"><td class="mdescLeft">&#160;</td><td class="mdescRight">A schedule where the agents moves between work and home using their chosen vehicle. <br /></td></tr>
+<tr class="separator:a2c33cd7e99fe6f9b0c85097ca7fb1e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d765167c1c2ea9cddc291adf82150fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">agent::placeTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a5d765167c1c2ea9cddc291adf82150fc">getNextLocation</a> ()</td></tr>
 <tr class="separator:a5d765167c1c2ea9cddc291adf82150fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5b38b8f1a9398b22502a8fef115391b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#ae5b38b8f1a9398b22502a8fef115391b">getTimeAtCurrentPlace</a> ()</td></tr>
@@ -116,9 +123,41 @@ Private Attributes</h2></td></tr>
 <p>The schedule is simply an ordered list of the types of place to be visited. The actual places are stored with the individual agents, <br />
  so that each agent can have a different location corresponding to a given type of place <br />
 Each agent sets up and stores its own copy of this schedule <br />
-Every time <a class="el" href="classtravelSchedule.html#a5d765167c1c2ea9cddc291adf82150fc">getNextLocation</a> is called, the schedule advances one place forward. When the end is reached the schedule resets to the first entry.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents... </dd></dl>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+Every time <a class="el" href="classtravelSchedule.html#a5d765167c1c2ea9cddc291adf82150fc">getNextLocation</a> is called, the schedule advances one place forward. When the end is reached the schedule resets to the first entry.<br />
+Agents can switch between a limited number of pre-defined schedules, currently hard-coded here. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents... </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9e0c7cd53fdb01767bdb20c0d42772b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e0c7cd53fdb01767bdb20c0d42772b0">&#9670;&nbsp;</a></span>travelSchedule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">travelSchedule::travelSchedule </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor to build the schedule. </p>
+<p>add the placeTypes to be visited in order to the destinations vector, and the corresponding time that will be spent in each place to the timeSpent vector. <br />
+schedule time in a given place should be an integer multiple of the timestep. Note values here are currently set in hours - sincce one should use real time<br />
+units to map onto actual output times<br />
+Index is set to point to the last place so that a call to getNextLocation will run the schedule back to the top. The dault schedule is set to agents remaining in one place see <a class="el" href="classtravelSchedule.html#a6a3d237f39039c229e6e0afe97b795e0">stationary</a> </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a5d765167c1c2ea9cddc291adf82150fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5d765167c1c2ea9cddc291adf82150fc">&#9670;&nbsp;</a></span>getNextLocation()</h2>
 
@@ -168,6 +207,40 @@ Every time <a class="el" href="classtravelSchedule.html#a5d765167c1c2ea9cddc291a
 </table>
 </div><div class="memdoc">
 <p>report the time spent at the current place </p>
+
+</div>
+</div>
+<a id="aea45c3659278ab142d90463ecc6fe86c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea45c3659278ab142d90463ecc6fe86c">&#9670;&nbsp;</a></span>switchTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void travelSchedule::switchTo </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Change the travel schedule, picking hte new one by name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>The anme fo the schedule to be used from now on </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

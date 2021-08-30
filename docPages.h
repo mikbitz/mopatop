@@ -92,7 +92,9 @@
  * A single simple disease allows agents interrogate it and discover whether they to recover at a fixed average\n
  * rate, to be infected if there is contamination and to shed infection into a place, again at a rate per unit time.\n 
  * @subsection ts travelSchedule
- * Each agent has their own copy of a travel schedule - at present, though, this is identical for every agent.\n
+ * Each agent has their own copy of a travel schedule - at present, though, this can only be switched between.\n
+ * two types - one where the agents moves between a fixed set of places, and one where they remain permanently at home\n
+ * The latter allows e.g. testing against a fully mixed disease model, if home is the same place for all agents.\n
  * The schedule has an ordered list of place types representing destination for travel, and a time to be spent\n
  * in each place of a given type. Agents use the place type to select their own particular place to travel to \n
  * when the scheduled time in their current place has expired.
