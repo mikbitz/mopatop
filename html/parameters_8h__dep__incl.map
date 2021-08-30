@@ -1,9 +1,11 @@
 <map id="parameters.h" name="parameters.h">
-<area shape="rect" id="node2" href="$timestep_8h_source.html" title="timestep.h" alt="" coords="175,80,258,107"/>
-<area shape="rect" id="node6" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="226,304,301,331"/>
-<area shape="rect" id="node3" href="$places_8h.html" title="File containing the deinfition of the places class. " alt="" coords="159,155,229,181"/>
-<area shape="rect" id="node8" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="56,155,135,181"/>
-<area shape="rect" id="node4" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="113,229,179,256"/>
+<area shape="rect" id="node2" href="$timestep_8h_source.html" title="timestep.h" alt="" coords="377,80,459,107"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="381,453,455,480"/>
+<area shape="rect" id="node3" href="$places_8h.html" title="File containing the deinfition of the places class. " alt="" coords="360,155,431,181"/>
+<area shape="rect" id="node10" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="257,155,336,181"/>
+<area shape="rect" id="node4" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="196,229,261,256"/>
+<area shape="rect" id="node7" href="$modelFactory_8h.html" title="File containing the definition of the agent class. " alt="" coords="269,304,381,331"/>
 <area shape="rect" id="node5" href="$agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ..." alt="" coords="5,304,84,331"/>
-<area shape="rect" id="node7" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="109,304,194,331"/>
+<area shape="rect" id="node9" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="159,304,245,331"/>
+<area shape="rect" id="node8" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="301,379,369,405"/>
 </map>

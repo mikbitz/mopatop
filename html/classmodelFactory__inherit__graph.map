@@ -1,0 +1,4 @@
+<map id="modelFactory" name="modelFactory">
+<area shape="rect" id="node2" href="$classsimpleMobileFactory.html" title="Create a set of agents that all have three places they know about, home, work and transport ..." alt="" coords="5,160,148,237"/>
+<area shape="rect" id="node3" href="$classsimpleOnePlaceFactory.html" title="Create a set of agents that all know only about one place, and remain there for all time..." alt="" coords="173,160,335,237"/>
+</map>

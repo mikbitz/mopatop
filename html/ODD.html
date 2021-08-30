@@ -87,14 +87,14 @@ the places where they do their daily activites.The model is intended to scale to
 of agents, at least the scale of a medium sized country, without requiring too much run-time. </p>
 <h2><a class="anchor" id="enti"></a>
 Entities, State variables and Scales</h2>
-<h2><a class="anchor" id="sp"></a>
-space</h2>
+<h3><a class="anchor" id="sp"></a>
+space</h3>
 <p>The model currently has no notion of spatial scale, except as implicitly represented by time <br />
-spend in vehicles when travelling between places, Individual places have no internal spatial<br />
-structure - they are assumed completely mixed, so that all agents a can in principle access all others. </p>
-<h2><a class="anchor" id="ti"></a>
-time</h2>
-<p>There is a time step, representing a customiseable of real-world time (see <a class="el" href="timestep_8h_source.html">timestep.h</a>). Every place and agent and disease <br />
+spent in vehicles when travelling between places, Individual places have no internal spatial<br />
+structure - they are assumed completely mixed, so that all agents can in principle access all others. </p>
+<h3><a class="anchor" id="ti"></a>
+time</h3>
+<p>There is a time step, representing a customiseable unit of real-world time (see <a class="el" href="timestep_8h_source.html">timestep.h</a>). Every place and agent and disease <br />
 is updated synchronously at each step. This ensures that a)Updates to contamination take place regularly<br />
 even if there are no agents present b)Agents do not need to co-ordinate in terms of times spent in places<br />
 (which otherwise require o(n squared) interactions in each place), and can meet by chance within a timestep<br />
@@ -105,16 +105,16 @@ coughing in a place before any are allowed to update their infection status)<br 
 However, agents also have an event-based schedule - so the regular timestep does not preclude agents having <br />
 heterogenous activities with respect to travel or other actions, provided that the schedule time-grain is not shorter<br />
 than the main timestep (or the schedule has its own sub-time steps for taking forward an activity). </p>
-<h2><a class="anchor" id="rd"></a>
-random numbers</h2>
+<h3><a class="anchor" id="rd"></a>
+random numbers</h3>
 <p>A single pseudo random number sequence is generated using the mersenne twister algorithm </p>
-<h2><a class="anchor" id="tr"></a>
-benchmarking</h2>
+<h3><a class="anchor" id="tr"></a>
+benchmarking</h3>
 <p>A simple <a class="el" href="classtimeReporter.html">timeReporter</a> class is set up that can be used to report the run-time of different parts of the model<br />
-Useful for benchmarking and understading which parts are the most comu[puationally expensive. </p>
-<h2><a class="anchor" id="pa"></a>
-parameters</h2>
-<p>All of the model parameters are obtained from a parameter file (except for disease/contamination)<br />
+Useful for benchmarking and understanding which parts are the most comu[puationally expensive. </p>
+<h3><a class="anchor" id="pa"></a>
+parameters</h3>
+<p>All of the model parameters are obtained from a parameter file <br />
 They are all collected into a single <a class="el" href="classparameterSettings.html">parameterSettings</a> class - this includes things like<br />
 random seed, number of agents, number of steps to run for. To include a new parameter, add it to the code<br />
 in the <a class="el" href="classparameterSettings.html#a64baa7eba110c8ac37f1d6687c04deaa">parameterSettings::setDefaults</a> method in <a class="el" href="parameters_8h.html">parameters.h</a>. You can then configure it in the parameter file<br />
@@ -123,8 +123,8 @@ Multiple repeat runs with different random seeds but all other parameters the sa
 Experiments can be set up in the parameter file so that output from each run goes automatically into a separate directory, <br />
 with the paramters used stored along with the output <br />
 See the documentation in defaultParameterFile for details. </p>
-<h2><a class="anchor" id="pl"></a>
-places</h2>
+<h3><a class="anchor" id="pl"></a>
+places</h3>
 <p>Places are at present simple containers that can take any number of agents. Agents keep a flag pointing to their<br />
 current place, so that they can add contamination, or examine the contamination level inorder to become infected.<br />
 Places are also containers for the contamination, and evolve its level over time - current;y is just decreases exponentially.<br />
@@ -132,27 +132,33 @@ In a more complex model places could have substructure (e.g. a canteen, multiple
 topology (which building is next to which other, are there floors with differnt access) and geometry (how far away are <br />
 other buildings).<br />
 Note that as a result of the travel Schedule there is an implicit topology of connections between places, and an associated<br />
-implict induced social network, beyond that which woudl exist purely in households<br />
+implict induced social network, beyond that which would exist purely in households<br />
 At present there are three types of place - home, work and vehicle - others could be added (e.g. shops, hospitals). </p>
-<h2><a class="anchor" id="ag"></a>
-agents</h2>
+<h3><a class="anchor" id="ag"></a>
+agents</h3>
 <p>Agents are individual people with just a few attributes - their current place, whether they are infected or immune, <br />
 a travel schedule, and a count-down to the next travel-schedule event. They also have a list of known places <br />
 (home, work,vehicle) which can differ for each agent - in practice some of them will share a home, a workplace, or a <br />
 travel vehicle (e.g. a bus), and this allows for the spread of the disease. </p>
-<h2><a class="anchor" id="di"></a>
-disease</h2>
+<h3><a class="anchor" id="di"></a>
+disease</h3>
 <p>A single simple disease allows agents interrogate it and discover whether they to recover at a fixed average<br />
 rate, to be infected if there is contamination and to shed infection into a place, again at a rate per unit time.<br />
  </p>
-<h2><a class="anchor" id="ts"></a>
-travelSchedule</h2>
-<p>Each agent has their own copy of a travel schedule - at present, though, this can only be switched between.<br />
+<h3><a class="anchor" id="ts"></a>
+travelSchedule</h3>
+<p>Each agent has their own copy of a travel schedule - at present, though, this can only be switched between<br />
 two types - one where the agents moves between a fixed set of places, and one where they remain permanently at home<br />
 The latter allows e.g. testing against a fully mixed disease model, if home is the same place for all agents.<br />
 The schedule has an ordered list of place types representing destination for travel, and a time to be spent<br />
 in each place of a given type. Agents use the place type to select their own particular place to travel to <br />
 when the scheduled time in their current place has expired. </p>
+<h3><a class="anchor" id="moo"></a>
+model</h3>
+<p>Various different model types can be selected with different behaviours. These tend to have different configurations<br />
+of places, travel and home, and different schedules for moveing between these. For example, there is a model<br />
+that intialises all agents to exist in a single place, and with a schedule that leads them all to remain there for<br />
+the whole model execution. Switching between models uses the Factory pattern to allow different kinds of models to be chosen. </p>
 <h2><a class="anchor" id="proc"></a>
 Process Overview and Scheduling</h2>
 <h2><a class="anchor" id="up"></a>
@@ -238,7 +244,10 @@ Observation</h2>
 Implementation Details</h1>
 <h2><a class="anchor" id="init"></a>
 Initialisation</h2>
-<ul>
+<p>This is crucial to the model behaviour, as it determines the connections between places and<br />
+defines where agents regard their known places to be. In the current version, with all agents <br />
+stay in the same place, and have a single home location, or else:-<br />
+</p><ul>
 <li>First homes are created - enough for 3 agents per home.<br />
 </li>
 <li>Agents are then created and allocated 3 to a home untilt the list of agents is exhausted.<br />
@@ -253,7 +262,7 @@ Initialisation</h2>
 <li>Travel schedules are initialised with Agents on the bus heading home - every agents has the same<br />
 schedule with the exact same time spent in each place.<br />
 </li>
-<li>One agent (agent 0) is infected with the disease<br />
+<li>A (customiseable) number of agents are infected at random with the disease<br />
 </li>
 </ul>
 <h2><a class="anchor" id="inpu"></a>
