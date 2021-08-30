@@ -89,6 +89,10 @@ public:
     void setID(long i){
         ID=i;
     }
+    /** @brief get the place ID number */
+    long getID(){
+        return ID;
+    }
     /**Add an agent to the list currently here 
      @param a a pointer to the agent to be added */
     void add(agent* a){
@@ -101,9 +105,11 @@ public:
     }
     /** A function to allow agents (or any other thing that points at this place) to add contamination that spreads disease
      *  Essentially a proxy for droplets in the air or surface contamination \n
-     *  Agents that are infected will increase this level while this is their currentPlace , offsetting the decrease in \ref update */
+     *  Agents that are infected will increase this level while this is their currentPlace , offsetting the decrease in \ref update 
+     * NB negative vlues not allowed!*/
     void increaseContamination(double amount){
         contaminationLevel+=amount;
+        if (contaminationLevel<0) contaminationLevel=0;
     }
     /** A function to allow agents (or any other thing that points at this place) to completely clean up the contamination in a given place.
      * The level gets reset to zero
@@ -113,8 +119,20 @@ public:
     }
     /** Get the current level of contamination here
      *@return Floating point value of current contamination level. */
-    float getContaminationLevel(){
+    double getContaminationLevel(){
         return contaminationLevel;
+    }
+    /** Set the place to clean every step */
+    void setCleanEveryStep(){
+        cleanEveryStep=true;
+    }
+    /** Set the place *not* to clean every step */
+    void unsetCleanEveryStep(){
+        cleanEveryStep=false;
+    }
+    /** Set the rate of exponential decay of contamination */
+    void setFractionalDecrement(double f){
+        fractionalDecrement=f;
     }
     /** @brief The contamination in each place decays exponentially, or is reset to zero
      * @details. This function should be called every (uniform) time step \n

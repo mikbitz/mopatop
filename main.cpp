@@ -63,7 +63,7 @@ std::string timeStep::units="hours";
 int main(int argc, char **argv) {
 
 
-    std::cout<<"Model version 0.2"<<std::endl;
+    std::cout<<"Model version 0.3"<<std::endl;
 
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());

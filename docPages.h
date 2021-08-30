@@ -101,7 +101,8 @@
  * @subsubsection moo model
  * Various different model types can be selected with different behaviours. These tend to have different configurations\n
  * of places, travel and home, and different schedules for moveing between these. For example, there is a model\n
- * that intialises
+ * that intialises all agents to exist in a single place, and with a schedule that leads them all to remain there for\n
+ * the whole model execution. Switching between models uses the Factory pattern to allow different kinds of models to be chosen.
  * @subsection proc Process Overview and Scheduling
  * @subsection up update places
  * At the start of the timestep all places update their contamination level

@@ -31,26 +31,38 @@
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /** @brief These classes allow for the creation of agent populations and placesusing a variety of different methods 
-    @details The modelFactory itself is a virtual class - the various factories are sub-classed from this class below.\n
+    @details The modelFactory itself is a (virtual) base class - the various factories are sub-classed from this class below.\n
     These classes are expected to be called directly from a model object.
     A \ref modelFactorySelector selector then allows for a given factory to be chosen by name using a string
-     @param parameters A reference to the model parameterSettings object
-     @param agents A reference to the model object's list of agents
-     @param places* A reference to the model object's list of places*/
+*/
 class modelFactory{
 public:
     modelFactory(){;}
     virtual ~modelFactory(){;}
+    /** @brief virtual method defining the signature of the createAgents method 
+       @details This method cannot be called from this class - rather a sub-class must overload this method, which then\n
+      has to be accessed by creating a pointer to the sub-class.
+      @param parameters A reference to the model parameterSettings object
+      @param agents A reference to the model object's list of agents
+      @param places* A reference to the model object's list of places
+        */
     virtual void createAgents(parameterSettings& parameters,std::vector<agent*>& agents,std::vector<place*>& places)=0;
 };
 /** @brief Create a set of agents that all know only about one place, and remain there for all time, irespective of travel schedule\n 
     @details First the place is created, then agents, who all set this one place as home, work and transport. The latter two are set\n
     in case at some point a different travel schedule is picked, in which case attemtps to move will all still just end up in the home location\n
-     \ref modelFactorySelector knows this as "simpleOnePlace" 
-     @param parameters A reference to the model parameterSettings object
-     @param agents A reference to the model object's list of agents
-     @param places* A reference to the model object's list of places*/
-class simpleOnePlaceFactory:public modelFactory{    
+     \ref modelFactorySelector knows this as "simpleOnePlace" . Use this class by creating a pointer to the sub-class:-
+     \code
+     modelFactory* F=new simpleOnePlaceFactory();
+     \endcode
+     See \ref modelFactorySelector
+*/
+class simpleOnePlaceFactory:public modelFactory{
+    /** @brief method to overlaod the createAgents method in the base class
+       @details This method has to be accessed by creating a pointer to this sub-class.
+      @param parameters A reference to the model parameterSettings object
+      @param agents A reference to the model object's list of agents
+      @param places* A reference to the model object's list of places*/
     void createAgents(parameterSettings& parameters,std::vector<agent*>& agents,std::vector<place*>& places){
 
         std::cout<<"Starting simple one place generator..."<<std::endl;
@@ -89,11 +101,18 @@ class simpleOnePlaceFactory:public modelFactory{
     @details First the home place is created, then agents, who all set this one place as home. Work places and transport vary by agent \n
     Currently there are 3 agenst per home, 10 agents per work place, and 30 per tranport (a bus!)\n
     If the travel schedule is set to stationary, however, only the home place will get used.\n
-     \ref modelFactorySelector knows this as "simpleMobile" 
-     @param parameters A reference to the model parameterSettings object
-     @param agents A reference to the model object's list of agents
-     @param places* A reference to the model object's list of places*/
-class simpleMobileFactory:public modelFactory{    
+     \ref modelFactorySelector knows this as "simpleMobile".Use this class by creating a pointer to the sub-class:-
+     \code
+     modelFactory* F=new simpleMobileFactory();
+     \endcode
+    See \ref modelFactorySelector
+*/
+class simpleMobileFactory:public modelFactory{
+        /** @brief method to overlaod the createAgents method in the base class
+       @details This method has to be accessed by creating a pointer to this sub-class.
+      @param parameters A reference to the model parameterSettings object
+      @param agents A reference to the model object's list of agents
+      @param places* A reference to the model object's list of places*/
     void createAgents(parameterSettings& parameters, std::vector<agent*>& agents,std::vector<place*>& places){
 
         long nAgents=parameters.get<long>("run.nAgents");
@@ -152,9 +171,24 @@ class simpleMobileFactory:public modelFactory{
 
     }
 };
-
+/** @brief A class to pick one of a number of possible agent factories 
+    @details This is a static class used to define a pointer to a \ref modelFactory \n
+    Each model factory can be selected using a name passed into the \ref select method using\n
+    a string. This is used in the model class along with the \ref parameterSettings to choose\n
+    what the model initialization of places and agents will look like.
+   */
 class modelFactorySelector{
 public:
+    /** @brief choose the model factory
+     * @param name A string that names one  \ref modelFactory
+     * @return A reference to the requested  \ref modelFactory
+     * Example use:-
+     \code
+        modelFactory& F=modelFactorySelector::select(parameters("model.type"));
+        //create the distribution of agents, places and transport
+        F.createAgents(parameters,agents,places);
+     \endcode
+     */
     static modelFactory&  select(std::string name){
         modelFactory* F=nullptr;
         if (name=="simpleOnePlace")F=new simpleOnePlaceFactory();
