@@ -55,5 +55,7 @@ void agent::initTravelSchedule(parameterSettings& params){
 void agent::cough()
 {
         //breathInto(place) - scales linearly with the time spent there (using uniform timesteps) - masks could go here as a scaling on contamination increase (what about surfaces? -second contamination factor?)
+        //check first that the places has been defined properly.
+        assert(places[currentPlace]!=nullptr);
         if (diseased) places[currentPlace]->increaseContamination(disease::shedInfection());
 }

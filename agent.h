@@ -77,6 +77,7 @@ public:
     }
     /** Function to change the agent from one place's list of occupants to another - not used just at present - this function is very expensive on compute time */
     void moveTo(placeTypes location){
+        assert(places[location]!=nullptr);
         places[currentPlace]->remove(this);
         places[location]->add(this);
         currentPlace=location;
@@ -98,21 +99,22 @@ public:
             if (alive && disease::recover(r)) {diseased=false ; immune=true;}
         }
         //infection
+        assert(places[currentPlace]!=nullptr);
         if (alive && !immune && disease::infect(places[currentPlace]->getContaminationLevel(),r) )diseased=true;
         //immunity loss could go here...
     }
     /** do any things that need to be done at home */
     void atHome(){
-        if (ID==0)std::cout<<"at Home "<<std::endl;
+        //if (ID==0)std::cout<<"at Home "<<std::endl;
         
     }
     /** do any things that need to be done at work */
     void atWork(){
-        if (ID==0)std::cout<<"at Work"<<std::endl;
+        //if (ID==0)std::cout<<"at Work"<<std::endl;
     }
     /** do any things that need to be done while travelling */
     void inTransit(){
-        if (ID==0)std::cout<<"on Bus"<<std::endl;
+        //if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
     /** set up the place vector to include being at home - needs to be called when places are being created by the model class 
      @param pu a pointer to the specific home location for this agent */

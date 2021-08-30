@@ -30,7 +30,7 @@
  * @details At the moment time steps are not even in length (since the schedule values are not of the same length for work/home/transport)\n
 
 */
-
+#include"modelFactory.h"
 class model{
     /** A container to hold pointers to all the agents */
     std::vector<agent*> agents;
@@ -136,49 +136,10 @@ public:
      *  This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
      */
     void init(parameterSettings& parameters){
-        //create homes - one third of the agent number
-        for (int i=0;i<nAgents/3;i++){
-            place* p=new place(parameters);
-            places.push_back(p);
-            places[i]->setID(i);
-        }
-        //allocate 3 agents per home
-        for (int i=0;i<nAgents;i++){
-            agent* a=new agent();
-            agents.push_back(a);
-            agents[i]->ID=i;
-            agents[i]->setHome(places[i/3]);
-        }
-        //create work places - one tenth as many as agents - add them on to the end of the place list.
-        for (int i=nAgents/3;i<nAgents/3+nAgents/10;i++){
-            place* p=new place(parameters);
-            places.push_back(p);
-            places[i]->setID(i);
-        }
-        //shuffle agents so household members get different workplaces
-        random_shuffle(agents.begin(),agents.end());
-        //allocate 10 agents per workplace
-        for (int i=0;i<agents.size();i++){
-            assert(places[i/10+nAgents/3]!=0);
-            agents[i]->setWork(places[i/10+nAgents/3]);
-        }
-        //create buses - one thirtieth since 30 agents per bus. add them to the and of the place list again
-        for (int i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
-            place* p=new place(parameters);
-            places.push_back(p);
-            places[i]->setID(i);
-        }
-        //allocate 30 agents per bus - since agents aren't shuffled, those in similar workplaces will tend to share buses. 
-        for (int i=0;i<agents.size();i++){
-            assert(places[i/30+nAgents/3+nAgents/10]!=0);
-            agents[i]->setTransport(places[i/30+nAgents/3+nAgents/10]);
-        }
-        //set up travel schedule - same for every agent at the moment - so agents are all on the bus, at work or at home at exactly the same times
-        for (int i=0;i<agents.size();i++){
-            agents[i]->initTravelSchedule(parameters);
-        }
-        //report intialization to std out 
-        std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
+        modelFactory& F=modelFactorySelector::select(parameters("model.type"));
+        //create the distribution of agents, places and transport
+        F.createAgents(parameters,agents,places);
+
         //set off the disease! - some number of agents (default 1) is infected at the start.
         //shuffle things so agents are allocated at random
         random_shuffle(agents.begin(),agents.end());
