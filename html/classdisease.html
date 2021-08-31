@@ -85,6 +85,8 @@ $(function() {
 Collaboration diagram for disease:</div>
 <div class="dyncontent">
 <div class="center"><img src="classdisease__coll__graph.png" border="0" usemap="#disease_coll__map" alt="Collaboration graph"/></div>
+<map name="disease_coll__map" id="disease_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -105,20 +107,26 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a232f17f3926a118cf5e2a7d091c4318e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a232f17f3926a118cf5e2a7d091c4318e">die</a> (<a class="el" href="classrandomizer.html">randomizer</a> &amp;r)</td></tr>
 <tr class="memdesc:a232f17f3926a118cf5e2a7d091c4318e"><td class="mdescLeft">&#160;</td><td class="mdescRight">die with a fixed chance in a given timestep  <a href="#a232f17f3926a118cf5e2a7d091c4318e">More...</a><br /></td></tr>
 <tr class="separator:a232f17f3926a118cf5e2a7d091c4318e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d1d09ac1b3f48e2c1e3db798392bc06"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a8d1d09ac1b3f48e2c1e3db798392bc06">infect</a> (float contamination, <a class="el" href="classrandomizer.html">randomizer</a> &amp;r)</td></tr>
-<tr class="separator:a8d1d09ac1b3f48e2c1e3db798392bc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a0dea757c15ccfb19227ffa3b94c6f67d">shedInfection</a> ()</td></tr>
-<tr class="memdesc:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="mdescLeft">&#160;</td><td class="mdescRight">contribute infection to the place if diseased  <a href="#a0dea757c15ccfb19227ffa3b94c6f67d">More...</a><br /></td></tr>
-<tr class="separator:a0dea757c15ccfb19227ffa3b94c6f67d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ab7f36b892ae2eb2845523f533245dc"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a4ab7f36b892ae2eb2845523f533245dc">infect</a> (double contamination, <a class="el" href="classrandomizer.html">randomizer</a> &amp;r)</td></tr>
+<tr class="separator:a4ab7f36b892ae2eb2845523f533245dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27eced953d5ec766014ebe22a3d8c114"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a27eced953d5ec766014ebe22a3d8c114">shedInfection</a> ()</td></tr>
+<tr class="memdesc:a27eced953d5ec766014ebe22a3d8c114"><td class="mdescLeft">&#160;</td><td class="mdescRight">contribute infection to the place if diseased  <a href="#a27eced953d5ec766014ebe22a3d8c114">More...</a><br /></td></tr>
+<tr class="separator:a27eced953d5ec766014ebe22a3d8c114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0137358dd01129d688613aa2a4dabb4"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#ac0137358dd01129d688613aa2a4dabb4">getRecoveryRate</a> ()</td></tr>
+<tr class="separator:ac0137358dd01129d688613aa2a4dabb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aeadad59e314208f4b9d87232bd2ab7"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a0aeadad59e314208f4b9d87232bd2ab7">getDeathRate</a> ()</td></tr>
+<tr class="separator:a0aeadad59e314208f4b9d87232bd2ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdded76e093b639a626fddafe991548d"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#abdded76e093b639a626fddafe991548d">getShed</a> ()</td></tr>
+<tr class="separator:abdded76e093b639a626fddafe991548d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:af4bf8070d12d8520054a25abb3fe27eb"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#af4bf8070d12d8520054a25abb3fe27eb">recoveryRate</a> =0.0008</td></tr>
-<tr class="separator:af4bf8070d12d8520054a25abb3fe27eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3074a4bb5159116fe3ec0aabcbd30e18"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a3074a4bb5159116fe3ec0aabcbd30e18">infectionShedLoad</a> =0.001</td></tr>
-<tr class="separator:a3074a4bb5159116fe3ec0aabcbd30e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adef4443c7136b04620813e80ca24b183"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#adef4443c7136b04620813e80ca24b183">deathRate</a> =0.</td></tr>
-<tr class="separator:adef4443c7136b04620813e80ca24b183"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2181efec0a0b0be526e00b0536fcd9c7"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a2181efec0a0b0be526e00b0536fcd9c7">recoveryRate</a> =0.0004</td></tr>
+<tr class="separator:a2181efec0a0b0be526e00b0536fcd9c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac968f1f659399ba2adc14dd93b6c2fed"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#ac968f1f659399ba2adc14dd93b6c2fed">infectionShedLoad</a> =0.002</td></tr>
+<tr class="separator:ac968f1f659399ba2adc14dd93b6c2fed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a614b955019492fa323d4863b31ab94d8"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdisease.html#a614b955019492fa323d4863b31ab94d8">deathRate</a> =0.1</td></tr>
+<tr class="separator:a614b955019492fa323d4863b31ab94d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple static class to represent a very very simple disease. </p>
@@ -194,8 +202,86 @@ but they can still be set in the constructor using a parameter file. Configure t
 
 </div>
 </div>
-<a id="a8d1d09ac1b3f48e2c1e3db798392bc06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d1d09ac1b3f48e2c1e3db798392bc06">&#9670;&nbsp;</a></span>infect()</h2>
+<a id="a0aeadad59e314208f4b9d87232bd2ab7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aeadad59e314208f4b9d87232bd2ab7">&#9670;&nbsp;</a></span>getDeathRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double disease::getDeathRate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>return the current death rate </p>
+
+</div>
+</div>
+<a id="ac0137358dd01129d688613aa2a4dabb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0137358dd01129d688613aa2a4dabb4">&#9670;&nbsp;</a></span>getRecoveryRate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double disease::getRecoveryRate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>return the current recovery rate </p>
+
+</div>
+</div>
+<a id="abdded76e093b639a626fddafe991548d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdded76e093b639a626fddafe991548d">&#9670;&nbsp;</a></span>getShed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double disease::getShed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>return the current infectionShedLoad </p>
+
+</div>
+</div>
+<a id="a4ab7f36b892ae2eb2845523f533245dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ab7f36b892ae2eb2845523f533245dc">&#9670;&nbsp;</a></span>infect()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,7 +292,7 @@ but they can still be set in the constructor using a parameter file. Configure t
         <tr>
           <td class="memname">static bool disease::infect </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>contamination</em>, </td>
         </tr>
         <tr>
@@ -271,8 +357,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 
 </div>
 </div>
-<a id="a0dea757c15ccfb19227ffa3b94c6f67d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0dea757c15ccfb19227ffa3b94c6f67d">&#9670;&nbsp;</a></span>shedInfection()</h2>
+<a id="a27eced953d5ec766014ebe22a3d8c114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27eced953d5ec766014ebe22a3d8c114">&#9670;&nbsp;</a></span>shedInfection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,7 +367,7 @@ but they can still be set in the constructor using a parameter file. Configure t
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static float disease::shedInfection </td>
+          <td class="memname">static double disease::shedInfection </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -300,8 +386,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="adef4443c7136b04620813e80ca24b183"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adef4443c7136b04620813e80ca24b183">&#9670;&nbsp;</a></span>deathRate</h2>
+<a id="a614b955019492fa323d4863b31ab94d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a614b955019492fa323d4863b31ab94d8">&#9670;&nbsp;</a></span>deathRate</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -310,7 +396,7 @@ but they can still be set in the constructor using a parameter file. Configure t
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float disease::deathRate =0.</td>
+          <td class="memname">double disease::deathRate =0.1</td>
         </tr>
       </table>
   </td>
@@ -323,8 +409,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 
 </div>
 </div>
-<a id="a3074a4bb5159116fe3ec0aabcbd30e18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3074a4bb5159116fe3ec0aabcbd30e18">&#9670;&nbsp;</a></span>infectionShedLoad</h2>
+<a id="ac968f1f659399ba2adc14dd93b6c2fed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac968f1f659399ba2adc14dd93b6c2fed">&#9670;&nbsp;</a></span>infectionShedLoad</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -333,7 +419,7 @@ but they can still be set in the constructor using a parameter file. Configure t
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float disease::infectionShedLoad =0.001</td>
+          <td class="memname">double disease::infectionShedLoad =0.002</td>
         </tr>
       </table>
   </td>
@@ -346,8 +432,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 
 </div>
 </div>
-<a id="af4bf8070d12d8520054a25abb3fe27eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4bf8070d12d8520054a25abb3fe27eb">&#9670;&nbsp;</a></span>recoveryRate</h2>
+<a id="a2181efec0a0b0be526e00b0536fcd9c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2181efec0a0b0be526e00b0536fcd9c7">&#9670;&nbsp;</a></span>recoveryRate</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -356,7 +442,7 @@ but they can still be set in the constructor using a parameter file. Configure t
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float disease::recoveryRate =0.0008</td>
+          <td class="memname">double disease::recoveryRate =0.0004</td>
         </tr>
       </table>
   </td>

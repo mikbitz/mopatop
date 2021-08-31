@@ -85,6 +85,8 @@ $(function() {
 Collaboration diagram for timeStep:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtimeStep__coll__graph.png" border="0" usemap="#timeStep_coll__map" alt="Collaboration graph"/></div>
+<map name="timeStep_coll__map" id="timeStep_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,10 +99,17 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab1b90a8ce6c3efd6ccb92eb08a98a1a0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ab1b90a8ce6c3efd6ccb92eb08a98a1a0">setTimeStepUnit</a> (std::string u)</td></tr>
+<tr class="memdesc:ab1b90a8ce6c3efd6ccb92eb08a98a1a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the timestep unit  <a href="#ab1b90a8ce6c3efd6ccb92eb08a98a1a0">More...</a><br /></td></tr>
+<tr class="separator:ab1b90a8ce6c3efd6ccb92eb08a98a1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56874870aaf366cd705aa94771108c30"><td class="memItemLeft" align="right" valign="top"><a id="a56874870aaf366cd705aa94771108c30"></a>
 static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a56874870aaf366cd705aa94771108c30">timeStepUnit</a> ()</td></tr>
 <tr class="memdesc:a56874870aaf366cd705aa94771108c30"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the timestep unit currently in use <br /></td></tr>
 <tr class="separator:a56874870aaf366cd705aa94771108c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a982215dcfe223c07dc64fb6e89b0f393"><td class="memItemLeft" align="right" valign="top"><a id="a982215dcfe223c07dc64fb6e89b0f393"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a982215dcfe223c07dc64fb6e89b0f393">setdeltaT</a> (double sec)</td></tr>
+<tr class="memdesc:a982215dcfe223c07dc64fb6e89b0f393"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the timestep value in seconds - so that the user need not know that this is the representation <br /></td></tr>
+<tr class="separator:a982215dcfe223c07dc64fb6e89b0f393"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43049a6eb016155b1b2152b2b62f42bc"><td class="memItemLeft" align="right" valign="top"><a id="a43049a6eb016155b1b2152b2b62f42bc"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a43049a6eb016155b1b2152b2b62f42bc">deltaT</a> ()</td></tr>
 <tr class="memdesc:a43049a6eb016155b1b2152b2b62f42bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the timestep value in seconds - so that the user need not know that this is the representation <br /></td></tr>
@@ -166,10 +175,10 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a9f73e251627267f7da240ef3113871d9">TimeStepsPerHour</a> ()</td></tr>
 <tr class="memdesc:a9f73e251627267f7da240ef3113871d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of timesteps that would fit into an aah <br /></td></tr>
 <tr class="separator:a9f73e251627267f7da240ef3113871d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7f66eb5743229eaf6fd1fefa0a5a2a7"><td class="memItemLeft" align="right" valign="top"><a id="ad7f66eb5743229eaf6fd1fefa0a5a2a7"></a>
-static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ad7f66eb5743229eaf6fd1fefa0a5a2a7">TimeStepsPerMinutes</a> ()</td></tr>
-<tr class="memdesc:ad7f66eb5743229eaf6fd1fefa0a5a2a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of timesteps that would fit into a minute <br /></td></tr>
-<tr class="separator:ad7f66eb5743229eaf6fd1fefa0a5a2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a084c180738625fcf9770ad7bcc8a880e"><td class="memItemLeft" align="right" valign="top"><a id="a084c180738625fcf9770ad7bcc8a880e"></a>
+static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a084c180738625fcf9770ad7bcc8a880e">TimeStepsPerMinute</a> ()</td></tr>
+<tr class="memdesc:a084c180738625fcf9770ad7bcc8a880e"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of timesteps that would fit into a minute <br /></td></tr>
+<tr class="separator:a084c180738625fcf9770ad7bcc8a880e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7a12c8669c253929f46bc27cf86857a"><td class="memItemLeft" align="right" valign="top"><a id="ad7a12c8669c253929f46bc27cf86857a"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ad7a12c8669c253929f46bc27cf86857a">TimeStepsPerSecond</a> ()</td></tr>
 <tr class="memdesc:ad7a12c8669c253929f46bc27cf86857a"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of timesteps that would fit into a second <br /></td></tr>
@@ -178,11 +187,11 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a6b0f346c527da85bef5a0cce0fad24a3"><td class="memItemLeft" align="right" valign="top"><a id="a6b0f346c527da85bef5a0cce0fad24a3"></a>
-static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a6b0f346c527da85bef5a0cce0fad24a3">years</a> =24*30*3600*365</td></tr>
+static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a6b0f346c527da85bef5a0cce0fad24a3">years</a> =24*3600*365</td></tr>
 <tr class="memdesc:a6b0f346c527da85bef5a0cce0fad24a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of seconds in a year <br /></td></tr>
 <tr class="separator:a6b0f346c527da85bef5a0cce0fad24a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac631606ffdebf816ea632bf11574f283"><td class="memItemLeft" align="right" valign="top"><a id="ac631606ffdebf816ea632bf11574f283"></a>
-static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ac631606ffdebf816ea632bf11574f283">months</a> =24*30*3600</td></tr>
+static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ac631606ffdebf816ea632bf11574f283">months</a> =24*3600*30</td></tr>
 <tr class="memdesc:ac631606ffdebf816ea632bf11574f283"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of seconds in a month <br /></td></tr>
 <tr class="separator:ac631606ffdebf816ea632bf11574f283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a079afa6dd8436680d9c8e10a16d79fea"><td class="memItemLeft" align="right" valign="top"><a id="a079afa6dd8436680d9c8e10a16d79fea"></a>
@@ -213,7 +222,7 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="textblock"><p>A static class to set up the real-world times that apply to a timestep. </p>
 <p>The idea here is that the code will use a timestep in seconds, but the user need not know this.<br />
  They can set values using a chosen time unit, and get the right number of timesteps in those using this class<br />
- The value of any time can be set in the relevant units by using the static variables e.g. to get a time of 8 hours </p><div class="fragment"><div class="line">*<span class="keywordtype">double</span> time_needed=8*<a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>()</div></div><!-- fragment --><p> Similarly, to add the current value of the timestep to a given time, use timestep::dt </p><div class="fragment"><div class="line"><span class="keywordtype">double</span> time= 4* <a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>() + <a class="code" href="classtimeStep.html#a43049a6eb016155b1b2152b2b62f42bc">timeStep::deltaT</a>()</div></div><!-- fragment --><p> Configure this once at the start of the code by creating an object and feeding it the <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> parameters;</div><div class="line">parameters.<a class="code" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a>(<span class="stringliteral">&quot;../defaultParameterFile&quot;</span>);</div><div class="line"><a class="code" href="classtimeStep.html">timeStep</a> t(parameters);</div></div><!-- fragment --><p> Note that currently months (leap years) are not properly handled as they are all assumed to be 30 days (365 days), and dates are not available! </p>
+ The value of any time can be set in the relevant units by using the static variables e.g. to get a time of 8 hours </p><div class="fragment"><div class="line">*<span class="keywordtype">double</span> time_needed=8*<a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>()</div></div><!-- fragment --><p> Similarly, to add the current value of the timestep to a given time, use timestep::deltaT() </p><div class="fragment"><div class="line"><span class="keywordtype">double</span> time= 4* <a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>() + <a class="code" href="classtimeStep.html#a43049a6eb016155b1b2152b2b62f42bc">timeStep::deltaT</a>()</div></div><!-- fragment --><p> Configure this once at the start of the code by creating an object and feeding it the <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> parameters;</div><div class="line">parameters.<a class="code" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a>(<span class="stringliteral">&quot;../defaultParameterFile&quot;</span>);</div><div class="line"><a class="code" href="classtimeStep.html">timeStep</a> t(parameters);</div></div><!-- fragment --><p> Note that currently months (leap years) are not properly handled as they are all assumed to be 30 days (365 days), and dates are not available! </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab74c72ae0a0a9ed1c64ae8006f58d7af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab74c72ae0a0a9ed1c64ae8006f58d7af">&#9670;&nbsp;</a></span>timeStep() <span class="overload">[1/2]</span></h2>
@@ -329,6 +338,40 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 <p>report the number of months that would be represented by a timestep </p>
 <p>e.g if the time step is one day, report 1./30 (so not really months!) </p>
+
+</div>
+</div>
+<a id="ab1b90a8ce6c3efd6ccb92eb08a98a1a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1b90a8ce6c3efd6ccb92eb08a98a1a0">&#9670;&nbsp;</a></span>setTimeStepUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void timeStep::setTimeStepUnit </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>set the timestep unit </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>a string, one of years,months,days,hours,minutes,seconds </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
