@@ -9,7 +9,7 @@
 *\code
 *double time_needed=8*timeStep::hour()
 *\endcode
-* Similarly, to add the current value of the timestep to a given time, use timestep::dt
+* Similarly, to add the current value of the timestep to a given time, use timestep::deltaT()
 * \code
 * double time= 4* timeStep::hour() + timeStep::deltaT()
 * \endcode
@@ -44,7 +44,7 @@ public:
     timeStep(){
         units="hours";
         years   = 24*3600*365;//365 days in a year!!!
-        months  = 24*30*3600;//every month has 30 days- so not exactly 12 of these "months" in a year
+        months  = 24*3600*30;//every month has 30 days- so not exactly 12 of these "months" in a year
         days    = 24*3600;
         hours   = 3600;
         minutes = 60;
@@ -62,7 +62,7 @@ public:
         dt        = p.get<double>("timeStep.dt");
         //set dt so that units are consistently seconds in this class
         //this way any other class can get the actual time represented by dt using the access functions below
-        if        (units=="years"){ //number timeSteps in one year = timeStep::years/timeStep::dt, and so on
+        if        (units=="years"){ //number of timeSteps in one year = timeStep::years/timeStep::dt, and so on
             dt          *= years;
         }else  if (units=="months"){
             dt          *= months;
@@ -79,6 +79,23 @@ public:
             exit(1);
         }
             
+    }
+    //------------------------------------------------------------------------
+    /** @brief set the timestep unit 
+        @param u a string, one of years,months,days,hours,minutes,seconds*/
+    static void setTimeStepUnit(std::string u){
+        //ensure lower case and no spaces
+        std::for_each(u.begin(), u.end(), [](char & c) {c = std::tolower(c);});
+        u.erase(std::remove_if(u.begin(), u.end(), ::isspace), u.end());
+        //since dt is always in seconds, no re-scaling is needed - the unit is really only needed at setup
+
+        if (u=="years" ||  u=="months"|| u=="days"|| u=="hours"|| u=="minutes"|| u=="seconds"){
+            units=u;
+        }else {
+            std::cout<<"Invalid time units: "<<units<<" in timeStep.h"<<std::endl;
+            exit(1);
+        }
+        
     }
     //------------------------------------------------------------------------
     /** @brief report the timestep unit currently in use */
@@ -180,7 +197,7 @@ public:
     }
     //------------------------------------------------------------------------
     /** @brief report the number of timesteps that would fit into a minute */
-    static double TimeStepsPerMinutes(){
+    static double TimeStepsPerMinute(){
         return minutes/dt;
     }
     //------------------------------------------------------------------------
