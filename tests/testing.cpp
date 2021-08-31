@@ -13,7 +13,47 @@
 #include "../agent.h"
 #include "../randomizer.h"
 #include<math.h>
+class randomTest : public CppUnit::TestFixture  {
+    place* p;
+public:
+    //automatically create a test suite to add tests to
+    CPPUNIT_TEST_SUITE( randomTest );
+    //add tests defined below
+    CPPUNIT_TEST( testSeed );
+    CPPUNIT_TEST( testDistrib );
+    CPPUNIT_TEST_SUITE_END();
+    //define tests
+    void testSeed()
+    {
+        randomizer r,k;
+        CPPUNIT_ASSERT(r.number()==k.number());
+        r.setSeed(10);
+        CPPUNIT_ASSERT(r.number()!=k.number());
+        //k still out of step with r
+        k.setSeed(10);
+        CPPUNIT_ASSERT(r.number()!=k.number());
+        randomizer u(10);
+        u.number();//u should now be in step with k
+        CPPUNIT_ASSERT(u.number()==k.number());
+        //now both r and k back in step
+        k.setSeed(1019377);r.setSeed(1019377);
+        CPPUNIT_ASSERT(r.number()==k.number());
+    }
+    void testDistrib()
+    {
+        randomizer r(17);
+        bool f=true;
+        //test strictly between 0 and 1
+        for (int i=0;i<10000;i++)f=f&&(r.number()<1)&&(r.number()>0);
+        CPPUNIT_ASSERT(f);
+        //mean should converge on 0.5?? or at least sqrt n fluctuations?
+        double p=0,q=0;
+        for (int i=0;i<10000;i++)p+=r.number()/10000;
+        for (int i=0;i<1000000;i++)q+=r.number()/1000000;
+        CPPUNIT_ASSERT(std::abs(0.5-q)<std::abs(0.5-p));
+    }
 
+};
 class diseaseTest : public CppUnit::TestFixture  {
     place* p;
 public:
@@ -188,7 +228,13 @@ public:
         CPPUNIT_ASSERT(p->getNumberOfOccupants()==1);
         p->remove(a);
         CPPUNIT_ASSERT(p->getNumberOfOccupants()==0);
+        //safe to remove non existent agent?
+        p->remove(a);
+        CPPUNIT_ASSERT(p->getNumberOfOccupants()==0);
         agent* b=new agent();
+        p->remove(b);
+        CPPUNIT_ASSERT(p->getNumberOfOccupants()==0);
+        //now multiple (non-unique!) adds
         p->add(a);
         p->add(a);
         p->add(b);
@@ -198,7 +244,9 @@ public:
         p->add(a);
         a->setID(10);
         b->setID(15);
+        //test the method to show number of occupants (default no listing)
         p->show();
+        //list occupant IDs
         p->show(true);
         
     }
@@ -219,6 +267,7 @@ int main(){
   //add test suites
   runner.addTest( placeTest::suite() );
   runner.addTest( diseaseTest::suite() );
+  runner.addTest( randomTest::suite() );
   //run all test suites
   runner.run();
   return 0;
