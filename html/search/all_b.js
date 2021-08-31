@@ -10,5 +10,5 @@ var searchData=
   ['places_2eh',['places.h',['../places_8h.html',1,'']]],
   ['placetypes',['placeTypes',['../classagent.html#ae4db97692e30c160de5af4be250d06b4',1,'agent']]],
   ['printparameters',['printParameters',['../classparameterSettings.html#a6d2835e01d1155565d81d5974cb257da',1,'parameterSettings']]],
-  ['process_5fdisease',['process_disease',['../classagent.html#a0d78e171145c665b59c6cb604b467cab',1,'agent']]]
+  ['process_5fdisease',['process_disease',['../classagent.html#abae30dc0c04cac106bba533d28963ae6',1,'agent']]]
 ];

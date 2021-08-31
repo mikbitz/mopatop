@@ -1,4 +1,5 @@
 #include"agent.h"
+#include"places.h"
 #include "travelschedule.h"
 /* A program to model agents moving between places
     Copyright (C) 2021  Mike Bithell
@@ -28,6 +29,25 @@
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+void agent::moveTo(placeTypes location){
+        assert(places[location]!=nullptr);
+        places[currentPlace]->remove(this);
+        places[location]->add(this);
+        currentPlace=location;
+}
+//------------------------------------------------------------------------
+void agent::process_disease(randomizer& r){
+        //recovery
+        if (diseased){
+            if (disease::die(r))              {diseased=false ; immune=false; alive=false;}
+            if (alive && disease::recover(r)) {diseased=false ; immune=true;}
+        }
+        //infection
+        assert(places[currentPlace]!=nullptr);
+        if (alive && !immune && disease::infect(places[currentPlace]->getContaminationLevel(),r) )diseased=true;
+        //immunity loss could go here...
+}
+//------------------------------------------------------------------------
 //defined here so as to be after travelSchedule
 void agent::update()
 {
@@ -46,12 +66,14 @@ void agent::update()
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver 
         
 }
+//------------------------------------------------------------------------
 void agent::initTravelSchedule(parameterSettings& params){       
    schedule=new  travelSchedule();
    schedule->switchTo(params("schedule.type"));
    currentPlace=schedule->getNextLocation();
    counter=schedule->getTimeAtCurrentPlace();
 }
+//------------------------------------------------------------------------
 void agent::cough()
 {
         //breathInto(place) - scales linearly with the time spent there (using uniform timesteps) - masks could go here as a scaling on contamination increase (what about surfaces? -second contamination factor?)

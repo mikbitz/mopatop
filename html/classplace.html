@@ -84,6 +84,8 @@ $(function() {
 Collaboration diagram for place:</div>
 <div class="dyncontent">
 <div class="center"><img src="classplace__coll__graph.png" border="0" usemap="#place_coll__map" alt="Collaboration graph"/></div>
+<map name="place_coll__map" id="place_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -97,6 +99,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a47cd6ea0d6ed7e76a62c8fc667f82f1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a47cd6ea0d6ed7e76a62c8fc667f82f1f">setID</a> (long i)</td></tr>
 <tr class="memdesc:a47cd6ea0d6ed7e76a62c8fc667f82f1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the place ID number  <a href="#a47cd6ea0d6ed7e76a62c8fc667f82f1f">More...</a><br /></td></tr>
 <tr class="separator:a47cd6ea0d6ed7e76a62c8fc667f82f1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaadd1c5c3784763f8f0e58ff4581ccfc"><td class="memItemLeft" align="right" valign="top"><a id="aaadd1c5c3784763f8f0e58ff4581ccfc"></a>
+long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#aaadd1c5c3784763f8f0e58ff4581ccfc">getID</a> ()</td></tr>
+<tr class="memdesc:aaadd1c5c3784763f8f0e58ff4581ccfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the place ID number <br /></td></tr>
+<tr class="separator:aaadd1c5c3784763f8f0e58ff4581ccfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d9b53a0aa38224ab82514b4aae39817"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a0d9b53a0aa38224ab82514b4aae39817">add</a> (<a class="el" href="classagent.html">agent</a> *a)</td></tr>
 <tr class="separator:a0d9b53a0aa38224ab82514b4aae39817"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac81d6af0bf64305a3a4a843d7d176920"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#ac81d6af0bf64305a3a4a843d7d176920">remove</a> (<a class="el" href="classagent.html">agent</a> *a)</td></tr>
@@ -105,8 +111,20 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a44c505d367808c9c0085cf8d8ece5f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8725d893d278015c93e8d5982ab2e505"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a8725d893d278015c93e8d5982ab2e505">cleanContamination</a> ()</td></tr>
 <tr class="separator:a8725d893d278015c93e8d5982ab2e505"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f376daee9d0bd3bf8a9c66a98b4df66"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a1f376daee9d0bd3bf8a9c66a98b4df66">getContaminationLevel</a> ()</td></tr>
-<tr class="separator:a1f376daee9d0bd3bf8a9c66a98b4df66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cd4d893d8454e592e7ddb51d5e1361a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a5cd4d893d8454e592e7ddb51d5e1361a">getContaminationLevel</a> ()</td></tr>
+<tr class="separator:a5cd4d893d8454e592e7ddb51d5e1361a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d369d8a0e72df6dcf3130257beb583c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a4d369d8a0e72df6dcf3130257beb583c">setCleanEveryStep</a> ()</td></tr>
+<tr class="separator:a4d369d8a0e72df6dcf3130257beb583c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dac90c1421f17b825e90226f828d453"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a1dac90c1421f17b825e90226f828d453">unsetCleanEveryStep</a> ()</td></tr>
+<tr class="separator:a1dac90c1421f17b825e90226f828d453"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02b0ebee74a8d3c969d948b56b97a4d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a02b0ebee74a8d3c969d948b56b97a4d0">getCleanEveryStep</a> ()</td></tr>
+<tr class="separator:a02b0ebee74a8d3c969d948b56b97a4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ce5bb20312980753edad928e2de5f98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a2ce5bb20312980753edad928e2de5f98">setFractionalDecrement</a> (double f)</td></tr>
+<tr class="separator:a2ce5bb20312980753edad928e2de5f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a219a9774749dcdce472941ae9aba38c5"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a219a9774749dcdce472941ae9aba38c5">getFractionalDecrement</a> ()</td></tr>
+<tr class="separator:a219a9774749dcdce472941ae9aba38c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b63724c8a26893ea3e45f23a9268e80"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a9b63724c8a26893ea3e45f23a9268e80">getNumberOfOccupants</a> ()</td></tr>
+<tr class="separator:a9b63724c8a26893ea3e45f23a9268e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af75692e262dbc627001eef78bc887bb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#af75692e262dbc627001eef78bc887bb7">update</a> ()</td></tr>
 <tr class="memdesc:af75692e262dbc627001eef78bc887bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The contamination in each place decays exponentially, or is reset to zero.  <a href="#af75692e262dbc627001eef78bc887bb7">More...</a><br /></td></tr>
 <tr class="separator:af75692e262dbc627001eef78bc887bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -258,8 +276,8 @@ but here is set to a fixed number </p>
 
 </div>
 </div>
-<a id="a1f376daee9d0bd3bf8a9c66a98b4df66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f376daee9d0bd3bf8a9c66a98b4df66">&#9670;&nbsp;</a></span>getContaminationLevel()</h2>
+<a id="a02b0ebee74a8d3c969d948b56b97a4d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02b0ebee74a8d3c969d948b56b97a4d0">&#9670;&nbsp;</a></span>getCleanEveryStep()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,7 +286,33 @@ but here is set to a fixed number </p>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float place::getContaminationLevel </td>
+          <td class="memname">bool place::getCleanEveryStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Report whether the place cleans every step </p>
+
+</div>
+</div>
+<a id="a5cd4d893d8454e592e7ddb51d5e1361a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cd4d893d8454e592e7ddb51d5e1361a">&#9670;&nbsp;</a></span>getContaminationLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double place::getContaminationLevel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -281,6 +325,58 @@ but here is set to a fixed number </p>
 </table>
 </div><div class="memdoc">
 <p>Get the current level of contamination here </p><dl class="section return"><dt>Returns</dt><dd>Floating point value of current contamination level. </dd></dl>
+
+</div>
+</div>
+<a id="a219a9774749dcdce472941ae9aba38c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a219a9774749dcdce472941ae9aba38c5">&#9670;&nbsp;</a></span>getFractionalDecrement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double place::getFractionalDecrement </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>report the rate of exponential decay of contamination </p>
+
+</div>
+</div>
+<a id="a9b63724c8a26893ea3e45f23a9268e80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b63724c8a26893ea3e45f23a9268e80">&#9670;&nbsp;</a></span>getNumberOfOccupants()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned place::getNumberOfOccupants </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Report number of agents currentl in the occupant list </p>
 
 </div>
 </div>
@@ -308,7 +404,7 @@ but here is set to a fixed number </p>
 </table>
 </div><div class="memdoc">
 <p>A function to allow agents (or any other thing that points at this place) to add contamination that spreads disease Essentially a proxy for droplets in the air or surface contamination <br />
-Agents that are infected will increase this level while this is their currentPlace , offsetting the decrease in <a class="el" href="classplace.html#af75692e262dbc627001eef78bc887bb7">update</a> </p>
+ Agents that are infected will increase this level while this is their currentPlace , offsetting the decrease in <a class="el" href="classplace.html#af75692e262dbc627001eef78bc887bb7">update</a> NB negative vlues not allowed! </p>
 
 </div>
 </div>
@@ -341,6 +437,59 @@ Agents that are infected will increase this level while this is their currentPla
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a4d369d8a0e72df6dcf3130257beb583c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d369d8a0e72df6dcf3130257beb583c">&#9670;&nbsp;</a></span>setCleanEveryStep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void place::setCleanEveryStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the place to clean every step </p>
+
+</div>
+</div>
+<a id="a2ce5bb20312980753edad928e2de5f98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ce5bb20312980753edad928e2de5f98">&#9670;&nbsp;</a></span>setFractionalDecrement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void place::setFractionalDecrement </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the rate of exponential decay of contamination </p>
 
 </div>
 </div>
@@ -397,6 +546,32 @@ Agents that are infected will increase this level while this is their currentPla
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a1dac90c1421f17b825e90226f828d453"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dac90c1421f17b825e90226f828d453">&#9670;&nbsp;</a></span>unsetCleanEveryStep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void place::unsetCleanEveryStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the place <em>not</em> to clean every step </p>
 
 </div>
 </div>

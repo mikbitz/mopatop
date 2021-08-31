@@ -1,6 +1,6 @@
 #ifndef AGENT_H_INCLUDED
 #define AGENT_H_INCLUDED
-#include"places.h"
+
 #include"disease.h"
 /* A program to model agents moving between places
     Copyright (C) 2021  Mike Bithell
@@ -34,6 +34,7 @@
 //Forward declaration of travelSchedule class, so agents know it exists - even though the travelSchedule also needs to know about agents
 
 class travelSchedule;
+class place;
 /**
  * @brief The main agent class - each agent represents one person
  * @details Agents move from place to place, using the travelSchedule. If they have the disease, the cough at each place they visit and contaminate it \n
@@ -75,34 +76,24 @@ public:
         //this has to be the same size as the placeTypes enum
         places.resize(3);
     }
-    /** Function to change the agent from one place's list of occupants to another - not used just at present - this function is very expensive on compute time */
-    void moveTo(placeTypes location){
-        assert(places[location]!=nullptr);
-        places[currentPlace]->remove(this);
-        places[location]->add(this);
-        currentPlace=location;
-    }
+    /** @brief Function to change the agent from one place's list of occupants to another 
+     *  @details- not used just at present - this function is very expensive on compute time 
+     see \ref agent.cpp for definition*/
+    void moveTo(placeTypes);
     //the next three functions are defined after the travelSchedule, as they need to know the scheduel details before they can be set up
     /** Move through the travel schedule, and then do any actions specific to places (apart from disease) \n
-     needs to be called every timestep */
+     needs to be called every timestep see \ref agent.cpp for definition*/
     void update();
     /** @brief initialise the travel schedule  - this sets up the list of places that will be visited, in order 
-        @param params A reference to a parameterSettings object  */
+        @param params A reference to a parameterSettings object  
+        see \ref agent.cpp for definition*/
     void initTravelSchedule(parameterSettings& );
-    /** if you have the disease, contaminate the current place  - call every timestep */
+    /** @brief if you have the disease, contaminate the current place  - call every timestep \n
+     see \ref agent.cpp for definition*/
     void cough();
-    /** call the disease functions, specified for this agent */
-    void process_disease(randomizer& r){
-        //recovery
-        if (diseased){
-            if (disease::die(r))              {diseased=false ; immune=false; alive=false;}
-            if (alive && disease::recover(r)) {diseased=false ; immune=true;}
-        }
-        //infection
-        assert(places[currentPlace]!=nullptr);
-        if (alive && !immune && disease::infect(places[currentPlace]->getContaminationLevel(),r) )diseased=true;
-        //immunity loss could go here...
-    }
+    /** @brief call the disease functions, specified for this agent \n
+     see \ref agent.cpp for definition*/
+    void process_disease(randomizer& );
     /** do any things that need to be done at home */
     void atHome(){
         //if (ID==0)std::cout<<"at Home "<<std::endl;

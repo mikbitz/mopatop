@@ -1,9 +1,9 @@
 <map id="model.h" name="model.h">
-<area shape="rect" id="node2" href="$modelFactory_8h.html" title="File containing the definition of the agent class. " alt="" coords="193,80,305,107"/>
-<area shape="rect" id="node3" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="253,155,318,181"/>
-<area shape="rect" id="node4" href="$places_8h.html" title="File containing the deinfition of the places class. " alt="" coords="179,229,250,256"/>
-<area shape="rect" id="node17" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="274,229,353,256"/>
-<area shape="rect" id="node7" href="$timestep_8h_source.html" title="timestep.h" alt="" coords="271,304,353,331"/>
-<area shape="rect" id="node9" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="267,379,365,405"/>
-<area shape="rect" id="node18" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers. " alt="" coords="378,304,475,331"/>
+<area shape="rect" id="node2" href="$modelFactory_8h.html" title="File containing the definition of the agent class. " alt="" coords="173,80,285,107"/>
+<area shape="rect" id="node3" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="151,155,216,181"/>
+<area shape="rect" id="node17" href="$places_8h.html" title="File containing the deinfition of the places class. " alt="" coords="251,155,321,181"/>
+<area shape="rect" id="node4" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="123,229,201,256"/>
+<area shape="rect" id="node5" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers. " alt="" coords="60,304,157,331"/>
+<area shape="rect" id="node8" href="$timestep_8h_source.html" title="timestep.h" alt="" coords="198,304,281,331"/>
+<area shape="rect" id="node10" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="323,379,422,405"/>
 </map>

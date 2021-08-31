@@ -35,26 +35,14 @@
 #include"timereporter.h"
 #include"randomizer.h"
 #include"randomizerSingleton.h"
-#include"places.h"
-#include"timestep.h"
 #include"agent.h"
 #include "model.h"
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //default variables from static classes - these are here to keep the linker happy
 //should really be in the header files, but at the moment the linker complains about multiple definitions
-float disease::recoveryRate=0.0008;
-float disease::deathRate=0.;
-float disease::infectionShedLoad=0.001;
-//setup dt to be 1 hour if nothing else is specified
-double timeStep::years=24*30*3600*365;
-double timeStep::months=24*30*3600;
-double timeStep::days=24*3600;
-double timeStep::hours=3600;
-double timeStep::minutes=60;
-double timeStep::seconds=1;
-double timeStep::dt=3600;
-std::string timeStep::units="hours";
+
+
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /** set up and run the model 

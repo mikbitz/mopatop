@@ -43,6 +43,7 @@
  * Seems to be ok on multiple threads, but takes something of a hit from being only one RNG across them - would be faster if each\n
  * thread had its own RNG but this seems tricky to get right across multiple runs,
 */
+#include<iostream>
 class randomizer {
 public:
     /** The distribution to be generated is uniform from 0 to 1 */

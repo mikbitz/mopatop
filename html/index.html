@@ -89,7 +89,7 @@ with a fixed chance per timestep, and are subsequently immune. </p>
 <h2><a class="anchor" id="Compiling"></a>
 Compiling the model</h2>
 <p>On a linux system with g++ installed just do <br />
-g++ -o agentModel -O3 -fopenmp -std=c++17 <a class="el" href="agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ...">agent.cpp</a> <a class="el" href="places_8cpp.html" title="File containing methods that require definitions of other classes to be available. ">places.cpp</a> <a class="el" href="main_8cpp.html" title="File containing some classes and method definitions and the main function. ">main.cpp</a><br />
+g++ -o agentModel -O3 -fopenmp -std=c++17 timestep.cpp disease.cpp <a class="el" href="agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ...">agent.cpp</a> <a class="el" href="places_8cpp.html" title="File containing methods that require definitions of other classes to be available. ">places.cpp</a> <a class="el" href="main_8cpp.html" title="File containing some classes and method definitions and the main function. ">main.cpp</a><br />
 Note the current version requires g++&gt;= and c++17 in order for the filesystem function to work (for creating new directories etc.)<br />
 If using openmp (parallelised loops) then set the number of threads in the <a class="el" href="classparameterSettings.html" title="ParameterSettings is a class designed to hold all the parameters for the model. ">parameterSettings</a> class.<br />
 Note the number of cores to be used must be &lt;= number supported by the local machine! </p>
