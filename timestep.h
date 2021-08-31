@@ -87,6 +87,11 @@ public:
     }
     //------------------------------------------------------------------------
     /** @brief report the timestep value in seconds - so that the user need not know that this is the representation  */
+    static void setdeltaT(double sec){
+        dt=sec;
+    }
+    //------------------------------------------------------------------------
+    /** @brief report the timestep value in seconds - so that the user need not know that this is the representation  */
     static double deltaT(){
         return dt;
     }

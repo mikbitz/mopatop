@@ -1,4 +1,4 @@
 #include"disease.h"
-float disease::recoveryRate=0.0008;
-float disease::deathRate=0.;
-float disease::infectionShedLoad=0.001;
+double disease::recoveryRate=0.0004;
+double disease::deathRate=0.1;
+double disease::infectionShedLoad=0.002;

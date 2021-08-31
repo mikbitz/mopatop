@@ -125,6 +125,11 @@ public:
     void setTransport(place* pu){
         places[vehicle]=pu;
     }
+    /** @brief set agent ID number  
+     @param i a long integer */
+    void setID(long i){
+        ID=i;
+    }
 
 };
 #endif // AGENT_H_INCLUDED

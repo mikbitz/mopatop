@@ -42,11 +42,11 @@
 */
 class disease{
     /** per timestep chance of recovery */
-    static float recoveryRate;
+    static double recoveryRate;
     /** per timestep contribution to contamination at a site when infected */
-    static float infectionShedLoad;
+    static double infectionShedLoad;
     /** per timestep chance of dying */
-    static float deathRate;
+    static double deathRate;
 public:
     /** @brief default constructor sets some reasonable values for parameters */
     disease(){
@@ -77,14 +77,19 @@ public:
     /** contract disease if contamination is large enough (note it could be >1) - again called very time step
      * @param r A random number generator created by the \ref model class
      * @param contamination The disease load in the current place */
-    static bool infect(float contamination,randomizer& r){
-      if (contamination >r.number()) return true; else return false;
+    static bool infect(double contamination,randomizer& r){
+      if (contamination*timeStep::deltaT()/timeStep::hour() >r.number()) return true; else return false;
     }
     /** @brief contribute infection to the place if diseased 
      * @details called every timestep by infected agents - shedding rate is assumed to be *PER HOUR*
      @return infectionshedLoad - the current amount of infection that an agent emits per timestep into the environment */
-    static float shedInfection(){return infectionShedLoad*timeStep::deltaT()/timeStep::hour();}
-
+    static double shedInfection(){return infectionShedLoad*timeStep::deltaT()/timeStep::hour();}
+    /** return the current recovery rate */
+    static double getRecoveryRate(){return recoveryRate;}
+    /** return the current death rate */
+    static double getDeathRate(){return deathRate;}
+    /** return the current infectionShedLoad */
+    static double getShed(){return infectionShedLoad;}
 };
 
 #endif // DISEASE_H_INCLUDED
