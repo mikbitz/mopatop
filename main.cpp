@@ -50,8 +50,8 @@
  @param argv The argument values - expected to be just the name of the parameter file */
 int main(int argc, char **argv) {
 
-
-    std::cout<<"Model version 0.3"<<std::endl;
+    std::string version="0.3";
+    std::cout<<"Model version "<<version<<std::endl;
 
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
     //set up the parameters using an optional command-line argument
     //first set defaults
     parameterSettings parameters;
-    parameters.setParameter("model.version","v0.2");
+    parameters.setParameter("model.version",version);
     //now read from a file
     if (argc ==1){
         std::cout<<"Using default parameter file"<<std::endl;

@@ -536,6 +536,10 @@ public:
         CPPUNIT_ASSERT(timeStep::timeStepUnit()=="seconds");
         //file asks for timesteps of 3600 seconds
         CPPUNIT_ASSERT(timeStep::deltaT()==timeStep::hour());
+        disease d(p);
+        CPPUNIT_ASSERT(disease::getRecoveryRate()==0.0008);
+        CPPUNIT_ASSERT(disease::getDeathRate()==0.001);
+        CPPUNIT_ASSERT(disease::getShed()==0.001);
     }
 };
 //------------------------------------------------------------------------

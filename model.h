@@ -80,7 +80,7 @@ public:
         timeReporter::showInterval("Initialisation took: ", start,end);
     }
     //------------------------------------------------------------------------
-    /** @brief destructor - make sure output files are porperly closed */
+    /** @brief destructor - make sure output files are properly closed */
     ~model(){
         output.close();
         randoms.clear();
