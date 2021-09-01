@@ -102,7 +102,7 @@ public:
         if (!std::filesystem::exists(_filePrefix))std::filesystem::create_directories(_filePrefix);
         std::string runNumber= parameters.get("experiment.run.number");
         std::string m00="/run_";
-        if (runNumber!=""){
+        if (runNumber!="-1"){
             m00=m00+runNumber;
         }else{
             //auto-increment run number if run.number is not set

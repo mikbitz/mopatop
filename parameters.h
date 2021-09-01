@@ -45,9 +45,9 @@ class parameterSettings{
      *  @details to avoid c++ reserved words just the first letter is kept - e.g. i==int, d==double, f==float - see the \ref get methods */
     enum typeID{s,f,d,u,l,i,b};
     /** @brief a map from parameter names to parameter values, all currently strings */
-    std::map<std::string,std::string>parameters;
+    std::map<std::string,std::string>_parameters;
     /** @brief stores the expected type of the relevant parameter */
-    std::map<std::string,typeID>parameterType;
+    std::map<std::string,typeID>_parameterType;
     /** @brief name of the input parameter file used */
     std::string _parameterFileName;
     
@@ -55,9 +55,9 @@ class parameterSettings{
     /** @brief function to check whether a requiested parameter name exists.\n
      *        If not exit the program.        */
     bool is_valid(std::string s){
-        auto it = parameters.find(s);
+        auto it = _parameters.find(s);
         //check that the parameter exist
-        if(it == parameters.end()){
+        if(it == _parameters.end()){
             std::cout<<"Invalid parameter: "<<s<<std::endl ;
             exit(1);
         }
@@ -75,8 +75,8 @@ public:
     //------------------------------------------------------------------------
     /** @brief Read in any values from the parameter file
      *    @param inputFileName A string giving the path to the input file. The code will fail if the file does not exist (but it could be empty) 
-     *    @details The parameter file is a set of lines with name:value pairs on each line, using ":" to separate the two.\n
-     *    lines beginning with # are ignored and can be used for comments. Any line with no ":" will also be ignored \n
+     *    @details The parameter file is a set of lines with name:value pairs on each line, using "=" to separate the two.\n
+     *    lines beginning with # are ignored and can be used for comments. Any line with no "=" will also be ignored \n
      *       needs to be called from \ref main to ensure settings are captured */
     void readParameters(std::string inputFileName){
         _parameterFileName=inputFileName;
@@ -94,7 +94,7 @@ public:
             //need to check end of file again as the above getline may have actually gone past it, if previous read got to the file end
             if (!infile.eof() && test[ 0 ] != '#'){
                 
-                //separator between parameter name and value is :
+                //separator between parameter name and value is =
                 auto pos = line.find('=');
                 
                 //ignore if no "=" is found - npos is the end of the string
@@ -105,7 +105,7 @@ public:
                     value=line.substr(pos+1);
                     //set the parameter if it exists
                     if (is_valid(label)){
-                        parameters[label]=value;
+                        _parameters[label]=value;
                     }
                 }
                 
@@ -122,49 +122,49 @@ public:
     void setDefaults(){
         std::cout<<"Setting default parameters..."<<std::endl;
         //total time steps to run for
-        parameters["run.nSteps"]="1";parameterType["run.nSteps"]=i;
+        _parameters["run.nSteps"]="1";_parameterType["run.nSteps"]=i;
         //number of agents to create
-        parameters["run.nAgents"]="600";parameterType["run.nAgents"]=l;
+        _parameters["run.nAgents"]="600";_parameterType["run.nAgents"]=l;
         //number of OMP threads to use. increase the number here if using openmp to parallelise any loops.
         //Note number of threads needs to be <= to number of cores/threads supported on the local machine
-        parameters["run.nThreads"]="1";parameterType["run.nThreads"]=i;
+        _parameters["run.nThreads"]="1";_parameterType["run.nThreads"]=i;
         //random seed
-        parameters["run.randomSeed"]="0";parameterType["run.randomSeed"]=i;
+        _parameters["run.randomSeed"]="0";_parameterType["run.randomSeed"]=i;
         //the units for the timestep - valid are years,months,days,hours,minutes or seconds
-        parameters["timeStep.units"]="hours";parameterType["timeStep.units"]=s;
+        _parameters["timeStep.units"]="hours";_parameterType["timeStep.units"]=s;
         //the actual time duration of each step in the above units
-        parameters["timeStep.dt"]="1";parameterType["timeStep.dt"]=d;
+        _parameters["timeStep.dt"]="1";_parameterType["timeStep.dt"]=d;
         //path to the output file
-        parameters["outputFile"]="diseaseSummary.csv";parameterType["outputFile"]=s;
+        _parameters["outputFile"]="diseaseSummary.csv";_parameterType["outputFile"]=s;
         //path to location of output files
-        parameters["experiment.output.directory"]="./output";parameterType["experiment.output.directory"]=s;
+        _parameters["experiment.output.directory"]="./output";_parameterType["experiment.output.directory"]=s;
         //a name for all runs in this experiment
-        parameters["experiment.name"]="default";parameterType["experiment.name"]=s;
+        _parameters["experiment.name"]="default";_parameterType["experiment.name"]=s;
         //the number of the current run
-        parameters["experiment.run.number"]="";parameterType["experiment.run.number"]=i;
+        _parameters["experiment.run.number"]="-1";_parameterType["experiment.run.number"]=i;
         //brief indication of what this experiment is about
-        parameters["experiment.description"]="The default parameter set was used";parameterType["experiment.description"]=s;
+        _parameters["experiment.description"]="The default parameter set was used";_parameterType["experiment.description"]=s;
         //String to use when numbering runs - this default value allows for max. 10,000 runs numbered 0000 to 9999
-        parameters["experiment.run.prefix"]="10000";parameterType["experiment.run.prefix"]=i;
+        _parameters["experiment.run.prefix"]="10000";_parameterType["experiment.run.prefix"]=i;
         //The model version should be set by the main program, once the parameter defaults have been set
-        parameters["model.version"]="Unknown";parameterType["model.version"]=s;
+        _parameters["model.version"]="Unknown";_parameterType["model.version"]=s;
         //Number of times the run will be repeated with the same parameter set but different random seeds
-        parameters["run.nRepeats"]="1";parameterType["run.nRepeats"]=i;
+        _parameters["run.nRepeats"]="1";_parameterType["run.nRepeats"]=i;
         //Number of times the run will be repeated with the same parameter set but different random seeds
-        parameters["run.randomIncrement"]="1";parameterType["run.randomIncrement"]=i;
+        _parameters["run.randomIncrement"]="1";_parameterType["run.randomIncrement"]=i;
         //settings for the simplest possible disease parameterisation
-        parameters["disease.simplistic.recoveryRate"]="0.0007";parameterType["disease.simplistic.recoveryRate"]=d;
-        parameters["disease.simplistic.deathRate"]="0.0007";parameterType["disease.simplistic.deathRate"]=d;
-        parameters["disease.simplistic.infectionShedLoad"]="0.001";parameterType["disease.simplistic.infectionShedLoad"]=d;
-        parameters["disease.simplistic.initialNumberInfected"]="0.01";parameterType["disease.simplistic.initialNumberInfected"]=i;
+        _parameters["disease.simplistic.recoveryRate"]="0.0007";_parameterType["disease.simplistic.recoveryRate"]=d;
+        _parameters["disease.simplistic.deathRate"]="0.0007";_parameterType["disease.simplistic.deathRate"]=d;
+        _parameters["disease.simplistic.infectionShedLoad"]="0.001";_parameterType["disease.simplistic.infectionShedLoad"]=d;
+        _parameters["disease.simplistic.initialNumberInfected"]="1";_parameterType["disease.simplistic.initialNumberInfected"]=i;
         //decrement rate for contamination in all places
-        parameters["places.disease.simplistic.fractionalDecrement"]="1";parameterType["places.disease.simplistic.fractionalDecrement"]=d;
+        _parameters["places.disease.simplistic.fractionalDecrement"]="1";_parameterType["places.disease.simplistic.fractionalDecrement"]=d;
         //if set this flag will cause contamination to be reset to zero every timestep
-        parameters["places.cleanContamination"]="false";parameterType["places.cleanContamination"]=b;
+        _parameters["places.cleanContamination"]="false";_parameterType["places.cleanContamination"]=b;
         //if set this flag will cause contamination to be reset to zero every timestep
-        parameters["schedule.type"]="mobile";parameterType["schedule.type"]=s;
+        _parameters["schedule.type"]="mobile";_parameterType["schedule.type"]=s;
         //if set this flag will cause contamination to be reset to zero every timestep
-        parameters["model.type"]="simpleMobile";parameterType["model.type"]=s;
+        _parameters["model.type"]="simpleMobile";_parameterType["model.type"]=s;
     }
     //------------------------------------------------------------------------
     /** @brief reset the value of an existing parameter
@@ -178,7 +178,7 @@ public:
     void setParameter(std::string name,std::string value){
         std::cout<<"Setting parameter: "<<name<<" to: "<<value<<std::endl;
         is_valid(name);
-        parameters[name]=value;
+        _parameters[name]=value;
     }
     //--------------------------------------------------------------------------------------------
     /** @brief Print the parameters read from the parameter file to stdout - trying to look reasonably lined up */
@@ -186,9 +186,10 @@ public:
         std::cout<< "Input Parameter File: "<<_parameterFileName      <<std::endl;
         std::cout<< "----------------------------- "            <<std::endl;
         std::cout<< "Successfully found parameters "            <<std::endl;
-        for (auto& [label,value]:parameters){
+        for (auto& [label,value]:_parameters){
+            //for some reason label does not come out as a std::string.
             std::string name=label;
-            while(name.length()<30)name+=" ";
+            while(name.length()<50)name+=" ";
             std::cout<<name<<"  "<<value<<std::endl;
         }
         std::cout<< "----------------------------- "            <<std::endl;
@@ -201,14 +202,15 @@ public:
     void saveParameters(std::string path){
         std::fstream f;
         f.open(path+"RunParameters",std::ios::out);
+        std::cout<< "Saving Parameters To: "<<path+  "RunParameters"    <<std::endl;
         std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
         f<<"Run started at: "<<ctime(&t)<<std::endl;
         f<< "----------------------------- "            <<std::endl;
         f<< "Input Parameter File: "<<_parameterFileName     <<std::endl;
         f<< "----------------------------- "            <<std::endl;
-        for (auto& [label,value]:parameters){
+        for (auto& [label,value]:_parameters){
             std::string name=label;
-            while(name.length()<30)name+=" ";
+            while(name.length()<50)name+=" ";
             f<<name<<"  "<<value<<std::endl;
         }
         f<< "----------------------------- "            <<std::endl;
@@ -226,7 +228,7 @@ public:
      */
     std::string operator ()(std::string s){
         is_valid(s);
-        return parameters[s];
+        return _parameters[s];
     }
     //------------------------------------------------------------------------
     /** @brief allow parameters to be returned with a given type conversion, in this case double\n
@@ -248,8 +250,8 @@ public:
         //check the parameter name exists
         is_valid(s);
         //make sure the type is as expected
-        assert(parameterType[s]==d);
-        return stod(parameters[s]);
+        assert(_parameterType[s]==d);
+        return stod(_parameters[s]);
     }
     //------------------------------------------------------------------------
     /** @brief Specialisation of get for floats\n
@@ -259,8 +261,8 @@ public:
     typename std::enable_if<std::is_same<T, float>::value, T>::type
     get(std::string s){
         is_valid(s);
-        assert(parameterType[s]==f);
-        return stof(parameters[s]);
+        assert(_parameterType[s]==f);
+        return stof(_parameters[s]);
     }
     //------------------------------------------------------------------------
     /** @brief Specialisation of get for int\n
@@ -270,8 +272,8 @@ public:
     typename std::enable_if<std::is_same<T, int>::value, T>::type
     get(std::string s){
         is_valid(s);
-        assert(parameterType[s]==i);
-        return stoi(parameters[s]);
+        assert(_parameterType[s]==i);
+        return stoi(_parameters[s]);
     }
     //------------------------------------------------------------------------
     /** @brief Specialisation of get for long integers\n
@@ -281,8 +283,8 @@ public:
     typename std::enable_if<std::is_same<T, long>::value, T>::type
     get(std::string s){
         is_valid(s);
-        assert(parameterType[s]==l || parameterType[s]==i);
-        return stol(parameters[s]);
+        assert(_parameterType[s]==l || _parameterType[s]==i);
+        return stol(_parameters[s]);
     }
     //------------------------------------------------------------------------
     /** @brief Specialisation of get for unsigned integers\n
@@ -292,25 +294,24 @@ public:
     typename std::enable_if<std::is_same<T, unsigned>::value, T>::type
     get(std::string s){
         is_valid(s);
-        assert(parameterType[s]==u);
-        //seems there is no conversion just to unsigned, so use unsigned long
-        return stoul(parameters[s]);
+        assert(_parameterType[s]==u);
+        //seems there is no conversion just to unsigned, so use unsigned long 
+        return stoul(_parameters[s]);
     }
     //------------------------------------------------------------------------
     /** @brief Specialisation of get for boolean values integers\n
      *  @param s the name of the parameter requested.
-     *  @details treat the conversion to boll carefully in case the user input something like "True "
+     *  @details treat the conversion to bool carefully in case the user input something like "True "
      */
     template <typename T>
     typename std::enable_if<std::is_same<T, bool>::value, T>::type
     get(std::string s){
         is_valid(s);
-        assert(parameterType[s]==b);
-        std::string lval=parameters[s];
+        assert(_parameterType[s]==b);
+        std::string lval=_parameters[s];
         //make sure the string is all lower case and has no leadin gor trainling spaces
         std::for_each(lval.begin(), lval.end(), [](char & c) {c = std::tolower(c);});
         lval.erase(std::remove_if(lval.begin(), lval.end(), ::isspace), lval.end());
-        //seems there is no conversion just to unsigned, so use unsigned long
         if (lval=="true") return true;
         return false;
     }
@@ -320,7 +321,7 @@ public:
      */
     std::string get(std::string s){
         is_valid(s);
-        return parameters[s];
+        return _parameters[s];
     }
 };
 #endif // PARAMETERS_H_INCLUDED

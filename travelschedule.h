@@ -67,13 +67,24 @@ public:
     /** @brief Change the travel schedule, picking hte new one by name
      *@param s The anme fo the schedule to be used from now on */
     void switchTo(std::string s){
+        if (s=="mobile")mobile();
+        else if (s=="stationary")stationary();
+        else {
+            std::cout<<"Unknown schedule name in switchTo: "<<s<<std::endl;            
+        }
+        
+    }
+    /** @brief remove all data for the current schedule
+     *  @details This leads to an emrpty schedule - it is assumed that the detination should therefore be fixed as home \n
+        Time spent there will be reported as zero */
+    void cleanOldSchedule(){
         destinations.clear();
         timeSpent.clear();
-        if (s=="mobile")mobile();
-        if (s=="stationary")stationary();
+        currentDestination=agent::home;
     }
     /** @brief A schedule where the agent just stays at home the entire time */
     void stationary(){
+        cleanOldSchedule();
         destinations.push_back(agent::home);
         timeSpent.push_back(24*timeStep::hour());
         currentDestination=agent::home;
@@ -81,6 +92,7 @@ public:
     }
     /** @brief A schedule where the agents moves between work and home using their chosen vehicle */
     void mobile(){
+        cleanOldSchedule();
         destinations.push_back(agent::vehicle);//load people into busstop (or transportHub) rather than direct into bus? - here they would wait
         timeSpent.push_back(1*timeStep::hour());
         destinations.push_back(agent::work);//trip chaining? how to handle trips across multiple transport hubs? how to do schools (do parents load up childer?) and shops? - use a stack to modify default schedule!
@@ -89,18 +101,25 @@ public:
         timeSpent.push_back(1*timeStep::hour());
         destinations.push_back(agent::home);
         timeSpent.push_back(14*timeStep::hour());
-        currentDestination=agent::home;
+        currentDestination=agent::vehicle;//on the way home...
         index=2;//start on the bus to home - call to initTravelSchedule in agent constructor will move the agent to home for the first step
     }
     /** advance the schedule to the next place and return the placeType for that place */
     agent::placeTypes getNextLocation(){
-        index++;
-        index=index%destinations.size();
-        currentDestination=destinations[index];
+        if (destinations.size()>0){
+         index++;
+         index=index%destinations.size();
+         currentDestination=destinations[index];
+        }
+        return currentDestination;
+    }
+    /** return the placeType for the current target */
+    agent::placeTypes getCurrentDestination(){
         return currentDestination;
     }
     /** report the time spent at the current place */
     double getTimeAtCurrentPlace(){
+        if (destinations.size()==0) return 0;
         return timeSpent[index];
     }
 
