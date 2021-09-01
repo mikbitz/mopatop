@@ -37,7 +37,7 @@
  * All parameters are strings (with the idea that arbitrary strings can be read from a parameter file), so need to be converted at point of use - \n
  * however, returning different data types depending on parameter name is a little tricky...this is done by having an overloaded \ref get method\n
  * the correct get method can then be called depending on the the parameter type required (e.g. int, float).\n
- * The possible types are kept by the typeID enum - for each parameter, the type can then be stored in \ref parameterType - these are \n
+ * The possible types are kept by the typeID enum - for each parameter, the type can then be stored in \ref _parameterType - these are \n
  * then checked by the get method to make sure that there is no unexpected attempt to convert the type incorrectly.
  */
 class parameterSettings{

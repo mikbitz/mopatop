@@ -173,14 +173,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:af44a6618aa323c3ff58052e65c654f17"><td class="memItemLeft" align="right" valign="top"><a id="af44a6618aa323c3ff58052e65c654f17"></a>
-std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#af44a6618aa323c3ff58052e65c654f17">parameters</a></td></tr>
-<tr class="memdesc:af44a6618aa323c3ff58052e65c654f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">a map from parameter names to parameter values, all currently strings <br /></td></tr>
-<tr class="separator:af44a6618aa323c3ff58052e65c654f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a052e5248bd9ada02541c544e2d43011c"><td class="memItemLeft" align="right" valign="top"><a id="a052e5248bd9ada02541c544e2d43011c"></a>
-std::map&lt; std::string, <a class="el" href="classparameterSettings.html#a1dfc46877043d607fb9bfce38ccf503a">typeID</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a052e5248bd9ada02541c544e2d43011c">parameterType</a></td></tr>
-<tr class="memdesc:a052e5248bd9ada02541c544e2d43011c"><td class="mdescLeft">&#160;</td><td class="mdescRight">stores the expected type of the relevant parameter <br /></td></tr>
-<tr class="separator:a052e5248bd9ada02541c544e2d43011c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a100dbf4a44a1da206f7c23ed5378f2f9"><td class="memItemLeft" align="right" valign="top"><a id="a100dbf4a44a1da206f7c23ed5378f2f9"></a>
+std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a100dbf4a44a1da206f7c23ed5378f2f9">_parameters</a></td></tr>
+<tr class="memdesc:a100dbf4a44a1da206f7c23ed5378f2f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">a map from parameter names to parameter values, all currently strings <br /></td></tr>
+<tr class="separator:a100dbf4a44a1da206f7c23ed5378f2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34d42a57cde9921a9e9862c0e78dc60e"><td class="memItemLeft" align="right" valign="top"><a id="a34d42a57cde9921a9e9862c0e78dc60e"></a>
+std::map&lt; std::string, <a class="el" href="classparameterSettings.html#a1dfc46877043d607fb9bfce38ccf503a">typeID</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a34d42a57cde9921a9e9862c0e78dc60e">_parameterType</a></td></tr>
+<tr class="memdesc:a34d42a57cde9921a9e9862c0e78dc60e"><td class="mdescLeft">&#160;</td><td class="mdescRight">stores the expected type of the relevant parameter <br /></td></tr>
+<tr class="separator:a34d42a57cde9921a9e9862c0e78dc60e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50f97659e1e9d5344acbd7a1cfcf5279"><td class="memItemLeft" align="right" valign="top"><a id="a50f97659e1e9d5344acbd7a1cfcf5279"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classparameterSettings.html#a50f97659e1e9d5344acbd7a1cfcf5279">_parameterFileName</a></td></tr>
 <tr class="memdesc:a50f97659e1e9d5344acbd7a1cfcf5279"><td class="mdescLeft">&#160;</td><td class="mdescRight">name of the input parameter file used <br /></td></tr>
@@ -192,7 +192,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 All parameters are strings (with the idea that arbitrary strings can be read from a parameter file), so need to be converted at point of use - <br />
 however, returning different data types depending on parameter name is a little tricky...this is done by having an overloaded <a class="el" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a> method<br />
 the correct get method can then be called depending on the the parameter type required (e.g. int, float).<br />
-The possible types are kept by the typeID enum - for each parameter, the type can then be stored in <a class="el" href="classparameterSettings.html#a052e5248bd9ada02541c544e2d43011c">parameterType</a> - these are <br />
+The possible types are kept by the typeID enum - for each parameter, the type can then be stored in <a class="el" href="classparameterSettings.html#a34d42a57cde9921a9e9862c0e78dc60e">_parameterType</a> - these are <br />
 then checked by the get method to make sure that there is no unexpected attempt to convert the type incorrectly. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a1dfc46877043d607fb9bfce38ccf503a"></a>
@@ -475,7 +475,7 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
-<p>treat the conversion to boll carefully in case the user input something like "True " </p>
+<p>treat the conversion to bool carefully in case the user input something like "True " </p>
 
 </div>
 </div>
@@ -580,8 +580,8 @@ This version returns only the string variant of the parmeter value </td></tr>
   </table>
   </dd>
 </dl>
-<p>The parameter file is a set of lines with name:value pairs on each line, using ":" to separate the two.<br />
- lines beginning with # are ignored and can be used for comments. Any line with no ":" will also be ignored <br />
+<p>The parameter file is a set of lines with name:value pairs on each line, using "=" to separate the two.<br />
+ lines beginning with # are ignored and can be used for comments. Any line with no "=" will also be ignored <br />
  needs to be called from <a class="el" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> to ensure settings are captured </p>
 
 </div>
@@ -696,7 +696,7 @@ cannot be converted to the requested type. </p>
   </dd>
 </dl>
 <p>for example to change the random seed when a new model is created <br />
-</p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html#af44a6618aa323c3ff58052e65c654f17">parameters</a>.setParameter(<span class="stringliteral">&quot;randomSeed&quot;</span>,<span class="stringliteral">&quot;10&quot;</span>);</div></div><!-- fragment --><p> Note that there is currently no type checking! The will lead to a fail later if the wrong <a class="el" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a> method is called </p>
+</p><div class="fragment"><div class="line">parameters.<a class="code" href="classparameterSettings.html#a0b10412299911ad090c87c97a5daf471">setParameter</a>(<span class="stringliteral">&quot;randomSeed&quot;</span>,<span class="stringliteral">&quot;10&quot;</span>);</div></div><!-- fragment --><p> Note that there is currently no type checking! The will lead to a fail later if the wrong <a class="el" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a> method is called </p>
 
 </div>
 </div>

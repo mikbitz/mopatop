@@ -94,6 +94,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aea45c3659278ab142d90463ecc6fe86c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#aea45c3659278ab142d90463ecc6fe86c">switchTo</a> (std::string s)</td></tr>
 <tr class="memdesc:aea45c3659278ab142d90463ecc6fe86c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the travel schedule, picking hte new one by name.  <a href="#aea45c3659278ab142d90463ecc6fe86c">More...</a><br /></td></tr>
 <tr class="separator:aea45c3659278ab142d90463ecc6fe86c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff63b2b6b523733e16ed022293a3c082"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#aff63b2b6b523733e16ed022293a3c082">cleanOldSchedule</a> ()</td></tr>
+<tr class="memdesc:aff63b2b6b523733e16ed022293a3c082"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove all data for the current schedule  <a href="#aff63b2b6b523733e16ed022293a3c082">More...</a><br /></td></tr>
+<tr class="separator:aff63b2b6b523733e16ed022293a3c082"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a3d237f39039c229e6e0afe97b795e0"><td class="memItemLeft" align="right" valign="top"><a id="a6a3d237f39039c229e6e0afe97b795e0"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a6a3d237f39039c229e6e0afe97b795e0">stationary</a> ()</td></tr>
 <tr class="memdesc:a6a3d237f39039c229e6e0afe97b795e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A schedule where the agent just stays at home the entire time. <br /></td></tr>
@@ -104,6 +107,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a2c33cd7e99fe6f9b0c85097ca7fb1e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d765167c1c2ea9cddc291adf82150fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">agent::placeTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a5d765167c1c2ea9cddc291adf82150fc">getNextLocation</a> ()</td></tr>
 <tr class="separator:a5d765167c1c2ea9cddc291adf82150fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae106420a9c0094fb9fe2697823ccbe22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">agent::placeTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#ae106420a9c0094fb9fe2697823ccbe22">getCurrentDestination</a> ()</td></tr>
+<tr class="separator:ae106420a9c0094fb9fe2697823ccbe22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5b38b8f1a9398b22502a8fef115391b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#ae5b38b8f1a9398b22502a8fef115391b">getTimeAtCurrentPlace</a> ()</td></tr>
 <tr class="separator:ae5b38b8f1a9398b22502a8fef115391b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -158,6 +163,61 @@ Index is set to point to the last place so that a call to getNextLocation will r
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aff63b2b6b523733e16ed022293a3c082"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff63b2b6b523733e16ed022293a3c082">&#9670;&nbsp;</a></span>cleanOldSchedule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void travelSchedule::cleanOldSchedule </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>remove all data for the current schedule </p>
+<p>This leads to an emrpty schedule - it is assumed that the detination should therefore be fixed as home <br />
+Time spent there will be reported as zero </p>
+
+</div>
+</div>
+<a id="ae106420a9c0094fb9fe2697823ccbe22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae106420a9c0094fb9fe2697823ccbe22">&#9670;&nbsp;</a></span>getCurrentDestination()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">agent::placeTypes</a> travelSchedule::getCurrentDestination </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>return the placeType for the current target </p>
+
+</div>
+</div>
 <a id="a5d765167c1c2ea9cddc291adf82150fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5d765167c1c2ea9cddc291adf82150fc">&#9670;&nbsp;</a></span>getNextLocation()</h2>
 
