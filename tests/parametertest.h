@@ -1,23 +1,56 @@
 #ifndef PARAMETERTEST_H_INCLUDED
 #define PARAMETERTEST_H_INCLUDED
+/* A program to test the model of agents moving between places
+    Copyright (C) 2021  Mike Bithell
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    */
+
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-//fixtures allow setting up and tearing down of objects
-
-
+/**
+ * @file parametertest.h 
+ * @brief File containing the definition of the parameterTest class for testing the parameter file
+ * 
+ * @author Mike Bithell
+ * @date 17/08/2021
+ **/
+/** @brief Check parameter defaults are as expected
+ *  @details Setting of parameters and ability to read from and write out to a file are checked. \n
+ *  The input file is called testParameterFile, and the output RunParameters.\n
+ *  Text showing parameter settings is also displayed on stdout.
+ */
 class parameterTest : public CppUnit::TestFixture  {
 
 public:
-    //automatically create a test suite to add tests to
+    /** @brief automatically create a test suite to add tests to  */
     CPPUNIT_TEST_SUITE( parameterTest );
-    //add tests defined below
+    /** @brief constructor shoudl set defaults for all parameters */
     CPPUNIT_TEST( testDefaultConstructor );
+    /** @brief parameters should be settable */
     CPPUNIT_TEST( testSet );
+    /** @brief operator () returns string value */
     CPPUNIT_TEST( testOperator );
+    /** @brief read and write parameter settings */
     CPPUNIT_TEST( testReadWrite );
+    /** @brief Test settings in other objects */
     CPPUNIT_TEST( testSetUpObjects );
+    /** @brief End test suite */
     CPPUNIT_TEST_SUITE_END();
-    //define tests
+    /** @brief The default constructor calls the setdefaults function
+        @details The values here are copied directly from that function. Also tests that the get<> methods\n
+        correctly retrieve parmeters of the right datatype */
     void testDefaultConstructor()
     {
         parameterSettings p;
@@ -45,6 +78,8 @@ public:
         CPPUNIT_ASSERT(p.get("schedule.type")=="mobile");
         CPPUNIT_ASSERT(p.get("model.type")=="simpleMobile");
     }
+    /** @brief Check settings of individual parameters works
+     *   @details make sure that the string values in set get retrieved as correct data values */
     void testSet()
     {
         parameterSettings p;
@@ -55,6 +90,8 @@ public:
         CPPUNIT_ASSERT(p.get<int>("experiment.run.number")==5);
 
     }
+    /** @brief The operator () should return the string value corresponding to any parameter
+     *   @details check strings are as expected from defaults */
     void testOperator()
     {
         parameterSettings p;
@@ -63,6 +100,9 @@ public:
         CPPUNIT_ASSERT(p("places.cleanContamination")=="false");
 
     }
+    /** @brief Check input and output of parameter settings
+     *   @details The default output file is called RunParameters - here just the path is set to the current directory.\n
+     *    A few of the values from the input file testParameterFile are checked where they differ from defaults */
     void testReadWrite()
     {
         parameterSettings p;
@@ -77,6 +117,8 @@ public:
         CPPUNIT_ASSERT(p.get<int>("run.randomIncrement")==57);
 
     }
+        /** @brief Check some of teh other classes are getting teh right input from the parameterSettings objects
+     *   @details In this case the static timeStep and disease, as well as the places */
     void testSetUpObjects(){
         parameterSettings p;
         p.readParameters("./testParameterFile");

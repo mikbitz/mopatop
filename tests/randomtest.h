@@ -22,14 +22,14 @@
 //------------------------------------------------------------------------
 /**
  * @file randomtest.h 
- * @brief File containing the definition of the randomtest class for the random number wrapper
+ * @brief File containing the definition of the randomTest class for the random number wrapper
  * 
  * @author Mike Bithell
  * @date 17/08/2021
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-/** @brief Test some of teh random number generator behaviour
+/** @brief Test some of the random number generator behaviour
  *  @details Check the random seed setting works, and try to see whether the distribution of random numbers
  *  seems sensible.*/
 class randomTest : public CppUnit::TestFixture  {

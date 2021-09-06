@@ -75,6 +75,11 @@ $(function() {
 <div class="title">travelScheduleTest Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Exercise the fixed travel schedules.  
+ <a href="classtravelScheduleTest.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="travelscheduletest_8h_source.html">travelscheduletest.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for travelScheduleTest:</div>
 <div class="dyncontent">
@@ -129,6 +134,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a9a54489b2ffb494a08bbcfa9391e0c8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">make sure the schedule behaves smoothly if empty (the agent stays at home the whole time <br /></td></tr>
 <tr class="separator:a9a54489b2ffb494a08bbcfa9391e0c8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa04fc9d3f86668e36c74a1f27c2d5aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelScheduleTest.html#afa04fc9d3f86668e36c74a1f27c2d5aa">testSwitch</a> ()</td></tr>
+<tr class="memdesc:afa04fc9d3f86668e36c74a1f27c2d5aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">check that incorrect schedule names have no effect and check switching works .  <a href="#afa04fc9d3f86668e36c74a1f27c2d5aa">More...</a><br /></td></tr>
 <tr class="separator:afa04fc9d3f86668e36c74a1f27c2d5aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d457e4ae5c44853c450860284993a57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelScheduleTest.html#a7d457e4ae5c44853c450860284993a57">testMobile</a> ()</td></tr>
 <tr class="memdesc:a7d457e4ae5c44853c450860284993a57"><td class="mdescLeft">&#160;</td><td class="mdescRight">exercise the mobile schedule  <a href="#a7d457e4ae5c44853c450860284993a57">More...</a><br /></td></tr>
@@ -141,7 +147,11 @@ travelSchedule *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <tr class="memdesc:a98d861ced2b339627f69fd5d5f343743"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to a default schedule for the setUp method. <br /></td></tr>
 <tr class="separator:a98d861ced2b339627f69fd5d5f343743"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Exercise the fixed travel schedules. </p>
+<p>Check that switching between schedules resets each to the start.<br />
+Check the destinations and timings are as expected. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a7d457e4ae5c44853c450860284993a57"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7d457e4ae5c44853c450860284993a57">&#9670;&nbsp;</a></span>testMobile()</h2>
 
@@ -166,7 +176,7 @@ travelSchedule *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </div><div class="memdoc">
 
 <p>exercise the mobile schedule </p>
-<p>run completely throught eh scheuidle making sure it wraps round to the start again after a day <br />
+<p>run completely through the schedule making sure it wraps round to the start again after a day <br />
 </p>
 
 </div>
@@ -193,9 +203,10 @@ travelSchedule *&#160;</td><td class="memItemRight" valign="bottom"><a class="el
   </tr>
 </table>
 </div><div class="memdoc">
-<p>check that incorrect schedule names have no effect and check switching works .</p>
+
+<p>check that incorrect schedule names have no effect and check switching works . </p>
 <p>Switch to a mobile schedule and run through it a bit, then switch back to stationary <br />
- </p>
+</p>
 
 </div>
 </div>

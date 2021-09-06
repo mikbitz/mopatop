@@ -21,16 +21,17 @@
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /**
- * @file travelschedule.h 
- * @brief Test out the travel schedules
+ * @file travelscheduletest.h 
+ * @brief Test out the travel schedules using travelScheduleTest class
  * 
  * @author Mike Bithell
  * @date 17/08/2021
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-/** @brief
- *  @details
+/** @brief Exercise the fixed travel schedules
+ *  @details Check that switching between schedules resets each to the start.\n
+ *  Check the destinations and timings are as expected.
  */
 class travelScheduleTest : public CppUnit::TestFixture  {
     /** @brief A pointer to a default schedule for the setUp method */
@@ -79,12 +80,13 @@ public:
         t->getNextLocation();
         CPPUNIT_ASSERT(t->getTimeAtCurrentPlace()==0);
         CPPUNIT_ASSERT(t->getCurrentDestination()==agent::home);
-    }    
+    } 
+    /** @brief check that incorrect schedule names have no effect and check switching works . 
+     * @details Switch to a mobile schedule and run through it a bit, then switch back to stationary \n
+     */
     void testSwitch()
     {
-        /** @brief check that incorrect schedule names have no effect and check switching works . 
-         * @details Switch to a mobile schedule and run through it a bit, then switch back to stationary \n
-           */
+
         t->switchTo("mbile");
         //stationary at home schedule
         CPPUNIT_ASSERT(t->getTimeAtCurrentPlace()==24*timeStep::hour());
@@ -108,7 +110,7 @@ public:
         CPPUNIT_ASSERT(t->getCurrentDestination()==agent::home);
     }
             /** @brief exercise the mobile schedule 
-         * @details run completely throught eh scheuidle making sure it wraps round to the start again after a day \n
+         * @details run completely through the schedule making sure it wraps round to the start again after a day \n
            */
     void testMobile()
     {

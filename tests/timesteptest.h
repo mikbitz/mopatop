@@ -29,7 +29,7 @@
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-/** @brief Check the class that maps the time step to a given set of real-wprd units (e.g. hours)
+/** @brief Check the class that maps the time step to a given set of real-world units (e.g. hours)
  *  @details NB if timeStep::deltaT is reset anywhere, because timestep is a static class, this can affect other tests
  * */
 
@@ -41,9 +41,9 @@ public:
     CPPUNIT_TEST( testDefaults );
     /** @brief check the constructor works used on an object */
     CPPUNIT_TEST( testDefaultConstructor );
-    /** check that all the functions work */
+    /** @brief check that all the functions work */
     CPPUNIT_TEST( testReturnValues );
-    /** end test suite */
+    /** @brief end test suite */
     CPPUNIT_TEST_SUITE_END();
     /** @brief as a static class the static variable should have values as in timeStep.cpp */
     void testDefaults()

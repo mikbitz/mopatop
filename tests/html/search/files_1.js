@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['testing_2ecpp',['testing.cpp',['../testing_8cpp.html',1,'']]],
-  ['timereportertest_2eh',['timereportertest.h',['../timereportertest_8h.html',1,'']]],
-  ['timesteptest_2eh',['timesteptest.h',['../timesteptest_8h.html',1,'']]]
+  ['diseasetest_2eh',['diseasetest.h',['../diseasetest_8h.html',1,'']]]
 ];

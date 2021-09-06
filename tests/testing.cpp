@@ -19,7 +19,7 @@
 //------------------------------------------------------------------------
 /**
  * @file testing.cpp 
- * @brief Define the progress test listener, and the main function to run all the tests
+ * @brief Define the progress test listener, MyCustomProgressTestListener, and the main function to run all the tests
  * 
  * @author Mike Bithell
  * @date 17/08/2021
@@ -131,9 +131,11 @@ int main(){
     CPPUNIT_TEST_SUITE_END();
  * \endcode
  * If needed a setUp() and tearDown() function can be added, which will automatically create and destroy variables afresh at the start of\n
- * each test function e.g.
-  * \code
- * public:
+ * each test function, provided the class inherits from CppUnit::TestFixture  e.g.
+ * \code
+   class placeTest : public CppUnit::TestFixture  {
+     place* p;
+   public:
     //persistent objects to use during testing
     void setUp()
     {
@@ -144,6 +146,7 @@ int main(){
     {
         delete p;
     }
+    };
  * \endcode
  * NB these function defintions must come BEFORE the above testsuite defintions.\n
  * In the test function typically asserts are used to check the result of of a test e.g.

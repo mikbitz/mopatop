@@ -30,7 +30,8 @@
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-
+/** @brief Check intervals are computed and reported as expected
+ */
 class timeReporterTest : public CppUnit::TestFixture  {
 public:
     /** @brief automatically create a test suite */

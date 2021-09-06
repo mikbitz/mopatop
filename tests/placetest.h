@@ -2,8 +2,38 @@
 #define PLACETEST_H_INCLUDED
 
 #include"../places.h"
+/* A program to test the model of agents moving between places
+    Copyright (C) 2021  Mike Bithell
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    */
+
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+/**
+ * @file placetest.h 
+ * @brief File containing the definition of the placeTest class 
+ * 
+ * @author Mike Bithell
+ * @date 17/08/2021
+ **/
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+/** @brief Check places for contamination levels and agent occupancy
+ *  @details Setting and increase/decrease of contmination is checked, \n
+ *  Along with the ability to add and remove agents from the list of occupants
+ */
 //fixtures allow setting up and tearing down of objects
 class placeTest : public CppUnit::TestFixture  {
     /** @brief A pointer to a default place for the setUp method */
@@ -47,7 +77,7 @@ public:
         p->unsetCleanEveryStep();
         CPPUNIT_ASSERT(!p->getCleanEveryStep());
     }
-    /** @brief Check the deafult ID is zero and that it can be set with setID */
+    /** @brief Check the default ID is zero and that it can be set with setID */
     void testID()
     {
         //default ID is zero
@@ -101,7 +131,7 @@ public:
         timeStep::setdeltaT(timeStep::hour());
     }
     /** @brief check occupancy
-     *  @details it should only be possible to add an agent once. removal should not crash if non-resident agent is removed.
+     *  @details it should only be possible to add an agent once. removal should not crash if non-resident agent is removed.\n
      *  number of agents should increase and decrease correctly. The show function shoudl correctly list IDs of residents. 
      */
     void testAgents()

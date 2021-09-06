@@ -75,19 +75,20 @@ $(function() {
 <div class="title">placeTest Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Check places for contamination levels and agent occupancy.  
+ <a href="classplaceTest.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="placetest_8h_source.html">placetest.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for placeTest:</div>
 <div class="dyncontent">
 <div class="center"><img src="classplaceTest__inherit__graph.png" border="0" usemap="#placeTest_inherit__map" alt="Inheritance graph"/></div>
-<map name="placeTest_inherit__map" id="placeTest_inherit__map">
-</map>
 </div>
 <div class="dynheader">
 Collaboration diagram for placeTest:</div>
 <div class="dyncontent">
 <div class="center"><img src="classplaceTest__coll__graph.png" border="0" usemap="#placeTest_coll__map" alt="Collaboration graph"/></div>
-<map name="placeTest_coll__map" id="placeTest_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -129,7 +130,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a7f6879744d411bded42d786645595245"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e4e638d2e34b0c247fe82455985aa34"><td class="memItemLeft" align="right" valign="top"><a id="a1e4e638d2e34b0c247fe82455985aa34"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplaceTest.html#a1e4e638d2e34b0c247fe82455985aa34">testID</a> ()</td></tr>
-<tr class="memdesc:a1e4e638d2e34b0c247fe82455985aa34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the deafult ID is zero and that it can be set with setID. <br /></td></tr>
+<tr class="memdesc:a1e4e638d2e34b0c247fe82455985aa34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the default ID is zero and that it can be set with setID. <br /></td></tr>
 <tr class="separator:a1e4e638d2e34b0c247fe82455985aa34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12e071effa88774bb49e498632d19846"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplaceTest.html#a12e071effa88774bb49e498632d19846">testContamination</a> ()</td></tr>
 <tr class="memdesc:a12e071effa88774bb49e498632d19846"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check the contamination levels.  <a href="#a12e071effa88774bb49e498632d19846">More...</a><br /></td></tr>
@@ -148,7 +149,11 @@ place *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a0f4e660bdadc034488490bbadc33e09f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to a default place for the setUp method. <br /></td></tr>
 <tr class="separator:a0f4e660bdadc034488490bbadc33e09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Check places for contamination levels and agent occupancy. </p>
+<p>Setting and increase/decrease of contmination is checked, <br />
+Along with the ability to add and remove agents from the list of occupants </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1e79e4a8830e03f02b2046c24ccfa822"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1e79e4a8830e03f02b2046c24ccfa822">&#9670;&nbsp;</a></span>testAgents()</h2>
 
@@ -173,7 +178,8 @@ place *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div><div class="memdoc">
 
 <p>check occupancy </p>
-<p>it should only be possible to add an agent once. removal should not crash if non-resident agent is removed. number of agents should increase and decrease correctly. The show function shoudl correctly list IDs of residents. </p>
+<p>it should only be possible to add an agent once. removal should not crash if non-resident agent is removed.<br />
+number of agents should increase and decrease correctly. The show function shoudl correctly list IDs of residents. </p>
 
 </div>
 </div>
