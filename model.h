@@ -33,6 +33,7 @@
 
 */
 #include"modelFactory.h"
+#include"timereporter.h"
 class model{
     /** A container to hold pointers to all the agents */
     std::vector<agent*> agents;
