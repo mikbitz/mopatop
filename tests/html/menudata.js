@@ -31,6 +31,7 @@ var menudata={children:[
 {text:"Class Members",url:"functions.html",children:[
 {text:"All",url:"functions.html",children:[
 {text:"c",url:"functions.html#index_c"},
+{text:"p",url:"functions.html#index_p"},
 {text:"s",url:"functions.html#index_s"},
 {text:"t",url:"functions.html#index_t"}]},
 {text:"Functions",url:"functions_func.html",children:[

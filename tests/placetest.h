@@ -1,30 +1,39 @@
+#ifndef PLACETEST_H_INCLUDED
+#define PLACETEST_H_INCLUDED
+
 #include"../places.h"
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //fixtures allow setting up and tearing down of objects
 class placeTest : public CppUnit::TestFixture  {
+    /** @brief A pointer to a default place for the setUp method */
     place* p;
 public:
-    //persistent objects to use during testing
+    /** @brief set up a default place pointer */
     void setUp()
     {
         p = new place();
     }
-    
+    /** @brief delete the place */
     void tearDown() 
     {
         delete p;
     }
     /** @brief automatically create a test suite to add tests to - note this has to come after any setup/tearDown */
     CPPUNIT_TEST_SUITE( placeTest );
-    //add tests defined below
+    /** @brief check constructor works */
     CPPUNIT_TEST( testDefaultConstructor );
+    /** @brief check place ID */
     CPPUNIT_TEST( testID );
+    /** @brief test contamination */
     CPPUNIT_TEST( testContamination );
-    CPPUNIT_TEST( testUpdate );
+    /** @brief contamination should decay*/
     CPPUNIT_TEST( testAgents );
+    /** @brief agents should be added and removed from place correctly */
     CPPUNIT_TEST_SUITE_END();
-    //define tests
+    /** @brief The constructor should set the necessary default values 
+     *  @details use std::numeric_limits<double>::min() here to find the smallest possible double\n
+     *  so that test will not fail as a result of rounding errors. */
     void testDefaultConstructor()
     {
         //default ID is zero
@@ -38,6 +47,7 @@ public:
         p->unsetCleanEveryStep();
         CPPUNIT_ASSERT(!p->getCleanEveryStep());
     }
+    /** @brief Check the deafult ID is zero and that it can be set with setID */
     void testID()
     {
         //default ID is zero
@@ -45,6 +55,9 @@ public:
         p->setID(73);
         CPPUNIT_ASSERT(73==p->getID());
     }
+    /** @brief Check the contamination levels
+     * @details values should increase as expected, not be able to go below zero and get reset to zero by cleanContamination() 
+     **/ 
     void testContamination()
     {
         p->increaseContamination(0.1);
@@ -59,6 +72,10 @@ public:
         p->increaseContamination(-0.1);
         CPPUNIT_ASSERT(std::abs(p->getContaminationLevel())<10*std::numeric_limits<double>::min());
     }
+    /** @brief Check the update exponentially decreases contamination 
+     *  @details It shoudl aslo be possible to set na diunset the cleanContamination flag that makes contamination
+     *  go to zero after every step (or not, whne it is unset).
+     * */
     void testUpdate()
     {
         p->increaseContamination(0.1);
@@ -83,6 +100,10 @@ public:
         //change back to default just in case of later uses
         timeStep::setdeltaT(timeStep::hour());
     }
+    /** @brief check occupancy
+     *  @details it should only be possible to add an agent once. removal should not crash if non-resident agent is removed.
+     *  number of agents should increase and decrease correctly. The show function shoudl correctly list IDs of residents. 
+     */
     void testAgents()
     {
         agent* a=new agent();
@@ -116,3 +137,5 @@ public:
         
     }
 };
+
+#endif // PLACETEST_H_INCLUDED

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['setup',['setUp',['../classtravelScheduleTest.html#ad43113c0f75ff6969e57fb865975d133',1,'travelScheduleTest']]],
+  ['setup',['setUp',['../classplaceTest.html#a1818bbe31325c6d9344b35f3b510cacf',1,'placeTest::setUp()'],['../classtravelScheduleTest.html#ad43113c0f75ff6969e57fb865975d133',1,'travelScheduleTest::setUp()']]],
   ['starttest',['startTest',['../classMyCustomProgressTestListener.html#a798f9c66a689cbe41701b582b9033892',1,'MyCustomProgressTestListener']]]
 ];
