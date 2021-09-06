@@ -1,17 +1,46 @@
 #ifndef TRAVELSCHEDULETEST_H_INCLUDED
 #define TRAVELSCHEDULETEST_H_INCLUDED
 #include"../travelschedule.h"
+/* A program to test the model of agents moving between places
+    Copyright (C) 2021  Mike Bithell
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    */
+
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+/**
+ * @file travelschedule.h 
+ * @brief Test out the travel schedules
+ * 
+ * @author Mike Bithell
+ * @date 17/08/2021
+ **/
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+/** @brief
+ *  @details
+ */
 class travelScheduleTest : public CppUnit::TestFixture  {
     travelSchedule* t;
 public:
-    //persistent objects to use during testing
+    /** @brief set up a default travel schedule pointer */
     void setUp()
     {
         t = new travelSchedule();
     }
-    
+     /** @brief delete the schedule */
     void tearDown() 
     {
         delete t;
@@ -24,7 +53,7 @@ public:
     CPPUNIT_TEST( testSwitch );
     CPPUNIT_TEST( testMobile );    
     CPPUNIT_TEST_SUITE_END();
-    //define tests
+     /** @brief check the default schedule is as expected - make sure the destinations and timings are correct */
     void testDefaults()
     {
         //stationary at home schedule
@@ -34,6 +63,7 @@ public:
         CPPUNIT_ASSERT(t->getTimeAtCurrentPlace()==24*timeStep::hour());
         CPPUNIT_ASSERT(t->getCurrentDestination()==agent::home);
     }
+     /** @brief make sure the schedule behaves smoothly if empty (the agent stays at home the whole time */
     void testEmpty()
     {
         //clean the schedule - empty schedule should not crash!
@@ -47,7 +77,9 @@ public:
     }    
     void testSwitch()
     {
-        //unknown name ignored - NB each test contrsucts a new object of type t (so initial schedule is stationary)
+        /** @brief check that incorrect schedule names have no effect and check switching works . 
+         * @details Switch to a mobile schedule and run through it a bit, then switch back to stationary \n
+           */
         t->switchTo("mbile");
         //stationary at home schedule
         CPPUNIT_ASSERT(t->getTimeAtCurrentPlace()==24*timeStep::hour());
@@ -70,7 +102,10 @@ public:
         CPPUNIT_ASSERT(t->getTimeAtCurrentPlace()==24*timeStep::hour());
         CPPUNIT_ASSERT(t->getCurrentDestination()==agent::home);
     }
-        void testMobile()
+            /** @brief exercise teh mobile schedule 
+         * @details run completely throught eh scheuidle making sure it wraps round to the start again after a day \n
+           */
+    void testMobile()
     {
         //stationary at home schedule
         t->switchTo("mobile");

@@ -29,6 +29,9 @@
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
+/** @brief Test some of teh random number generator behaviour
+ *  @details Check the random seed setting works, and try to see whether the distribution of random numbers
+ *  seems sensible.
 class randomTest : public CppUnit::TestFixture  {
 public:
     //automatically create a test suite to add tests to
