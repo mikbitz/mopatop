@@ -33,10 +33,11 @@
 
 class timeReporterTest : public CppUnit::TestFixture  {
 public:
-    //automatically create a test suite to add tests to
+    /** @brief automatically create a test suite */
     CPPUNIT_TEST_SUITE( timeReporterTest );
-    //add tests defined below
+    /** @brief check that intervals are measured correctly */
     CPPUNIT_TEST( testInterval);
+    /** @brief end test suite */
     CPPUNIT_TEST_SUITE_END();
     /** @brief Check that wating for a few milliseconds is correctly reported
      * @details uses the usleep function to wait a specified number of microseconds between two calls to timeReporter::getTime \n

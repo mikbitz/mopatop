@@ -33,6 +33,7 @@
  *  @details
  */
 class travelScheduleTest : public CppUnit::TestFixture  {
+    /** @brief A pointer to a default schedule for the setUp method */
     travelSchedule* t;
 public:
     /** @brief set up a default travel schedule pointer */
@@ -45,13 +46,17 @@ public:
     {
         delete t;
     }
-    //automatically create a test suite to add tests to - note this has to come after any setup/tearDown
+    /** @brief automatically create a test suite to add tests to - note this has to come after any setup/tearDown */
     CPPUNIT_TEST_SUITE( travelScheduleTest  );
-    //add tests defined below
+    /** @brief add test of defaults to the suite */
     CPPUNIT_TEST( testDefaults );
+    /** @brief test of empty schedule */
     CPPUNIT_TEST( testEmpty );
+    /** @brief test schedule switching */
     CPPUNIT_TEST( testSwitch );
-    CPPUNIT_TEST( testMobile );    
+    /** @brief test mobile schedule */
+    CPPUNIT_TEST( testMobile );
+    /** @brief end the test suite */
     CPPUNIT_TEST_SUITE_END();
      /** @brief check the default schedule is as expected - make sure the destinations and timings are correct */
     void testDefaults()
@@ -102,7 +107,7 @@ public:
         CPPUNIT_ASSERT(t->getTimeAtCurrentPlace()==24*timeStep::hour());
         CPPUNIT_ASSERT(t->getCurrentDestination()==agent::home);
     }
-            /** @brief exercise teh mobile schedule 
+            /** @brief exercise the mobile schedule 
          * @details run completely throught eh scheuidle making sure it wraps round to the start again after a day \n
            */
     void testMobile()

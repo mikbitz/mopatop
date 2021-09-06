@@ -15,7 +15,7 @@ public:
     {
         delete p;
     }
-    //automatically create a test suite to add tests to
+    /** @brief automatically create a test suite to add tests to - note this has to come after any setup/tearDown */
     CPPUNIT_TEST_SUITE( placeTest );
     //add tests defined below
     CPPUNIT_TEST( testDefaultConstructor );

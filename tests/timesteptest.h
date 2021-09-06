@@ -22,25 +22,30 @@
 //------------------------------------------------------------------------
 /**
  * @file timesteptest.h 
- * @brief File containing the definition of the teimStepTest class for checking the time step to real world times class is working
+ * @brief File containing the definition of the timeStepTest class for checking the time step to real world times class is working
  * 
  * @author Mike Bithell
  * @date 17/08/2021
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-//NB if timeStep::deltaT is reset anywhere, because timestep is a static class, this can affect other tests
+/** @brief Check the class that maps the time step to a given set of real-wprd units (e.g. hours)
+ *  @details NB if timeStep::deltaT is reset anywhere, because timestep is a static class, this can affect other tests
+ * */
 
 class timeStepTest : public CppUnit::TestFixture  {
 public:
-    //automatically create a test suite to add tests to
+    /** @brief automatically create a test suite to add tests to - note this has to come after any setup/tearDown */
     CPPUNIT_TEST_SUITE( timeStepTest );
-    //add tests defined below
+    /** @brief test the default state */
     CPPUNIT_TEST( testDefaults );
+    /** @brief check the constructor works used on an object */
     CPPUNIT_TEST( testDefaultConstructor );
+    /** check that all the functions work */
     CPPUNIT_TEST( testReturnValues );
+    /** end test suite */
     CPPUNIT_TEST_SUITE_END();
-    //define tests
+    /** @brief as a static class the static variable should have values as in timeStep.cpp */
     void testDefaults()
     {
         CPPUNIT_ASSERT(timeStep::year()==24*3600*365);
@@ -52,6 +57,7 @@ public:
         CPPUNIT_ASSERT(timeStep::deltaT()==3600);
         CPPUNIT_ASSERT(timeStep::timeStepUnit()=="hours");
     }
+    /** @brief When an object is created, the values should be those from the constructor in timeStep.h */
     void testDefaultConstructor()
     {
         timeStep t;
@@ -64,6 +70,8 @@ public:
         CPPUNIT_ASSERT(timeStep::deltaT()==3600);
         CPPUNIT_ASSERT(timeStep::timeStepUnit()=="hours");
     }
+    /** @brief Check that the return values are as expected 
+     @details e.g. after setting timeStep::setdeltaT(timeStep::hour()), TimeStepsPerHour and hoursPerTimeStep should both be 1 */
     void testReturnValues(){
         //dt should at first be one hour
         CPPUNIT_ASSERT( timeStep::yearsPerTimeStep()  ==1./24/365);
