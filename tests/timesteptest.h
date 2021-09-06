@@ -1,6 +1,32 @@
 #ifndef TIMESTEPTEST_H_INCLUDED
 #define TIMESTEPTEST_H_INCLUDED
-#include"../timereporter.h"
+#include"../timestep.h"
+/* A program to test the model of agents moving between places
+    Copyright (C) 2021  Mike Bithell
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    */
+
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+/**
+ * @file timesteptest.h 
+ * @brief File containing the definition of the teimStepTest class for checking the time step to real world times class is working
+ * 
+ * @author Mike Bithell
+ * @date 17/08/2021
+ **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //NB if timeStep::deltaT is reset anywhere, because timestep is a static class, this can affect other tests
