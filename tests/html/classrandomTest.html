@@ -91,21 +91,84 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>CPPUNIT_TEST_SUITE</b> (<a class="el" href="classrandomTest.html">randomTest</a>)</td></tr>
 <tr class="separator:a7cdffcbd64c67232a5cf9a0bc55e3efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a865784149f2538aba2526748deb2efc8"><td class="memItemLeft" align="right" valign="top"><a id="a865784149f2538aba2526748deb2efc8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CPPUNIT_TEST</b> (testSeed)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CPPUNIT_TEST</b> (<a class="el" href="classrandomTest.html#ae7119042c8ecfe9f350cd5b0d6c11906">testSeed</a>)</td></tr>
 <tr class="separator:a865784149f2538aba2526748deb2efc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23f99af2cf532cc659e5b3400dfb052f"><td class="memItemLeft" align="right" valign="top"><a id="a23f99af2cf532cc659e5b3400dfb052f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CPPUNIT_TEST</b> (testDistrib)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CPPUNIT_TEST</b> (<a class="el" href="classrandomTest.html#ac6d278a9b086e084f8657453b5e63c07">testDistrib</a>)</td></tr>
 <tr class="separator:a23f99af2cf532cc659e5b3400dfb052f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4806098563774b0443bf3e9e994ed904"><td class="memItemLeft" align="right" valign="top"><a id="a4806098563774b0443bf3e9e994ed904"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>CPPUNIT_TEST_SUITE_END</b> ()</td></tr>
 <tr class="separator:a4806098563774b0443bf3e9e994ed904"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7119042c8ecfe9f350cd5b0d6c11906"><td class="memItemLeft" align="right" valign="top"><a id="ae7119042c8ecfe9f350cd5b0d6c11906"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>testSeed</b> ()</td></tr>
+<tr class="memitem:ae7119042c8ecfe9f350cd5b0d6c11906"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomTest.html#ae7119042c8ecfe9f350cd5b0d6c11906">testSeed</a> ()</td></tr>
+<tr class="memdesc:ae7119042c8ecfe9f350cd5b0d6c11906"><td class="mdescLeft">&#160;</td><td class="mdescRight">test random seed behaviour  <a href="#ae7119042c8ecfe9f350cd5b0d6c11906">More...</a><br /></td></tr>
 <tr class="separator:ae7119042c8ecfe9f350cd5b0d6c11906"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6d278a9b086e084f8657453b5e63c07"><td class="memItemLeft" align="right" valign="top"><a id="ac6d278a9b086e084f8657453b5e63c07"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>testDistrib</b> ()</td></tr>
+<tr class="memitem:ac6d278a9b086e084f8657453b5e63c07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrandomTest.html#ac6d278a9b086e084f8657453b5e63c07">testDistrib</a> ()</td></tr>
+<tr class="memdesc:ac6d278a9b086e084f8657453b5e63c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run through a large number of randoms to see if teh sequence seems uniform-ish<br />
+.  <a href="#ac6d278a9b086e084f8657453b5e63c07">More...</a><br /></td></tr>
 <tr class="separator:ac6d278a9b086e084f8657453b5e63c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac6d278a9b086e084f8657453b5e63c07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6d278a9b086e084f8657453b5e63c07">&#9670;&nbsp;</a></span>testDistrib()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void randomTest::testDistrib </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Run through a large number of randoms to see if teh sequence seems uniform-ish<br />
+. </p>
+<p>The sequence should lie strictly in (0,1). The mean should converge on 0.5<br />
+For large number, one might expect the variance about the mean to decrease steadily as the number<br />
+of invocations increases, but instead it steadies at about 0.083 - hmmm </p>
+
+</div>
+</div>
+<a id="ae7119042c8ecfe9f350cd5b0d6c11906"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7119042c8ecfe9f350cd5b0d6c11906">&#9670;&nbsp;</a></span>testSeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void randomTest::testSeed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>test random seed behaviour </p>
+<p>It is expected that the same random sequence is generated by the same seed. When the seed is reset<br />
+using the setSeed method, the random sequence should restart. Each call to the number() method should advance<br />
+the sequence by one step. The constructor should default to seed 0, but allow a seed to be set as an argument. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="randomtest_8h_source.html">randomtest.h</a></li>
 </ul>
