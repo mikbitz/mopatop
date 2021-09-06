@@ -1,5 +1,7 @@
 #ifndef MODEL_H_INCLUDED
 #define MODEL_H_INCLUDED
+#include<filesystem>
+#include<omp.h>
 /* A program to model agents moving between places
     Copyright (C) 2021  Mike Bithell
 
