@@ -74,27 +74,65 @@ $(function() {
 <div class="title">MyCustomProgressTestListener Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Report the start of each test.  
+ <a href="classMyCustomProgressTestListener.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for MyCustomProgressTestListener:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMyCustomProgressTestListener__inherit__graph.png" border="0" usemap="#MyCustomProgressTestListener_inherit__map" alt="Inheritance graph"/></div>
-<map name="MyCustomProgressTestListener_inherit__map" id="MyCustomProgressTestListener_inherit__map">
-</map>
 </div>
 <div class="dynheader">
 Collaboration diagram for MyCustomProgressTestListener:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMyCustomProgressTestListener__coll__graph.png" border="0" usemap="#MyCustomProgressTestListener_coll__map" alt="Collaboration graph"/></div>
-<map name="MyCustomProgressTestListener_coll__map" id="MyCustomProgressTestListener_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a798f9c66a689cbe41701b582b9033892"><td class="memItemLeft" align="right" valign="top"><a id="a798f9c66a689cbe41701b582b9033892"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>startTest</b> (CppUnit::Test *test)</td></tr>
+<tr class="memitem:a798f9c66a689cbe41701b582b9033892"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyCustomProgressTestListener.html#a798f9c66a689cbe41701b582b9033892">startTest</a> (CppUnit::Test *test)</td></tr>
+<tr class="memdesc:a798f9c66a689cbe41701b582b9033892"><td class="mdescLeft">&#160;</td><td class="mdescRight">define the message to be printed when each test starts  <a href="#a798f9c66a689cbe41701b582b9033892">More...</a><br /></td></tr>
 <tr class="separator:a798f9c66a689cbe41701b582b9033892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Report the start of each test. </p>
+<p>Define a class that will print a message to stdout as each test is started. <br />
+An instance of this class gets added to the CppUnit::TextUi::TestRunner that runs the test suites </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a798f9c66a689cbe41701b582b9033892"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a798f9c66a689cbe41701b582b9033892">&#9670;&nbsp;</a></span>startTest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void MyCustomProgressTestListener::startTest </td>
+          <td>(</td>
+          <td class="paramtype">CppUnit::Test *&#160;</td>
+          <td class="paramname"><em>test</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>define the message to be printed when each test starts </p>
+<p>The name of the current running test is extracted using test-&gt;getName() </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">test</td><td>a pointer to a CppUnit::test object </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>testing.cpp</li>
 </ul>
