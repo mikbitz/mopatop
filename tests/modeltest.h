@@ -41,9 +41,14 @@ public:
     CPPUNIT_TEST( testDefaultConstructor );
     /** @brief end the test suite   */
     CPPUNIT_TEST_SUITE_END();
-    /** @brief make sure results from constructor are as expected */
+    /** @brief make sure results from constructor are as expected for simple mobile model*/
     void testDefaultConstructor()
     {
+        parameterSettings pr;
+        model m(pr);
+        CPPUNIT_ASSERT(m.numberOfAgents()==600);
+        CPPUNIT_ASSERT(m.numberOfPlaces()==280);
+        CPPUNIT_ASSERT(m.numberDiseased()==1);
     }
 };
 

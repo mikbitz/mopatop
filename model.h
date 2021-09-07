@@ -232,6 +232,20 @@ public:
             //places[i]->show();
         }
     }
+    /** @brief report current number of agents in the model*/
+    unsigned long numberOfAgents(){
+        return agents.size();
+    }
+    /** @brief report current number of places in the model*/
+    unsigned long numberOfPlaces(){
+        return places.size();
+    }
+    /** @brief report current number of infections*/
+    unsigned long numberDiseased(){
+        unsigned long n=0;
+        for (auto a:agents)if (a->diseased()) n++;
+        return n;
+    }
     
 };
 #endif // MODEL_H_INCLUDED
