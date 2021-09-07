@@ -135,7 +135,7 @@ public:
         //the actual time duration of each step in the above units
         _parameters["timeStep.dt"]="1";_parameterType["timeStep.dt"]=d;
         //path to the output file
-        _parameters["outputFile"]="diseaseSummary.csv";_parameterType["outputFile"]=s;
+        _parameters["outputFile"]="diseaseSummary";_parameterType["outputFile"]=s;
         //path to location of output files
         _parameters["experiment.output.directory"]="./output";_parameterType["experiment.output.directory"]=s;
         //a name for all runs in this experiment

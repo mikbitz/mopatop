@@ -19,6 +19,7 @@ var searchData=
   ['testreadwrite',['testReadWrite',['../classparameterTest.html#a73ffa897b723095fdb3f06cc309575d6',1,'parameterTest']]],
   ['testrecover',['testRecover',['../classdiseaseTest.html#af072ce110dc0cb4e4dfd7938e03e01f4',1,'diseaseTest']]],
   ['testreturnvalues',['testReturnValues',['../classtimeStepTest.html#abb17f1970e1ec459c524ef87870f651f',1,'timeStepTest']]],
+  ['testrun',['testRun',['../classmodelTest.html#a18ccf91ea0223e52d439fa267665d718',1,'modelTest']]],
   ['testschedule',['testSchedule',['../classagentTest.html#adaa25e2c092be46311aea330d19d7f94',1,'agentTest']]],
   ['testseed',['testSeed',['../classrandomTest.html#ae7119042c8ecfe9f350cd5b0d6c11906',1,'randomTest']]],
   ['testselector',['testSelector',['../classmodelFactoryTest.html#ae0327f9c7d653c9a4864122a3f088118',1,'modelFactoryTest']]],

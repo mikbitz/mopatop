@@ -83,11 +83,15 @@ $(function() {
 Inheritance diagram for modelTest:</div>
 <div class="dyncontent">
 <div class="center"><img src="classmodelTest__inherit__graph.png" border="0" usemap="#modelTest_inherit__map" alt="Inheritance graph"/></div>
+<map name="modelTest_inherit__map" id="modelTest_inherit__map">
+</map>
 </div>
 <div class="dynheader">
 Collaboration diagram for modelTest:</div>
 <div class="dyncontent">
 <div class="center"><img src="classmodelTest__coll__graph.png" border="0" usemap="#modelTest_coll__map" alt="Collaboration graph"/></div>
+<map name="modelTest_coll__map" id="modelTest_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -100,6 +104,10 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodelTest.html#aa1691735f57c35d37d358ef56dfdc97e">CPPUNIT_TEST</a> (<a class="el" href="classmodelTest.html#a1ec93676ece4bbb6f98cf65340472939">testDefaultConstructor</a>)</td></tr>
 <tr class="memdesc:aa1691735f57c35d37d358ef56dfdc97e"><td class="mdescLeft">&#160;</td><td class="mdescRight">test the default constructor <br /></td></tr>
 <tr class="separator:aa1691735f57c35d37d358ef56dfdc97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3596a54ba85399f6d293fb928041f9a5"><td class="memItemLeft" align="right" valign="top"><a id="a3596a54ba85399f6d293fb928041f9a5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodelTest.html#a3596a54ba85399f6d293fb928041f9a5">CPPUNIT_TEST</a> (<a class="el" href="classmodelTest.html#a18ccf91ea0223e52d439fa267665d718">testRun</a>)</td></tr>
+<tr class="memdesc:a3596a54ba85399f6d293fb928041f9a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">test run <br /></td></tr>
+<tr class="separator:a3596a54ba85399f6d293fb928041f9a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a704621b184dbdb454d4cf0f90d4d210c"><td class="memItemLeft" align="right" valign="top"><a id="a704621b184dbdb454d4cf0f90d4d210c"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodelTest.html#a704621b184dbdb454d4cf0f90d4d210c">CPPUNIT_TEST_SUITE_END</a> ()</td></tr>
 <tr class="memdesc:a704621b184dbdb454d4cf0f90d4d210c"><td class="mdescLeft">&#160;</td><td class="mdescRight">end the test suite <br /></td></tr>
@@ -108,10 +116,42 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodelTest.html#a1ec93676ece4bbb6f98cf65340472939">testDefaultConstructor</a> ()</td></tr>
 <tr class="memdesc:a1ec93676ece4bbb6f98cf65340472939"><td class="mdescLeft">&#160;</td><td class="mdescRight">make sure results from constructor are as expected for simple mobile model <br /></td></tr>
 <tr class="separator:a1ec93676ece4bbb6f98cf65340472939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18ccf91ea0223e52d439fa267665d718"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodelTest.html#a18ccf91ea0223e52d439fa267665d718">testRun</a> ()</td></tr>
+<tr class="memdesc:a18ccf91ea0223e52d439fa267665d718"><td class="mdescLeft">&#160;</td><td class="mdescRight">try stepping the model forward and check output  <a href="#a18ccf91ea0223e52d439fa267665d718">More...</a><br /></td></tr>
+<tr class="separator:a18ccf91ea0223e52d439fa267665d718"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>test out the model class </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a18ccf91ea0223e52d439fa267665d718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18ccf91ea0223e52d439fa267665d718">&#9670;&nbsp;</a></span>testRun()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void modelTest::testRun </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>try stepping the model forward and check output </p>
+<p>if the number of omp threads is not set this can produce crahses or unpredictable results... </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="modeltest_8h_source.html">modeltest.h</a></li>
 </ul>
 </div><!-- contents -->
