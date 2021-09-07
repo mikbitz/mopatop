@@ -45,6 +45,8 @@ public:
     CPPUNIT_TEST( testDisease );
     /** @brief test the schedule  */
     CPPUNIT_TEST( testSchedule );
+    /** @brief test occupancy lists  */
+    CPPUNIT_TEST( testMove );
     /** @brief end the test suite   */
     CPPUNIT_TEST_SUITE_END();
     /** @brief make sure default agent has no disease, is alive, and knows about 3 kinds of place. Check ID increments.
@@ -84,9 +86,44 @@ public:
     void testSchedule()
     {   
         agent a;
-        place p;   
+        place h,w,t;   
         parameterSettings pr;
+        //default parameter settings have simple mobile schedule
         a.initTravelSchedule(pr);
+        //set the places
+        a.setHome(&h);
+        a.setWork(&w);
+        a.setTransport(&t);
+        //should start on transport, but initTravelSchedule immediately moves to next destination, which is home
+        CPPUNIT_ASSERT(a.getCurrentPlace()==&h);
+        //should stay at home for a while - 14 hours
+        a.update();
+        CPPUNIT_ASSERT(a.getCurrentPlace()==&h);
+        for (int i=0;i<13;i++)a.update();
+        CPPUNIT_ASSERT(a.getCurrentPlace()==&t);
+        a.update();
+        //now at work - for 8 hours
+        CPPUNIT_ASSERT(a.getCurrentPlace()==&w);
+        for (int i=0;i<8;i++)a.update();
+        CPPUNIT_ASSERT(a.getCurrentPlace()==&t);
+        a.update();
+        CPPUNIT_ASSERT(a.getCurrentPlace()==&h);
+        
+    }
+    /** @brief test the function that changes occupancy lists of places */
+    void testMove()
+    {   
+        agent a;
+        place h,w; 
+        a.setHome(&h);
+        a.setWork(&w);
+        a.moveTo(agent::home);
+        CPPUNIT_ASSERT(h.getNumberOfOccupants()==1);
+        CPPUNIT_ASSERT(a.getCurrentPlace()==&h);
+        a.moveTo(agent::work);
+        CPPUNIT_ASSERT(h.getNumberOfOccupants()==0);
+        CPPUNIT_ASSERT(w.getNumberOfOccupants()==1);
+        CPPUNIT_ASSERT(a.getCurrentPlace()==&w);
     }
     /** @brief Check the functions that set the disease are working as expected */
     void testDisease()
