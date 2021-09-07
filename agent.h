@@ -41,7 +41,7 @@ class place;
  * If they are in a contaminated location, they may contract the disease. Additionally they may do other things in their current location.
 */
 class agent{
-    /** A static (class-level) variable that stores the next ID number for a new agent - initialsed to 0 in agent.cpp */
+    /** @brief A static (class-level) variable that stores the next ID number for a new agent - initialised to 0 in agent.cpp */
     static unsigned long nextID;
     /** @brief flag set to true if the agent has the disease */
     bool diseasedFlag;
@@ -53,20 +53,23 @@ class agent{
     /** @brief flag set to true if the agent is alive */
     bool aliveFlag=true;
 public:
-    /** Unique agent identifier - should be able to go up to 4e9 */
+    /** @brief Unique agent identifier - should be able to go up to 4e9 */
     unsigned long ID;
-    /** This enum associates a set of integers with names. So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example.
+    /** @brief This enum associates a set of integers with names. 
+     * @details So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example.
      * Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567.
      * transport vehicles are places, albeit moveable!*/
     enum placeTypes{home,work,vehicle};
-    /** A vector of pointers to places - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use he name (home.work etc.) \n
+    /** @brief A vector of pointers to places 
+     *  @details - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use he name (home.work etc.) \n
        intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!)*/
     std::vector<place*>places;
-    /** Where the agent is currently located - note to get this actual place, use this is as an index into the places vector*/
+    /** @brief Where the agent is currently located 
+     *@details - note to get this actual place, use this is as an index into the places vector*/
     placeTypes currentPlace;
     /** @brief the default travel schedule - currently every agent has the same */
     travelSchedule* schedule;
-    /** Counts down the time spent at the current location
+    /** @brief Counts down the time spent at the current location
      */    
     double counter=0;
     /** @brief create and agent and set default disease flags and ID. 
