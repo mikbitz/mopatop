@@ -51,7 +51,15 @@ public:
      @param end The correspinding end of the interval
      */
     static void showInterval(std::string s,std::chrono::time_point<std::chrono::steady_clock> start,std::chrono::time_point<std::chrono::steady_clock> end){
-        std::cout<<s<<float(std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count())/1000<<" seconds"<<std::endl;
+        std::cout<<s<<float(interval(start,end))/1000<<" seconds"<<std::endl;
+    }
+    /** calculate the interval between two time points as an integer - use absolute value so that order of arguments doesn't matter
+     @param start The start of the interval as reported by \ref getTime
+     @param end The correspinding end of the interval
+     @return a positive integer giving the interval in milliseconds
+     */
+    static unsigned interval(std::chrono::time_point<std::chrono::steady_clock> start,std::chrono::time_point<std::chrono::steady_clock> end){
+        return abs(std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count());
     }
 
 };

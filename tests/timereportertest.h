@@ -42,7 +42,8 @@ public:
     CPPUNIT_TEST_SUITE_END();
     /** @brief Check that wating for a few milliseconds is correctly reported
      * @details uses the usleep function to wait a specified number of microseconds between two calls to timeReporter::getTime \n
-     * Then outputs some text for the user to check that the reporting is as expected (since showInterval should write to stdout)
+     * Tests the timereporter interval function to be sure it is always positive.Then outputs some text for the user to check \n
+     * that the reporting is as expected (since showInterval should write to stdout)
      */
     void testInterval()
     {
@@ -50,7 +51,8 @@ public:
         //wait 10,000 microseconds
         usleep(10000);
         auto end=timeReporter::getTime();
-        CPPUNIT_ASSERT(std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count()==10);
+        CPPUNIT_ASSERT(timeReporter::interval(end,start)==10);
+        CPPUNIT_ASSERT(timeReporter::interval(start,end)==10);
         timeReporter::showInterval("This should output the text: 0.01 seconds :",start,end);
     }
 
