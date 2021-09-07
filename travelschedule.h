@@ -38,6 +38,7 @@
  * Every time \ref getNextLocation is called, the schedule advances one place forward. When the end is reached the schedule resets to the first entry.\n
  * Agents can switch between a limited number of pre-defined schedules, currently hard-coded here.
     @todo make this a singleton to save memory? would this work for OMP llel? Would imply needing modification rules for individual agents...
+    @todo schedule based on abolute times rather than time spent ina place would be more malleable (add events in sorted order of time, etc.).
 */
 #include<vector>
 
