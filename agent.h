@@ -90,8 +90,8 @@ public:
      see \ref agent.cpp for definition*/
     void moveTo(placeTypes);
     //the next three functions are defined after the travelSchedule, as they need to know the scheduel details before they can be set up
-    /** Move through the travel schedule, and then do any actions specific to places (apart from disease) \n
-     needs to be called every timestep see \ref agent.cpp for definition*/
+    /** @brief Move through the travel schedule, and then do any actions specific to places (apart from disease) \n
+        @details needs to be called every timestep see \ref agent.cpp for definition*/
     void update();
     /** @brief initialise the travel schedule  - this sets up the list of places that will be visited, in order 
         @param params A reference to a parameterSettings object  
@@ -133,16 +133,16 @@ public:
     bool alive(){
         return aliveFlag;
     }
-    /** do any things that need to be done at home */
+    /** @brief do any things that need to be done at home */
     void atHome(){
         //if (ID==0)std::cout<<"at Home "<<std::endl;
         
     }
-    /** do any things that need to be done at work */
+    /** @brief do any things that need to be done at work */
     void atWork(){
         //if (ID==0)std::cout<<"at Work"<<std::endl;
     }
-    /** do any things that need to be done while travelling */
+    /** @brief do any things that need to be done while travelling */
     void inTransit(){
         //if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
