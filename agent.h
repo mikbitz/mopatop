@@ -64,7 +64,6 @@ public:
     std::vector<place*>places;
     /** Where the agent is currently located - note to get this actual place, use this is as an index into the places vector*/
     placeTypes currentPlace;
-
     /** @brief the default travel schedule - currently every agent has the same */
     travelSchedule* schedule;
     /** Counts down the time spent at the current location

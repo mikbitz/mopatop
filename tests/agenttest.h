@@ -41,9 +41,19 @@ public:
     CPPUNIT_TEST( testDefaultConstructor );
     /** @brief end the test suite   */
     CPPUNIT_TEST_SUITE_END();
-    /** @brief make sure results from constructor are as expected */
+    /** @brief make sure default agent has no disease, is alive, and knows about 3 kinds of place. Check ID increments.
+        @details Note that since the agent ID auto-increments, this has to be the first test suite if the first agent tested
+        is meant to have ID zero */
     void testDefaultConstructor()
     {
+        agent a,b;
+        CPPUNIT_ASSERT(a.getID()==0);
+        CPPUNIT_ASSERT(b.getID()==1);
+        CPPUNIT_ASSERT(a.diseased()==false);
+        CPPUNIT_ASSERT(a.recovered()==false);
+        CPPUNIT_ASSERT(a.immune()==false);
+        CPPUNIT_ASSERT(a.alive()==true);
+        CPPUNIT_ASSERT(a.places.size()==3);
     }
 };
 

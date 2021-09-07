@@ -78,7 +78,6 @@ class simpleOnePlaceFactory:public modelFactory{
         for (int i=0;i<parameters.get<long>("run.nAgents");i++){
             agent* a=new agent();
             agents.push_back(a);
-            agents[i]->ID=i;
             agents[i]->setHome(places[0]);
             //some schedules assume that work and tranport exist - set these so as not to cause a model crash
             agents[i]->setTransport(places[0]);
@@ -130,7 +129,6 @@ class simpleMobileFactory:public modelFactory{
         for (int i=0;i<nAgents;i++){
             agent* a=new agent();
             agents.push_back(a);
-            agents[i]->ID=i;
             agents[i]->setHome(places[i/3]);
             k++;
             if (k%100000==0)std::cout<<k<<"...";

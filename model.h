@@ -146,7 +146,7 @@ public:
         //set off the disease! - some number of agents (default 1) is infected at the start.
         //shuffle things so agents are allocated at random
         random_shuffle(agents.begin(),agents.end());
-        for (int i=0;i<parameters.get<int>("disease.simplistic.initialNumberInfected");i++)agents[i]->diseased=true;
+        for (int i=0;i<parameters.get<int>("disease.simplistic.initialNumberInfected");i++)agents[i]->getDisease();
     }
     //------------------------------------------------------------------------
     /** @brief Advance the model time step \n
@@ -197,9 +197,9 @@ public:
         }
         //accumulate totals
         for (int i=0;i<agents.size();i++){
-            if (agents[i]->alive){
-                if (agents[i]->diseased)infected++;
-                if (agents[i]->immune)recovered++;
+            if (agents[i]->alive()){
+                if (agents[i]->diseased())infected++;
+                if (agents[i]->recovered())recovered++;
             }else{
                 dead++;
             }
