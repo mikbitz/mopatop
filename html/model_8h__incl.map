@@ -1,9 +1,10 @@
 <map id="model.h" name="model.h">
-<area shape="rect" id="node2" href="$modelFactory_8h.html" title="File containing the definition of the agent class. " alt="" coords="173,80,285,107"/>
-<area shape="rect" id="node3" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="151,155,216,181"/>
-<area shape="rect" id="node17" href="$places_8h.html" title="File containing the deinfition of the places class. " alt="" coords="251,155,321,181"/>
-<area shape="rect" id="node4" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="123,229,201,256"/>
-<area shape="rect" id="node5" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers. " alt="" coords="60,304,157,331"/>
-<area shape="rect" id="node8" href="$timestep_8h_source.html" title="timestep.h" alt="" coords="198,304,281,331"/>
-<area shape="rect" id="node10" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="323,379,422,405"/>
+<area shape="rect" id="node4" href="$modelFactory_8h.html" title="File containing the definition of the agent class. " alt="" coords="313,80,425,107"/>
+<area shape="rect" id="node22" href="$timereporter_8h.html" title="File containing the definition of a class used to wrap the C++ timing classes. " alt="" coords="537,80,640,107"/>
+<area shape="rect" id="node5" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="223,155,288,181"/>
+<area shape="rect" id="node19" href="$places_8h.html" title="File containing the deinfition of the places class. " alt="" coords="333,155,404,181"/>
+<area shape="rect" id="node6" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="195,229,273,256"/>
+<area shape="rect" id="node7" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers. " alt="" coords="60,304,157,331"/>
+<area shape="rect" id="node10" href="$timestep_8h_source.html" title="timestep.h" alt="" coords="233,304,315,331"/>
+<area shape="rect" id="node12" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="307,379,406,405"/>
 </map>

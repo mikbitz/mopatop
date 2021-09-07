@@ -91,6 +91,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a8e60766761487fbdbc7027b3a6b67eeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d18911f0ef9b37724cac84cfddc6b04"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeReporter.html#a2d18911f0ef9b37724cac84cfddc6b04">showInterval</a> (std::string s, std::chrono::time_point&lt; std::chrono::steady_clock &gt; start, std::chrono::time_point&lt; std::chrono::steady_clock &gt; end)</td></tr>
 <tr class="separator:a2d18911f0ef9b37724cac84cfddc6b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae69a22c299b50f3ecc9d7357844e9ce3"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeReporter.html#ae69a22c299b50f3ecc9d7357844e9ce3">interval</a> (std::chrono::time_point&lt; std::chrono::steady_clock &gt; start, std::chrono::time_point&lt; std::chrono::steady_clock &gt; end)</td></tr>
+<tr class="separator:ae69a22c299b50f3ecc9d7357844e9ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Simple static class to abstract the clunky C++ chrono system. </p>
@@ -121,6 +123,50 @@ For example:- </p><div class="fragment"><div class="line"><span class="keyword">
 </table>
 </div><div class="memdoc">
 <p>get the time now </p>
+
+</div>
+</div>
+<a id="ae69a22c299b50f3ecc9d7357844e9ce3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae69a22c299b50f3ecc9d7357844e9ce3">&#9670;&nbsp;</a></span>interval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsigned timeReporter::interval </td>
+          <td>(</td>
+          <td class="paramtype">std::chrono::time_point&lt; std::chrono::steady_clock &gt;&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::chrono::time_point&lt; std::chrono::steady_clock &gt;&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>calculate the interval between two time points as an integer - use absolute value so that order of arguments doesn't matter </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>The start of the interval as reported by <a class="el" href="classtimeReporter.html#a8e60766761487fbdbc7027b3a6b67eeb">getTime</a> </td></tr>
+    <tr><td class="paramname">end</td><td>The correspinding end of the interval </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a positive integer giving the interval in milliseconds </dd></dl>
 
 </div>
 </div>

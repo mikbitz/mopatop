@@ -38,13 +38,13 @@ void agent::moveTo(placeTypes location){
 //------------------------------------------------------------------------
 void agent::process_disease(randomizer& r){
         //recovery
-        if (diseased){
-            if (disease::die(r))              {diseased=false ; immune=false; alive=false;}
-            if (alive && disease::recover(r)) {diseased=false ; immune=true;}
+        if (diseased()){
+            if (disease::die(r))              {die();}
+            if (alive() && disease::recover(r)) {recover();}
         }
         //infection
         assert(places[currentPlace]!=nullptr);
-        if (alive && !immune && disease::infect(places[currentPlace]->getContaminationLevel(),r) )diseased=true;
+        if (alive() && !immune() && disease::infect(places[currentPlace]->getContaminationLevel(),r) )getDisease();
         //immunity loss could go here...
 }
 //------------------------------------------------------------------------
@@ -79,5 +79,6 @@ void agent::cough()
         //breathInto(place) - scales linearly with the time spent there (using uniform timesteps) - masks could go here as a scaling on contamination increase (what about surfaces? -second contamination factor?)
         //check first that the places has been defined properly.
         assert(places[currentPlace]!=nullptr);
-        if (diseased) places[currentPlace]->increaseContamination(disease::shedInfection());
+        if (diseased()) places[currentPlace]->increaseContamination(disease::shedInfection());
 }
+unsigned long agent::nextID=0;

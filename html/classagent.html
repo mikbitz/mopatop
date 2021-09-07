@@ -71,6 +71,8 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classagent-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">agent Class Reference</div>  </div>
@@ -101,6 +103,7 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af5eb66189d689e9d7b5642ebda2c8fbc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#af5eb66189d689e9d7b5642ebda2c8fbc">agent</a> ()</td></tr>
+<tr class="memdesc:af5eb66189d689e9d7b5642ebda2c8fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">create and agent and set default disease flags and ID.  <a href="#af5eb66189d689e9d7b5642ebda2c8fbc">More...</a><br /></td></tr>
 <tr class="separator:af5eb66189d689e9d7b5642ebda2c8fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a239e618670ccbfc64728eb6ccff102a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a239e618670ccbfc64728eb6ccff102a1">moveTo</a> (<a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">placeTypes</a>)</td></tr>
 <tr class="memdesc:a239e618670ccbfc64728eb6ccff102a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to change the agent from one place's list of occupants to another.  <a href="#a239e618670ccbfc64728eb6ccff102a1">More...</a><br /></td></tr>
@@ -120,6 +123,32 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:abae30dc0c04cac106bba533d28963ae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">call the disease functions, specified for this agent <br />
 see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition <br /></td></tr>
 <tr class="separator:abae30dc0c04cac106bba533d28963ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d0998f503a9e3795c31cac4e09462d3"><td class="memItemLeft" align="right" valign="top"><a id="a6d0998f503a9e3795c31cac4e09462d3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a6d0998f503a9e3795c31cac4e09462d3">diseased</a> ()</td></tr>
+<tr class="memdesc:a6d0998f503a9e3795c31cac4e09462d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">report whether infected with the disease <br /></td></tr>
+<tr class="separator:a6d0998f503a9e3795c31cac4e09462d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f196aa0eea3191bfdadc77d1fe931ba"><td class="memItemLeft" align="right" valign="top"><a id="a7f196aa0eea3191bfdadc77d1fe931ba"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a7f196aa0eea3191bfdadc77d1fe931ba">recovered</a> ()</td></tr>
+<tr class="memdesc:a7f196aa0eea3191bfdadc77d1fe931ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">report whether recovered from the disease <br /></td></tr>
+<tr class="separator:a7f196aa0eea3191bfdadc77d1fe931ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e00c2f67a1ad5ca6950c10e79541d1c"><td class="memItemLeft" align="right" valign="top"><a id="a8e00c2f67a1ad5ca6950c10e79541d1c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a8e00c2f67a1ad5ca6950c10e79541d1c">immune</a> ()</td></tr>
+<tr class="memdesc:a8e00c2f67a1ad5ca6950c10e79541d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">report whether immune to the disease <br /></td></tr>
+<tr class="separator:a8e00c2f67a1ad5ca6950c10e79541d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada35dd211f5899062f98c6504a6c1444"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ada35dd211f5899062f98c6504a6c1444">getDisease</a> ()</td></tr>
+<tr class="memdesc:ada35dd211f5899062f98c6504a6c1444"><td class="mdescLeft">&#160;</td><td class="mdescRight">give the agent the disease  <a href="#ada35dd211f5899062f98c6504a6c1444">More...</a><br /></td></tr>
+<tr class="separator:ada35dd211f5899062f98c6504a6c1444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7fe68fea750a9132f959220b3bb014c"><td class="memItemLeft" align="right" valign="top"><a id="ad7fe68fea750a9132f959220b3bb014c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ad7fe68fea750a9132f959220b3bb014c">recover</a> ()</td></tr>
+<tr class="memdesc:ad7fe68fea750a9132f959220b3bb014c"><td class="mdescLeft">&#160;</td><td class="mdescRight">recover from disease <br /></td></tr>
+<tr class="separator:ad7fe68fea750a9132f959220b3bb014c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c31fe2f6f752a35261041b5bef3c532"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a3c31fe2f6f752a35261041b5bef3c532">die</a> ()</td></tr>
+<tr class="memdesc:a3c31fe2f6f752a35261041b5bef3c532"><td class="mdescLeft">&#160;</td><td class="mdescRight">die - possibly from any cause...  <a href="#a3c31fe2f6f752a35261041b5bef3c532">More...</a><br /></td></tr>
+<tr class="separator:a3c31fe2f6f752a35261041b5bef3c532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb6d783c6762c0854e43103e0732e5d9"><td class="memItemLeft" align="right" valign="top"><a id="acb6d783c6762c0854e43103e0732e5d9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#acb6d783c6762c0854e43103e0732e5d9">alive</a> ()</td></tr>
+<tr class="memdesc:acb6d783c6762c0854e43103e0732e5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if the agent is alive <br /></td></tr>
+<tr class="separator:acb6d783c6762c0854e43103e0732e5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36efb38a3411908da18bb1b98071dc66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a36efb38a3411908da18bb1b98071dc66">atHome</a> ()</td></tr>
 <tr class="separator:a36efb38a3411908da18bb1b98071dc66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1911596a9fc1d9ad237060ef265cac10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a1911596a9fc1d9ad237060ef265cac10">atWork</a> ()</td></tr>
@@ -136,6 +165,10 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition <br /></td
 <tr class="memdesc:a347d8226bc8982c3ba8d9e61de433a9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">set agent ID number <br />
   <a href="#a347d8226bc8982c3ba8d9e61de433a9c">More...</a><br /></td></tr>
 <tr class="separator:a347d8226bc8982c3ba8d9e61de433a9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62a990a10e6ae56efd22acf21eb1fb4c"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a62a990a10e6ae56efd22acf21eb1fb4c">getID</a> ()</td></tr>
+<tr class="memdesc:a62a990a10e6ae56efd22acf21eb1fb4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get agent ID number <br />
+  <a href="#a62a990a10e6ae56efd22acf21eb1fb4c">More...</a><br /></td></tr>
+<tr class="separator:a62a990a10e6ae56efd22acf21eb1fb4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -145,16 +178,35 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a4c741951d20af843a264d2dd8dc750d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c07bfb8b610ad493a4704643b4dcbcf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">placeTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a6c07bfb8b610ad493a4704643b4dcbcf">currentPlace</a></td></tr>
 <tr class="separator:a6c07bfb8b610ad493a4704643b4dcbcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a210486017d5e7d710adc8468df9b7369"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtravelSchedule.html">travelSchedule</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a210486017d5e7d710adc8468df9b7369">schedule</a></td></tr>
+<tr class="memitem:a210486017d5e7d710adc8468df9b7369"><td class="memItemLeft" align="right" valign="top"><a id="a210486017d5e7d710adc8468df9b7369"></a>
+<a class="el" href="classtravelSchedule.html">travelSchedule</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a210486017d5e7d710adc8468df9b7369">schedule</a></td></tr>
+<tr class="memdesc:a210486017d5e7d710adc8468df9b7369"><td class="mdescLeft">&#160;</td><td class="mdescRight">the default travel schedule - currently every agent has the same <br /></td></tr>
 <tr class="separator:a210486017d5e7d710adc8468df9b7369"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8a85f27948645977453eb52988194ba"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ad8a85f27948645977453eb52988194ba">counter</a> =0</td></tr>
 <tr class="separator:ad8a85f27948645977453eb52988194ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7b24c2cd9856829f2cda81541ae6797"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ab7b24c2cd9856829f2cda81541ae6797">alive</a> =true</td></tr>
-<tr class="separator:ab7b24c2cd9856829f2cda81541ae6797"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6c663bf79440b5dc58d548801ff86ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ac6c663bf79440b5dc58d548801ff86ea">diseased</a></td></tr>
-<tr class="separator:ac6c663bf79440b5dc58d548801ff86ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3dd3064ae93b574be71a3c8418c4ef4e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a3dd3064ae93b574be71a3c8418c4ef4e">immune</a></td></tr>
-<tr class="separator:a3dd3064ae93b574be71a3c8418c4ef4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a36f01ce175f393687e03ffff9bb020f6"><td class="memItemLeft" align="right" valign="top"><a id="a36f01ce175f393687e03ffff9bb020f6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a36f01ce175f393687e03ffff9bb020f6">diseasedFlag</a></td></tr>
+<tr class="memdesc:a36f01ce175f393687e03ffff9bb020f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag set to true if the agent has the disease <br /></td></tr>
+<tr class="separator:a36f01ce175f393687e03ffff9bb020f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a681fd488e3514cd81361936cbf226cd7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a681fd488e3514cd81361936cbf226cd7">immuneFlag</a></td></tr>
+<tr class="memdesc:a681fd488e3514cd81361936cbf226cd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag set to false initially, set if the agent cannot catch the disease  <a href="#a681fd488e3514cd81361936cbf226cd7">More...</a><br /></td></tr>
+<tr class="separator:a681fd488e3514cd81361936cbf226cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87693511b55769f6406ebe5d342cc456"><td class="memItemLeft" align="right" valign="top"><a id="a87693511b55769f6406ebe5d342cc456"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a87693511b55769f6406ebe5d342cc456">recoveredFlag</a></td></tr>
+<tr class="memdesc:a87693511b55769f6406ebe5d342cc456"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag set to false initially, and true when the agent recovers from disease <br /></td></tr>
+<tr class="separator:a87693511b55769f6406ebe5d342cc456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37e1e72bd98e1ef9b90cacda175c9c50"><td class="memItemLeft" align="right" valign="top"><a id="a37e1e72bd98e1ef9b90cacda175c9c50"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a37e1e72bd98e1ef9b90cacda175c9c50">aliveFlag</a> =true</td></tr>
+<tr class="memdesc:a37e1e72bd98e1ef9b90cacda175c9c50"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag set to true if the agent is alive <br /></td></tr>
+<tr class="separator:a37e1e72bd98e1ef9b90cacda175c9c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a3175e8fe78a1593eb7217513c259df80"><td class="memItemLeft" align="right" valign="top">static unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a3175e8fe78a1593eb7217513c259df80">nextID</a> =0</td></tr>
+<tr class="separator:a3175e8fe78a1593eb7217513c259df80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The main agent class - each agent represents one person. </p>
@@ -199,8 +251,11 @@ If they are in a contaminated location, they may contract the disease. Additiona
   </tr>
 </table>
 </div><div class="memdoc">
-<p>create and agent and set default disease flags. Also set aside storage for the three placeTypes the agent can occupy. <br />
-these are set later, as the places need to be created before they can be allocated to agents <br />
+
+<p>create and agent and set default disease flags and ID. </p>
+<p>The static nextID variable is used to auto-set the ID number. nextID is then incremented.<br />
+Also set aside storage for the three placeTypes the agent can occupy. <br />
+ these are set later, as the places need to be created before they can be allocated to agents <br />
 </p>
 
 </div>
@@ -255,6 +310,91 @@ these are set later, as the places need to be created before they can be allocat
 </table>
 </div><div class="memdoc">
 <p>do any things that need to be done at work </p>
+
+</div>
+</div>
+<a id="a3c31fe2f6f752a35261041b5bef3c532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c31fe2f6f752a35261041b5bef3c532">&#9670;&nbsp;</a></span>die()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void agent::die </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>die - possibly from any cause... </p>
+<p>set flags relevant to disease anyway as these are needed for reporting </p>
+
+</div>
+</div>
+<a id="ada35dd211f5899062f98c6504a6c1444"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada35dd211f5899062f98c6504a6c1444">&#9670;&nbsp;</a></span>getDisease()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void agent::getDisease </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>give the agent the disease </p>
+<p>needed to set off the disease initially </p>
+
+</div>
+</div>
+<a id="a62a990a10e6ae56efd22acf21eb1fb4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62a990a10e6ae56efd22acf21eb1fb4c">&#9670;&nbsp;</a></span>getID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long agent::getID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get agent ID number <br />
+ </p>
+<dl class="section return"><dt>Returns</dt><dd>The agent ID number, an unsigned long integer </dd></dl>
 
 </div>
 </div>
@@ -485,21 +625,6 @@ needs to be called every timestep see <a class="el" href="agent_8cpp.html">agent
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ab7b24c2cd9856829f2cda81541ae6797"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7b24c2cd9856829f2cda81541ae6797">&#9670;&nbsp;</a></span>alive</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool agent::alive =true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>flag set to true if the agent is alive </p>
-
-</div>
-</div>
 <a id="ad8a85f27948645977453eb52988194ba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad8a85f27948645977453eb52988194ba">&#9670;&nbsp;</a></span>counter</h2>
 
@@ -530,21 +655,6 @@ needs to be called every timestep see <a class="el" href="agent_8cpp.html">agent
 
 </div>
 </div>
-<a id="ac6c663bf79440b5dc58d548801ff86ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6c663bf79440b5dc58d548801ff86ea">&#9670;&nbsp;</a></span>diseased</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool agent::diseased</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>flag set to true if the agent has the disease </p>
-
-</div>
-</div>
 <a id="a1e931267336c34b3f7baa145e2c83337"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1e931267336c34b3f7baa145e2c83337">&#9670;&nbsp;</a></span>ID</h2>
 
@@ -560,18 +670,51 @@ needs to be called every timestep see <a class="el" href="agent_8cpp.html">agent
 
 </div>
 </div>
-<a id="a3dd3064ae93b574be71a3c8418c4ef4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3dd3064ae93b574be71a3c8418c4ef4e">&#9670;&nbsp;</a></span>immune</h2>
+<a id="a681fd488e3514cd81361936cbf226cd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a681fd488e3514cd81361936cbf226cd7">&#9670;&nbsp;</a></span>immuneFlag</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool agent::immune</td>
+          <td class="memname">bool agent::immuneFlag</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>flag set to false initially, and true when the agent recovers from disease </p>
+
+<p>flag set to false initially, set if the agent cannot catch the disease </p>
+<p>in the simplest case an agent that recovers from the disease is immune forever </p>
+
+</div>
+</div>
+<a id="a3175e8fe78a1593eb7217513c259df80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3175e8fe78a1593eb7217513c259df80">&#9670;&nbsp;</a></span>nextID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long agent::nextID =0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A static (class-level) variable that stores the next ID number for a new agent - initialsed to 0 in <a class="el" href="agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ...">agent.cpp</a> </p>
 
 </div>
 </div>
@@ -588,21 +731,6 @@ needs to be called every timestep see <a class="el" href="agent_8cpp.html">agent
 </div><div class="memdoc">
 <p>A vector of pointers to places - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use he name (home.work etc.) <br />
 intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!) </p>
-
-</div>
-</div>
-<a id="a210486017d5e7d710adc8468df9b7369"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a210486017d5e7d710adc8468df9b7369">&#9670;&nbsp;</a></span>schedule</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classtravelSchedule.html">travelSchedule</a>* agent::schedule</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>the default travel schedule - currently every agent has the same - </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>needs modification...(singleton?) </dd></dl>
 
 </div>
 </div>

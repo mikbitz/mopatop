@@ -41,6 +41,17 @@ class place;
  * If they are in a contaminated location, they may contract the disease. Additionally they may do other things in their current location.
 */
 class agent{
+    /** A static (class-level) variable that stores the next ID number for a new agent - initialsed to 0 in agent.cpp */
+    static unsigned long nextID;
+    /** @brief flag set to true if the agent has the disease */
+    bool diseasedFlag;
+    /** @brief flag set to false initially, set if the agent cannot catch the disease 
+      @details in the simplest case an agent that recovers from the disease is immune forever */
+    bool immuneFlag;
+    /** @brief flag set to false initially, and true when the agent recovers from disease */
+    bool recoveredFlag;
+    /** @brief flag set to true if the agent is alive */
+    bool aliveFlag=true;
 public:
     /** Unique agent identifier - should be able to go up to 4e9 */
     unsigned long ID;
@@ -54,27 +65,25 @@ public:
     /** Where the agent is currently located - note to get this actual place, use this is as an index into the places vector*/
     placeTypes currentPlace;
 
-    /** the default travel schedule - currently every agent has the same - 
-     * @todo needs modification...(singleton?) */
+    /** @brief the default travel schedule - currently every agent has the same */
     travelSchedule* schedule;
     /** Counts down the time spent at the current location
      */    
     double counter=0;
-    /** flag set to true if the agent is alive */
-    bool alive=true;
-    /** flag set to true if the agent has the disease */
-    bool diseased;
-    /** flag set to false initially, and true when the agent recovers from disease */
-    bool immune;
-    /** create and agent and set default disease flags. Also set aside storage for the three placeTypes the agent can occupy. \n
+    /** @brief create and agent and set default disease flags and ID. 
+     * @details The static nextID variable is used to auto-set the ID number. nextID is then incremented.\n
+     * Also set aside storage for the three placeTypes the agent can occupy. \n
      *  these are set later, as the places need to be created before they can be allocated to agents \n
      */
     agent(){
-        diseased=false;
-        immune=false;
-        alive=true;
+        diseasedFlag=false;
+        immuneFlag=false;
+        recoveredFlag=false;
+        aliveFlag=true;
         //this has to be the same size as the placeTypes enum
         places.resize(3);
+        ID=nextID;
+        nextID++;
     }
     /** @brief Function to change the agent from one place's list of occupants to another 
      *  @details- not used just at present - this function is very expensive on compute time 
@@ -94,6 +103,36 @@ public:
     /** @brief call the disease functions, specified for this agent \n
      see \ref agent.cpp for definition*/
     void process_disease(randomizer& );
+    /** @brief report whether infected with the disease */
+    bool diseased(){
+        return diseasedFlag;
+    }
+    /** @brief report whether recovered from the disease */
+    bool recovered(){
+        return recoveredFlag;
+    }
+    /** @brief report whether immune to the disease */
+    bool immune(){
+        return immuneFlag;
+    }
+    /** @brief give the agent the disease
+        @details needed to set off the disease initially*/
+    void getDisease(){
+        diseasedFlag=true;
+    }
+    /** @brief recover from disease*/
+    void recover(){
+        diseasedFlag=false ; immuneFlag=true;  recoveredFlag=true;
+    }
+    /** @brief die - possibly from any cause...
+        @details set flags relevant to disease anyway as these are needed for reporting */
+    void die(){
+        diseasedFlag=false ; immuneFlag=false; recoveredFlag=false; aliveFlag=false;
+    }
+    /** @brief check if the agent is alive */
+    bool alive(){
+        return aliveFlag;
+    }
     /** do any things that need to be done at home */
     void atHome(){
         //if (ID==0)std::cout<<"at Home "<<std::endl;
@@ -129,6 +168,11 @@ public:
      @param i a long integer */
     void setID(long i){
         ID=i;
+    }
+    /** @brief get agent ID number  
+     @return The agent ID number, an unsigned long integer */
+    unsigned long getID(){
+        return ID;
     }
 
 };
