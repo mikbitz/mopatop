@@ -54,7 +54,7 @@ public:
         CPPUNIT_ASSERT(m.numberDiseased()==1);
     }
         /** @brief try stepping the model forward and check output
-            @details if the number of omp threads is not set this can produce crahses or unpredictable results...*/
+            @details if the number of omp threads is not set this can produce crashes or unpredictable results...*/
     void testRun()
     {
         parameterSettings pr;

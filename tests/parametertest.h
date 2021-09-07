@@ -60,7 +60,7 @@ public:
         CPPUNIT_ASSERT(p.get<int>("run.randomSeed")==0);
         CPPUNIT_ASSERT(p.get("timeStep.units")=="hours");
         CPPUNIT_ASSERT(p.get<double>("timeStep.dt")==1);
-        CPPUNIT_ASSERT(p.get("outputFile")=="diseaseSummary.csv");
+        CPPUNIT_ASSERT(p.get("outputFile")=="diseaseSummary");
         CPPUNIT_ASSERT(p.get("experiment.output.directory")=="./output");
         CPPUNIT_ASSERT(p.get("experiment.name")=="default");
         CPPUNIT_ASSERT(p.get<int>("experiment.run.number")==-1);
