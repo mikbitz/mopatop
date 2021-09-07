@@ -72,7 +72,8 @@ public:
     /** @brief create and agent and set default disease flags and ID. 
      * @details The static nextID variable is used to auto-set the ID number. nextID is then incremented.\n
      * Also set aside storage for the three placeTypes the agent can occupy. \n
-     *  these are set later, as the places need to be created before they can be allocated to agents \n
+     *  these are set later, as the places need to be created before they can be allocated to agents.\n
+     * NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens!\n
      */
     agent(){
         diseasedFlag=false;
@@ -116,7 +117,7 @@ public:
     }
     /** @brief give the agent the disease
         @details needed to set off the disease initially*/
-    void getDisease(){
+    void becomeInfected(){
         diseasedFlag=true;
     }
     /** @brief recover from disease*/
@@ -145,7 +146,8 @@ public:
     void inTransit(){
         //if (ID==0)std::cout<<"on Bus"<<std::endl;
     }
-    /** set up the place vector to include being at home - needs to be called when places are being created by the model class 
+    /** @brief set up the place vector to include being at home 
+     * @details - needs to be called when places are being created by the model class 
      @param pu a pointer to the specific home location for this agent */
     void setHome(place* pu){
         places[home]=pu;
@@ -153,15 +155,37 @@ public:
         //pu->add(this);
         currentPlace=home;
     }
-    /** set up the place vector to include being at work - needs to be called when places are being created by the model class 
+    /** @brief set up the place vector to include being at work 
+     * @details - needs to be called when places are being created by the model class 
        @param pu a pointer to the specific work location for this agent */
     void setWork(place* pu){
         places[work]=pu;
     }
-    /** set up the place vector to include travelling - needs to be called when places are being created by the model class 
+    /** @brief set up the place vector to include travelling 
+     * @details - needs to be called when places are being created by the model class 
      @param pu a pointer to the specific transport (e.g. a bus) location for this agent */
     void setTransport(place* pu){
         places[vehicle]=pu;
+    }
+    /** @brief get the place corresponding to home
+         @return pointer to a place*/
+    place* getHome(){
+       return places[home];
+    }
+    /** @brief  get the place corresponding to work       
+     *@return pointer to a place*/
+    place* getWork(){
+       return places[work];
+    }
+    /**  @brief get the place corresponding to transport vehicle      
+     *@return pointer to a place*/
+    place* getTransport(){
+       return places[vehicle];
+    }
+    /**  @brief get the place corresponding to where the agent is now      
+     *@return pointer to a place*/
+    place* getCurrentPlace(){
+       return places[currentPlace];
     }
     /** @brief set agent ID number  
      @param i a long integer */

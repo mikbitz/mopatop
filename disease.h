@@ -90,6 +90,10 @@ public:
     static double getDeathRate(){return deathRate;}
     /** return the current infectionShedLoad */
     static double getShed(){return infectionShedLoad;}
+    /** set the current recovery rate */
+    static void setRecoveryRate(double r){recoveryRate=r;}
+    /** set the current death rate */
+    static void setDeathRate(double r){deathRate=r;}
 };
 
 #endif // DISEASE_H_INCLUDED

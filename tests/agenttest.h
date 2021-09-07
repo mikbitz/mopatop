@@ -39,21 +39,114 @@ public:
     CPPUNIT_TEST_SUITE( agentTest );
     /** @brief test the default constructor  */
     CPPUNIT_TEST( testDefaultConstructor );
+    /** @brief test some of the set/get functions  */
+    CPPUNIT_TEST( testSettings );
+    /** @brief test the disease functions  */
+    CPPUNIT_TEST( testDisease );
+    /** @brief test the schedule  */
+    CPPUNIT_TEST( testSchedule );
     /** @brief end the test suite   */
     CPPUNIT_TEST_SUITE_END();
     /** @brief make sure default agent has no disease, is alive, and knows about 3 kinds of place. Check ID increments.
-        @details Note that since the agent ID auto-increments, this has to be the first test suite if the first agent tested
-        is meant to have ID zero */
+        @details Note that since the agent ID auto-increments, this has to be the first test suite that uses any agents\n
+        if the first agent tested is meant to have ID zero */
     void testDefaultConstructor()
     {
         agent a,b;
         CPPUNIT_ASSERT(a.getID()==0);
         CPPUNIT_ASSERT(b.getID()==1);
-        CPPUNIT_ASSERT(a.diseased()==false);
-        CPPUNIT_ASSERT(a.recovered()==false);
-        CPPUNIT_ASSERT(a.immune()==false);
-        CPPUNIT_ASSERT(a.alive()==true);
+        CPPUNIT_ASSERT(!a.diseased());
+        CPPUNIT_ASSERT(!a.recovered());
+        CPPUNIT_ASSERT(!a.immune());
+        CPPUNIT_ASSERT(a.alive());
         CPPUNIT_ASSERT(a.places.size()==3);
+    }
+    /** @brief test the ID and places can be set */
+    void testSettings()
+    {   
+        agent a;
+        place p;
+        CPPUNIT_ASSERT(a.getID()==2);
+        a.setID(30);
+        CPPUNIT_ASSERT(a.getID()==30);
+        a.setHome(&p);
+        CPPUNIT_ASSERT(a.getHome()==&p);
+        //setHome also sets current place to home
+        CPPUNIT_ASSERT(a.getCurrentPlace()==&p);
+        a.setWork(&p);
+        CPPUNIT_ASSERT(a.getWork()==&p);
+        a.setTransport(&p);
+        CPPUNIT_ASSERT(a.getTransport()==&p);        
+        parameterSettings pr;
+        a.initTravelSchedule(pr);
+    }
+    /** @brief test the travel schedule */
+    void testSchedule()
+    {   
+        agent a;
+        place p;   
+        parameterSettings pr;
+        a.initTravelSchedule(pr);
+    }
+    /** @brief Check the functions that set the disease are working as expected */
+    void testDisease()
+    {
+        agent a,b,c,d;
+        place p;
+        a.setHome(&p);
+        CPPUNIT_ASSERT(!a.diseased());
+        a.becomeInfected();
+        CPPUNIT_ASSERT(a.diseased());
+        CPPUNIT_ASSERT(!a.recovered());
+        CPPUNIT_ASSERT(!a.immune());
+        a.recover();
+        CPPUNIT_ASSERT(!a.diseased());
+        CPPUNIT_ASSERT(a.recovered());
+        CPPUNIT_ASSERT(a.immune());
+        CPPUNIT_ASSERT(a.alive());
+        a.die();
+        CPPUNIT_ASSERT(!a.diseased());
+        CPPUNIT_ASSERT(!a.recovered());
+        CPPUNIT_ASSERT(!a.immune());
+        CPPUNIT_ASSERT(!a.alive());
+        CPPUNIT_ASSERT(!a.alive());
+        b.setHome(&p);
+        b.becomeInfected();
+        //should contaminate the current place
+        b.cough();
+        CPPUNIT_ASSERT(b.getCurrentPlace()->getContaminationLevel()==disease::getShed());
+        b.recover();
+        //contamination should be unchanged as agent has recovered
+        CPPUNIT_ASSERT(b.getCurrentPlace()->getContaminationLevel()==disease::getShed());
+        //put contamination to over 1 - guarantees infectious!
+        b.getCurrentPlace()->increaseContamination(1);
+        randomizer r;
+        //b should be immune
+        b.process_disease(r);
+        CPPUNIT_ASSERT(!b.diseased());
+        //a is dead!
+        a.process_disease(r);
+        CPPUNIT_ASSERT(!a.diseased());
+        //new agent should get infected
+        c.setHome(&p);
+        c.process_disease(r);
+        CPPUNIT_ASSERT(c.diseased());
+        //store disease default recovery rate- needed for later tests
+        double k=disease::getRecoveryRate();
+        disease::setRecoveryRate(1.);
+        //c should recover!
+        c.process_disease(r);
+        CPPUNIT_ASSERT(c.recovered());
+        //reset disease
+        disease::setRecoveryRate(k);
+        //check for death!
+        k=disease::getDeathRate();
+        disease::setDeathRate(1.);
+        d.setHome(&p);
+        d.becomeInfected();
+        d.process_disease(r);
+        CPPUNIT_ASSERT(!d.alive());
+        disease::setDeathRate(k);
     }
 };
 

@@ -146,7 +146,7 @@ public:
         //set off the disease! - some number of agents (default 1) is infected at the start.
         //shuffle things so agents are allocated at random
         random_shuffle(agents.begin(),agents.end());
-        for (int i=0;i<parameters.get<int>("disease.simplistic.initialNumberInfected");i++)agents[i]->getDisease();
+        for (int i=0;i<parameters.get<int>("disease.simplistic.initialNumberInfected");i++)agents[i]->becomeInfected();
     }
     //------------------------------------------------------------------------
     /** @brief Advance the model time step \n

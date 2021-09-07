@@ -1,4 +1,5 @@
 #Model parameters
+#This version of the file is used to check that settings are read in as expected.
 #lines starting with any amount of white space, followed by # are comments
 #Lines with no = will also be skipped
 #Format is "label=value" on each line

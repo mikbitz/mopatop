@@ -39,12 +39,12 @@ void agent::moveTo(placeTypes location){
 void agent::process_disease(randomizer& r){
         //recovery
         if (diseased()){
-            if (disease::die(r))              {die();}
+            if (disease::die(r))                {die();}
             if (alive() && disease::recover(r)) {recover();}
         }
         //infection
         assert(places[currentPlace]!=nullptr);
-        if (alive() && !immune() && disease::infect(places[currentPlace]->getContaminationLevel(),r) )getDisease();
+        if (alive() && !immune() && disease::infect(places[currentPlace]->getContaminationLevel(),r) )becomeInfected();
         //immunity loss could go here...
 }
 //------------------------------------------------------------------------

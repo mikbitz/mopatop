@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['day',['day',['../classtimeStep.html#a6364ad278884017a1da511da573f9c99',1,'timeStep']]],
-  ['dayspertimestep',['daysPerTimeStep',['../classtimeStep.html#ab5dec1bff7b4629632cbb5b849a9af6f',1,'timeStep']]],
-  ['deltat',['deltaT',['../classtimeStep.html#a43049a6eb016155b1b2152b2b62f42bc',1,'timeStep']]],
-  ['die',['die',['../classagent.html#a3c31fe2f6f752a35261041b5bef3c532',1,'agent::die()'],['../classdisease.html#a232f17f3926a118cf5e2a7d091c4318e',1,'disease::die()']]],
-  ['disease',['disease',['../classdisease.html#adcb9fcc5db67fd957dab69127296b2a2',1,'disease::disease()'],['../classdisease.html#a869796dd27efc41c5815188188fe05bd',1,'disease::disease(parameterSettings &amp;p)']]],
-  ['diseased',['diseased',['../classagent.html#a6d0998f503a9e3795c31cac4e09462d3',1,'agent']]]
+  ['clean',['clean',['../classrandomizerS.html#ace0e27f1b2974ee15fc28064856747f0',1,'randomizerS']]],
+  ['cleancontamination',['cleanContamination',['../classplace.html#a8725d893d278015c93e8d5982ab2e505',1,'place']]],
+  ['cleanoldschedule',['cleanOldSchedule',['../classtravelSchedule.html#aff63b2b6b523733e16ed022293a3c082',1,'travelSchedule']]],
+  ['cough',['cough',['../classagent.html#a958d3d4ffc3c372136459b08f5e4a457',1,'agent']]],
+  ['createagents',['createAgents',['../classmodelFactory.html#aaab7a237b4f7792920ccd81376f1a7ab',1,'modelFactory::createAgents()'],['../classsimpleOnePlaceFactory.html#a0132ab5b372195e4e640952dba1da5d0',1,'simpleOnePlaceFactory::createAgents()'],['../classsimpleMobileFactory.html#a0c7ef83172b64b73d85fe91d350234ac',1,'simpleMobileFactory::createAgents()']]]
 ];
