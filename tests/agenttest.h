@@ -30,7 +30,7 @@
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-
+//NB functions atWork, atHome, inTransit currently empty so not tested here
 /** @brief test out the agent class*/ 
 class agentTest : public CppUnit::TestFixture  {
 

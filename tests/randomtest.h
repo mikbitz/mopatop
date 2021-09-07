@@ -68,7 +68,8 @@ public:
     /** @brief Run through a large number of randoms to see if teh sequence seems uniform-ish\n
      * @details The sequence should lie strictly in (0,1). The mean should converge on 0.5\n
      * For large number, one might expect the variance about the mean to decrease steadily as the number\n
-     * of invocations increases, but instead it steadies at about 0.083 - hmmm
+     * of invocations increases, but instead it steadies at about 0.083 - a little consideration reveals\n
+     * that the expected variance should indeed converge on 1/12 for a square distribtuion of width 1.
      */
     void testDistrib()
     {
@@ -77,8 +78,8 @@ public:
         //test strictly between 0 and 1 - expecintg a uniform random distribution
         for (int i=0;i<10000;i++)f=f&&(r.number()<1)&&(r.number()>0);
         CPPUNIT_ASSERT(f);
-        //mean should converge on 0.5?? or at least sqrt n fluctuations?
-        //the variance should be smaller, the larger the number of samples, fo sure, you'd have thought...but seems not (settles at about 0.083)
+        //mean should converge on 0.5 or at least sqrt n fluctuations - although the behaviour at small n is rather uneven.
+        //the variance should be smaller, the larger the number of samples, fo sure, you'd have thought...but settles at about 0.083, as expected
         double p=0,q=0,s=0,l=0;
         for (int i=0;i<10;i++)p+=r.number()/10;
         for (int i=0;i<10;i++)s+=pow((r.number()-p),2)/10;
@@ -87,7 +88,7 @@ public:
         CPPUNIT_ASSERT(std::abs(0.5-q)<0.1);
         CPPUNIT_ASSERT(std::abs(0.5-q)<std::abs(0.5-p));
         CPPUNIT_ASSERT(l<s);
-        std::cout<<"Mean/Variance of 100,000 RNG samples: "<<q<<" "<<l<<std::endl;
+        CPPUNIT_ASSERT(abs(1./12-l)<0.001);
     }
 
 };
