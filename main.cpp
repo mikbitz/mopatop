@@ -49,7 +49,7 @@
  @param argv The argument values - expected to be just the name of the parameter file */
 int main(int argc, char **argv) {
 
-    std::string version="0.3";
+    std::string version="0.4";
     std::cout<<"Model version "<<version<<std::endl;
 
     //work out the current local time using C++ clunky time 
