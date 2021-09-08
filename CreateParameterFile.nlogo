@@ -517,15 +517,18 @@ Output
 This is a simple generator of parameter files for mopatop
 
 ## HOW IT WORKS
-Click the defaults button to tsee the deafult settings. Change as needed then click writeParameters. A file with the name given by "parameterFilename" will be generated. 
+Sets a number of global variables which are then written out using file-print.
+Note that using file-write for strings outputs the quotation marks (!), so use file-print
+(which adds a line terminator) with strings created using "word".
 
 ## HOW TO USE IT
 
-(how to use the model, including a description of each of the items in the Interface tab)
+Click the defaults button to tsee the deafult settings. Change as needed then click writeParameters. A file with the name given by "parameterFilename" will be generated.
+If a file already exists with the same name, this genereates an error (otherwise the values would be appended to the exitsing file, which would be bad!) 
 
 ## THINGS TO NOTICE
 
-(suggested things for the user to notice while running the model)
+Meaning of the parameters is more thoroughly documented in the writeParameters function
 
 ## THINGS TO TRY
 
@@ -537,15 +540,15 @@ Click the defaults button to tsee the deafult settings. Change as needed then cl
 
 ## NETLOGO FEATURES
 
-(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
+Uses file-open/file-print/file-close to write to a text file
 
 ## RELATED MODELS
 
-(models in the NetLogo Models Library and elsewhere which are of related interest)
+None?
 
 ## CREDITS AND REFERENCES
 
-(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
+Mike Bithell 08/09/2021. See Mopatop on github for the full model and documentation (C++).
 @#$#@#$#@
 default
 true
