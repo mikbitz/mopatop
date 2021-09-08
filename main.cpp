@@ -49,8 +49,9 @@
  @param argv The argument values - expected to be just the name of the parameter file */
 int main(int argc, char **argv) {
 
+    std::string name="Mopatop";
     std::string version="0.4";
-    std::cout<<"Model version "<<version<<std::endl;
+    std::cout<<name<<" model version "<<version<<std::endl;
 
     //work out the current local time using C++ clunky time 
     std::time_t t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());

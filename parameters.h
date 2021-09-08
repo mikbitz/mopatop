@@ -122,6 +122,8 @@ public:
     void setDefaults(){
         std::cout<<"Setting default parameters..."<<std::endl;
         //total time steps to run for
+        _parameters["model.name"]="Mopatop";_parameterType["model.name"]=s;
+        //total time steps to run for
         _parameters["run.nSteps"]="1";_parameterType["run.nSteps"]=i;
         //number of agents to create
         _parameters["run.nAgents"]="600";_parameterType["run.nAgents"]=l;
