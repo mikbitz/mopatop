@@ -532,11 +532,11 @@ Meaning of the parameters is more thoroughly documented in the writeParameters f
 
 ## THINGS TO TRY
 
-(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
+Changes the vlaues and write out to a file - check the file iwth your favourite text editor. Use the file to run the mopatop model (not netlogo)
 
 ## EXTENDING THE MODEL
 
-(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
+Could use behaviour space to generate many file for an experiment?
 
 ## NETLOGO FEATURES
 
