@@ -13,6 +13,7 @@ var searchData=
   ['setfractionaldecrement',['setFractionalDecrement',['../classplace.html#a2ce5bb20312980753edad928e2de5f98',1,'place']]],
   ['sethome',['setHome',['../classagent.html#a99f7643279e1522a11bd01b210eb7a03',1,'agent']]],
   ['setid',['setID',['../classagent.html#a347d8226bc8982c3ba8d9e61de433a9c',1,'agent::setID()'],['../classplace.html#a47cd6ea0d6ed7e76a62c8fc667f82f1f',1,'place::setID()']]],
+  ['setidbasevalue',['setIDbaseValue',['../classagent.html#af929da429356ad4ec4cabb710b743b0e',1,'agent']]],
   ['setoutputfilepaths',['setOutputFilePaths',['../classmodel.html#ac31306234831b32bd7e8606fe5266479',1,'model']]],
   ['setparameter',['setParameter',['../classparameterSettings.html#a0b10412299911ad090c87c97a5daf471',1,'parameterSettings']]],
   ['setrecoveryrate',['setRecoveryRate',['../classdisease.html#ada69e8f749d9ad5a932bc7c38bf1b0e4',1,'disease']]],

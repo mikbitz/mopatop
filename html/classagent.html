@@ -70,6 +70,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
@@ -196,6 +197,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a62a990a10e6ae56efd22acf21eb1fb4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get agent ID number <br />
   <a href="#a62a990a10e6ae56efd22acf21eb1fb4c">More...</a><br /></td></tr>
 <tr class="separator:a62a990a10e6ae56efd22acf21eb1fb4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:af929da429356ad4ec4cabb710b743b0e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#af929da429356ad4ec4cabb710b743b0e">setIDbaseValue</a> (unsigned long i)</td></tr>
+<tr class="memdesc:af929da429356ad4ec4cabb710b743b0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the value of <a class="el" href="classagent.html#a3175e8fe78a1593eb7217513c259df80">nextID</a>.  <a href="#af929da429356ad4ec4cabb710b743b0e">More...</a><br /></td></tr>
+<tr class="separator:af929da429356ad4ec4cabb710b743b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -615,6 +622,41 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>a long integer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af929da429356ad4ec4cabb710b743b0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af929da429356ad4ec4cabb710b743b0e">&#9670;&nbsp;</a></span>setIDbaseValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void agent::setIDbaseValue </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the value of <a class="el" href="classagent.html#a3175e8fe78a1593eb7217513c259df80">nextID</a>. </p>
+<p>Use with caution - resetting this will cause automatic agent IDs to be set starting from the value set here <br />
+If agent IDs need to be unique then this could cause issues... </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>the new value from which agent IDs will be auto-incremented. </td></tr>
   </table>
   </dd>
 </dl>

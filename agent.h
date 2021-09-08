@@ -53,6 +53,13 @@ class agent{
     /** @brief flag set to true if the agent is alive */
     bool _alive=true;
 public:
+     /** @brief Set the value of \ref nextID 
+         @details Use with caution - resetting this will cause automatic agent IDs to be set starting from the value set here \n
+         If agent IDs need to be unique then this could cause issues...
+         @param i the new value from which agent IDs will be auto-incremented.*/
+    static void setIDbaseValue(unsigned long i){
+        nextID=i;
+    }
     /** @brief Unique agent identifier - should be able to go up to 4e9 */
     unsigned long ID;
     /** @brief This enum associates a set of integers with names. 

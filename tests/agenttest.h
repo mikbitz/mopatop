@@ -55,6 +55,7 @@ public:
     void testDefaultConstructor()
     {
         agent a,b;
+        //test auto-increment of agent ID number 
         CPPUNIT_ASSERT(a.getID()==0);
         CPPUNIT_ASSERT(b.getID()==1);
         CPPUNIT_ASSERT(!a.diseased());
@@ -68,6 +69,7 @@ public:
     {   
         agent a;
         place p;
+        //check ID number can be set
         CPPUNIT_ASSERT(a.getID()==2);
         a.setID(30);
         CPPUNIT_ASSERT(a.getID()==30);
@@ -81,6 +83,14 @@ public:
         CPPUNIT_ASSERT(a.getTransport()==&p);        
         parameterSettings pr;
         a.initTravelSchedule(pr);
+        //try resetting base value for auto increment of IDs.
+        agent::setIDbaseValue(1000);
+        agent x,y;
+        CPPUNIT_ASSERT(x.getID()==1000);
+        CPPUNIT_ASSERT(y.getID()==1001);
+        //reset base.
+        agent::setIDbaseValue(0);
+        
     }
     /** @brief test the travel schedule */
     void testSchedule()
