@@ -158,6 +158,8 @@ int main(){
         }
  * \endcode
  * These are pass/fail tests, and will be reported  giving the text of the failed test and line number in the code if needed\n
- * In addition tests may report text to stdout where required. Note the uses here of the pre-defined pointer p from the setUp().
+ * In addition tests may report text to stdout where required. Note the uses here of the pre-defined pointer p from the setUp().\n
  * Variables can also be defined as needed within each test function however.\n
+ * An output directory is generated afresh (and any previous values are overwritten) each time the tests are run contains \n 
+ * a small amount of data for checiking output works as expected.. 
  */

@@ -48,6 +48,8 @@ public:
     void testDefaultConstructor()
     {
         parameterSettings pr;
+        //fix the output directory
+        pr.setParameter("experiment.run.number","0000");
         model m(pr);
         CPPUNIT_ASSERT(m.numberOfAgents()==600);
         CPPUNIT_ASSERT(m.numberOfPlaces()==280);

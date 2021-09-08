@@ -39,6 +39,7 @@ public:
     CPPUNIT_TEST_SUITE( modelFactoryTest );
     /** @brief test the factory selector method  */
     CPPUNIT_TEST( testSelector );
+    /** @brief check agent and place creation  */
     CPPUNIT_TEST( testCreation );
     /** @brief end the test suite   */
     CPPUNIT_TEST_SUITE_END();
@@ -54,7 +55,7 @@ public:
         modelFactory& I=modelFactorySelector::select(pr("model.type"));
         CPPUNIT_ASSERT(typeid(I).name()==typeid(G).name());
     }
-    /** @brief chekc the creation of agents and places looks OK */
+    /** @brief check the creation of agents and places looks OK */
     void testCreation()
     {
         std::vector<agent*> agents;
