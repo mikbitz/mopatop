@@ -44,14 +44,14 @@ class agent{
     /** @brief A static (class-level) variable that stores the next ID number for a new agent - initialised to 0 in agent.cpp */
     static unsigned long nextID;
     /** @brief flag set to true if the agent has the disease */
-    bool diseasedFlag;
+    bool _diseased;
     /** @brief flag set to false initially, set if the agent cannot catch the disease 
       @details in the simplest case an agent that recovers from the disease is immune forever */
-    bool immuneFlag;
+    bool _immune;
     /** @brief flag set to false initially, and true when the agent recovers from disease */
-    bool recoveredFlag;
+    bool _recovered;
     /** @brief flag set to true if the agent is alive */
-    bool aliveFlag=true;
+    bool _alive=true;
 public:
     /** @brief Unique agent identifier - should be able to go up to 4e9 */
     unsigned long ID;
@@ -79,10 +79,10 @@ public:
      * NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens!\n
      */
     agent(){
-        diseasedFlag=false;
-        immuneFlag=false;
-        recoveredFlag=false;
-        aliveFlag=true;
+        _diseased=false;
+        _immune=false;
+        _recovered=false;
+        _alive=true;
         //this has to be the same size as the placeTypes enum
         places.resize(3);
         ID=nextID;
@@ -108,33 +108,33 @@ public:
     void process_disease(randomizer& );
     /** @brief report whether infected with the disease */
     bool diseased(){
-        return diseasedFlag;
+        return _diseased;
     }
     /** @brief report whether recovered from the disease */
     bool recovered(){
-        return recoveredFlag;
+        return _recovered;
     }
     /** @brief report whether immune to the disease */
     bool immune(){
-        return immuneFlag;
+        return _immune;
     }
     /** @brief give the agent the disease
         @details needed to set off the disease initially*/
     void becomeInfected(){
-        diseasedFlag=true;
+        _diseased=true;
     }
     /** @brief recover from disease*/
     void recover(){
-        diseasedFlag=false ; immuneFlag=true;  recoveredFlag=true;
+        _diseased=false ; _immune=true;  _recovered=true;
     }
     /** @brief die - possibly from any cause...
         @details set flags relevant to disease anyway as these are needed for reporting */
     void die(){
-        diseasedFlag=false ; immuneFlag=false; recoveredFlag=false; aliveFlag=false;
+        _diseased=false ; _immune=false; _recovered=false; _alive=false;
     }
     /** @brief check if the agent is alive */
     bool alive(){
-        return aliveFlag;
+        return _alive;
     }
     /** @brief do any things that need to be done at home */
     void atHome(){

@@ -10,6 +10,5 @@ var searchData=
   ['disease',['disease',['../classdisease.html',1,'disease'],['../classdisease.html#adcb9fcc5db67fd957dab69127296b2a2',1,'disease::disease()'],['../classdisease.html#a869796dd27efc41c5815188188fe05bd',1,'disease::disease(parameterSettings &amp;p)']]],
   ['disease_2eh',['disease.h',['../disease_8h.html',1,'']]],
   ['diseased',['diseased',['../classagent.html#a6d0998f503a9e3795c31cac4e09462d3',1,'agent']]],
-  ['diseasedflag',['diseasedFlag',['../classagent.html#a36f01ce175f393687e03ffff9bb020f6',1,'agent']]],
   ['dt',['dt',['../classtimeStep.html#a3992450a8bb7b8da9919193c637a3ae1',1,'timeStep']]]
 ];

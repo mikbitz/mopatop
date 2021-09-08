@@ -2,6 +2,5 @@ var searchData=
 [
   ['r',['r',['../classmodel.html#a2103a6bc9833b98e5d6ff607c5feea60',1,'model']]],
   ['randoms',['randoms',['../classmodel.html#a86a89dcd7a5d26b3912974f67e01fb0f',1,'model']]],
-  ['recoveredflag',['recoveredFlag',['../classagent.html#a87693511b55769f6406ebe5d342cc456',1,'agent']]],
   ['recoveryrate',['recoveryRate',['../classdisease.html#a2181efec0a0b0be526e00b0536fcd9c7',1,'disease']]]
 ];

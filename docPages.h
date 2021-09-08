@@ -30,7 +30,12 @@
  * Each run output will be stored in a separate directory. See the run section in the parameter file for how to set this up.
  * @subsection dett Detailed Description
  * For a formalised description of the model  see  @ref ODD
+ * For parameter settings and builing experiments see @ref params
+ * @page params Parameter Setting and Experiments
+ * @section PFile Parameter File
+ * @section exp Experiment Files
  * @page ODD ODD description
+ * 
  * @section odd_intro Introduction
  * This page describes the model in more detail using the ODD+D formalism (Overview, Design Concepts and Details + Decisions) \n
  * as suggested in Grimm et al https://doi.org/10.1016/j.ecolmodel.2010.08.019 \n
