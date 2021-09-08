@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
         parameters.setParameter("run.randomSeed",std::to_string(seed+runs*increment));
         //If number of runs>1, clear out the run number so that it will get set to auto-increment on each run.
         //This is needed to get the directory structure right - see model::setOutputFilePaths
-        if(runs>0)parameters.setParameter("experiment.run.number","");
+        if(runs>0)parameters.setParameter("experiment.run.number","-1");
         //create and initialise a new model
         //any variations to parameter values should happen before this, so that the values
         //get properly saved to the output RunParameters file (created by model::setOutputFilePaths)
