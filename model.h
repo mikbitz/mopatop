@@ -189,6 +189,7 @@ public:
         #pragma omp parallel for
         for (int i=0;i<agents.size();i++){
             agents[i]->process_disease(randoms[omp_get_thread_num()]);
+            //agents[i]->process_disease(randoms[0]);
         }
         if (stepNumber==0){
             end=timeReporter::getTime();

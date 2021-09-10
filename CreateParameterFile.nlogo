@@ -537,6 +537,7 @@ Changes the vlaues and write out to a file - check the file iwth your favourite 
 ## EXTENDING THE MODEL
 
 Could use behaviour space to generate many file for an experiment?
+Read in an exsting file to get non-default settings?
 
 ## NETLOGO FEATURES
 

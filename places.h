@@ -108,6 +108,8 @@ public:
      *  Agents that are infected will increase this level while this is their currentPlace , offsetting the decrease in \ref update 
      * NB negative vlues not allowed!*/
     void increaseContamination(double amount){
+        //in parallel runs, amke sure there is no race condition here if different threads try to update the place.
+        #pragma omp atomic update
         contaminationLevel+=amount;
         if (contaminationLevel<0) contaminationLevel=0;
     }

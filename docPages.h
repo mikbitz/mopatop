@@ -17,7 +17,7 @@
  * @subsection Compiling Compiling the model
  * On a linux system with g++ installed just do \n
  * g++ -o agentModel -O3 -fopenmp -std=c++17 timestep.cpp disease.cpp agent.cpp places.cpp main.cpp\n
- * Note the current version requires g++>= and c++17 in order for the filesystem function to work (for creating new directories etc.)\n
+ * Note the current version requires g++ version>=9 and c++17 in order for the filesystem function to work (for creating new directories etc.)\n
  * If using openmp (parallelised loops) then set the  number of threads in the parameterSettings class.\n
  * Note the number of cores to be used must be <= number supported by the local machine!
  * @subsection Run Running the model
