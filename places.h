@@ -125,7 +125,7 @@ public:
         return contaminationLevel;
     }
     /** Set the place to clean every step */
-    void setCleanEveryStep(){agent 
+    void setCleanEveryStep(){
         cleanEveryStep=true;
     }
     /** Set the place *not* to clean every step */
