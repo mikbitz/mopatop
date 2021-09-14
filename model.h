@@ -101,7 +101,7 @@ public:
         @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
     void setOutputFilePaths(parameterSettings& parameters){
         //naming convention for output files
-        _filePrefix=   parameters.get("experiment.output.directory")+"/experiment."+parameters.get("experiment.name");
+        _filePrefix=   parameters.get("experiment.output.directory")+"/"+parameters.get("experiment.name");
         if (!std::filesystem::exists(_filePrefix))std::filesystem::create_directories(_filePrefix);
         std::string runNumber= parameters.get("experiment.run.number");
         std::string m00="/run_";
@@ -146,7 +146,8 @@ public:
         //set off the disease! - some number of agents (default 1) is infected at the start.
         //shuffle things so agents are allocated at random
         random_shuffle(agents.begin(),agents.end());
-        for (int i=0;i<parameters.get<int>("disease.simplistic.initialNumberInfected");i++)agents[i]->becomeInfected();
+        long num=std::min((long)parameters.get<long>("disease.simplistic.initialNumberInfected"),(long)agents.size());
+        for (int i=0;i<num;i++)agents[i]->becomeInfected();
     }
     //------------------------------------------------------------------------
     /** @brief Advance the model time step \n
