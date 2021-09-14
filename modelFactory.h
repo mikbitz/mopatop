@@ -23,7 +23,7 @@
 //------------------------------------------------------------------------
 /**
  * @file modelFactory.h 
- * @brief File containing the definition of the agent class
+ * @brief File containing the definition of the modelFactory class
  * 
  * @author Mike Bithell
  * @date 30/08/2021

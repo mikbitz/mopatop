@@ -20,7 +20,7 @@
     */
 /**
  * @file model.h 
- * @brief File containing the definition model class
+ * @brief File containing the definition \ref model class
  * 
  * @author Mike Bithell
  * @date 17/08/2021

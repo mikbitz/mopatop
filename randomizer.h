@@ -18,7 +18,7 @@
     */
 /**
  * @file randomizer.h 
- * @brief File containing a wrapper class for random numbers
+ * @brief File containing a wrapper class for random numbers \ref randomizer
  * 
  * @author Mike Bithell
  * @date 17/08/2021

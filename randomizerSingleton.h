@@ -16,7 +16,7 @@
     */
 /**
  * @file randomizerSingleton.h 
- * @brief File containing a wrapper class for random numbers using a singleton
+ * @brief File containing a wrapper class for random numbers using a singleton \ref randomizerS
  * 
  * @author Mike Bithell
  * @date 17/08/2021

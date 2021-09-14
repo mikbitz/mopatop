@@ -18,7 +18,7 @@
     */
 /**
  * @file disease.h 
- * @brief File containing the definition disease class
+ * @brief File containing the definition \ref disease class
  * 
  * @author Mike Bithell
  * @date 17/08/2021
@@ -65,7 +65,7 @@ public:
     /** @brief recover with a fixed chance in a given timestep 
      *  @details this function needs to be called every timestep by infected agents - rate is assumed to be *PER HOUR*
      @param r A random number generator created by the \ref model class*/
-    static bool recover (randomizer& r){
+    static bool recover (randomizer& r){agent 
       if (recoveryRate*timeStep::deltaT()/timeStep::hour()>r.number())return true;else return false;
     }
     /** @brief die with a fixed chance in a given timestep 

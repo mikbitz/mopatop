@@ -18,7 +18,7 @@
     */
 /**
  * @file timereporter.h 
- * @brief File containing the definition of a class used to wrap the C++ timing classes
+ * @brief File containing the definition of a class used to wrap the C++ timing classes \ref timeReporter
  * 
  * @author Mike Bithell
  * @date 17/08/2021

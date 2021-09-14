@@ -21,7 +21,7 @@
 //------------------------------------------------------------------------
 /**
  * @file travelschedule.h 
- * @brief File containing the definition of the travelschedule class
+ * @brief File containing the definition of the travelSchedule class
  * 
  * @author Mike Bithell
  * @date 17/08/2021

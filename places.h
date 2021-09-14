@@ -18,7 +18,7 @@
     */
 /**
  * @file places.h 
- * @brief File containing the deinfition of the places class
+ * @brief File containing the deinfition of the \ref place class
  * @details Note that some of the method implementations (that depend on the agent class) are currently in agent.cpp
  * 
  * @author Mike Bithell
@@ -125,7 +125,7 @@ public:
         return contaminationLevel;
     }
     /** Set the place to clean every step */
-    void setCleanEveryStep(){
+    void setCleanEveryStep(){agent 
         cleanEveryStep=true;
     }
     /** Set the place *not* to clean every step */

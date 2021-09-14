@@ -77,8 +77,10 @@ int main(int argc, char **argv) {
     if (parameters.get<int>("run.nRepeats")<=0){
         parameters.setParameter("run.nRepeats","1");
     }
+    
     //initialise the disease - since this is a static class, this just need to be done for a single instance
     disease d(parameters);
+    
     //repeat the model run nRepeats times with different random seeds
     int seed=parameters.get<int>("run.randomSeed");
     int increment=parameters.get<int>("run.randomIncrement");
@@ -115,6 +117,5 @@ int main(int argc, char **argv) {
     std::cout<<"Run set finished at: "<<ctime(&t)<<std::endl;
     return 0;
 }
-
 
 

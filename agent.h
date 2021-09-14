@@ -23,7 +23,7 @@
 //------------------------------------------------------------------------
 /**
  * @file agent.h 
- * @brief File containing the definition of the agent class
+ * @brief File containing the definition of the \ref agent class
  * 
  * @author Mike Bithell
  * @date 17/08/2021

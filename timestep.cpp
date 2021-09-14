@@ -1,3 +1,12 @@
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+/**
+ * @file timestep.cpp 
+ * @brief File to define static variables for timestep
+ * 
+ * @author Mike Bithell
+ * @date 17/08/2021
+ **/
 #include "timestep.h"
 //setup dt to be 1 hour if nothing else is specified
 double timeStep::years=24*3600*365;
