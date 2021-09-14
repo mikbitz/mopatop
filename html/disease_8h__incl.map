@@ -1,5 +1,5 @@
 <map id="disease.h" name="disease.h">
-<area shape="rect" id="node2" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers. " alt="" coords="60,80,157,107"/>
-<area shape="rect" id="node5" href="$timestep_8h_source.html" title="timestep.h" alt="" coords="198,80,281,107"/>
+<area shape="rect" id="node2" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers randomizer. " alt="" coords="60,80,157,107"/>
+<area shape="rect" id="node5" href="$timestep_8h.html" title="File containing the definition of the timeStep class. " alt="" coords="198,80,281,107"/>
 <area shape="rect" id="node7" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="323,155,422,181"/>
 </map>

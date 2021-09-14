@@ -254,6 +254,8 @@ static unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class
 <div class="textblock"><p>The main agent class - each agent represents one person. </p>
 <p>Agents move from place to place, using the <a class="el" href="classtravelSchedule.html" title="A simple fixed travel schedule that rotates cyclically between places. ">travelSchedule</a>. If they have the disease, the cough at each place they visit and contaminate it <br />
 If they are in a contaminated location, they may contract the disease. Additionally they may do other things in their current location. </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00043">43</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="ae4db97692e30c160de5af4be250d06b4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae4db97692e30c160de5af4be250d06b4">&#9670;&nbsp;</a></span>placeTypes</h2>
@@ -269,6 +271,8 @@ If they are in a contaminated location, they may contract the disease. Additiona
 
 <p>This enum associates a set of integers with names. </p>
 <p>So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example. Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567. transport vehicles are places, albeit moveable! </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00069">69</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -303,6 +307,8 @@ Also set aside storage for the three placeTypes the agent can occupy. <br />
 NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens!<br />
 </p>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00088">88</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -332,6 +338,8 @@ NB this means that places is initially empty - remember to set agent home/work/t
 <p>give the agent the disease </p>
 <p>needed to set off the disease initially </p>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00130">130</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <a id="a3c31fe2f6f752a35261041b5bef3c532"></a>
@@ -359,6 +367,8 @@ NB this means that places is initially empty - remember to set agent home/work/t
 
 <p>die - possibly from any cause... </p>
 <p>set flags relevant to disease anyway as these are needed for reporting </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00139">139</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -389,6 +399,8 @@ NB this means that places is initially empty - remember to set agent home/work/t
  </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00197">197</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <a id="a317e5e460e712d5401efa1052fa9d145"></a>
@@ -416,6 +428,8 @@ NB this means that places is initially empty - remember to set agent home/work/t
 
 <p>get the place corresponding to home </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00182">182</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -446,6 +460,8 @@ NB this means that places is initially empty - remember to set agent home/work/t
  </p>
 <dl class="section return"><dt>Returns</dt><dd>The agent ID number, an unsigned long integer </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00207">207</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <a id="a10d05df6de91675e98b13709fb200893"></a>
@@ -474,6 +490,8 @@ NB this means that places is initially empty - remember to set agent home/work/t
 <p>get the place corresponding to transport vehicle <br />
  </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00192">192</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -504,6 +522,8 @@ NB this means that places is initially empty - remember to set agent home/work/t
  </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00187">187</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <a id="a9006452c1e818c84da70bbe52dfe2a1a"></a>
@@ -531,6 +551,8 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00070">70</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+
 </div>
 </div>
 <a id="a239e618670ccbfc64728eb6ccff102a1"></a>
@@ -553,6 +575,8 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
 <ul>
 <li>not used just at present - this function is very expensive on compute time see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </li>
 </ul>
+
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00032">32</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -591,6 +615,8 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
 </li>
 </ul>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00162">162</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <a id="a347d8226bc8982c3ba8d9e61de433a9c"></a>
@@ -626,6 +652,8 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00202">202</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <a id="af929da429356ad4ec4cabb710b743b0e"></a>
@@ -660,6 +688,8 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00060">60</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -698,6 +728,8 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 </li>
 </ul>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00177">177</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <a id="a8784dcb12921be1b29d67c54747b78ac"></a>
@@ -735,6 +767,8 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 </li>
 </ul>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00171">171</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <a id="ae20b0b8a169fb7a459c7b195bb970d80"></a>
@@ -755,6 +789,8 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 <p>Move through the travel schedule, and then do any actions specific to places (apart from disease) <br />
 . </p>
 <p>needs to be called every timestep see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00052">52</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -782,6 +818,8 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 <p>flag set to false initially, set if the agent cannot catch the disease </p>
 <p>in the simplest case an agent that recovers from the disease is immune forever </p>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00050">50</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <a id="a6c07bfb8b610ad493a4704643b4dcbcf"></a>
@@ -800,6 +838,8 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 <ul>
 <li>note to get this actual place, use this is as an index into the places vector </li>
 </ul>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00076">76</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -821,11 +861,13 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!) </li>
 </ul>
 
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00073">73</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="agent_8h_source.html">agent.h</a></li>
-<li><a class="el" href="agent_8cpp.html">agent.cpp</a></li>
+<li><a class="el" href="agent_8cpp_source.html">agent.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

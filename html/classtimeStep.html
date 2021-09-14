@@ -220,7 +220,9 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="textblock"><p>A static class to set up the real-world times that apply to a timestep. </p>
 <p>The idea here is that the code will use a timestep in seconds, but the user need not know this.<br />
  They can set values using a chosen time unit, and get the right number of timesteps in those using this class<br />
- The value of any time can be set in the relevant units by using the static variables e.g. to get a time of 8 hours </p><div class="fragment"><div class="line">*<span class="keywordtype">double</span> time_needed=8*<a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>()</div></div><!-- fragment --><p> Similarly, to add the current value of the timestep to a given time, use timestep::deltaT() </p><div class="fragment"><div class="line"><span class="keywordtype">double</span> time= 4* <a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>() + <a class="code" href="classtimeStep.html#a43049a6eb016155b1b2152b2b62f42bc">timeStep::deltaT</a>()</div></div><!-- fragment --><p> Configure this once at the start of the code by creating an object and feeding it the <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> parameters;</div><div class="line">parameters.readParameters(<span class="stringliteral">&quot;../defaultParameterFile&quot;</span>);</div><div class="line"><a class="code" href="classtimeStep.html">timeStep</a> t(parameters);</div></div><!-- fragment --><p> Note that currently months (leap years) are not properly handled as they are all assumed to be 30 days (365 days), and dates are not available! </p>
+ The value of any time can be set in the relevant units by using the static variables e.g. to get a time of 8 hours </p><div class="fragment"><div class="line">*<span class="keywordtype">double</span> time_needed=8*<a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>()</div></div><!-- fragment --><p> Similarly, to add the current value of the timestep to a given time, use timestep::deltaT() </p><div class="fragment"><div class="line"><span class="keywordtype">double</span> time= 4* <a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>() + <a class="code" href="classtimeStep.html#a43049a6eb016155b1b2152b2b62f42bc">timeStep::deltaT</a>()</div></div><!-- fragment --><p> Configure this once at the start of the code by creating an object and feeding it the <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> parameters;</div><div class="line">parameters.<a class="code" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a>(<span class="stringliteral">&quot;../defaultParameterFile&quot;</span>);</div><div class="line"><a class="code" href="classtimeStep.html">timeStep</a> t(parameters);</div></div><!-- fragment --><p> Note that currently months (leap years) are not properly handled as they are all assumed to be 30 days (365 days), and dates are not available! </p>
+
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00050">50</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab74c72ae0a0a9ed1c64ae8006f58d7af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab74c72ae0a0a9ed1c64ae8006f58d7af">&#9670;&nbsp;</a></span>timeStep() <span class="overload">[1/2]</span></h2>
@@ -245,6 +247,8 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </table>
 </div><div class="memdoc">
 <p>Default constructor sets timestep to be in hours </p>
+
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00071">71</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 
 </div>
 </div>
@@ -280,6 +284,8 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00083">83</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -309,6 +315,8 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>report the number of days that would be represented by a timestep </p>
 <p>e.g if the time step is two days, report 2. </p>
 
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00187">187</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+
 </div>
 </div>
 <a id="addd5b9cf40a3f971a630f0f0cfc5d2e9"></a>
@@ -336,6 +344,8 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 
 <p>report the number of months that would be represented by a timestep </p>
 <p>e.g if the time step is one day, report 1./30 (so not really months!) </p>
+
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00181">181</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 
 </div>
 </div>
@@ -371,6 +381,8 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00113">113</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+
 </div>
 </div>
 <a id="afcaae573ad5cddd2ccc47e15656d18e4"></a>
@@ -399,6 +411,8 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>report the number of years that would be represented by a timestep </p>
 <p>e.g if the time step is one day, report 1./365 </p>
 
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00175">175</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -425,11 +439,13 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Units for the timestep - number of seconds in <a class="el" href="classtimeStep.html#a3992450a8bb7b8da9919193c637a3ae1">dt</a> will be set as required. </p>
 <p>can be years,months,days,hours,minutes or seconds </p>
 
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00067">67</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="timestep_8h_source.html">timestep.h</a></li>
-<li>timestep.cpp</li>
+<li><a class="el" href="timestep_8cpp_source.html">timestep.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

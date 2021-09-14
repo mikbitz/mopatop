@@ -1,9 +1,10 @@
 <map id="randomizer.h" name="randomizer.h">
-<area shape="rect" id="node2" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="239,80,317,107"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="178,379,253,405"/>
-<area shape="rect" id="node3" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="183,155,248,181"/>
-<area shape="rect" id="node4" href="$agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ..." alt="" coords="5,229,84,256"/>
-<area shape="rect" id="node6" href="$modelFactory_8h.html" title="File containing the definition of the agent class. " alt="" coords="159,229,271,256"/>
-<area shape="rect" id="node8" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="295,229,381,256"/>
-<area shape="rect" id="node7" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="181,304,249,331"/>
+<area shape="rect" id="node2" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="199,80,277,107"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="294,379,369,405"/>
+<area shape="rect" id="node3" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="205,155,271,181"/>
+<area shape="rect" id="node5" href="$disease_8cpp.html" title="File to define static variables for disease. " alt="" coords="5,229,97,256"/>
+<area shape="rect" id="node4" href="$agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ..." alt="" coords="121,229,200,256"/>
+<area shape="rect" id="node7" href="$modelFactory_8h.html" title="File containing the definition of the modelFactory class. " alt="" coords="275,229,387,256"/>
+<area shape="rect" id="node9" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="411,229,497,256"/>
+<area shape="rect" id="node8" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="297,304,365,331"/>
 </map>

@@ -194,6 +194,8 @@ however, returning different data types depending on parameter name is a little 
 the correct get method can then be called depending on the the parameter type required (e.g. int, float).<br />
 The possible types are kept by the typeID enum - for each parameter, the type can then be stored in <a class="el" href="classparameterSettings.html#a34d42a57cde9921a9e9862c0e78dc60e">_parameterType</a> - these are <br />
 then checked by the get method to make sure that there is no unexpected attempt to convert the type incorrectly. </p>
+
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00043">43</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a1dfc46877043d607fb9bfce38ccf503a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1dfc46877043d607fb9bfce38ccf503a">&#9670;&nbsp;</a></span>typeID</h2>
@@ -217,6 +219,8 @@ then checked by the get method to make sure that there is no unexpected attempt 
 
 <p>a list of names that can be used in the parameterType map </p>
 <p>to avoid c++ reserved words just the first letter is kept - e.g. i==int, d==double, f==float - see the <a class="el" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a> methods </p>
+
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00046">46</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
 
 </div>
 </div>
@@ -248,6 +252,8 @@ then checked by the get method to make sure that there is no unexpected attempt 
 <p>Currently you could set up several objects like this, with different input files, so take care that the filename is correct! <br />
  Note that only parameters whose names are defined in <a class="el" href="classparameterSettings.html#a64baa7eba110c8ac37f1d6687c04deaa">setDefaults</a> can be imported from the parameter file - invalid names will cause the code to exit<br />
  Parameter types have to also be correctly set up in the <a class="el" href="classparameterSettings.html#a64baa7eba110c8ac37f1d6687c04deaa">setDefaults</a> method </p>
+
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00072">72</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
 
 </div>
 </div>
@@ -291,6 +297,8 @@ template&lt;typename T &gt; </div>
  datatype, T, is set to double. Example:- </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> p;</div><div class="line">std::string rate=p.<a class="code" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a>&lt;<span class="keywordtype">double</span>&gt;(<span class="stringliteral">&quot;rate&quot;</span>);</div></div><!-- fragment --><p> function fails if the requested parameter not been defined or the tyep is incorrect - the program halts<br />
 </p>
 
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00251">251</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
+
 </div>
 </div>
 <a id="ad1bca448c7289d3c40a71926c2d71ae3"></a>
@@ -327,6 +335,8 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00264">264</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
 
 </div>
 </div>
@@ -365,6 +375,8 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00275">275</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
+
 </div>
 </div>
 <a id="a0cfc75aa4cd453d973cae2bfa13d1719"></a>
@@ -402,6 +414,8 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00286">286</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
+
 </div>
 </div>
 <a id="a75db51f35ffa143deba085c4ac071d22"></a>
@@ -438,6 +452,8 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00297">297</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
 
 </div>
 </div>
@@ -477,6 +493,8 @@ template&lt;typename T &gt; </div>
 </dl>
 <p>treat the conversion to bool carefully in case the user input something like "True " </p>
 
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00310">310</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
+
 </div>
 </div>
 <a id="a73c7e3c79bb37d53214467bf083281f6"></a>
@@ -512,6 +530,8 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00324">324</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
+
 </div>
 </div>
 <a id="a1dea97ae4df5508220d1df5623553ab5"></a>
@@ -546,6 +566,8 @@ This version returns only the string variant of the parmeter value </td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00231">231</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
 
 </div>
 </div>
@@ -584,6 +606,8 @@ This version returns only the string variant of the parmeter value </td></tr>
  lines beginning with # are ignored and can be used for comments. Any line with no "=" will also be ignored <br />
  needs to be called from <a class="el" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> to ensure settings are captured </p>
 
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00081">81</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
+
 </div>
 </div>
 <a id="af386af25c8ed781ca89bf50468e3cf0c"></a>
@@ -620,6 +644,8 @@ This version returns only the string variant of the parmeter value </td></tr>
 <p>saving out the full parameter list automatically with each run helps to identify what went into a given set of output files<br />
 and hopefully allows for results to be reproduced if necessary </p>
 
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00204">204</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
+
 </div>
 </div>
 <a id="a64baa7eba110c8ac37f1d6687c04deaa"></a>
@@ -650,6 +676,8 @@ and hopefully allows for results to be reproduced if necessary </p>
 results will be cast to the specified paramter type in the appropraite get function. At the moment the code will<br />
 halt if either the initial type of the parameter is not a string, or if the type requested in the get function<br />
 cannot be converted to the requested type. </p>
+
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00122">122</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
 
 </div>
 </div>
@@ -696,7 +724,9 @@ cannot be converted to the requested type. </p>
   </dd>
 </dl>
 <p>for example to change the random seed when a new model is created <br />
-</p><div class="fragment"><div class="line">parameters.setParameter(<span class="stringliteral">&quot;randomSeed&quot;</span>,<span class="stringliteral">&quot;10&quot;</span>);</div></div><!-- fragment --><p> Note that there is currently no type checking! The will lead to a fail later if the wrong <a class="el" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a> method is called </p>
+</p><div class="fragment"><div class="line">parameters.<a class="code" href="classparameterSettings.html#a0b10412299911ad090c87c97a5daf471">setParameter</a>(<span class="stringliteral">&quot;randomSeed&quot;</span>,<span class="stringliteral">&quot;10&quot;</span>);</div></div><!-- fragment --><p> Note that there is currently no type checking! The will lead to a fail later if the wrong <a class="el" href="classparameterSettings.html#a417e5df1124a130366c687c451cd2b40">get</a> method is called </p>
+
+<p class="definition">Definition at line <a class="el" href="parameters_8h_source.html#l00180">180</a> of file <a class="el" href="parameters_8h_source.html">parameters.h</a>.</p>
 
 </div>
 </div>

@@ -134,7 +134,9 @@ Static Private Attributes</h2></td></tr>
 <div class="textblock"><p>Simple static class to represent a very very simple disease. </p>
 <p>Use of static class allows some of the details of the disease to be abstracted here, without needed a separate disease object in every agent <br />
 The disadvantage of this is that the parameters are fixed outside the class definition (a requirement of C++ for static (i.e. class-based rather than instance-based) variables) <br />
-but they can still be set in the constructor using a parameter file. Configure this once at the start of the code by creating an object and feeding it the <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> parameters;</div><div class="line">parameters.readParameters(<span class="stringliteral">&quot;../defaultParameterFile&quot;</span>);</div><div class="line"><a class="code" href="classdisease.html">disease</a> d(parameters);</div></div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+but they can still be set in the constructor using a parameter file. Configure this once at the start of the code by creating an object and feeding it the <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> parameters;</div><div class="line">parameters.<a class="code" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a>(<span class="stringliteral">&quot;../defaultParameterFile&quot;</span>);</div><div class="line"><a class="code" href="classdisease.html">disease</a> d(parameters);</div></div><!-- fragment --> 
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00043">43</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a869796dd27efc41c5815188188fe05bd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a869796dd27efc41c5815188188fe05bd">&#9670;&nbsp;</a></span>disease()</h2>
 
@@ -166,6 +168,8 @@ but they can still be set in the constructor using a parameter file. Configure t
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00060">60</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
 
 </div>
 </div>
@@ -202,6 +206,8 @@ but they can still be set in the constructor using a parameter file. Configure t
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00074">74</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
+
 </div>
 </div>
 <a id="a0aeadad59e314208f4b9d87232bd2ab7"></a>
@@ -227,6 +233,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 </table>
 </div><div class="memdoc">
 <p>return the current death rate </p>
+
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00090">90</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
 
 </div>
 </div>
@@ -254,6 +262,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 </div><div class="memdoc">
 <p>return the current recovery rate </p>
 
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00088">88</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
+
 </div>
 </div>
 <a id="abdded76e093b639a626fddafe991548d"></a>
@@ -279,6 +289,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 </table>
 </div><div class="memdoc">
 <p>return the current infectionShedLoad </p>
+
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00092">92</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
 
 </div>
 </div>
@@ -323,6 +335,8 @@ but they can still be set in the constructor using a parameter file. Configure t
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00080">80</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
+
 </div>
 </div>
 <a id="adb413c0c05f7714e0dd2d6cf1d8265d7"></a>
@@ -357,6 +371,8 @@ but they can still be set in the constructor using a parameter file. Configure t
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00068">68</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
+
 </div>
 </div>
 <a id="a7dd449941f80bdee8300754ade07362d"></a>
@@ -384,6 +400,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 </div><div class="memdoc">
 <p>set the current death rate </p>
 
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00096">96</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
+
 </div>
 </div>
 <a id="ada69e8f749d9ad5a932bc7c38bf1b0e4"></a>
@@ -410,6 +428,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 </table>
 </div><div class="memdoc">
 <p>set the current recovery rate </p>
+
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00094">94</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
 
 </div>
 </div>
@@ -439,6 +459,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 <p>contribute infection to the place if diseased </p>
 <p>called every timestep by infected agents - shedding rate is assumed to be <em>PER HOUR</em> </p><dl class="section return"><dt>Returns</dt><dd>infectionshedLoad - the current amount of infection that an agent emits per timestep into the environment </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00086">86</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -463,6 +485,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 </div><div class="memdoc">
 <p>per timestep chance of dying </p>
 
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00049">49</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
+
 </div>
 </div>
 <a id="ac968f1f659399ba2adc14dd93b6c2fed"></a>
@@ -485,6 +509,8 @@ but they can still be set in the constructor using a parameter file. Configure t
 </table>
 </div><div class="memdoc">
 <p>per timestep contribution to contamination at a site when infected </p>
+
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00047">47</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
 
 </div>
 </div>
@@ -509,11 +535,13 @@ but they can still be set in the constructor using a parameter file. Configure t
 </div><div class="memdoc">
 <p>per timestep chance of recovery </p>
 
+<p class="definition">Definition at line <a class="el" href="disease_8h_source.html#l00045">45</a> of file <a class="el" href="disease_8h_source.html">disease.h</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="disease_8h_source.html">disease.h</a></li>
-<li>disease.cpp</li>
+<li><a class="el" href="disease_8cpp_source.html">disease.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
