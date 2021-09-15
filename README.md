@@ -7,6 +7,8 @@ and for tests
 
 https://htmlpreview.github.io/?https://github.com/mikbitz/mopatop/blob/main/tests/html/index.html
 
+although note that not all links in the above page menus work directly with this method.
+
 The model has been tested and runs on opensuse linux with g++ version > 9 
 
 and on macOS 11.5.2 BigSur using g++-11 installed with homebrew as follows:-
