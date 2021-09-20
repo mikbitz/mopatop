@@ -1,0 +1,3 @@
+experiment.name,baseParameterFile,run.nAgents,run.nRepeats,run.nSteps
+example,exampleBaseParameters,21,2,70
+,,48,3,120
