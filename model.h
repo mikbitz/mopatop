@@ -148,6 +148,28 @@ public:
         random_shuffle(agents.begin(),agents.end());
         long num=std::min((long)parameters.get<long>("disease.simplistic.initialNumberInfected"),(long)agents.size());
         for (int i=0;i<num;i++)agents[i]->becomeInfected();
+        
+    }
+    //------------------------------------------------------------------------
+    /** @brief Finish off model including any final output etc. \n
+     *  @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied
+     *  @details Right now this is here just to output final values at the end of the last step.
+     */
+    void end(parameterSettings& parameters){
+       int infected=0,recovered=0,dead=0;
+        //accumulate totals - at the start of the step - so the step 0 is initial data
+        for (int i=0;i<agents.size();i++){
+            if (agents[i]->alive()){
+                if (agents[i]->diseased())infected++;
+                if (agents[i]->recovered())recovered++;
+            }else{
+                dead++;
+            }
+        }
+        //output a summary .csv file
+        int stepNumber=parameters.get<int>("run.nSteps");
+        output<<stepNumber<<","<<stepNumber*timeStep::hoursPerTimeStep()<<","<<agents.size()-infected-recovered-dead<<","<<infected<<","<<recovered<<","<<dead<<std::endl;
+        
     }
     //------------------------------------------------------------------------
     /** @brief Advance the model time step \n
@@ -160,8 +182,26 @@ public:
         //set some timers so loop relative times can be compared - note disease loop tends to get slower as more agents get infected.
         auto start=timeReporter::getTime();
         auto end=start;
-        //update the places - changes contamination level
         if (stepNumber==0)start=timeReporter::getTime();
+        //counts the totals
+        int infected=0,recovered=0,dead=0;
+        //accumulate totals - at the start of the step - so the step 0 is initial data
+        for (int i=0;i<agents.size();i++){
+            if (agents[i]->alive()){
+                if (agents[i]->diseased())infected++;
+                if (agents[i]->recovered())recovered++;
+            }else{
+                dead++;
+            }
+        }
+        if (stepNumber==0){
+            end=timeReporter::getTime();
+            timeReporter::showInterval("Run time on accumulating disease totals: ",start,end);
+            start=end;
+        }
+        //output a summary .csv file
+        output<<stepNumber<<","<<stepNumber*timeStep::hoursPerTimeStep()<<","<<agents.size()-infected-recovered-dead<<","<<infected<<","<<recovered<<","<<dead<<std::endl;
+        //update the places - changes contamination level
         //note the pragma statement here allows openmp to parallelise this loop over several threads 
         #pragma omp parallel for
         for (int i=0;i<places.size();i++){
@@ -172,8 +212,6 @@ public:
             timeReporter::showInterval("Time updating places: ",start,end);
             start=end;
         }
-        //counts the totals
-        int infected=0,recovered=0,dead=0;
         //do disease - synchronous update (i.e. all agents contaminate before getting infected) so that no agent gets to infect ahead of others.
         //alternatively could be randomized...depends on the idea of how a location works...places could be sub-divided to mimic spatial extent for example.
         #pragma omp parallel for
@@ -197,20 +235,6 @@ public:
             timeReporter::showInterval("Run time being diseased: ",start,end);
             start=end;
         }
-        //accumulate totals
-        for (int i=0;i<agents.size();i++){
-            if (agents[i]->alive()){
-                if (agents[i]->diseased())infected++;
-                if (agents[i]->recovered())recovered++;
-            }else{
-                dead++;
-            }
-        }
-        if (stepNumber==0){
-            end=timeReporter::getTime();
-            timeReporter::showInterval("Run time on accumulating disease totals: ",start,end);
-            start=end;
-        }
         //move around, do other things in a location
         #pragma omp parallel for
         for (int i=0;i<agents.size();i++){
@@ -221,8 +245,6 @@ public:
             timeReporter::showInterval("Run time updating agents: ",start,end);
             start=end;
         }
-        //output a summary .csv file
-        output<<stepNumber<<","<<stepNumber*timeStep::hoursPerTimeStep()<<","<<agents.size()-infected-recovered-dead<<","<<infected<<","<<recovered<<","<<dead<<std::endl;
         //show the step number every 10 steps
         if (stepNumber==0){
             end=timeReporter::getTime();

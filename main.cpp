@@ -104,6 +104,7 @@ int main(int argc, char **argv) {
             if (step%100==0)std::cout<<"Start of step "<<step<<std::endl;
             m.step(step,parameters);
         }
+        m.end(parameters);
         auto end=timeReporter::getTime();
         timeReporter::showInterval("Execution time after initialisation: ",start,end);
         t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
