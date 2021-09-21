@@ -1,2 +1,3 @@
 Name,modelVersion,baseDirectory,specificationFile,purpose
 example,0.4,experiments/example,baseExample.csv,Example experiment as a base for building new ones
+endTimeTest,0.4,experiments/endTimeTest,base_endTimeTest.csv,How does end of infection vary with R

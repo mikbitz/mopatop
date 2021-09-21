@@ -48,7 +48,7 @@ run.randomIncrement=57
 #-------------------------------
 #pick schedule from either "mobile" or "stationary" - string
 #if you set simpleMobile below, you probably want mobile here too...
-#if you set mobile here and simpleOnePLace below then work,home and transport will all actually be the same place
+#if you set mobile here and simpleOnePlace below then work,home and transport will all actually be the same place
 schedule.type=stationary
 
 #-------------------------------

@@ -16,11 +16,11 @@ import pandas as pd
 import os
 
 #experiment name
-Name='smallStochastic'
+Name='endTimeTest'
 #which version of the model is intended
 modelVersion='0.4'
 #A string briefly giving experiment purpose
-purpose='Test Stochastic Convergence of Simple One Place Model'
+purpose='How does end of infection vary with R'
 #default name of the specification file
 spec='base_'+Name+'.csv'
 #directory from which to find the experiments sub-directory

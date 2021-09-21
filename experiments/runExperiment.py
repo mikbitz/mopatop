@@ -23,9 +23,9 @@ import sys
 from datetime import datetime
 
 #Name of the experiment of the experiment to run
-experimentName='smallStochastic'
+experimentName='endTimeTest'
 #if set to True, run the model now! otherwise output a set of parameterFiles
-directRun=False
+directRun=True
 #needed if running the model now - the name of the executable to run
 #assumed to live in root directory as below
 execname='agentModel'

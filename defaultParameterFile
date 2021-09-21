@@ -11,14 +11,16 @@
 
 #Attempts to set parameters not already defined in the code will cause code execution to halt
 
+#TODO allow for #include of other parameter files. 
+
 #-------------------------------
 #run control
 #-------------------------------
 #Number of agents to create - integer
-run.nAgents=600
+run.nAgents=10000
 
 #Number of steps to run for - integer
-run.nSteps=3000
+run.nSteps=300
 
 #number of OMP threads to use - integer
 #Increase the number here if using openmp to parallelise any loops.
@@ -48,15 +50,15 @@ run.randomIncrement=57
 #-------------------------------
 #pick schedule from either "mobile" or "stationary" - string
 #if you set simpleMobile below, you probably want mobile here too...
-#if you set mobile here and simpleOnePLace below then work,home and transport will all actually be the same place
+#if you set mobile here and simpleOnePlace below then work,home and transport will all actually be the same place
 schedule.type=stationary
 
 #-------------------------------
-#schedule
+#model
 #-------------------------------
 #pick model type either "simpleMobile" or "simpleOnePlace" - string
 #simpleOnePlace puts all agents into a single location, and there they stay.
-#model.type=simpleOnePlace
+model.type=simpleOnePlace
 
 #-------------------------------
 #timestepping
@@ -65,18 +67,18 @@ schedule.type=stationary
 #valid values are years,months,days,hours,minutes or seconds
 timeStep.units=hours
 
-#the actual time duration of each step in the above units - integer
+#the actual time duration of each step in the above units - double
 #so if this is set to 2 and the above units set to hours, each timestep will represent 2 hours of real time
 #note that any rates set in this file will need to take into account this timing 
-timeStep.dt=1;
+timeStep.dt=1
 #-------------------------------
 #output
 #-------------------------------
 #Unique name for this set of model runs, if desired - string
 experiment.name=default
 
-#location for the output files - subdirectory will be created called experiment.<name> - string
-experiment.output.directory=./output
+#location for the output files - subdirectory will be created (or used if already existing) called experiment.name - string
+experiment.output.directory=./experiments
 
 #short text to outline experiment purpose - string
 experiment.description= The default parameter set was used
@@ -102,22 +104,22 @@ outputFile=diseaseSummary
 #-------------------------------
 #Rate *PER HOUR* - double
 #In the simplest case recovery in any timestep will happen if a random number drawn from (0,1) is less than this value
-disease.simplistic.recoveryRate=0.0008
+disease.simplistic.recoveryRate=0.008
 
 #Rate *PER HOUR* - double
 #an infected individual will add this much contamination to any place every timestep
-disease.simplistic.deathRate=0.001
+disease.simplistic.deathRate=0.
 
 #Rate *PER HOUR* - double
 #an infected individual will add this much contamination to any place every timestep
-disease.simplistic.infectionShedLoad=0.001
+disease.simplistic.infectionShedLoad=0.00001
 
 #how many (randomly allocated) agents have the disease at the start of the run
-disease.simplistic.initialNumberInfected=5
+disease.simplistic.initialNumberInfected=1000
 
 #Rate *PER HOUR* - double
 #any place contaminated with disease will lose contamination exponentially at this rate
-places.disease.simplistic.fractionalDecrement=0.5
+places.disease.simplistic.fractionalDecrement=0.9
 
 #if this flag is set to true any contamination in a places gets removed at the start of each timestep
-places.cleanContamination=false
+places.cleanContamination=true
