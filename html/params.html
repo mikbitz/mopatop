@@ -73,8 +73,32 @@ $(function() {
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="PFile"></a>
 Parameter File</h1>
+<p>The model reads in its parameters from a file specifying one parameter value per line in the form <br />
+</p><div class="fragment"><div class="line">parameterName=value </div></div><!-- fragment --><p> where lines without and "=" or starting with a # are treated as comments. parameterNames are grouped together in terms<br />
+of common functions using a dot-separated form e.g. everything beginning "run." has to do with control of the model run<br />
+including things like run.nSteps for the number of model timesteps to be used or run.randomSeed for the initial random number seed e.g..<br />
+</p><div class="fragment"><div class="line">run.nSteps=5000</div></div><!-- fragment --><p> Where a parameter exists in the model but its value is not specified in the parameter file used, then a hard-coded default value<br />
+is used instead (see <a class="el" href="parameters_8h.html">parameters.h</a>). Any parameters set in the parameter file that do not have default values, or do not exist<br />
+will cause the model to halt. The file to be used is given when running the model as the first command-line argument as <br />
+</p><div class="fragment"><div class="line">modelexe parameterFileName \n</div></div><!-- fragment --><p> Every model run writes out a file listing the parameter values used in alphabetical order to the model output directory.<br />
+In this way many experiments with different parameter settings can be run without needing to edit or re-compile the model,<br />
+and a record of the model settings is kept with the results.<br />
+ </p>
 <h1><a class="anchor" id="exp"></a>
 Experiment Files</h1>
+<p>In order to systematically explore and archive model behaviour, a facility for setting up experiments and keeping a list of them in a database<br />
+is included. The experiment database takes to form of a simple csv file listing the name of each experiment, the model version used, the experiment specification file<br />
+and a brief description - this is currently kept in a sub-directory name "experiments"<br />
+An example experiment is used to help with setup of new experiments including an example specification and base parameter file.<br />
+Two python programs, makeExperiment.py and runExperiment.py allow for new experiments to be created and run in a standardised way.<br />
+The experiment specifcation file is again a csv, this time including the experiment name, parameter file name and columns giving the<br />
+values of the parameters to be used in each model run, with the full parameter set being used for a run specified in each row of the <br />
+file. Parameters not mentioned in the specification file are assumed to take default values - any value that is varied must have a <br />
+value given for every run.<br />
+makeExperiment.py allows for a new experiment to be given a name, modelversion and description - the script then copies the example experiment<br />
+into a new directory, suitably re-named, and adds the experiment to the database. The parameter and specifcation files can then be edited, and the<br />
+entire run set executed using runExperiment.py (or else a full set of parameter files can be generated, in case, for exmaple, the experiment is to.<br />
+be run via a queueing system such as on HPC machines). </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['occupants',['occupants',['../classplace.html#a9944f734ac0bf19a4ab086d94fc061bc',1,'place']]],
-  ['odd_20description',['ODD description',['../ODD.html',1,'']]],
-  ['operator_28_29',['operator()',['../classparameterSettings.html#a1dea97ae4df5508220d1df5623553ab5',1,'parameterSettings']]],
-  ['output',['output',['../classmodel.html#ac722a1dffbe6a56f2a934ef627e4e773',1,'model']]]
+  ['nagents',['nAgents',['../classmodel.html#a6f1f7a95d26f11cf9cae1ba539efe551',1,'model']]],
+  ['nextid',['nextID',['../classagent.html#a3175e8fe78a1593eb7217513c259df80',1,'agent']]],
+  ['number',['number',['../classrandomizer.html#ae175fffeb1c48d064973e33b3e11b9a0',1,'randomizer::number()'],['../classrandomizerS.html#ad2d94994ffeb26cb371a8af2cba06311',1,'randomizerS::number()']]],
+  ['numberdiseased',['numberDiseased',['../classmodel.html#a7549802c0e5d99f54a7a32dd738bb5ea',1,'model']]],
+  ['numberofagents',['numberOfAgents',['../classmodel.html#ad50a0a9dfa6916d59e06f00155da5136',1,'model']]],
+  ['numberofplaces',['numberOfPlaces',['../classmodel.html#ac0541d90b6b51bb4859d7a3b32c6e202',1,'model']]]
 ];

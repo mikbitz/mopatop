@@ -104,6 +104,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9c93dce1ca10fbfa99f9eec481ea55df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up the agents and places, and allocate agents to homes, workplaces, vehicles. <br />
 .  <a href="#a9c93dce1ca10fbfa99f9eec481ea55df">More...</a><br /></td></tr>
 <tr class="separator:a9c93dce1ca10fbfa99f9eec481ea55df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0df0b21a6bd56182f0d33ee69a94de13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a0df0b21a6bd56182f0d33ee69a94de13">end</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters)</td></tr>
+<tr class="memdesc:a0df0b21a6bd56182f0d33ee69a94de13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finish off model including any final output etc. <br />
+.  <a href="#a0df0b21a6bd56182f0d33ee69a94de13">More...</a><br /></td></tr>
+<tr class="separator:a0df0b21a6bd56182f0d33ee69a94de13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20ff630d7f86b28f8d45a2a37b91695f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a20ff630d7f86b28f8d45a2a37b91695f">step</a> (int stepNumber, <a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters)</td></tr>
 <tr class="memdesc:a20ff630d7f86b28f8d45a2a37b91695f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance the model time step <br />
 .  <a href="#a20ff630d7f86b28f8d45a2a37b91695f">More...</a><br /></td></tr>
@@ -187,6 +191,45 @@ The time reporter class is used to check how long it takes to set up everything 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0df0b21a6bd56182f0d33ee69a94de13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0df0b21a6bd56182f0d33ee69a94de13">&#9670;&nbsp;</a></span>end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void model::end </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;&#160;</td>
+          <td class="paramname"><em>parameters</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finish off model including any final output etc. <br />
+. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parameters</td><td>A <b>reference</b> to a class that holds all the possible parameter settings for the model.<br />
+ Using a reference ensures the values don't need to be copied</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Right now this is here just to output final values at the end of the last step. </p>
+
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00158">158</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+
+</div>
+</div>
 <a id="a9c93dce1ca10fbfa99f9eec481ea55df"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9c93dce1ca10fbfa99f9eec481ea55df">&#9670;&nbsp;</a></span>init()</h2>
 
@@ -319,7 +362,7 @@ Also to avoid any systematic biases, agents need to all finish their contaminati
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00158">158</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00181">181</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
