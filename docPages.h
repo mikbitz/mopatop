@@ -33,7 +33,40 @@
  * For parameter settings and builing experiments see @ref params
  * @page params Parameter Setting and Experiments
  * @section PFile Parameter File
+ * The model reads in its parameters from a file specifying one parameter value per line in the form \n
+ * \code
+ * parameterName=value 
+ * \endcode
+ * where lines without and "=" or starting with a # are treated as comments. parameterNames are grouped together in terms\n
+ * of common functions using a dot-separated form e.g. everything beginning "run." has to do with control of the model run\n
+ * including things like run.nSteps for the number of model timesteps to be used or run.randomSeed for the initial random number seed e.g..\n
+ * \code
+ * run.nSteps=5000
+ * \endcode
+ * Where a parameter exists in the model but its value is not specified in the parameter file used, then a hard-coded default value\n
+ * is used instead (see \ref parameters.h). Any parameters set in the parameter file that do not have default values, or do not exist\n
+ * will cause the model to halt. The file to be used is given when running the model as the first command-line argument as \n
+ * \code
+ * modelexe parameterFileName \n
+ * \endcode
+ * Every model run writes out a file listing the parameter values used in alphabetical order to the model output directory.\n
+ * In this way many experiments with different parameter settings can be run without needing to edit or re-compile the model,\n
+ * and a record of the model settings is kept with the results.\n
+ * 
  * @section exp Experiment Files
+ * In order to systematically explore and archive  model behaviour, a facility for setting up experiments and keeping a list of them in a database\n
+ * is included. The experiment database takes to form of a simple csv file listing the name of each experiment, the model version used, the experiment specification file\n
+ * and a brief description - this is currently kept in a sub-directory name "experiments"\n
+ * An example experiment is used to help with setup of new experiments including an example specification and base parameter file.\n
+ * Two python programs, makeExperiment.py and runExperiment.py allow for new experiments to be created and run in a standardised way.\n
+ * The experiment specifcation file is again a csv, this time including the experiment name, parameter file name and columns giving the\n
+ * values of the parameters to be used in each model run, with the full parameter set being used for a run specified in each row of the \n
+ * file. Parameters not mentioned in the specification file are assumed to take default values - any value that is varied must have a \n
+ * value given for every run.\n
+ * makeExperiment.py allows for a new experiment to be given a name, modelversion and description - the script then copies the example experiment\n
+ * into a new directory, suitably re-named, and adds the experiment to the database. The parameter and specification files can then be edited, and the\n
+ * entire run set executed using runExperiment.py (or else a full set of parameter files can be generated, in case, for exmaple, the experiment is to.\n
+ * be run via a queueing system such as on HPC machines).   
  * @page ODD ODD description
  * 
  * @section odd_intro Introduction
@@ -77,7 +110,7 @@
  * Multiple repeat runs with different random seeds but all other parameters the same can be specified from the parameter file.\n
  * Experiments can be set up in the parameter file so that output from each run goes automatically into a separate directory, \n
  * with the paramters used stored along with the output \n
- * See the documentation in defaultParameterFile for details.
+ * See the documentation in defaultParameterFile for details, and \ref PFile
  * @subsubsection pl places
  * Places are at present simple containers that can take any number of agents. Agents keep a flag pointing to their\n
  * current place, so that they can add contamination, or examine the contamination level inorder to become infected.\n
