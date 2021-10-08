@@ -40,6 +40,8 @@ public:
     CPPUNIT_TEST_SUITE( modelTest );
     /** @brief test the default constructor  */
     CPPUNIT_TEST( testDefaultConstructor );
+    /** @brief test the default constructor  */
+    CPPUNIT_TEST( testNumberInfected );
     /** @brief test run  */
     CPPUNIT_TEST( testRun );
     /** @brief end the test suite   */
@@ -54,6 +56,19 @@ public:
         CPPUNIT_ASSERT(m.numberOfAgents()==600);
         CPPUNIT_ASSERT(m.numberOfPlaces()==280);
         CPPUNIT_ASSERT(m.numberDiseased()==1);
+    }
+    /** @brief in the simple disease the initial number infected should not be able to exceed the agent number
+        @details If more than the number of agents is requested, then the code is expected to max. this out\n
+        as the total number of agents initially present*/
+    void testNumberInfected()
+    {
+        parameterSettings pr;
+        //check that we can't have more infected than the total number of agents
+        pr.setParameter("disease.simplistic.initialNumberInfected","5000");
+        model m(pr);
+        CPPUNIT_ASSERT(m.numberOfAgents()==600);
+        CPPUNIT_ASSERT(m.numberOfPlaces()==280);
+        CPPUNIT_ASSERT(m.numberDiseased()==600);
     }
         /** @brief try stepping the model forward and check output
             @details if the number of omp threads is not set this can produce crashes or unpredictable results...*/

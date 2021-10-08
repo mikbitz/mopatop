@@ -15,6 +15,7 @@ var searchData=
   ['testinterval',['testInterval',['../classtimeReporterTest.html#a4488d70ca37d086b82cce74e5c25a53d',1,'timeReporterTest']]],
   ['testmobile',['testMobile',['../classtravelScheduleTest.html#a7d457e4ae5c44853c450860284993a57',1,'travelScheduleTest']]],
   ['testmove',['testMove',['../classagentTest.html#a7207d3076716ba24d42ebac5b97a6f6e',1,'agentTest']]],
+  ['testnumberinfected',['testNumberInfected',['../classmodelTest.html#ab7a0f9094aaab12eadc0fedbb57505e8',1,'modelTest']]],
   ['testoperator',['testOperator',['../classparameterTest.html#a099ef3c9d0a74ada96f9dd8bd4c168e6',1,'parameterTest']]],
   ['testreadwrite',['testReadWrite',['../classparameterTest.html#a73ffa897b723095fdb3f06cc309575d6',1,'parameterTest']]],
   ['testrecover',['testRecover',['../classdiseaseTest.html#af072ce110dc0cb4e4dfd7938e03e01f4',1,'diseaseTest']]],
