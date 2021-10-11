@@ -74,6 +74,8 @@ class simpleOnePlaceFactory:public modelFactory{
         std::cout<<std::endl;
         std::cout<<"Creating agents ...";
         int k=0;
+        //ifraction indicates when each extra 10% of agents have been created
+        int fr=parameters.get<long>("run.nAgents")/10;
         //allocate all agents the same home - no travel in this case
         for (int i=0;i<parameters.get<long>("run.nAgents");i++){
             agent* a=new agent();
@@ -83,7 +85,7 @@ class simpleOnePlaceFactory:public modelFactory{
             agents[i]->setTransport(places[0]);
             agents[i]->setWork(places[0]);
             k++;
-            if (k%100000==0)std::cout<<k<<"...";
+            if (k%fr==0)std::cout<<k<<"...";
         }
         std::cout<<std::endl;
 
@@ -125,13 +127,15 @@ class simpleMobileFactory:public modelFactory{
         }
         std::cout<<"Creating agents ...";
         int k=0;
+        //fraction indicates when each extra 10% of agents have been created
+        int fr=parameters.get<long>("run.nAgents")/10;
         //allocate 3 agents per home
         for (int i=0;i<nAgents;i++){
             agent* a=new agent();
             agents.push_back(a);
             agents[i]->setHome(places[i/3]);
             k++;
-            if (k%100000==0)std::cout<<k<<"...";
+            if (k%fr==0)std::cout<<k<<"...";
         }
         std::cout<<std::endl;
         //create work places - one tenth as many as agents - add them on to the end of the place list.
