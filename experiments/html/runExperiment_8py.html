@@ -88,7 +88,7 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a0fce901dc647ee562ab8d0691375eb21"><td class="memItemLeft" align="right" valign="top"><a id="a0fce901dc647ee562ab8d0691375eb21"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runExperiment_8py.html#a0fce901dc647ee562ab8d0691375eb21">experimentName</a> = 'stochasticVariation'</td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="runExperiment_8py.html#a0fce901dc647ee562ab8d0691375eb21">experimentName</a> = 'endTimeTest10_20000'</td></tr>
 <tr class="memdesc:a0fce901dc647ee562ab8d0691375eb21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the experiment of the experiment to run. <br /></td></tr>
 <tr class="separator:a0fce901dc647ee562ab8d0691375eb21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae78b8040851170f42caea9a79d89addc"><td class="memItemLeft" align="right" valign="top"><a id="ae78b8040851170f42caea9a79d89addc"></a>
@@ -165,7 +165,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ru
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Use csv files to define sets of values to be used in an experiment. </p>
-<p>Read in the file that lists all the experiments, then select on experiment to run, and use the base model parameter file as specified for the experiment to write out a set of parameter files to cover the parameter space. The expectation is that all parameters to be changed will be given in the header row of the experiment specification file, starting at column 2 (columns 0 and 1 reserved for experiment name and parameter file name), with one row for every parameter set to be used (every parameter to be changed must have an entry in every row). This script can either directly run the model now (given the name of an executable), or else store parameter files for later (useful for hpc, for example). Note that all the paths for the experiment to be run need to be set up ahead of time, consistent with the base parameter file. </p><dl class="section author"><dt>Author</dt><dd>: Mike Bithell Created on Tue Sep 7 16:23:44 2021 </dd></dl>
+<p>Read in the file that lists all the experiments, then select one experiment to run, and use the base model parameter file as specified for the experiment to write out a set of parameter files to cover the parameter space. The expectation is that all parameters to be changed will be given in the header row of the experiment specification file, starting at column 2 (columns 0 and 1 reserved for experiment name and parameter file name), with one row for every parameter set to be used (every parameter to be changed must have an entry in every row). This script can either directly run the model now (given the name of an executable), or else store parameter files for later (useful for hpc, for example). Note that all the paths for the experiment to be run need to be set up ahead of time, consistent with the base parameter file. </p><dl class="section author"><dt>Author</dt><dd>: Mike Bithell Created on Tue Sep 7 16:23:44 2021 </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="runExperiment_8py_source.html">runExperiment.py</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>

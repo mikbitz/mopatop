@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['runexperiment_2epy',['runExperiment.py',['../runExperiment_8py.html',1,'']]]
+  ['parametermixer_2epy',['parameterMixer.py',['../parameterMixer_8py.html',1,'']]]
 ];
