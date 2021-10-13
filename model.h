@@ -186,6 +186,8 @@ public:
         //counts the totals
         int infected=0,recovered=0,dead=0;
         //accumulate totals - at the start of the step - so the step 0 is initial data
+        //NB in very large runs (100s of millions of agents) this becomes very inefficient - so use a reduction
+        #pragma omp parallel for reduction(+:infected,recovered,dead) 
         for (int i=0;i<agents.size();i++){
             if (agents[i]->alive()){
                 if (agents[i]->diseased())infected++;
