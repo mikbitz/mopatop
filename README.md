@@ -24,4 +24,9 @@ To run on windows 10 or later you can install wsl with e.g. wsl --install -d Ubu
 In Ubuntu 20.04 (running in the wsl command window) apt install g++ will bring in g++ 9.3 
 
 You should then be able to compile and run the model as for a standard linux installation.
- 
+
+## Capability
+
+This model is currently known to be able to run a simple one-place epidemic with at least 500 million agents 
+
+on a 56 core machine with 348GB of memory - benchmarking is as yet incomplete however.  
