@@ -54,7 +54,7 @@ public:
     /** The constructor makes the class instance - optionally provide a seed*/
     randomizer(int s=0){
         uniform_dist=std::uniform_real_distribution<> (0,1);
-        std::cout<<"A randomizer was set up with seed 0" <<std::endl;
+        //std::cout<<"A randomizer was set up with seed 0" <<std::endl;
         twister.seed(s);
     }
     ~randomizer(){

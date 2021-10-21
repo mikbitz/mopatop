@@ -74,10 +74,10 @@ class simpleOnePlaceFactory:public modelFactory{
         std::cout<<std::endl;
         std::cout<<"Creating agents ...";
         int k=0;
-        //ifraction indicates when each extra 10% of agents have been created
+        //fraction indicates when each extra 10% of agents have been created
         int fr=parameters.get<long>("run.nAgents")/10;
         //allocate all agents the same home - no travel in this case
-        for (int i=0;i<parameters.get<long>("run.nAgents");i++){
+        for (long i=0;i<parameters.get<long>("run.nAgents");i++){
             agent* a=new agent();
             agents.push_back(a);
             agents[i]->setHome(places[0]);
@@ -90,7 +90,7 @@ class simpleOnePlaceFactory:public modelFactory{
         std::cout<<std::endl;
 
         //set up travel schedule - same for every agent at the moment -  at home at exactly the same times
-        for (int i=0;i<agents.size();i++){
+        for (long i=0;i<agents.size();i++){
             agents[i]->initTravelSchedule(parameters);
         }
         //report intialization to std out 
@@ -120,7 +120,7 @@ class simpleMobileFactory:public modelFactory{
         
         std::cout<<"Starting simple mobile generator..."<<std::endl;
         std::cout<<"Creating homes ..."<<std::endl;
-        for (int i=0;i<nAgents/3;i++){
+        for (long i=0;i<nAgents/3;i++){
             place* p=new place(parameters);
             places.push_back(p);
             places[i]->setID(i);
@@ -130,7 +130,7 @@ class simpleMobileFactory:public modelFactory{
         //fraction indicates when each extra 10% of agents have been created
         int fr=parameters.get<long>("run.nAgents")/10;
         //allocate 3 agents per home
-        for (int i=0;i<nAgents;i++){
+        for (long i=0;i<nAgents;i++){
             agent* a=new agent();
             agents.push_back(a);
             agents[i]->setHome(places[i/3]);
@@ -140,7 +140,7 @@ class simpleMobileFactory:public modelFactory{
         std::cout<<std::endl;
         //create work places - one tenth as many as agents - add them on to the end of the place list.
         std::cout<<"Creating workplaces ..."<<std::endl;
-        for (int i=nAgents/3;i<nAgents/3+nAgents/10;i++){
+        for (long i=nAgents/3;i<nAgents/3+nAgents/10;i++){
             place* p=new place(parameters);
             places.push_back(p);
             places[i]->setID(i);
@@ -148,24 +148,24 @@ class simpleMobileFactory:public modelFactory{
         //shuffle agents so household members get different workplaces
         random_shuffle(agents.begin(),agents.end());
         //allocate 10 agents per workplace
-        for (int i=0;i<agents.size();i++){
+        for (long i=0;i<agents.size();i++){
             assert(places[i/10+nAgents/3]!=0);
             agents[i]->setWork(places[i/10+nAgents/3]);
         }
         std::cout<<"Creating transport ..."<<std::endl;
         //create buses - one thirtieth since 30 agents per bus. add them to the and of the place list again
-        for (int i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
+        for (long i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
             place* p=new place(parameters);
             places.push_back(p);
             places[i]->setID(i);
         }
         //allocate 30 agents per bus - since agents aren't shuffled, those in similar workplaces will tend to share buses. 
-        for (int i=0;i<agents.size();i++){
+        for (long i=0;i<agents.size();i++){
             assert(places[i/30+nAgents/3+nAgents/10]!=0);
             agents[i]->setTransport(places[i/30+nAgents/3+nAgents/10]);
         }
         //set up travel schedule - same for every agent at the moment - so agents are all on the bus, at work or at home at exactly the same times
-        for (int i=0;i<agents.size();i++){
+        for (long i=0;i<agents.size();i++){
             agents[i]->initTravelSchedule(parameters);
         }
         //report intialization to std out 

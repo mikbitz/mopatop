@@ -147,7 +147,7 @@ public:
         //shuffle things so agents are allocated at random
         random_shuffle(agents.begin(),agents.end());
         long num=std::min((long)parameters.get<long>("disease.simplistic.initialNumberInfected"),(long)agents.size());
-        for (int i=0;i<num;i++)agents[i]->becomeInfected();
+        for (long i=0;i<num;i++)agents[i]->becomeInfected();
         
     }
     //------------------------------------------------------------------------
@@ -156,9 +156,9 @@ public:
      *  @details Right now this is here just to output final values at the end of the last step.
      */
     void end(parameterSettings& parameters){
-       int infected=0,recovered=0,dead=0;
+       long infected=0,recovered=0,dead=0;
         //accumulate totals - at the start of the step - so the step 0 is initial data
-        for (int i=0;i<agents.size();i++){
+        for (long i=0;i<agents.size();i++){
             if (agents[i]->alive()){
                 if (agents[i]->diseased())infected++;
                 if (agents[i]->recovered())recovered++;
@@ -184,11 +184,11 @@ public:
         auto end=start;
         if (stepNumber==0)start=timeReporter::getTime();
         //counts the totals
-        int infected=0,recovered=0,dead=0;
+        long infected=0,recovered=0,dead=0;
         //accumulate totals - at the start of the step - so the step 0 is initial data
         //NB in very large runs (100s of millions of agents) this becomes very inefficient - so use a reduction
         #pragma omp parallel for reduction(+:infected,recovered,dead) 
-        for (int i=0;i<agents.size();i++){
+        for (long i=0;i<agents.size();i++){
             if (agents[i]->alive()){
                 if (agents[i]->diseased())infected++;
                 if (agents[i]->recovered())recovered++;
@@ -206,7 +206,7 @@ public:
         //update the places - changes contamination level
         //note the pragma statement here allows openmp to parallelise this loop over several threads 
         #pragma omp parallel for
-        for (int i=0;i<places.size();i++){
+        for (long i=0;i<places.size();i++){
             places[i]->update();
         }
         if (stepNumber==0){
@@ -217,7 +217,7 @@ public:
         //do disease - synchronous update (i.e. all agents contaminate before getting infected) so that no agent gets to infect ahead of others.
         //alternatively could be randomized...depends on the idea of how a location works...places could be sub-divided to mimic spatial extent for example.
         #pragma omp parallel for
-        for (int i=0;i<agents.size();i++){
+        for (long i=0;i<agents.size();i++){
             agents[i]->cough();
         }
         if(stepNumber==0){
@@ -228,7 +228,7 @@ public:
         //the disease progresses
         //This is faster here using an RNG separate for each thread
         #pragma omp parallel for
-        for (int i=0;i<agents.size();i++){
+        for (long i=0;i<agents.size();i++){
             agents[i]->process_disease(randoms[omp_get_thread_num()]);
             //agents[i]->process_disease(randoms[0]);
         }
@@ -239,7 +239,7 @@ public:
         }
         //move around, do other things in a location
         #pragma omp parallel for
-        for (int i=0;i<agents.size();i++){
+        for (long i=0;i<agents.size();i++){
             agents[i]->update();
         }
         if (stepNumber==0){
@@ -254,7 +254,7 @@ public:
         }
       
         //show places - just for testing really so commented out at present
-        for (int i=0;i<places.size();i++){
+        for (long i=0;i<places.size();i++){
             //places[i]->show();
         }
     }
