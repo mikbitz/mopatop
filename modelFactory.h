@@ -77,15 +77,17 @@ class simpleOnePlaceFactory:public modelFactory{
         //fraction indicates when each extra 10% of agents have been created
         int fr=parameters.get<long>("run.nAgents")/10;
         //allocate all agents the same home - no travel in this case
+        #pragma omp parallel for
         for (long i=0;i<parameters.get<long>("run.nAgents");i++){
             agent* a=new agent();
-            agents.push_back(a);
-            agents[i]->setHome(places[0]);
+            a->setHome(places[0]);
             //some schedules assume that work and tranport exist - set these so as not to cause a model crash
-            agents[i]->setTransport(places[0]);
-            agents[i]->setWork(places[0]);
+            a->setTransport(places[0]);
+            a->setWork(places[0]);
             k++;
             if (k%fr==0)std::cout<<k<<"...";
+            #pragma omp critical
+            agents.push_back(a);
         }
         std::cout<<std::endl;
 
@@ -120,51 +122,62 @@ class simpleMobileFactory:public modelFactory{
         
         std::cout<<"Starting simple mobile generator..."<<std::endl;
         std::cout<<"Creating homes ..."<<std::endl;
+        #pragma omp parallel for
         for (long i=0;i<nAgents/3;i++){
             place* p=new place(parameters);
+            p->setID(i);
+            #pragma omp critical
             places.push_back(p);
-            places[i]->setID(i);
         }
         std::cout<<"Creating agents ...";
         int k=0;
         //fraction indicates when each extra 10% of agents have been created
         int fr=parameters.get<long>("run.nAgents")/10;
         //allocate 3 agents per home
+        #pragma omp parallel for
         for (long i=0;i<nAgents;i++){
             agent* a=new agent();
-            agents.push_back(a);
-            agents[i]->setHome(places[i/3]);
+            a->setHome(places[i/3]);
             k++;
             if (k%fr==0)std::cout<<k<<"...";
+            #pragma omp critical            
+            agents.push_back(a);
         }
         std::cout<<std::endl;
         //create work places - one tenth as many as agents - add them on to the end of the place list.
         std::cout<<"Creating workplaces ..."<<std::endl;
+        #pragma omp parallel for
         for (long i=nAgents/3;i<nAgents/3+nAgents/10;i++){
             place* p=new place(parameters);
+            p->setID(i);
+            #pragma omp critical             
             places.push_back(p);
-            places[i]->setID(i);
         }
-        //shuffle agents so household members get different workplaces
+        //shuffle agents so household members get different workplaces - can this be parallelised?
         random_shuffle(agents.begin(),agents.end());
         //allocate 10 agents per workplace
+        #pragma omp parallel for        
         for (long i=0;i<agents.size();i++){
             assert(places[i/10+nAgents/3]!=0);
             agents[i]->setWork(places[i/10+nAgents/3]);
         }
         std::cout<<"Creating transport ..."<<std::endl;
         //create buses - one thirtieth since 30 agents per bus. add them to the and of the place list again
+        #pragma omp parallel for  
         for (long i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
             place* p=new place(parameters);
+            p->setID(i);
+            #pragma omp critical 
             places.push_back(p);
-            places[i]->setID(i);
         }
         //allocate 30 agents per bus - since agents aren't shuffled, those in similar workplaces will tend to share buses. 
+        #pragma omp parallel for
         for (long i=0;i<agents.size();i++){
             assert(places[i/30+nAgents/3+nAgents/10]!=0);
             agents[i]->setTransport(places[i/30+nAgents/3+nAgents/10]);
         }
         //set up travel schedule - same for every agent at the moment - so agents are all on the bus, at work or at home at exactly the same times
+        #pragma omp parallel for
         for (long i=0;i<agents.size();i++){
             agents[i]->initTravelSchedule(parameters);
         }
