@@ -55,11 +55,10 @@ public:
     CPPUNIT_TEST( testDefaultConstructor );
     /** @brief check place ID */
     CPPUNIT_TEST( testID );
-    /** @brief test contamination */
+    /** @brief test contamination -should decay */
     CPPUNIT_TEST( testContamination );
-    /** @brief contamination should decay*/
-    CPPUNIT_TEST( testAgents );
-    /** @brief agents should be added and removed from place correctly */
+    /** @brief test occupancy - currently not used */
+    //CPPUNIT_TEST( testAgentsInPlaces );
     CPPUNIT_TEST_SUITE_END();
     /** @brief The constructor should set the necessary default values 
      *  @details use std::numeric_limits<double>::min() here to find the smallest possible double\n
@@ -134,7 +133,7 @@ public:
      *  @details it should only be possible to add an agent once. removal should not crash if non-resident agent is removed.\n
      *  number of agents should increase and decrease correctly. The show function shoudl correctly list IDs of residents. 
      */
-    void testAgents()
+    void testAgentsInPlaces()
     {
         agent* a=new agent();
         p->add(a);

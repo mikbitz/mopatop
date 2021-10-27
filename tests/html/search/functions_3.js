@@ -1,10 +1,10 @@
 var searchData=
 [
   ['teardown',['tearDown',['../classplaceTest.html#a2a0d52566e44cc385dc8fecdae504d6f',1,'placeTest::tearDown()'],['../classtravelScheduleTest.html#a69320630d353404c79e158289c5d73f4',1,'travelScheduleTest::tearDown()']]],
-  ['testagents',['testAgents',['../classplaceTest.html#a1e79e4a8830e03f02b2046c24ccfa822',1,'placeTest']]],
+  ['testagentsinplaces',['testAgentsInPlaces',['../classplaceTest.html#a095889ea563a243152e41a0e05fffbc2',1,'placeTest']]],
   ['testcontamination',['testContamination',['../classplaceTest.html#a12e071effa88774bb49e498632d19846',1,'placeTest']]],
   ['testcreation',['testCreation',['../classmodelFactoryTest.html#a1bea8789a99ca88af5942eaf6c3fa687',1,'modelFactoryTest']]],
-  ['testdefaultconstructor',['testDefaultConstructor',['../classagentTest.html#ade6fc2895d439529b21d4fb725302b77',1,'agentTest::testDefaultConstructor()'],['../classdiseaseTest.html#a1559f0bcf9c829f890b891ded00c746f',1,'diseaseTest::testDefaultConstructor()'],['../classmodelTest.html#a1ec93676ece4bbb6f98cf65340472939',1,'modelTest::testDefaultConstructor()'],['../classparameterTest.html#a80bc49c4dafb3b6ae5c7e561b5711583',1,'parameterTest::testDefaultConstructor()'],['../classplaceTest.html#a7f6879744d411bded42d786645595245',1,'placeTest::testDefaultConstructor()'],['../classtimeStepTest.html#a3e6e3abcb3b887cd3ebbbacb3c6a812f',1,'timeStepTest::testDefaultConstructor()']]],
+  ['testdefaultconstructor',['testDefaultConstructor',['../classagentTest.html#ade6fc2895d439529b21d4fb725302b77',1,'agentTest::testDefaultConstructor()'],['../classdiseaseTest.html#a1559f0bcf9c829f890b891ded00c746f',1,'diseaseTest::testDefaultConstructor()'],['../classmodelTest.html#a1ec93676ece4bbb6f98cf65340472939',1,'modelTest::testDefaultConstructor()'],['../classparameterTest.html#a80bc49c4dafb3b6ae5c7e561b5711583',1,'parameterTest::testDefaultConstructor()'],['../classplaceTest.html#a7f6879744d411bded42d786645595245',1,'placeTest::testDefaultConstructor()'],['../classscheduleListTest.html#a8495411fca3065150fb4ab98b4d950eb',1,'scheduleListTest::testDefaultConstructor()'],['../classtimeStepTest.html#a3e6e3abcb3b887cd3ebbbacb3c6a812f',1,'timeStepTest::testDefaultConstructor()']]],
   ['testdefaults',['testDefaults',['../classdiseaseTest.html#a76ac8d52f421ccb010d5be72228fe613',1,'diseaseTest::testDefaults()'],['../classtimeStepTest.html#ae501f2f63633a2b24c4cfc1f9c33f96b',1,'timeStepTest::testDefaults()'],['../classtravelScheduleTest.html#a20320a46b0a0a9cd70e643f1ebe0ee0a',1,'travelScheduleTest::testDefaults()']]],
   ['testdie',['testDie',['../classdiseaseTest.html#a703842c90288f26dbe79fec811b7e214',1,'diseaseTest']]],
   ['testdisease',['testDisease',['../classagentTest.html#a628c4b06eee5b0e6e7a45c842ed70429',1,'agentTest']]],
@@ -29,5 +29,6 @@ var searchData=
   ['testsetupobjects',['testSetUpObjects',['../classparameterTest.html#aeb4d3a1620defdc974a9b925f4c1cd9f',1,'parameterTest']]],
   ['testshed',['testShed',['../classdiseaseTest.html#aec9719173d92e888f32ada40f567467a',1,'diseaseTest']]],
   ['testswitch',['testSwitch',['../classtravelScheduleTest.html#afa04fc9d3f86668e36c74a1f27c2d5aa',1,'travelScheduleTest']]],
+  ['testtype',['testType',['../classscheduleListTest.html#a420ec9f4f0d97230ebe2911d5be4a856',1,'scheduleListTest::testType()'],['../classtravelScheduleTest.html#a66b5ac55f22c6d892798936d634d2316',1,'travelScheduleTest::testType()']]],
   ['testupdate',['testUpdate',['../classplaceTest.html#acc20c36b8c0e62cea5068b3707e98237',1,'placeTest']]]
 ];

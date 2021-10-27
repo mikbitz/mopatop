@@ -6,7 +6,8 @@
 <area shape="rect" id="node6" href="$classparameterTest.html" title="Check parameter defaults are as expected. " alt="" coords="153,208,259,235"/>
 <area shape="rect" id="node7" href="$classplaceTest.html" title="Check places for contamination levels and agent occupancy. " alt="" coords="167,259,245,285"/>
 <area shape="rect" id="node8" href="$classrandomTest.html" title="Test some of the random number generator behaviour. " alt="" coords="161,309,251,336"/>
-<area shape="rect" id="node9" href="$classtimeReporterTest.html" title="Check intervals are computed and reported as expected. " alt="" coords="145,360,267,387"/>
-<area shape="rect" id="node10" href="$classtimeStepTest.html" title="Check the class that maps the time step to a given set of real&#45;world units (e.g. hours) ..." alt="" coords="157,411,255,437"/>
-<area shape="rect" id="node11" href="$classtravelScheduleTest.html" title="Exercise the fixed travel schedules. " alt="" coords="140,461,272,488"/>
+<area shape="rect" id="node9" href="$classscheduleListTest.html" title="test out the newclass class " alt="" coords="146,360,266,387"/>
+<area shape="rect" id="node10" href="$classtimeReporterTest.html" title="Check intervals are computed and reported as expected. " alt="" coords="145,411,267,437"/>
+<area shape="rect" id="node11" href="$classtimeStepTest.html" title="Check the class that maps the time step to a given set of real&#45;world units (e.g. hours) ..." alt="" coords="157,461,255,488"/>
+<area shape="rect" id="node12" href="$classtravelScheduleTest.html" title="Exercise the fixed travel schedules. " alt="" coords="140,512,272,539"/>
 </map>
