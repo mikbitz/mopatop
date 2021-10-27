@@ -32,6 +32,6 @@ You should then be able to compile and run the model as for a standard linux ins
 
 ## Capability
 
-This model is currently known to be able to run an epidemic with at least 1.2 billion simple agents, along with 560 million
+This model is currently known to be able to run an epidemic with at least 3 billion simple agents, along with 1.4 billion
 
 homes/workplaces/transport vehicles on a 76 core machine with 512GB of memory - benchmarking is as yet incomplete however.  
