@@ -33,9 +33,7 @@ You should then be able to compile and run the model as for a standard linux ins
 ## Capability
 
 This model is currently known to be able to run an epidemic with at least 3 billion simple agents, along with 1.4 billion
-
 homes/workplaces/transport vehicles on a 76 core machine with 512GB of memory - benchmarking is as yet incomplete however.
 
-Memory scales linearly with agent numbers at about 0.1K per agent (including places/transport). Initialisation takes about 1.5 micro-seconds per agent,
-
+Memory scales linearly with agent numbers at about 0.1K per agent (including places/transport). Initialisation on Intel icelake processors takes about 1.5 micro-seconds per agent,
 and run times scale at about 0.2 microseconds per agent per model time step. Speedup continues out to 64 core, a little less than linearly with a factor of about 25 over 64 cores.  
