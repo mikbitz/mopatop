@@ -81,7 +81,9 @@ void agent::initTravelSchedule(parameterSettings& params){
    scheduleType=allSchedules.getType(params("schedule.type"));
    schedulePoint=allSchedules[scheduleType].getStartPoint();
    scheduleTimer=0;//assume we are at the end of the previous event in the schedule.
-   currentPlace=allSchedules[scheduleType].getNextLocation(schedulePoint);
+   currentPlace=allSchedules[scheduleType].getCurrentDestination(schedulePoint);
+   //go to the start of the next event
+   advanceTravelSchedule();
 }
 //------------------------------------------------------------------------
 void agent::cough()

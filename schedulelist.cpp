@@ -17,8 +17,9 @@ travelSchedule& scheduleList::operator[](scheduleList::scheduleTypes i){
     return schedules[i];
 }
 scheduleList::scheduleTypes scheduleList::getType(std::string scheduleType){
-    scheduleTypes s;
+    scheduleTypes s=stationary;
     if (scheduleType=="stationary")s=stationary;
-    if (scheduleType=="mobile")s=mobile;
+    else if (scheduleType=="mobile")s=mobile;
+    else std::cout<<"Unknown schedule type:"<<scheduleType<<" in scheduleList::getType - defaulting to stationary"<<std::endl;
     return s;
 }

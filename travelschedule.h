@@ -141,6 +141,7 @@ public:
     /** increment a counter that tracks the schedule location, including wrap-around */
     double increment(unsigned n){
         if (destinations.size()==0) return 0;
+        n++;
         n=n%destinations.size();
         return n;
     }
