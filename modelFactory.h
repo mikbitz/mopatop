@@ -73,9 +73,9 @@ class simpleOnePlaceFactory:public modelFactory{
         places[0]->setID(0);
         std::cout<<std::endl;
         std::cout<<"Creating agents ...";
-        int k=0;
+        long k=0;
         //fraction indicates when each extra 10% of agents have been created
-        int fr=parameters.get<long>("run.nAgents")/10;
+        long fr=parameters.get<long>("run.nAgents")/10;
         //allocate all agents the same home - no travel in this case
         #pragma omp parallel for
         for (long i=0;i<parameters.get<long>("run.nAgents");i++){
@@ -130,9 +130,9 @@ class simpleMobileFactory:public modelFactory{
             places.push_back(p);
         }
         std::cout<<"Creating agents ...";
-        int k=0;
+        long k=0;
         //fraction indicates when each extra 10% of agents have been created
-        int fr=parameters.get<long>("run.nAgents")/10;
+        long fr=parameters.get<long>("run.nAgents")/10;
         //allocate 3 agents per home
         #pragma omp parallel for
         for (long i=0;i<nAgents;i++){
