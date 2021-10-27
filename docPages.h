@@ -16,7 +16,7 @@
  * with a fixed chance per timestep, and are subsequently immune.
  * @subsection Compiling Compiling the model
  * On a linux system with g++ installed just do \n
- * g++ -o agentModel -O3 -fopenmp -std=c++17 timestep.cpp disease.cpp agent.cpp places.cpp main.cpp\n
+ * g++ -o agentModel -O3 -fopenmp -std=c++17 timestep.cpp disease.cpp agent.cpp places.cpp schedulelist.cpp main.cpp\n
  * Note the current version requires g++ version>=9 and c++17 in order for the filesystem function to work (for creating new directories etc.)\n
  * If using openmp (parallelised loops) then set the  number of threads in the parameterSettings class.\n
  * Note the number of cores to be used must be <= number supported by the local machine!
@@ -130,8 +130,10 @@
  * A single simple disease allows agents interrogate it and discover whether they to recover at a fixed average\n
  * rate, to be infected if there is contamination and to shed infection into a place, again at a rate per unit time.\n 
  * @subsubsection ts travelSchedule
- * Each agent has their own copy of a travel schedule - at present, though, this can only be switched between\n
- * two types - one where the agents moves between a fixed set of places, and one where they remain permanently at home\n
+ * Each agent has their own index into a travel schedule, selected from a list of pre-defined possibilities\n
+ * agents keep a time counter to count down to the next travel schedule event - in pricniple they could opt not to\n
+ * move the schedule forward, but currently they alwys do so. At present, there are only two travelschedule\n
+ * types - one where the agents moves between a fixed set of places, and one where they remain permanently at home\n
  * The latter allows e.g. testing against a fully mixed disease model, if home is the same place for all agents.\n
  * The schedule has an ordered list of place types representing destination for travel, and a time to be spent\n
  * in each place of a given type. Agents use the place type to select their own particular place to travel to \n
@@ -209,7 +211,7 @@
  * defines where agents regard their known places to be. In the current version, with all agents \n
  * stay in the same place, and have a single home location, or else:-\n
  * - First homes are created - enough for 3 agents per home.\n
- * - Agents are then created and allocated 3 to a home untilt the list of agents is exhausted.\n
+ * - Agents are then created and allocated 3 to a home until the list of agents is exhausted.\n
  * - Work places are then created, enough for 10 agents per workplace.\n
  * - The agents list is shuffled randomly, then agents are allocated to work places 10 at a time in order.\n
  * - Vehicles are created representing buses, with a capacity of 30 agents. Agents are allocated to\n 

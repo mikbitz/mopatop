@@ -35,12 +35,16 @@
 
 class travelSchedule;
 class place;
+#include "schedulelist.h"
 /**
  * @brief The main agent class - each agent represents one person
  * @details Agents move from place to place, using the travelSchedule. If they have the disease, the cough at each place they visit and contaminate it \n
  * If they are in a contaminated location, they may contract the disease. Additionally they may do other things in their current location.
 */
 class agent{
+    /** @brief A static (class-level) variable that stores a list of all possible allSchedules
+        @details the list is indexed by \ref scheduleList::scheduleTypes - a single instance minmimizes storage, as the schedules themselves are rather memory expensive */
+    static scheduleList allSchedules;
     /** @brief A static (class-level) variable that stores the next ID number for a new agent - initialised to 0 in agent.cpp */
     static unsigned long nextID;
     /** @brief flag set to true if the agent has the disease */
@@ -52,6 +56,7 @@ class agent{
     bool _recovered;
     /** @brief flag set to true if the agent is alive */
     bool _alive=true;
+
 public:
      /** @brief Set the value of \ref nextID 
          @details Use with caution - resetting this will cause automatic agent IDs to be set starting from the value set here \n
@@ -67,18 +72,20 @@ public:
      * Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567.
      * transport vehicles are places, albeit moveable!*/
     enum placeTypes{home,work,vehicle};
-    /** @brief A vector of pointers to places 
+    /** @brief An array of pointers to places 
      *  @details - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use he name (home.work etc.) \n
-       intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!)*/
-    std::vector<place*>places;
+       intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!).
+       Note that this could be replaced with a vector for more flexibility, but this is slightly slower and consumes more memory. Array need to match placetype enum in size*/
+    place* places[3];
     /** @brief Where the agent is currently located 
      *@details - note to get this actual place, use this is as an index into the places vector*/
     placeTypes currentPlace;
-    /** @brief the default travel schedule - currently every agent has the same */
-    travelSchedule* schedule;
-    /** @brief Counts down the time spent at the current location
-     */    
-    double counter=0;
+    /** @brief an integer that picks out the current step through the travel schedule */
+    unsigned schedulePoint;
+    /** @brief The current type of travel schedule     */
+    scheduleList::scheduleTypes scheduleType;
+    /** @brief Counts down the time spent at the current location     */  
+    double scheduleTimer=0;
     /** @brief create and agent and set default disease flags and ID. 
      * @details The static nextID variable is used to auto-set the ID number. nextID is then incremented.\n
      * Also set aside storage for the three placeTypes the agent can occupy. \n
@@ -90,8 +97,6 @@ public:
         _immune=false;
         _recovered=false;
         _alive=true;
-        //this has to be the same size as the placeTypes enum
-        places.resize(3);
         ID=nextID;
         nextID++;
     }
@@ -99,14 +104,21 @@ public:
      *  @details- not used just at present - this function is very expensive on compute time 
      see \ref agent.cpp for definition*/
     void moveTo(placeTypes);
-    //the next three functions are defined after the travelSchedule, as they need to know the scheduel details before they can be set up
+    //the next three functions are defined after the travelSchedule, as they need to know the schedule details before they can be set up
     /** @brief Move through the travel schedule, and then do any actions specific to places (apart from disease) \n
         @details needs to be called every timestep see \ref agent.cpp for definition*/
     void update();
-    /** @brief initialise the travel schedule  - this sets up the list of places that will be visited, in order 
+    /** @brief initialise the travel schedule  - this sets up the list of places that will be visited, in order \n
+     *  @details The schedule is assumed to be sitting at the end of the previous event when the model starts. \n
+     *  set up the timer to be zero therefore (no time left at current event) and get the start schedulePoint out of the schedule.
         @param params A reference to a parameterSettings object  
         see \ref agent.cpp for definition*/
     void initTravelSchedule(parameterSettings& );
+    /** @brief check whether to move forward to the next travel location
+        @details decrement the time counter for the current place by the timestep and then check to see if this time has expired\n
+        If so get the next place on the schedule as pointed to by schedulePoint+1
+        see \ref agent.cpp for definition*/
+    void advanceTravelSchedule();
     /** @brief if you have the disease, contaminate the current place  - call every timestep \n
      see \ref agent.cpp for definition*/
     void cough();
@@ -180,22 +192,22 @@ public:
     /** @brief get the place corresponding to home
          @return pointer to a place*/
     place* getHome(){
-       return places[home];
+       return places[home];//places[home];
     }
     /** @brief  get the place corresponding to work       
      *@return pointer to a place*/
     place* getWork(){
-       return places[work];
+       return places[work];//places[work];
     }
     /**  @brief get the place corresponding to transport vehicle      
      *@return pointer to a place*/
     place* getTransport(){
-       return places[vehicle];
+       return places[vehicle];//places[vehicle];
     }
     /**  @brief get the place corresponding to where the agent is now      
      *@return pointer to a place*/
     place* getCurrentPlace(){
-       return places[currentPlace];
+       return places[currentPlace];//places[currentPlace];
     }
     /** @brief set agent ID number  
      @param i a long integer */

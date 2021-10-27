@@ -27,6 +27,8 @@
  * @author Mike Bithell
  * @date 17/08/2021
  **/
+#include"schedulelist.h"
+
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 void agent::moveTo(placeTypes location){
@@ -51,13 +53,8 @@ void agent::process_disease(randomizer& r){
 //defined here so as to be after travelSchedule
 void agent::update()
 {
-        //Use the base travel schedule - initialised at home for everyone
-        counter-=timeStep::deltaT();//reduce by actual time represented by this timestep (since schedule is defined in hours rater than timesteps)
-        if (counter<=0){
-            currentPlace=schedule->getNextLocation();
-            counter=schedule->getTimeAtCurrentPlace();
-        }
-        //expensive - only needed if agents need direct agent-to-agent interactions in a place -
+        advanceTravelSchedule();
+        //moving agents between data structure is expensive - only needed if agents need direct agent-to-agent interactions in a place -
         //might be made cheaper by alowing agents to be present in multiple places, but only active in one.
         //(this could allow for remote meetings/phone calls?!)
         //moveTo(currentPlace);
@@ -67,11 +64,24 @@ void agent::update()
         
 }
 //------------------------------------------------------------------------
+void agent::advanceTravelSchedule(){
+    //Use the base travel schedule - initialised at home for everyone
+    scheduleTimer-=timeStep::deltaT();//reduce by actual time represented by this timestep (since schedule is defined in hours rater than timesteps)
+    if (scheduleTimer<=0){
+        currentPlace=allSchedules[scheduleType].getNextLocation(schedulePoint);
+        //the agent controls whether to step to the next location on the schedule - default is to step forward - otherwise they may want to step back...
+        //e.g by calling schedule->getcurrentDestination rather than incrementing schedulePoint.
+        schedulePoint=allSchedules[scheduleType].increment(schedulePoint);
+        scheduleTimer=allSchedules[scheduleType].getTimeAtCurrentPlace(schedulePoint);
+    }
+}
+//------------------------------------------------------------------------
 void agent::initTravelSchedule(parameterSettings& params){       
-   schedule=new  travelSchedule();
-   schedule->switchTo(params("schedule.type"));
-   currentPlace=schedule->getNextLocation();
-   counter=schedule->getTimeAtCurrentPlace();
+
+   scheduleType=allSchedules.getType(params("schedule.type"));
+   schedulePoint=allSchedules[scheduleType].getStartPoint();
+   scheduleTimer=0;//assume we are at the end of the previous event in the schedule.
+   currentPlace=allSchedules[scheduleType].getNextLocation(schedulePoint);
 }
 //------------------------------------------------------------------------
 void agent::cough()
@@ -82,4 +92,6 @@ void agent::cough()
         
         if (diseased()) places[currentPlace]->increaseContamination(disease::shedInfection());
 }
+//static variables have to be deinfed outside the header file
 unsigned long agent::nextID=0;
+scheduleList agent::allSchedules;

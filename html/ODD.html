@@ -147,8 +147,10 @@ rate, to be infected if there is contamination and to shed infection into a plac
  </p>
 <h3><a class="anchor" id="ts"></a>
 travelSchedule</h3>
-<p>Each agent has their own copy of a travel schedule - at present, though, this can only be switched between<br />
-two types - one where the agents moves between a fixed set of places, and one where they remain permanently at home<br />
+<p>Each agent has their own index into a travel schedule, selected from a list of pre-defined possibilities<br />
+agents keep a time counter to count down to the next travel schedule event - in pricniple they could opt not to<br />
+move the schedule forward, but currently they alwys do so. At present, there are only two travelschedule<br />
+types - one where the agents moves between a fixed set of places, and one where they remain permanently at home<br />
 The latter allows e.g. testing against a fully mixed disease model, if home is the same place for all agents.<br />
 The schedule has an ordered list of place types representing destination for travel, and a time to be spent<br />
 in each place of a given type. Agents use the place type to select their own particular place to travel to <br />
@@ -250,7 +252,7 @@ stay in the same place, and have a single home location, or else:-<br />
 </p><ul>
 <li>First homes are created - enough for 3 agents per home.<br />
 </li>
-<li>Agents are then created and allocated 3 to a home untilt the list of agents is exhausted.<br />
+<li>Agents are then created and allocated 3 to a home until the list of agents is exhausted.<br />
 </li>
 <li>Work places are then created, enough for 10 agents per workplace.<br />
 </li>

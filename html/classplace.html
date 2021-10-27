@@ -141,8 +141,6 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a6bc57da25f0c357caa3fd93e0fbcd079"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a6bc57da25f0c357caa3fd93e0fbcd079">cleanEveryStep</a></td></tr>
 <tr class="memdesc:a6bc57da25f0c357caa3fd93e0fbcd079"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag is used to clear out any contamination at the start of every timestep, if required.  <a href="#a6bc57da25f0c357caa3fd93e0fbcd079">More...</a><br /></td></tr>
 <tr class="separator:a6bc57da25f0c357caa3fd93e0fbcd079"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9944f734ac0bf19a4ab086d94fc061bc"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="classagent.html">agent</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplace.html#a9944f734ac0bf19a4ab086d94fc061bc">occupants</a></td></tr>
-<tr class="separator:a9944f734ac0bf19a4ab086d94fc061bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Places can have a list of occupants, and store disease contamination. </p>
@@ -177,10 +175,15 @@ as contamination level should depend on the duration of stay in a given place. <
 </div><div class="memdoc">
 
 <p>set up the place. </p>
+<p>unique list of current people in this place - intended for direct agent-agent interaction <br />
+ For the current disease model this is not needed, as the agents need only know where they are to contaminate a place <br />
+ currently this is not used...seems to add about 20% to memory requirement if populated. <br />
+ A std::set is unique - so the same agent can be added many times but will only apear once.<br />
+ The set uses the pointer to a given agent as the key, so its easy to insert or remove arbitrary agents. Currently commented out everywhere to save memory</p>
 <p>Assumed initially clean. The decrement value might very with place type and ventialtion level...<br />
 but here is set to a fixed number </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00072">72</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00073">73</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -217,7 +220,7 @@ but here is set to a fixed number </p>
 </dl>
 <p>Assumed initially clean. The decrement value is here imported from the parameter settings </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00081">81</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00082">82</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -252,7 +255,7 @@ but here is set to a fixed number </p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00098">98</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00099">99</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -280,7 +283,7 @@ but here is set to a fixed number </p>
 </div><div class="memdoc">
 <p>A function to allow agents (or any other thing that points at this place) to completely clean up the contamination in a given place. The level gets reset to zero </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00119">119</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00120">120</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -308,7 +311,7 @@ but here is set to a fixed number </p>
 </div><div class="memdoc">
 <p>Report whether the place cleans every step </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00136">136</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00137">137</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -336,7 +339,7 @@ but here is set to a fixed number </p>
 </div><div class="memdoc">
 <p>Get the current level of contamination here </p><dl class="section return"><dt>Returns</dt><dd>Floating point value of current contamination level. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00124">124</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00125">125</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -364,7 +367,7 @@ but here is set to a fixed number </p>
 </div><div class="memdoc">
 <p>report the rate of exponential decay of contamination </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00144">144</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00145">145</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -392,7 +395,7 @@ but here is set to a fixed number </p>
 </div><div class="memdoc">
 <p>Report number of agents currentl in the occupant list </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00148">148</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00149">149</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -422,7 +425,7 @@ but here is set to a fixed number </p>
 <p>A function to allow agents (or any other thing that points at this place) to add contamination that spreads disease Essentially a proxy for droplets in the air or surface contamination <br />
  Agents that are infected will increase this level while this is their currentPlace , offsetting the decrease in <a class="el" href="classplace.html#af75692e262dbc627001eef78bc887bb7">update</a> NB negative vlues not allowed! </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00110">110</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00111">111</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -456,7 +459,7 @@ but here is set to a fixed number </p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00103">103</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00104">104</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -484,7 +487,7 @@ but here is set to a fixed number </p>
 </div><div class="memdoc">
 <p>Set the place to clean every step </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00128">128</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00129">129</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -513,7 +516,7 @@ but here is set to a fixed number </p>
 </div><div class="memdoc">
 <p>Set the rate of exponential decay of contamination </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00140">140</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00141">141</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -544,7 +547,7 @@ but here is set to a fixed number </p>
 <p>set the place ID number </p>
 <p>care shoudl be taken that ths value set here is unique! </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00089">89</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00090">90</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -601,7 +604,7 @@ but here is set to a fixed number </p>
 </div><div class="memdoc">
 <p>Set the place <em>not</em> to clean every step </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00132">132</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00133">133</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -634,7 +637,7 @@ but here is set to a fixed number </p>
  <a class="el" href="classplace.html#a6bc57da25f0c357caa3fd93e0fbcd079">cleanEveryStep</a> is set, the place has all contamination removed - useful if contamination shoudl only be present<br />
  as long as agents are present, and amount should be directly given by the number of agents. the decrement rate is assumed to be specified <em>PER HOUR</em> </p>
 
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00158">158</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00159">159</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>
@@ -741,35 +744,6 @@ of agents in a place at the opint where agents test for infection, set this to t
 <p>Unique identifier for a place - should be able to go up to about 4e9 </p>
 
 <p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00050">50</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
-
-</div>
-</div>
-<a id="a9944f734ac0bf19a4ab086d94fc061bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9944f734ac0bf19a4ab086d94fc061bc">&#9670;&nbsp;</a></span>occupants</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::set&lt;<a class="el" href="classagent.html">agent</a>*&gt; place::occupants</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>unique list of current people in this place - intended for direct agent-agent interaction <br />
-For the current disease model this is not needed, as the agents need only know where they are to contaminate a place <br />
-currently this is not used...seems to add about 20% to memory requirement if populated. <br />
-A std::set is unique - so the same agent can be added many times but will only apear once.<br />
-The set uses the pointer to a given agent as the key, so its easy to insert or remove arbitrary agents </p>
-
-<p class="definition">Definition at line <a class="el" href="places_8h_source.html#l00067">67</a> of file <a class="el" href="places_8h_source.html">places.h</a>.</p>
 
 </div>
 </div>

@@ -2,7 +2,7 @@ var searchData=
 [
   ['main',['main',['../main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.cpp']]],
   ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['mopatop',['mopatop',['../md_README.html',1,'']]],
+  ['mopatop',['Mopatop',['../md_README.html',1,'']]],
   ['minute',['minute',['../classtimeStep.html#ad252fd5c15bcc66a73bf3fe713181603',1,'timeStep']]],
   ['minutes',['minutes',['../classtimeStep.html#a8067602f0c8200cb43ef5c78689a1faf',1,'timeStep']]],
   ['minutespertimestep',['minutesPerTimeStep',['../classtimeStep.html#abf20b39710875377e486600ed028ee37',1,'timeStep']]],

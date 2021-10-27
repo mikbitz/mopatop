@@ -1,8 +1,10 @@
 <map id="agent.h" name="agent.h">
-<area shape="rect" id="node2" href="$agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ..." alt="" coords="5,80,84,107"/>
-<area shape="rect" id="node3" href="$disease_8cpp.html" title="File to define static variables for disease. " alt="" coords="108,80,200,107"/>
-<area shape="rect" id="node4" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="237,229,311,256"/>
-<area shape="rect" id="node5" href="$modelFactory_8h.html" title="File containing the definition of the modelFactory class. " alt="" coords="275,80,387,107"/>
-<area shape="rect" id="node7" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="411,80,497,107"/>
-<area shape="rect" id="node6" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="287,155,355,181"/>
+<area shape="rect" id="node2" href="$agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ..." alt="" coords="5,155,84,181"/>
+<area shape="rect" id="node3" href="$travelschedule_8h.html" title="File containing the definition of the travelSchedule class. " alt="" coords="83,80,199,107"/>
+<area shape="rect" id="node5" href="$disease_8cpp.html" title="File to define static variables for disease. " alt="" coords="223,80,315,107"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="351,229,426,256"/>
+<area shape="rect" id="node7" href="$modelFactory_8h.html" title="File containing the definition of the modelFactory class. " alt="" coords="390,80,502,107"/>
+<area shape="rect" id="node9" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="526,80,611,107"/>
+<area shape="rect" id="node4" href="$schedulelist_8cpp.html" title="File to define list of schedules for use by agents. " alt="" coords="108,155,224,181"/>
+<area shape="rect" id="node8" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="401,155,469,181"/>
 </map>

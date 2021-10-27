@@ -1,8 +1,9 @@
 <map id="modelFactory.h" name="modelFactory.h">
-<area shape="rect" id="node2" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="151,80,216,107"/>
-<area shape="rect" id="node16" href="$places_8h.html" title="File containing the deinfition of the place class. " alt="" coords="251,80,321,107"/>
-<area shape="rect" id="node3" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="123,155,201,181"/>
-<area shape="rect" id="node4" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers randomizer. " alt="" coords="60,229,157,256"/>
-<area shape="rect" id="node7" href="$timestep_8h.html" title="File containing the definition of the timeStep class. " alt="" coords="198,229,281,256"/>
-<area shape="rect" id="node9" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="323,304,422,331"/>
+<area shape="rect" id="node2" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="338,80,403,107"/>
+<area shape="rect" id="node17" href="$places_8h.html" title="File containing the deinfition of the place class. " alt="" coords="427,80,498,107"/>
+<area shape="rect" id="node3" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="238,155,317,181"/>
+<area shape="rect" id="node16" href="$schedulelist_8h_source.html" title="schedulelist.h" alt="" coords="387,229,490,256"/>
+<area shape="rect" id="node4" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers randomizer. " alt="" coords="75,229,173,256"/>
+<area shape="rect" id="node7" href="$timestep_8h.html" title="File containing the definition of the timeStep class. " alt="" coords="280,229,363,256"/>
+<area shape="rect" id="node9" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="272,304,371,331"/>
 </map>

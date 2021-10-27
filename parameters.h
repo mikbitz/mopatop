@@ -163,9 +163,9 @@ public:
         _parameters["places.disease.simplistic.fractionalDecrement"]="1";_parameterType["places.disease.simplistic.fractionalDecrement"]=d;
         //if set this flag will cause contamination to be reset to zero every timestep
         _parameters["places.cleanContamination"]="false";_parameterType["places.cleanContamination"]=b;
-        //if set this flag will cause contamination to be reset to zero every timestep
+        //set up the default schedule type - expected to be mobile or stationary
         _parameters["schedule.type"]="mobile";_parameterType["schedule.type"]=s;
-        //if set this flag will cause contamination to be reset to zero every timestep
+        //set up how the model is created - model type is simpleMobile or simpleOnePlace
         _parameters["model.type"]="simpleMobile";_parameterType["model.type"]=s;
     }
     //------------------------------------------------------------------------

@@ -6,8 +6,6 @@ var searchData=
   ['cleanoldschedule',['cleanOldSchedule',['../classtravelSchedule.html#aff63b2b6b523733e16ed022293a3c082',1,'travelSchedule']]],
   ['contaminationlevel',['contaminationLevel',['../classplace.html#aa70f207f5fba167e14e9bc917b0acfa9',1,'place']]],
   ['cough',['cough',['../classagent.html#a958d3d4ffc3c372136459b08f5e4a457',1,'agent']]],
-  ['counter',['counter',['../classagent.html#ad8a85f27948645977453eb52988194ba',1,'agent']]],
   ['createagents',['createAgents',['../classmodelFactory.html#aaab7a237b4f7792920ccd81376f1a7ab',1,'modelFactory::createAgents()'],['../classsimpleOnePlaceFactory.html#a0132ab5b372195e4e640952dba1da5d0',1,'simpleOnePlaceFactory::createAgents()'],['../classsimpleMobileFactory.html#a0c7ef83172b64b73d85fe91d350234ac',1,'simpleMobileFactory::createAgents()']]],
-  ['currentdestination',['currentDestination',['../classtravelSchedule.html#a2d62c8f71557a55ad93427f7606d72fa',1,'travelSchedule']]],
   ['currentplace',['currentPlace',['../classagent.html#a6c07bfb8b610ad493a4704643b4dcbcf',1,'agent']]]
 ];

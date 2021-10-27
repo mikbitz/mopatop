@@ -8,5 +8,5 @@ var searchData=
   ['timestepspersecond',['TimeStepsPerSecond',['../classtimeStep.html#ad7a12c8669c253929f46bc27cf86857a',1,'timeStep']]],
   ['timestepsperyear',['TimeStepsPerYear',['../classtimeStep.html#adb9f80dd277009f09fc89ca2d3892df6',1,'timeStep']]],
   ['timestepunit',['timeStepUnit',['../classtimeStep.html#a56874870aaf366cd705aa94771108c30',1,'timeStep']]],
-  ['travelschedule',['travelSchedule',['../classtravelSchedule.html#a9e0c7cd53fdb01767bdb20c0d42772b0',1,'travelSchedule']]]
+  ['travelschedule',['travelSchedule',['../classtravelSchedule.html#a9e0c7cd53fdb01767bdb20c0d42772b0',1,'travelSchedule::travelSchedule()'],['../classtravelSchedule.html#a52a279d7bdaf2e31d8c21bfbbfdc48b9',1,'travelSchedule::travelSchedule(scheduleList::scheduleTypes i)']]]
 ];

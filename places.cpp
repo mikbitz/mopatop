@@ -31,11 +31,11 @@
 //needed here for places as agents are pre-declared before place class
 /** @param listAll Optional argument to show every place - only useful if there are just a few! */
 void place::show(bool listAll){
-    std::cout<<"Place ID "<<ID<<" has "<<occupants.size()<<" occupants"<<std::endl;
+    //std::cout<<"Place ID "<<ID<<" has "<<occupants.size()<<" occupants"<<std::endl;
     if (listAll){
         std::cout<<"List of Occupant IDs:- "<<std::endl;
-        for (auto o : occupants){
-            std::cout <<o->ID<<std::endl;
-        }
+        //for (auto o : occupants){
+        //    std::cout <<o->ID<<std::endl;
+        //}
     }
 }

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Mopatop: mopatop</title>
+<title>Mopatop: Mopatop</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,18 +68,29 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">mopatop </div>  </div>
+<div class="title">Mopatop </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Model Of Agents and Their Occupied Places. See html/index.html for documentation - preview this with <a href="https://htmlpreview.github.io/?https://github.com/mikbitz/mopatop/blob/main/html/index.html">https://htmlpreview.github.io/?https://github.com/mikbitz/mopatop/blob/main/html/index.html</a></p>
+<div class="textblock"><p>Model Of Agents and Their Occupied Places. </p><h2>Documentation</h2>
+<p>See html/index.html for documentation - preview this with <a href="https://htmlpreview.github.io/?https://github.com/mikbitz/mopatop/blob/main/html/index.html">https://htmlpreview.github.io/?https://github.com/mikbitz/mopatop/blob/main/html/index.html</a></p>
 <p>and for tests</p>
 <p><a href="https://htmlpreview.github.io/?https://github.com/mikbitz/mopatop/blob/main/tests/html/index.html">https://htmlpreview.github.io/?https://github.com/mikbitz/mopatop/blob/main/tests/html/index.html</a></p>
 <p>although note that not all links in the above page menus work directly with this method.</p>
-<p>The model has been tested and runs on opensuse linux with g++ version &gt; 9</p>
-<p>and on macOS 11.5.2 BigSur using g++-11 installed with homebrew as follows:-</p>
+<h2>Platforms</h2>
+<h3>Linux</h3>
+<p>The model has been tested and runs on opensuse linux with g++ version &gt;= 9.3</p>
+<h3>MacOS</h3>
+<p>Compile on macOS 11.5.2 BigSur using g++-11 installed with homebrew as follows:-</p>
 <p>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</p>
 <p>brew reinstall gcc</p>
-<p>Note that this requires that you explicitly use g++-11 to compile, as the default g++ seems not to support openmp. </p>
+<p>Note that this requires that you explicitly use g++-11 to compile, as the default g++ seems not to support openmp.</p>
+<h3>Windows</h3>
+<p>To run on windows 10 or later you can install wsl with e.g. wsl &ndash;install -d Ubuntu in a command window.</p>
+<p>In Ubuntu 20.04 (running in the wsl command window) apt install g++ will bring in g++ 9.3</p>
+<p>You should then be able to compile and run the model as for a standard linux installation.</p>
+<h2>Capability</h2>
+<p>This model is currently known to be able to run an epidemic with at least 1.2 billion simple agents, along with 560 million</p>
+<p>homes/workplaces/transport vehicles on a 76 core machine with 512GB of memory - benchmarking is as yet incomplete however. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

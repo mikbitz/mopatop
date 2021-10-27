@@ -1,9 +1,11 @@
 <map id="disease.h" name="disease.h">
-<area shape="rect" id="node2" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="167,80,232,107"/>
-<area shape="rect" id="node4" href="$disease_8cpp.html" title="File to define static variables for disease. " alt="" coords="5,155,97,181"/>
-<area shape="rect" id="node3" href="$agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ..." alt="" coords="121,155,200,181"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="237,304,311,331"/>
-<area shape="rect" id="node6" href="$modelFactory_8h.html" title="File containing the definition of the modelFactory class. " alt="" coords="275,155,387,181"/>
-<area shape="rect" id="node8" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="411,155,497,181"/>
-<area shape="rect" id="node7" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="287,229,355,256"/>
+<area shape="rect" id="node2" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="199,80,264,107"/>
+<area shape="rect" id="node6" href="$disease_8cpp.html" title="File to define static variables for disease. " alt="" coords="5,155,97,181"/>
+<area shape="rect" id="node3" href="$agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ..." alt="" coords="71,229,149,256"/>
+<area shape="rect" id="node4" href="$travelschedule_8h.html" title="File containing the definition of the travelSchedule class. " alt="" coords="173,155,289,181"/>
+<area shape="rect" id="node7" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="337,304,411,331"/>
+<area shape="rect" id="node8" href="$modelFactory_8h.html" title="File containing the definition of the modelFactory class. " alt="" coords="365,155,477,181"/>
+<area shape="rect" id="node10" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="501,155,586,181"/>
+<area shape="rect" id="node5" href="$schedulelist_8cpp.html" title="File to define list of schedules for use by agents. " alt="" coords="173,229,289,256"/>
+<area shape="rect" id="node9" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="376,229,444,256"/>
 </map>

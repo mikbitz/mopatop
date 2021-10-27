@@ -162,7 +162,7 @@ class simpleMobileFactory:public modelFactory{
             agents[i]->setWork(places[i/10+nAgents/3]);
         }
         std::cout<<"Creating transport ..."<<std::endl;
-        //create buses - one thirtieth since 30 agents per bus. add them to the and of the place list again
+        //create buses - one thirtieth since 30 agents per bus. add them to the end of the place list again
         #pragma omp parallel for  
         for (long i=nAgents/3+nAgents/10;i<nAgents/3+nAgents/10+nAgents/30;i++){
             place* p=new place(parameters);
@@ -170,7 +170,7 @@ class simpleMobileFactory:public modelFactory{
             #pragma omp critical 
             places.push_back(p);
         }
-        //allocate 30 agents per bus - since agents aren't shuffled, those in similar workplaces will tend to share buses. 
+        //allocate 30 agents per bus - since agents aren't shuffled again, those in similar workplaces will tend to share buses. 
         #pragma omp parallel for
         for (long i=0;i<agents.size();i++){
             assert(places[i/30+nAgents/3+nAgents/10]!=0);

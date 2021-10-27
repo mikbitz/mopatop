@@ -63,8 +63,9 @@ class place{
      * For the current disease model this is not needed, as the agents need only know where they are to contaminate a place \n
      * currently this is not used...seems to add about 20% to memory requirement if populated. \n
      * A std::set is unique - so the same agent can be added many times but will only apear once.\n
-     * The set uses the pointer to a given agent as the key, so its easy to insert or remove arbitrary agents */
-    std::set<agent*> occupants;
+     * The set uses the pointer to a given agent as the key, so its easy to insert or remove arbitrary agents.
+     Currently commented out everywhere to save memory*/
+    //std::set<agent*> occupants;
 public:
     /** @brief set up the place. 
      *  @details Assumed initially clean. The decrement value might very with place type and ventialtion level...\n
@@ -96,12 +97,12 @@ public:
     /**Add an agent to the list currently here 
      @param a a pointer to the agent to be added */
     void add(agent* a){
-        occupants.insert(a);
+        //occupants.insert(a);
     }
     /**Remove an agent from the list currently here 
      @param a a pointer to the agent to be removed */
     void remove(agent* a){
-        occupants.erase(a);
+       // occupants.erase(a);
     }
     /** A function to allow agents (or any other thing that points at this place) to add contamination that spreads disease
      *  Essentially a proxy for droplets in the air or surface contamination \n
@@ -146,7 +147,7 @@ public:
     }
     /** Report number of agents currentl in the occupant list */
     unsigned getNumberOfOccupants(){
-        return occupants.size();
+        return 0;//occupants.size();
     }
     /** @brief The contamination in each place decays exponentially, or is reset to zero
      * @details. This function should be called every (uniform) time step \n
