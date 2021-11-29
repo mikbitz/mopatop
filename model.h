@@ -158,6 +158,7 @@ public:
     void end(parameterSettings& parameters){
        long infected=0,recovered=0,dead=0;
         //accumulate totals - at the start of the step - so the step 0 is initial data
+       #pragma omp parallel for reduction(+:infected,recovered,dead)
         for (long i=0;i<agents.size();i++){
             if (agents[i]->alive()){
                 if (agents[i]->diseased())infected++;
