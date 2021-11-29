@@ -30,7 +30,7 @@
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-/** @brief These classes allow for the creation of agent populations and placesusing a variety of different methods 
+/** @brief These classes allow for the creation of agent populations and places using a variety of different methods 
     @details The modelFactory itself is a (virtual) base class - the various factories are sub-classed from this class below.\n
     These classes are expected to be called directly from a model object.
     A \ref modelFactorySelector selector then allows for a given factory to be chosen by name using a string
@@ -111,11 +111,11 @@ class simpleOnePlaceFactory:public modelFactory{
     See \ref modelFactorySelector
 */
 class simpleMobileFactory:public modelFactory{
-        /** @brief method to overlaod the createAgents method in the base class
-       @details This method has to be accessed by creating a pointer to this sub-class.
-      @param parameters A reference to the model parameterSettings object
-      @param agents A reference to the model object's list of agents
-      @param places* A reference to the model object's list of places*/
+/** @brief method to overlaod the createAgents method in the base class
+    @details This method has to be accessed by creating a pointer to this sub-class.
+    @param parameters A reference to the model parameterSettings object
+    @param agents A reference to the model object's list of agents
+    @param places* A reference to the model object's list of places*/
     void createAgents(parameterSettings& parameters, std::vector<agent*>& agents,std::vector<place*>& places){
 
         long nAgents=parameters.get<long>("run.nAgents");

@@ -17,15 +17,15 @@
 #run control
 #-------------------------------
 #Number of agents to create - integer
-run.nAgents=10000
+run.nAgents=3000000
 
 #Number of steps to run for - integer
-run.nSteps=300
+run.nSteps=1000
 
 #number of OMP threads to use - integer
 #Increase the number here if using openmp to parallelise any loops.
 #Note number of threads needs to be <= to number of cores/threads supported on the local machine
-run.nThreads=1
+run.nThreads=4
 
 #random seed - integer
 #change to vary the stochastic parts of the model
@@ -51,14 +51,14 @@ run.randomIncrement=57
 #pick schedule from either "mobile" or "stationary" - string
 #if you set simpleMobile below, you probably want mobile here too...
 #if you set mobile here and simpleOnePlace below then work,home and transport will all actually be the same place
-schedule.type=stationary
+schedule.type=mobile
 
 #-------------------------------
 #model
 #-------------------------------
 #pick model type either "simpleMobile" or "simpleOnePlace" - string
 #simpleOnePlace puts all agents into a single location, and there they stay.
-model.type=simpleOnePlace
+model.type=simpleMobile
 
 #-------------------------------
 #timestepping
@@ -107,15 +107,15 @@ outputFile=diseaseSummary
 disease.simplistic.recoveryRate=0.008
 
 #Rate *PER HOUR* - double
-#an infected individual will add this much contamination to any place every timestep
+#an infected individual will have a chance to die at this rate per unit time 
 disease.simplistic.deathRate=0.
 
 #Rate *PER HOUR* - double
 #an infected individual will add this much contamination to any place every timestep
-disease.simplistic.infectionShedLoad=0.00001
+disease.simplistic.infectionShedLoad=0.01
 
 #how many (randomly allocated) agents have the disease at the start of the run
-disease.simplistic.initialNumberInfected=1000
+disease.simplistic.initialNumberInfected=3000
 
 #Rate *PER HOUR* - double
 #any place contaminated with disease will lose contamination exponentially at this rate

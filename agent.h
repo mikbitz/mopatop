@@ -192,22 +192,22 @@ public:
     /** @brief get the place corresponding to home
          @return pointer to a place*/
     place* getHome(){
-       return places[home];//places[home];
+       return places[home];
     }
     /** @brief  get the place corresponding to work       
      *@return pointer to a place*/
     place* getWork(){
-       return places[work];//places[work];
+       return places[work];
     }
     /**  @brief get the place corresponding to transport vehicle      
      *@return pointer to a place*/
     place* getTransport(){
-       return places[vehicle];//places[vehicle];
+       return places[vehicle];
     }
     /**  @brief get the place corresponding to where the agent is now      
      *@return pointer to a place*/
     place* getCurrentPlace(){
-       return places[currentPlace];//places[currentPlace];
+       return places[currentPlace];
     }
     /** @brief set agent ID number  
      @param i a long integer */

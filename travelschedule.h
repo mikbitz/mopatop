@@ -115,7 +115,7 @@ public:
         index=2;//start on the bus to home - call to initTravelSchedule in agent constructor will move the agent to home for the first step
     }
     /** @brief return the placeType for the next place in the schedule after postion n. Schedule is cyclic and is meant to represent a whole day.
-        @details The schedule report the next destination when this function is called. If the step goes beyond the schedule end, it wraps back to the start.
+        @details The schedule reports the next destination when this function is called. If the step goes beyond the schedule end, it wraps back to the start.
         @param n an index into the list of destinations*/
     agent::placeTypes getNextLocation(unsigned n){
         agent::placeTypes p=defaultDestination;
