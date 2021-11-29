@@ -106,7 +106,7 @@ int main(int argc, char **argv) {
         }
         m.end(parameters);
         auto end=timeReporter::getTime();
-        timeReporter::showInterval("Execution time after initialisation: ",start,end);
+        timeReporter::showInterval("Execution time excluding initialisation: ",start,end);
         t=std::chrono::system_clock::to_time_t (std::chrono::system_clock::now());
         std::cout<<"Run finished at: "<<ctime(&tr)<<std::endl;
     }

@@ -55,7 +55,7 @@ void agent::update()
 {
         advanceTravelSchedule();
         //moving agents between data structure is expensive - only needed if agents need direct agent-to-agent interactions in a place -
-        //might be made cheaper by alowing agents to be present in multiple places, but only active in one.
+        //might be made cheaper by allowing agents to be present in multiple places, but only active in one.
         //(this could allow for remote meetings/phone calls?!)
         //moveTo(currentPlace);
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)

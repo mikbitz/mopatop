@@ -59,9 +59,10 @@ class model{
     std::vector<randomizer> randoms;
 public:
     /** Constructor for the model - set up the random seed and the output file, then call \ref init to define the agents and the places \n
-        The time reporter class is used to check how long it takes to set up everything \n
+        The time reporter class is used to check how long it takes to set up everything. The static timestep class is initialised from the parameter file \n
         @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
     model(parameterSettings& parameters){
+        //timestep is a static class - need only set its parameters once, here.
         timeStep t(parameters);
         nAgents=parameters.get<long>("run.nAgents");
         //create mutiple RNG for many threaded runs
