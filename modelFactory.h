@@ -77,6 +77,7 @@ class simpleOnePlaceFactory:public modelFactory{
         //fraction indicates when each extra 10% of agents have been created
         long fr=parameters.get<long>("run.nAgents")/10;
         //allocate all agents the same home - no travel in this case
+        agents.resize(parameters.get<long>("run.nAgents"));
         #pragma omp parallel for
         for (long i=0;i<parameters.get<long>("run.nAgents");i++){
             agent* a=new agent();
@@ -86,8 +87,7 @@ class simpleOnePlaceFactory:public modelFactory{
             a->setWork(places[0]);
             k++;
             if (k%fr==0)std::cout<<k<<"...";
-            #pragma omp critical
-            agents.push_back(a);
+            agents[i]=a;
         }
         std::cout<<std::endl;
 
@@ -123,18 +123,26 @@ class simpleMobileFactory:public modelFactory{
         int agentsPerHome=3;
         int agentsPerWorkPlace=10;
         int agentsPerBus=30;
-        
-        std::cout<<"Starting simple mobile generator..."<<std::endl;
-        std::cout<<"Creating homes ..."<<std::endl;
         //excess allows for numbers of agents not strictly divisible by agentsPerHome - create at most one extra place.
         int excess=((nAgents % agentsPerHome)>0);//if remainder of nAgents on division by agentsPerHome is greater than zero, this will result in 1, otherwise zero
         long nHomes=nAgents/agentsPerHome+excess;
+        //now get number of workplaces
+        excess=((nAgents % agentsPerWorkPlace)>0);//as with homes, allow for not divisible by 10
+        int nWork=nAgents/agentsPerWorkPlace+excess;
+        //and number of transport vehciles, assumed buses
+        excess=((nAgents % agentsPerBus)>0);//allow for not exactly 30 agents per bus
+        long nBus=nAgents/agentsPerBus+excess;
+        
+        places.resize(nHomes+nWork+nBus);
+        
+        std::cout<<"Starting simple mobile generator..."<<std::endl;
+        std::cout<<"Creating homes ..."<<std::endl;
+
         #pragma omp parallel for
         for (long i=0;i<nHomes;i++){
             place* p=new place(parameters);
             p->setID(i);
-            #pragma omp critical
-            places.push_back(p);
+            places[i]=p;
         }
         
         std::cout<<"Creating agents ...";
@@ -143,26 +151,24 @@ class simpleMobileFactory:public modelFactory{
         long fr=parameters.get<long>("run.nAgents")/10;
         
         //allocate agentsPerHome agents per home - as far as possible - any excess over nAgents/agentsPerHome go into the excess Home as defined above (either one or two if agentsPerHome==3 for example)
+        agents.resize(nAgents);
         #pragma omp parallel for
         for (long i=0;i<nAgents;i++){
             agent* a=new agent();
             a->setHome(places[i/agentsPerHome]);
             k++;
-            if (k%fr==0)std::cout<<k<<"...";
-            #pragma omp critical            
-            agents.push_back(a);
+            if (k%fr==0)std::cout<<k<<"...";         
+            agents[i]=a;
         }
         std::cout<<std::endl;
         //create work places - (nAgents / agentsPerWorkPlace)  as many as agents - add them on to the end of the place list.
         std::cout<<"Creating workplaces ..."<<std::endl;
-        excess=((nAgents % agentsPerWorkPlace)>0);//as with homes, allow for no divisible by 10
-        int nWork=nAgents/agentsPerWorkPlace+excess;
+
         #pragma omp parallel for
         for (long i=nHomes;i<nHomes+nWork;i++){
             place* p=new place(parameters);
-            p->setID(i);
-            #pragma omp critical             
-            places.push_back(p);
+            p->setID(i);          
+            places[i]=p;
         }
         //shuffle agents so household members get different workplaces - can this be parallelised?
         random_shuffle(agents.begin(),agents.end());
@@ -174,14 +180,12 @@ class simpleMobileFactory:public modelFactory{
         }
         std::cout<<"Creating transport ..."<<std::endl;
         //create buses - (nAgents / agentsPerBus) since agentsPerBus agents per bus. add them to the end of the place list again
-        excess=((nAgents % agentsPerBus)>0);//allow for not exactly 30 agents per bus
-        long nBus=nAgents/agentsPerBus+excess;
+
         #pragma omp parallel for  
         for (long i=nHomes+nWork;i<nHomes+nWork+nBus;i++){
             place* p=new place(parameters);
             p->setID(i);
-            #pragma omp critical 
-            places.push_back(p);
+            places[i]=p;
         }
         //allocate agentsPerBus agents per bus - since agents aren't shuffled again, those in similar workplaces will tend to share buses. 
         #pragma omp parallel for
