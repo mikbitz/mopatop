@@ -89,8 +89,8 @@ $(function() {
 <p>In Ubuntu 20.04 (running in the wsl command window) apt install g++ will bring in g++ 9.3</p>
 <p>You should then be able to compile and run the model as for a standard linux installation.</p>
 <h2>Capability</h2>
-<p>This model is currently known to be able to run an epidemic with at least 1.2 billion simple agents, along with 560 million</p>
-<p>homes/workplaces/transport vehicles on a 76 core machine with 512GB of memory - benchmarking is as yet incomplete however. </p>
+<p>This model is currently known to be able to run an epidemic with at least 4.5 billion simple agents, along with 2.1 billion homes/workplaces/transport vehicles on a 76 core machine with 512GB of memory - benchmarking is as yet incomplete however.</p>
+<p>Memory scales linearly with agent numbers at about 0.1K per agent (including places/transport). Initialisation on Intel icelake processors takes about 1.5 micro-seconds per agent, and run times scale at about 0.2 microseconds per agent per model time step. Speedup continues out to 64 core, a little less than linearly with a factor of about 25 over 64 cores. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

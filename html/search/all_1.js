@@ -2,7 +2,7 @@ var searchData=
 [
   ['add',['add',['../classplace.html#a0d9b53a0aa38224ab82514b4aae39817',1,'place']]],
   ['advancetravelschedule',['advanceTravelSchedule',['../classagent.html#a79a4982f0c0af35a010b9793e7c8ab77',1,'agent']]],
-  ['agent',['agent',['../classagent.html',1,'agent'],['../classagent.html#af5eb66189d689e9d7b5642ebda2c8fbc',1,'agent::agent()']]],
+  ['agent',['agent',['../classagent.html',1,'']]],
   ['agent_2ecpp',['agent.cpp',['../agent_8cpp.html',1,'']]],
   ['agent_2eh',['agent.h',['../agent_8h.html',1,'']]],
   ['agents',['agents',['../classmodel.html#a321162248a312d98a6a62a19b6856e9f',1,'model']]],
