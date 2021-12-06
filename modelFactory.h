@@ -133,6 +133,9 @@ class simpleMobileFactory:public modelFactory{
         excess=((nAgents % agentsPerBus)>0);//allow for not exactly 30 agents per bus
         long nBus=nAgents/agentsPerBus+excess;
         
+        //faster to resize the array here, then create places in a parallel loop (individual place memory allocations get done in parallel, but loop is thread-safe)
+        //not sure if one could also subdivide this resizing and gain something in speed by making indiviual sub-vectors on each thread in an omp parallel loop then concatenating them in an omp critical section?
+        //Currently 4.5e9 agents + 2.1 e9 places on 64 threads on HPC takes about 45 minutes.
         places.resize(nHomes+nWork+nBus);
         
         std::cout<<"Starting simple mobile generator..."<<std::endl;
@@ -151,6 +154,7 @@ class simpleMobileFactory:public modelFactory{
         long fr=parameters.get<long>("run.nAgents")/10;
         
         //allocate agentsPerHome agents per home - as far as possible - any excess over nAgents/agentsPerHome go into the excess Home as defined above (either one or two if agentsPerHome==3 for example)
+        //again fastest to resize vector first, then allocate agent pointers in parallel loop. 
         agents.resize(nAgents);
         #pragma omp parallel for
         for (long i=0;i<nAgents;i++){

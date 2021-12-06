@@ -1,7 +1,7 @@
 #ifndef AGENT_H_INCLUDED
 #define AGENT_H_INCLUDED
 
-#include"disease.h"
+
 /* A program to model agents moving between places
     Copyright (C) 2021  Mike Bithell
 
@@ -35,7 +35,9 @@
 
 class travelSchedule;
 class place;
+#include"disease.h"
 #include "schedulelist.h"
+#include <stack>
 /**
  * @brief The main agent class - each agent represents one person
  * @details Agents move from place to place, using the travelSchedule. If they have the disease, the cough at each place they visit and contaminate it \n
@@ -73,12 +75,12 @@ public:
      * transport vehicles are places, albeit moveable!*/
     enum placeTypes{home,work,vehicle};
     /** @brief An array of pointers to places 
-     *  @details - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use he name (home.work etc.) \n
+     *  @details - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use the name (home.work etc.) \n
        intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!).
        Note that this could be replaced with a vector for more flexibility, but this is slightly slower and consumes more memory. Array need to match placetype enum in size*/
     place* places[3];
     /** @brief Where the agent is currently located 
-     *@details - note to get this actual place, use this is as an index into the places vector*/
+     *@details - note to get this actual place, use this as an index into the places vector*/
     placeTypes currentPlace;
     /** @brief an integer that picks out the current step through the travel schedule */
     unsigned schedulePoint;
@@ -91,7 +93,12 @@ public:
      * Also set aside storage for the three placeTypes the agent can occupy. \n
      *  these are set later, as the places need to be created before they can be allocated to agents.\n
      * NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens!\n
-     */
+     */  
+    /** a stack to store temporarily any places that need to be remebered for later use */
+    std::stack<place*> placeCache;
+
+    /** @brief Place to hold schedule type if switching current schedule to an alternative (e.g. on holiday)    */
+    scheduleList::scheduleTypes originalScheduleType;
     agent(){
         _diseased=false;
         _immune=false;
