@@ -94,8 +94,7 @@ public:
      *  these are set later, as the places need to be created before they can be allocated to agents.\n
      * NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens!\n
      */  
-    /** a stack to store temporarily any places that need to be remebered for later use */
-    std::stack<place*> placeCache;
+
 
     /** @brief Place to hold schedule type if switching current schedule to an alternative (e.g. on holiday)    */
     scheduleList::scheduleTypes originalScheduleType;
