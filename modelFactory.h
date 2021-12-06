@@ -136,6 +136,17 @@ class simpleMobileFactory:public modelFactory{
         //faster to resize the array here, then create places in a parallel loop (individual place memory allocations get done in parallel, but loop is thread-safe)
         //not sure if one could also subdivide this resizing and gain something in speed by making indiviual sub-vectors on each thread in an omp parallel loop then concatenating them in an omp critical section?
         //Currently 4.5e9 agents + 2.1 e9 places on 64 threads on HPC takes about 45 minutes.
+        //something like this might gain a little bit:
+#pragma omp parallel
+{
+    long z=(nHomes+nWork+nBus)/omp_get_num_threads();
+    //this variable is private to the thread
+    std::vector<place*> vec_private(z);
+    //add to the global vector, but avoid races.
+    #pragma omp critical
+    places.insert(places.end(), vec_private.begin(), vec_private.end());
+}
+        //make sure we really are the right size in case the number of threads doesn't exactly divide the the size of the vector
         places.resize(nHomes+nWork+nBus);
         
         std::cout<<"Starting simple mobile generator..."<<std::endl;
@@ -155,6 +166,13 @@ class simpleMobileFactory:public modelFactory{
         
         //allocate agentsPerHome agents per home - as far as possible - any excess over nAgents/agentsPerHome go into the excess Home as defined above (either one or two if agentsPerHome==3 for example)
         //again fastest to resize vector first, then allocate agent pointers in parallel loop. 
+#pragma omp parallel
+{
+    long z=(nAgents)/omp_get_num_threads();
+    std::vector<agent*> vec_private(z);
+    #pragma omp critical
+    agents.insert(agents.end(), vec_private.begin(), vec_private.end());
+}
         agents.resize(nAgents);
         #pragma omp parallel for
         for (long i=0;i<nAgents;i++){
