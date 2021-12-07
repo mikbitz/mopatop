@@ -76,6 +76,8 @@ class simpleOnePlaceFactory:public modelFactory{
         long k=0;
         //fraction indicates when each extra 10% of agents have been created
         long fr=parameters.get<long>("run.nAgents")/10;
+        //check for tiny numbers of agents
+        if (fr==0)fr=parameters.get<long>("run.nAgents");
         //allocate all agents the same home - no travel in this case
         agents.resize(parameters.get<long>("run.nAgents"));
         #pragma omp parallel for
@@ -135,7 +137,7 @@ class simpleMobileFactory:public modelFactory{
         //check for very small numbers of agents
         if (nHomes==0) nHomes=1;
         if (nWork==0) nWork=1;
-        if (nBus==0) nBus==1;
+        if (nBus==0) nBus=1;
         //faster to resize the array here, then create places in a parallel loop (individual place memory allocations get done in parallel, but loop is thread-safe)
         //Currently 4.5e9 agents + 2.1 e9 places on 64 threads on HPC takes about 45 minutes.
         //one could also subdivide this resizing and gain something in speed by making indiviual sub-vectors on each thread in an omp parallel loop then concatenating them in an omp critical section?
@@ -166,7 +168,8 @@ class simpleMobileFactory:public modelFactory{
         long k=0;
         //fraction indicates when each extra 10% of agents have been created
         long fr=parameters.get<long>("run.nAgents")/10;
-        
+        //check for tiny numbers of agents
+        if (fr==0)fr=nAgents;
         //allocate agentsPerHome agents per home - as far as possible - any excess over nAgents/agentsPerHome go into the excess Home as defined above (either one or two if agentsPerHome==3 for example)
         //again fastest to resize vector first, then allocate agent pointers in parallel loop. 
         //#pragma omp parallel
@@ -180,6 +183,7 @@ class simpleMobileFactory:public modelFactory{
         #pragma omp parallel for
         for (long i=0;i<nAgents;i++){
             agent* a=new agent();
+            assert(places[i/agentsPerHome]!=0);
             a->setHome(places[i/agentsPerHome]);
             k++;
             if (k%fr==0)std::cout<<k<<"...";         
