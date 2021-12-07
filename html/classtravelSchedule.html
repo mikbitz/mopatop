@@ -84,6 +84,8 @@ $(function() {
 Collaboration diagram for travelSchedule:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtravelSchedule__coll__graph.png" border="0" usemap="#travelSchedule_coll__map" alt="Collaboration graph"/></div>
+<map name="travelSchedule_coll__map" id="travelSchedule_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -108,6 +110,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a2c33cd7e99fe6f9b0c85097ca7fb1e85">mobile</a> ()</td></tr>
 <tr class="memdesc:a2c33cd7e99fe6f9b0c85097ca7fb1e85"><td class="mdescLeft">&#160;</td><td class="mdescRight">A schedule where the agents moves between work and home using their chosen vehicle. <br /></td></tr>
 <tr class="separator:a2c33cd7e99fe6f9b0c85097ca7fb1e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee820eb52a5f5ad3c73d36a1a3a04fc0"><td class="memItemLeft" align="right" valign="top"><a id="aee820eb52a5f5ad3c73d36a1a3a04fc0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#aee820eb52a5f5ad3c73d36a1a3a04fc0">remoteTravel</a> ()</td></tr>
+<tr class="memdesc:aee820eb52a5f5ad3c73d36a1a3a04fc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A schedule where the agents go to an alternative destination away from home. <br /></td></tr>
+<tr class="separator:aee820eb52a5f5ad3c73d36a1a3a04fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dbadc4de32f37df3d90e9d8b0b2a643"><td class="memItemLeft" align="right" valign="top"><a id="a7dbadc4de32f37df3d90e9d8b0b2a643"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#a7dbadc4de32f37df3d90e9d8b0b2a643">returnTrip</a> ()</td></tr>
+<tr class="memdesc:a7dbadc4de32f37df3d90e9d8b0b2a643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agents return from their time away from home. <br /></td></tr>
+<tr class="separator:a7dbadc4de32f37df3d90e9d8b0b2a643"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae54698a314250dc3c9ed953e61bfc8a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">agent::placeTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtravelSchedule.html#ae54698a314250dc3c9ed953e61bfc8a8">getNextLocation</a> (unsigned n)</td></tr>
 <tr class="memdesc:ae54698a314250dc3c9ed953e61bfc8a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the placeType for the next place in the schedule after postion n. Schedule is cyclic and is meant to represent a whole day.  <a href="#ae54698a314250dc3c9ed953e61bfc8a8">More...</a><br /></td></tr>
 <tr class="separator:ae54698a314250dc3c9ed953e61bfc8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,7 +245,7 @@ Index is set to point to the last place visited so that a call to getNextLocatio
 <p>This leads to an emrpty schedule - it is assumed that the detination should therefore be fixed as home <br />
 Time spent there will be reported as zero </p>
 
-<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00090">90</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00093">93</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
 
 </div>
 </div>
@@ -264,7 +274,7 @@ Time spent there will be reported as zero </p>
 </div><div class="memdoc">
 <p>return the placeType for the current target </p>
 
-<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00130">130</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00153">153</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
 
 </div>
 </div>
@@ -293,14 +303,14 @@ Time spent there will be reported as zero </p>
 </div><div class="memdoc">
 
 <p>return the placeType for the next place in the schedule after postion n. Schedule is cyclic and is meant to represent a whole day. </p>
-<p>The schedule reports the next destination when this function is called. If the step goes beyond the schedule end, it wraps back to the start. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The schedule report the next destination when this function is called. If the step goes beyond the schedule end, it wraps back to the start. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>an index into the list of destinations </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00120">120</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00143">143</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
 
 </div>
 </div>
@@ -328,7 +338,7 @@ Time spent there will be reported as zero </p>
 </div><div class="memdoc">
 <p>return the index point in the schedule from its initial state </p>
 
-<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00149">149</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00172">172</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
 
 </div>
 </div>
@@ -357,7 +367,7 @@ Time spent there will be reported as zero </p>
 </div><div class="memdoc">
 <p>report the time spent at the current placeType </p>
 
-<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00136">136</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00159">159</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
 
 </div>
 </div>
@@ -386,7 +396,7 @@ Time spent there will be reported as zero </p>
 </div><div class="memdoc">
 <p>increment a counter that tracks the schedule location, including wrap-around </p>
 
-<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00142">142</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00165">165</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
 
 </div>
 </div>
@@ -422,7 +432,7 @@ Time spent there will be reported as zero </p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00079">79</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="travelschedule_8h_source.html#l00081">81</a> of file <a class="el" href="travelschedule_8h_source.html">travelschedule.h</a>.</p>
 
 </div>
 </div>

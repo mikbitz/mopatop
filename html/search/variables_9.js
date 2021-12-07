@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['originalscheduletype',['originalScheduleType',['../classagent.html#a9474eb80c943e09993caf6061f61a274',1,'agent']]],
-  ['output',['output',['../classmodel.html#ac722a1dffbe6a56f2a934ef627e4e773',1,'model']]]
+  ['nagents',['nAgents',['../classmodel.html#a6f1f7a95d26f11cf9cae1ba539efe551',1,'model']]],
+  ['nextid',['nextID',['../classagent.html#a3175e8fe78a1593eb7217513c259df80',1,'agent']]]
 ];

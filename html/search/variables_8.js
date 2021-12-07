@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['nagents',['nAgents',['../classmodel.html#a6f1f7a95d26f11cf9cae1ba539efe551',1,'model']]],
-  ['nextid',['nextID',['../classagent.html#a3175e8fe78a1593eb7217513c259df80',1,'agent']]]
+  ['minutes',['minutes',['../classtimeStep.html#a8067602f0c8200cb43ef5c78689a1faf',1,'timeStep']]],
+  ['months',['months',['../classtimeStep.html#ac631606ffdebf816ea632bf11574f283',1,'timeStep']]]
 ];

@@ -75,7 +75,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>These classes allow for the creation of agent populations and places using a variety of different methods.  
+<p>The <a class="el" href="classmodelFactory.html" title="The modelFactory itself is a (virtual) base class. ">modelFactory</a> itself is a (virtual) base class.  
  <a href="classmodelFactory.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="modelFactory_8h_source.html">modelFactory.h</a>&gt;</code></p>
@@ -96,19 +96,19 @@ Collaboration diagram for modelFactory:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaab7a237b4f7792920ccd81376f1a7ab"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodelFactory.html#aaab7a237b4f7792920ccd81376f1a7ab">createAgents</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters, std::vector&lt; <a class="el" href="classagent.html">agent</a> *&gt; &amp;agents, std::vector&lt; <a class="el" href="classplace.html">place</a> *&gt; &amp;places)=0</td></tr>
-<tr class="memdesc:aaab7a237b4f7792920ccd81376f1a7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtual method defining the signature of the createAgents method  <a href="#aaab7a237b4f7792920ccd81376f1a7ab">More...</a><br /></td></tr>
-<tr class="separator:aaab7a237b4f7792920ccd81376f1a7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf5e3cda8ec5a81bed57d60b27200dd6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodelFactory.html#aaf5e3cda8ec5a81bed57d60b27200dd6">createAgents</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters, std::vector&lt; <a class="el" href="classagent.html">agent</a> *&gt; &amp;agents, std::vector&lt; <a class="el" href="classplace.html">place</a> *&gt; &amp;places, std::string domain)=0</td></tr>
+<tr class="memdesc:aaf5e3cda8ec5a81bed57d60b27200dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtual method defining the signature of the createAgents method  <a href="#aaf5e3cda8ec5a81bed57d60b27200dd6">More...</a><br /></td></tr>
+<tr class="separator:aaf5e3cda8ec5a81bed57d60b27200dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>These classes allow for the creation of agent populations and places using a variety of different methods. </p>
-<p>The <a class="el" href="classmodelFactory.html" title="These classes allow for the creation of agent populations and places using a variety of different met...">modelFactory</a> itself is a (virtual) base class - the various factories are sub-classed from this class below.<br />
+<div class="textblock"><p>The <a class="el" href="classmodelFactory.html" title="The modelFactory itself is a (virtual) base class. ">modelFactory</a> itself is a (virtual) base class. </p>
+<p>The various model factories are sub-classed from this class below.<br />
 These classes are expected to be called directly from a model object. A <a class="el" href="classmodelFactorySelector.html">modelFactorySelector</a> selector then allows for a given factory to be chosen by name using a string </p>
 
-<p class="definition">Definition at line <a class="el" href="modelFactory_8h_source.html#l00038">38</a> of file <a class="el" href="modelFactory_8h_source.html">modelFactory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="modelFactory_8h_source.html#l00056">56</a> of file <a class="el" href="modelFactory_8h_source.html">modelFactory.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aaab7a237b4f7792920ccd81376f1a7ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaab7a237b4f7792920ccd81376f1a7ab">&#9670;&nbsp;</a></span>createAgents()</h2>
+<a id="aaf5e3cda8ec5a81bed57d60b27200dd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf5e3cda8ec5a81bed57d60b27200dd6">&#9670;&nbsp;</a></span>createAgents()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -132,7 +132,13 @@ These classes are expected to be called directly from a model object. A <a class
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::vector&lt; <a class="el" href="classplace.html">place</a> *&gt; &amp;&#160;</td>
-          <td class="paramname"><em>places</em>&#160;</td>
+          <td class="paramname"><em>places</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>domain</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -158,7 +164,7 @@ has to be accessed by creating a pointer to the sub-class. </p><dl class="params
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classsimpleMobileFactory.html#a0c7ef83172b64b73d85fe91d350234ac">simpleMobileFactory</a>, and <a class="el" href="classsimpleOnePlaceFactory.html#a0132ab5b372195e4e640952dba1da5d0">simpleOnePlaceFactory</a>.</p>
+<p>Implemented in <a class="el" href="classsimpleMobileFactory.html#a08541ad476ecbef13de81e3f158abb22">simpleMobileFactory</a>, and <a class="el" href="classsimpleOnePlaceFactory.html#a206c93b40c2ea66bbefa22b9fd94bcb4">simpleOnePlaceFactory</a>.</p>
 
 </div>
 </div>

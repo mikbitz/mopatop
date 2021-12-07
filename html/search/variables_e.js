@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['uniform_5fdist',['uniform_dist',['../classrandomizer.html#a538d8fc8e95d8c64654d6b3354745194',1,'randomizer::uniform_dist()'],['../classrandomizerS.html#ac47896a49eb0c6e0faca6aa6e9053a33',1,'randomizerS::uniform_dist()']]],
-  ['units',['units',['../classtimeStep.html#a76d26edeca85e16b1d159fe75fa6177f',1,'timeStep']]]
+  ['timespent',['timeSpent',['../classtravelSchedule.html#a89b59984896c230bfcb2606f62686c7b',1,'travelSchedule']]],
+  ['travellers',['travellers',['../classmodel.html#a0352773f88252b07f70848a36c8b07c4',1,'model']]],
+  ['travellocations',['travelLocations',['../classtravelList.html#a96bd3618d092e9ee67b8ad26e2d5d3fb',1,'travelList']]],
+  ['twister',['twister',['../classrandomizer.html#a8c1820ea3c64a67bf48fca01cb68a310',1,'randomizer::twister()'],['../classrandomizerS.html#a0c778d69518ec2db65e6f90ee4e5f9e9',1,'randomizerS::twister()']]]
 ];

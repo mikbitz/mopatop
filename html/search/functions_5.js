@@ -10,6 +10,7 @@ var searchData=
   ['gethome',['getHome',['../classagent.html#a317e5e460e712d5401efa1052fa9d145',1,'agent']]],
   ['getid',['getID',['../classagent.html#a62a990a10e6ae56efd22acf21eb1fb4c',1,'agent::getID()'],['../classplace.html#aaadd1c5c3784763f8f0e58ff4581ccfc',1,'place::getID()']]],
   ['getinstance',['getInstance',['../classrandomizerS.html#a0f73127af7d0f9acafd8e7c0de21c8d4',1,'randomizerS']]],
+  ['getname',['getName',['../classscheduleList.html#a3f6e21a5047538f8462f604a7bf74b46',1,'scheduleList']]],
   ['getnextlocation',['getNextLocation',['../classtravelSchedule.html#ae54698a314250dc3c9ed953e61bfc8a8',1,'travelSchedule']]],
   ['getnumberofoccupants',['getNumberOfOccupants',['../classplace.html#a9b63724c8a26893ea3e45f23a9268e80',1,'place']]],
   ['getrecoveryrate',['getRecoveryRate',['../classdisease.html#ac0137358dd01129d688613aa2a4dabb4',1,'disease']]],

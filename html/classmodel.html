@@ -91,8 +91,10 @@ Collaboration diagram for model:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0d17950ec72bcd00ae9710c73768866b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a0d17950ec72bcd00ae9710c73768866b">model</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters)</td></tr>
-<tr class="separator:a0d17950ec72bcd00ae9710c73768866b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76750c6fe46e841e55ac932ed9118bcb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a76750c6fe46e841e55ac932ed9118bcb">model</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters, std::string dom)</td></tr>
+<tr class="memdesc:a76750c6fe46e841e55ac932ed9118bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the model - set up the random seed and the output file, then call <a class="el" href="ODD.html#init">Initialisation</a> to define the agents and the places <br />
+.  <a href="#a76750c6fe46e841e55ac932ed9118bcb">More...</a><br /></td></tr>
+<tr class="separator:a76750c6fe46e841e55ac932ed9118bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23a7dbff52aedc7c5fbd1c81d419688f"><td class="memItemLeft" align="right" valign="top"><a id="a23a7dbff52aedc7c5fbd1c81d419688f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a23a7dbff52aedc7c5fbd1c81d419688f">~model</a> ()</td></tr>
 <tr class="memdesc:a23a7dbff52aedc7c5fbd1c81d419688f"><td class="mdescLeft">&#160;</td><td class="mdescRight">destructor - make sure output files are properly closed <br /></td></tr>
@@ -100,10 +102,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac31306234831b32bd7e8606fe5266479"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ac31306234831b32bd7e8606fe5266479">setOutputFilePaths</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters)</td></tr>
 <tr class="memdesc:ac31306234831b32bd7e8606fe5266479"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the system of directories for model experiments and their outputs.  <a href="#ac31306234831b32bd7e8606fe5266479">More...</a><br /></td></tr>
 <tr class="separator:ac31306234831b32bd7e8606fe5266479"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c93dce1ca10fbfa99f9eec481ea55df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a9c93dce1ca10fbfa99f9eec481ea55df">init</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters)</td></tr>
-<tr class="memdesc:a9c93dce1ca10fbfa99f9eec481ea55df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up the agents and places, and allocate agents to homes, workplaces, vehicles. <br />
-.  <a href="#a9c93dce1ca10fbfa99f9eec481ea55df">More...</a><br /></td></tr>
-<tr class="separator:a9c93dce1ca10fbfa99f9eec481ea55df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af72360cb7dd153d87d091af04e8cdfee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#af72360cb7dd153d87d091af04e8cdfee">init</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters, std::string <a class="el" href="classmodel.html#a9991af4d4489efcbd7ad52de2be330de">domain</a>)</td></tr>
+<tr class="memdesc:af72360cb7dd153d87d091af04e8cdfee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up the agents and places, and allocate agents to homes, workplaces, vehicles. <br />
+.  <a href="#af72360cb7dd153d87d091af04e8cdfee">More...</a><br /></td></tr>
+<tr class="separator:af72360cb7dd153d87d091af04e8cdfee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0df0b21a6bd56182f0d33ee69a94de13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a0df0b21a6bd56182f0d33ee69a94de13">end</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;parameters)</td></tr>
 <tr class="memdesc:a0df0b21a6bd56182f0d33ee69a94de13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finish off model including any final output etc. <br />
 .  <a href="#a0df0b21a6bd56182f0d33ee69a94de13">More...</a><br /></td></tr>
@@ -114,7 +116,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a20ff630d7f86b28f8d45a2a37b91695f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad50a0a9dfa6916d59e06f00155da5136"><td class="memItemLeft" align="right" valign="top"><a id="ad50a0a9dfa6916d59e06f00155da5136"></a>
 unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ad50a0a9dfa6916d59e06f00155da5136">numberOfAgents</a> ()</td></tr>
-<tr class="memdesc:ad50a0a9dfa6916d59e06f00155da5136"><td class="mdescLeft">&#160;</td><td class="mdescRight">report current number of agents in the model <br /></td></tr>
+<tr class="memdesc:ad50a0a9dfa6916d59e06f00155da5136"><td class="mdescLeft">&#160;</td><td class="mdescRight">report current number of agents in the model - includes both active and inactive <br /></td></tr>
 <tr class="separator:ad50a0a9dfa6916d59e06f00155da5136"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0541d90b6b51bb4859d7a3b32c6e202"><td class="memItemLeft" align="right" valign="top"><a id="ac0541d90b6b51bb4859d7a3b32c6e202"></a>
 unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ac0541d90b6b51bb4859d7a3b32c6e202">numberOfPlaces</a> ()</td></tr>
@@ -128,16 +130,31 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a321162248a312d98a6a62a19b6856e9f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classagent.html">agent</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a321162248a312d98a6a62a19b6856e9f">agents</a></td></tr>
+<tr class="memdesc:a321162248a312d98a6a62a19b6856e9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A container to hold pointers to all the locally resident agents<br />
+.  <a href="#a321162248a312d98a6a62a19b6856e9f">More...</a><br /></td></tr>
 <tr class="separator:a321162248a312d98a6a62a19b6856e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee72909ff27b56311f1165d87955f16f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classplace.html">place</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#aee72909ff27b56311f1165d87955f16f">places</a></td></tr>
+<tr class="memitem:a0352773f88252b07f70848a36c8b07c4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classagent.html">agent</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a0352773f88252b07f70848a36c8b07c4">travellers</a></td></tr>
+<tr class="memdesc:a0352773f88252b07f70848a36c8b07c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">A container to hold pointers to agents from another MPI domain.  <a href="#a0352773f88252b07f70848a36c8b07c4">More...</a><br /></td></tr>
+<tr class="separator:a0352773f88252b07f70848a36c8b07c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee72909ff27b56311f1165d87955f16f"><td class="memItemLeft" align="right" valign="top"><a id="aee72909ff27b56311f1165d87955f16f"></a>
+std::vector&lt; <a class="el" href="classplace.html">place</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#aee72909ff27b56311f1165d87955f16f">places</a></td></tr>
+<tr class="memdesc:aee72909ff27b56311f1165d87955f16f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A container to hold the local places. <br /></td></tr>
 <tr class="separator:aee72909ff27b56311f1165d87955f16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f1f7a95d26f11cf9cae1ba539efe551"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a6f1f7a95d26f11cf9cae1ba539efe551">nAgents</a></td></tr>
+<tr class="memitem:a6f1f7a95d26f11cf9cae1ba539efe551"><td class="memItemLeft" align="right" valign="top"><a id="a6f1f7a95d26f11cf9cae1ba539efe551"></a>
+long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a6f1f7a95d26f11cf9cae1ba539efe551">nAgents</a></td></tr>
+<tr class="memdesc:a6f1f7a95d26f11cf9cae1ba539efe551"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of agents to be created. <br /></td></tr>
 <tr class="separator:a6f1f7a95d26f11cf9cae1ba539efe551"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a361a901c3aa70774e254457065ebeb0e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a361a901c3aa70774e254457065ebeb0e">_filePrefix</a></td></tr>
+<tr class="memitem:a361a901c3aa70774e254457065ebeb0e"><td class="memItemLeft" align="right" valign="top"><a id="a361a901c3aa70774e254457065ebeb0e"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a361a901c3aa70774e254457065ebeb0e">_filePrefix</a></td></tr>
+<tr class="memdesc:a361a901c3aa70774e254457065ebeb0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string containing the file path for output, for a given experiment, to be put before specific file names. <br /></td></tr>
 <tr class="separator:a361a901c3aa70774e254457065ebeb0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5e7e93a6aeb1584eda754f91b1cdd4e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ae5e7e93a6aeb1584eda754f91b1cdd4e">_filePostfix</a></td></tr>
+<tr class="memitem:ae5e7e93a6aeb1584eda754f91b1cdd4e"><td class="memItemLeft" align="right" valign="top"><a id="ae5e7e93a6aeb1584eda754f91b1cdd4e"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ae5e7e93a6aeb1584eda754f91b1cdd4e">_filePostfix</a></td></tr>
+<tr class="memdesc:ae5e7e93a6aeb1584eda754f91b1cdd4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A string containing any extra default characters to come after the filename. <br /></td></tr>
 <tr class="separator:ae5e7e93a6aeb1584eda754f91b1cdd4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memItemLeft" align="right" valign="top">std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ac722a1dffbe6a56f2a934ef627e4e773">output</a></td></tr>
+<tr class="memitem:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memItemLeft" align="right" valign="top"><a id="ac722a1dffbe6a56f2a934ef627e4e773"></a>
+std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#ac722a1dffbe6a56f2a934ef627e4e773">output</a></td></tr>
+<tr class="memdesc:ac722a1dffbe6a56f2a934ef627e4e773"><td class="mdescLeft">&#160;</td><td class="mdescRight">The output file stream. <br /></td></tr>
 <tr class="separator:ac722a1dffbe6a56f2a934ef627e4e773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2103a6bc9833b98e5d6ff607c5feea60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrandomizer.html">randomizer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a2103a6bc9833b98e5d6ff607c5feea60">r</a></td></tr>
 <tr class="memdesc:a2103a6bc9833b98e5d6ff607c5feea60"><td class="mdescLeft">&#160;</td><td class="mdescRight">variable to hold the random number generator for this model  <a href="#a2103a6bc9833b98e5d6ff607c5feea60">More...</a><br /></td></tr>
@@ -145,16 +162,24 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a86a89dcd7a5d26b3912974f67e01fb0f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classrandomizer.html">randomizer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a86a89dcd7a5d26b3912974f67e01fb0f">randoms</a></td></tr>
 <tr class="memdesc:a86a89dcd7a5d26b3912974f67e01fb0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">multi threaded runs are faster if each thread has its own RNG  <a href="#a86a89dcd7a5d26b3912974f67e01fb0f">More...</a><br /></td></tr>
 <tr class="separator:a86a89dcd7a5d26b3912974f67e01fb0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9991af4d4489efcbd7ad52de2be330de"><td class="memItemLeft" align="right" valign="top"><a id="a9991af4d4489efcbd7ad52de2be330de"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a9991af4d4489efcbd7ad52de2be330de">domain</a></td></tr>
+<tr class="memdesc:a9991af4d4489efcbd7ad52de2be330de"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the MPI domain for use with MUI and this copy of the model. <br /></td></tr>
+<tr class="separator:a9991af4d4489efcbd7ad52de2be330de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31a9ed03e674f6871e6ce12d0fa0de77"><td class="memItemLeft" align="right" valign="top"><a id="a31a9ed03e674f6871e6ce12d0fa0de77"></a>
+long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a31a9ed03e674f6871e6ce12d0fa0de77">leavercount</a> =0</td></tr>
+<tr class="memdesc:a31a9ed03e674f6871e6ce12d0fa0de77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count of the agents leaving the domain in this step. <br /></td></tr>
+<tr class="separator:a31a9ed03e674f6871e6ce12d0fa0de77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The model contains all the agents and places, and steps them through time. </p>
 <p>At the moment time steps are not even in length (since the schedule values are not of the same length for work/home/transport)<br />
 </p>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00037">37</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00040">40</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a0d17950ec72bcd00ae9710c73768866b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d17950ec72bcd00ae9710c73768866b">&#9670;&nbsp;</a></span>model()</h2>
+<a id="a76750c6fe46e841e55ac932ed9118bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76750c6fe46e841e55ac932ed9118bcb">&#9670;&nbsp;</a></span>model()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,8 +191,18 @@ Private Attributes</h2></td></tr>
           <td class="memname">model::model </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;&#160;</td>
-          <td class="paramname"><em>parameters</em></td><td>)</td>
+          <td class="paramname"><em>parameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dom</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -176,17 +211,24 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Constructor for the model - set up the random seed and the output file, then call <a class="el" href="ODD.html#init">Initialisation</a> to define the agents and the places <br />
-The time reporter class is used to check how long it takes to set up everything. The static timestep class is initialised from the parameter file <br />
-</p><dl class="params"><dt>Parameters</dt><dd>
+. </p>
+<p>The time reporter class is used to check how long it takes to set up everything. The static timestep class is initialised from the parameter file <br />
+The model allows for there to be mutiple copies to be running simultaneously (possibly coupled together)<br />
+The domain string is a label unique to each running copy. These can be coupled using the MUI coupler <br />
+and MPI - the idea being that a model can be split up across a cluster to allow for very large models <br />
+or to allow the model to be coupled to another kind of model (e.g. an ecosystem model). See <a class="el" href="fetchall_8h.html">fetchall.h</a> <br />
+If this is not needed then the domain is ignored. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parameters</td><td>A <b>reference</b> to a class that holds all the possible parameter settings for the model.<br />
  Using a reference ensures the values don't need to be copied </td></tr>
+    <tr><td class="paramname">domain</td><td>A string that defines which domain this is, when using domain decomposition to run multiple models </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00064">64</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00091">91</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -226,12 +268,12 @@ The time reporter class is used to check how long it takes to set up everything.
 </dl>
 <p>Right now this is here just to output final values at the end of the last step. </p>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00159">159</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00189">189</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
-<a id="a9c93dce1ca10fbfa99f9eec481ea55df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c93dce1ca10fbfa99f9eec481ea55df">&#9670;&nbsp;</a></span>init()</h2>
+<a id="af72360cb7dd153d87d091af04e8cdfee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af72360cb7dd153d87d091af04e8cdfee">&#9670;&nbsp;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,8 +285,18 @@ The time reporter class is used to check how long it takes to set up everything.
           <td class="memname">void model::init </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;&#160;</td>
-          <td class="paramname"><em>parameters</em></td><td>)</td>
+          <td class="paramname"><em>parameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>domain</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -267,7 +319,7 @@ The time reporter class is used to check how long it takes to set up everything.
 will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale <br />
 This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns. </p>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00142">142</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00173">173</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -302,7 +354,7 @@ different parameter values (e.g. random seed). By default a max. of 10000 runs i
 like ./output/experiment.test/run_0000 ./output/experiment.test/run_0001 ... ./output/experiment.test/run_9999 <br />
 More then 10000 will be ok, but the directory names will spill over to ./output/experiment.test/run_10000 etc. <br />
 The number can be customised using experiment.run.prefix, which should be set to a power of 10.<br />
-A single run can be specified by setting experiment.run.number - if this coincides with and existing run/directory<br />
+A single run can be specified by setting experiment.run.number - if this coincides with an existing run/directory<br />
 then the files there may be overwritten (unless explicit output file names are changed). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parameters</td><td>A <b>reference</b> to a class that holds all the possible parameter settings for the model.<br />
@@ -311,7 +363,7 @@ then the files there may be overwritten (unless explicit output file names are c
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00103">103</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00134">134</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -362,61 +414,11 @@ Also to avoid any systematic biases, agents need to all finish their contaminati
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00183">183</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00213">213</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ae5e7e93a6aeb1584eda754f91b1cdd4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5e7e93a6aeb1584eda754f91b1cdd4e">&#9670;&nbsp;</a></span>_filePostfix</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string model::_filePostfix</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A string containing any extra default characters to come after the filename </p>
-
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00047">47</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
-
-</div>
-</div>
-<a id="a361a901c3aa70774e254457065ebeb0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a361a901c3aa70774e254457065ebeb0e">&#9670;&nbsp;</a></span>_filePrefix</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string model::_filePrefix</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A string containing the file path for output, for a given experiment, to be put before specific file names </p>
-
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00045">45</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
-
-</div>
-</div>
 <a id="a321162248a312d98a6a62a19b6856e9f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a321162248a312d98a6a62a19b6856e9f">&#9670;&nbsp;</a></span>agents</h2>
 
@@ -436,84 +438,12 @@ Also to avoid any systematic biases, agents need to all finish their contaminati
   </tr>
 </table>
 </div><div class="memdoc">
-<p>A container to hold pointers to all the agents </p>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00039">39</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
-
-</div>
-</div>
-<a id="a6f1f7a95d26f11cf9cae1ba539efe551"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f1f7a95d26f11cf9cae1ba539efe551">&#9670;&nbsp;</a></span>nAgents</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">long model::nAgents</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The number of agents to be created </p>
+<p>A container to hold pointers to all the locally resident agents<br />
+. </p>
+<p>Here locally resident means that all these agents are on the current MPI domain. </p>
 
 <p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00043">43</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
-
-</div>
-</div>
-<a id="ac722a1dffbe6a56f2a934ef627e4e773"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac722a1dffbe6a56f2a934ef627e4e773">&#9670;&nbsp;</a></span>output</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ofstream model::output</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>The output file stream </p>
-
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00049">49</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
-
-</div>
-</div>
-<a id="aee72909ff27b56311f1165d87955f16f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee72909ff27b56311f1165d87955f16f">&#9670;&nbsp;</a></span>places</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="classplace.html">place</a>*&gt; model::places</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A container to hold the places </p>
-
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00041">41</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -542,7 +472,7 @@ Also to avoid any systematic biases, agents need to all finish their contaminati
 see <a class="el" href="randomizerSingleton_8h.html">randomizerSingleton.h</a> for singleton code. At the moment a singleton is not used as it seems a little tricky in multi-threaded cases<br />
 as a result model randomizers have to be passed into client functions </p>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00054">54</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00062">62</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -571,7 +501,35 @@ as a result model randomizers have to be passed into client functions </p>
 can be reproduced if the same number of threads is used (and the same start random seed), but runs with different numbers of threads<br />
 will typically produce different output (to the extent that output is stochastic) </p>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00059">59</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00067">67</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+
+</div>
+</div>
+<a id="a0352773f88252b07f70848a36c8b07c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0352773f88252b07f70848a36c8b07c4">&#9670;&nbsp;</a></span>travellers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classagent.html">agent</a>*&gt; model::travellers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A container to hold pointers to agents from another MPI domain. </p>
+<p>These agents are only present if they have travelled from another copy of the model running on a different (HPC) node<br />
+ see coupler below </p>
+
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00047">47</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>

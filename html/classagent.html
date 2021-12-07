@@ -90,7 +90,7 @@ Collaboration diagram for agent:</div>
 <div class="center"><img src="classagent__coll__graph.png" border="0" usemap="#agent_coll__map" alt="Collaboration graph"/></div>
 <map name="agent_coll__map" id="agent_coll__map">
 <area shape="rect" id="node2" href="classplace.html" title="Places can have a list of occupants, and store disease contamination. " alt="" coords="5,5,180,273"/>
-<area shape="rect" id="node3" href="classscheduleList.html" title="{scheduleList\n|&#45; schedules\l|+ scheduleList()\l+ operator[]()\l+ getType()\l}" alt="" coords="205,86,319,193"/>
+<area shape="rect" id="node3" href="classscheduleList.html" title="{scheduleList\n|&#45; schedules\l|+ scheduleList()\l+ operator[]()\l+ getType()\l+ getName()\l}" alt="" coords="205,79,319,200"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -105,15 +105,43 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a694186b6d6839d0c0f2c797a37f9de75"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a694186b6d6839d0c0f2c797a37f9de75">holidayTime</a> (long)</td></tr>
+<tr class="memdesc:a694186b6d6839d0c0f2c797a37f9de75"><td class="mdescLeft">&#160;</td><td class="mdescRight">A rule to determine whether the agent is about to go away on travel.  <a href="#a694186b6d6839d0c0f2c797a37f9de75">More...</a><br /></td></tr>
+<tr class="separator:a694186b6d6839d0c0f2c797a37f9de75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78efdfc00e3fca4ff5c0cb87e3a74b15"><td class="memItemLeft" align="right" valign="top"><a id="a78efdfc00e3fca4ff5c0cb87e3a74b15"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a78efdfc00e3fca4ff5c0cb87e3a74b15">outwardTravel</a> ()</td></tr>
+<tr class="memdesc:a78efdfc00e3fca4ff5c0cb87e3a74b15"><td class="mdescLeft">&#160;</td><td class="mdescRight">set up the schedule for travelling away <br /></td></tr>
+<tr class="separator:a78efdfc00e3fca4ff5c0cb87e3a74b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92a9879e7cc0426f6f8873401230730e"><td class="memItemLeft" align="right" valign="top"><a id="a92a9879e7cc0426f6f8873401230730e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a92a9879e7cc0426f6f8873401230730e">inwardTravel</a> ()</td></tr>
+<tr class="memdesc:a92a9879e7cc0426f6f8873401230730e"><td class="mdescLeft">&#160;</td><td class="mdescRight">set up the schedule for returning home <br /></td></tr>
+<tr class="separator:a92a9879e7cc0426f6f8873401230730e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a74677c0bb2b06cf0ba86b1145e4a46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a6a74677c0bb2b06cf0ba86b1145e4a46">setRemoteLocation</a> ()</td></tr>
+<tr class="separator:a6a74677c0bb2b06cf0ba86b1145e4a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5eb66189d689e9d7b5642ebda2c8fbc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#af5eb66189d689e9d7b5642ebda2c8fbc">agent</a> ()</td></tr>
+<tr class="memdesc:af5eb66189d689e9d7b5642ebda2c8fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">create and agent and set default disease flags and ID.  <a href="#af5eb66189d689e9d7b5642ebda2c8fbc">More...</a><br /></td></tr>
+<tr class="separator:af5eb66189d689e9d7b5642ebda2c8fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a239e618670ccbfc64728eb6ccff102a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a239e618670ccbfc64728eb6ccff102a1">moveTo</a> (<a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">placeTypes</a>)</td></tr>
 <tr class="memdesc:a239e618670ccbfc64728eb6ccff102a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to change the agent from one place's list of occupants to another.  <a href="#a239e618670ccbfc64728eb6ccff102a1">More...</a><br /></td></tr>
 <tr class="separator:a239e618670ccbfc64728eb6ccff102a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae20b0b8a169fb7a459c7b195bb970d80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ae20b0b8a169fb7a459c7b195bb970d80">update</a> ()</td></tr>
-<tr class="memdesc:ae20b0b8a169fb7a459c7b195bb970d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move through the travel schedule, and then do any actions specific to places (apart from disease) <br />
-.  <a href="#ae20b0b8a169fb7a459c7b195bb970d80">More...</a><br /></td></tr>
-<tr class="separator:ae20b0b8a169fb7a459c7b195bb970d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5181a13dca8f87edc230c6e3b0e80f8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a5181a13dca8f87edc230c6e3b0e80f8f">update</a> (long)</td></tr>
+<tr class="memdesc:a5181a13dca8f87edc230c6e3b0e80f8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move through the travel schedule, and then do any actions specific to places (apart from disease) <br />
+.  <a href="#a5181a13dca8f87edc230c6e3b0e80f8f">More...</a><br /></td></tr>
+<tr class="separator:a5181a13dca8f87edc230c6e3b0e80f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fda1543f375a2b9dc9e44f1648fc1a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a0fda1543f375a2b9dc9e44f1648fc1a0">updateTravelSchedule</a> (long)</td></tr>
+<tr class="memdesc:a0fda1543f375a2b9dc9e44f1648fc1a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change schedules according to whether routine or (for example) going on holiday <br />
+.  <a href="#a0fda1543f375a2b9dc9e44f1648fc1a0">More...</a><br /></td></tr>
+<tr class="separator:a0fda1543f375a2b9dc9e44f1648fc1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae48983da3bd44f76516304ad7971292a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ae48983da3bd44f76516304ad7971292a">initTravelSchedule</a> ()</td></tr>
+<tr class="memdesc:ae48983da3bd44f76516304ad7971292a"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise the travel schedule - this sets up the list of places that will be visited, in order <br />
+ <a href="#ae48983da3bd44f76516304ad7971292a">More...</a><br /></td></tr>
+<tr class="separator:ae48983da3bd44f76516304ad7971292a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b8cfe1c17b5cc94742dc6a7fb0ac118"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a8b8cfe1c17b5cc94742dc6a7fb0ac118">initTravelSchedule</a> (std::string s)</td></tr>
+<tr class="memdesc:a8b8cfe1c17b5cc94742dc6a7fb0ac118"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise the travel schedule but setting the scheduleType using its named string <br />
+ <a href="#a8b8cfe1c17b5cc94742dc6a7fb0ac118">More...</a><br /></td></tr>
+<tr class="separator:a8b8cfe1c17b5cc94742dc6a7fb0ac118"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9006452c1e818c84da70bbe52dfe2a1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a9006452c1e818c84da70bbe52dfe2a1a">initTravelSchedule</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;)</td></tr>
-<tr class="memdesc:a9006452c1e818c84da70bbe52dfe2a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise the travel schedule - this sets up the list of places that will be visited, in order <br />
+<tr class="memdesc:a9006452c1e818c84da70bbe52dfe2a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise the travel schedule - this time using the <a class="el" href="classparameterSettings.html" title="ParameterSettings is a class designed to hold all the parameters for the model. ">parameterSettings</a> <br />
  <a href="#a9006452c1e818c84da70bbe52dfe2a1a">More...</a><br /></td></tr>
 <tr class="separator:a9006452c1e818c84da70bbe52dfe2a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79a4982f0c0af35a010b9793e7c8ab77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a79a4982f0c0af35a010b9793e7c8ab77">advanceTravelSchedule</a> ()</td></tr>
@@ -155,6 +183,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#acb6d783c6762c0854e43103e0732e5d9">alive</a> ()</td></tr>
 <tr class="memdesc:acb6d783c6762c0854e43103e0732e5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if the agent is alive <br /></td></tr>
 <tr class="separator:acb6d783c6762c0854e43103e0732e5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1237d4d288e90a41d07cecb9318766c6"><td class="memItemLeft" align="right" valign="top"><a id="a1237d4d288e90a41d07cecb9318766c6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a1237d4d288e90a41d07cecb9318766c6">setAlive</a> (bool life)</td></tr>
+<tr class="memdesc:a1237d4d288e90a41d07cecb9318766c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">set life level - for use with agent copying <br /></td></tr>
+<tr class="separator:a1237d4d288e90a41d07cecb9318766c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a2ddd7fab0a36c8036e0d968a53031f"><td class="memItemLeft" align="right" valign="top"><a id="a0a2ddd7fab0a36c8036e0d968a53031f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a0a2ddd7fab0a36c8036e0d968a53031f">setImmune</a> (bool immunity)</td></tr>
+<tr class="memdesc:a0a2ddd7fab0a36c8036e0d968a53031f"><td class="mdescLeft">&#160;</td><td class="mdescRight">set immunity - for use with agent copying <br /></td></tr>
+<tr class="separator:a0a2ddd7fab0a36c8036e0d968a53031f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa579ca764d0a5b59968af4996f41d5c2"><td class="memItemLeft" align="right" valign="top"><a id="aa579ca764d0a5b59968af4996f41d5c2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#aa579ca764d0a5b59968af4996f41d5c2">setDiseased</a> (bool <a class="el" href="classagent.html#a6d0998f503a9e3795c31cac4e09462d3">diseased</a>)</td></tr>
+<tr class="memdesc:aa579ca764d0a5b59968af4996f41d5c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">set disease state - for use with agent copying <br /></td></tr>
+<tr class="separator:aa579ca764d0a5b59968af4996f41d5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf93416b3ebacefd71d4576bd0461c4f"><td class="memItemLeft" align="right" valign="top"><a id="acf93416b3ebacefd71d4576bd0461c4f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#acf93416b3ebacefd71d4576bd0461c4f">setRecovered</a> (bool recovery)</td></tr>
+<tr class="memdesc:acf93416b3ebacefd71d4576bd0461c4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">set recovery state - for use with agent copying <br /></td></tr>
+<tr class="separator:acf93416b3ebacefd71d4576bd0461c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36efb38a3411908da18bb1b98071dc66"><td class="memItemLeft" align="right" valign="top"><a id="a36efb38a3411908da18bb1b98071dc66"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a36efb38a3411908da18bb1b98071dc66">atHome</a> ()</td></tr>
 <tr class="memdesc:a36efb38a3411908da18bb1b98071dc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">do any things that need to be done at home <br /></td></tr>
@@ -199,6 +243,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a62a990a10e6ae56efd22acf21eb1fb4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get agent ID number <br />
   <a href="#a62a990a10e6ae56efd22acf21eb1fb4c">More...</a><br /></td></tr>
 <tr class="separator:a62a990a10e6ae56efd22acf21eb1fb4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1026fea387f117e8327f38c1cb1d25f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#aa1026fea387f117e8327f38c1cb1d25f">leaver</a> ()</td></tr>
+<tr class="memdesc:aa1026fea387f117e8327f38c1cb1d25f"><td class="mdescLeft">&#160;</td><td class="mdescRight">return whether the agent is about to emigrate <br />
+  <a href="#aa1026fea387f117e8327f38c1cb1d25f">More...</a><br /></td></tr>
+<tr class="separator:aa1026fea387f117e8327f38c1cb1d25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf764058469d9b13b669365c704d1534"><td class="memItemLeft" align="right" valign="top"><a id="abf764058469d9b13b669365c704d1534"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#abf764058469d9b13b669365c704d1534">leaveDomain</a> ()</td></tr>
+<tr class="memdesc:abf764058469d9b13b669365c704d1534"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the agent to leave the domain on the next timestep <br /></td></tr>
+<tr class="separator:abf764058469d9b13b669365c704d1534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a0f0e74fd64fdf3892f0558ecaa4132"><td class="memItemLeft" align="right" valign="top"><a id="a9a0f0e74fd64fdf3892f0558ecaa4132"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a9a0f0e74fd64fdf3892f0558ecaa4132">doNotLeaveDomain</a> ()</td></tr>
+<tr class="memdesc:a9a0f0e74fd64fdf3892f0558ecaa4132"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the agent to remain in the domain on the next timestep <br /></td></tr>
+<tr class="separator:a9a0f0e74fd64fdf3892f0558ecaa4132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa44060505af609ef54920e9e945cd9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#afa44060505af609ef54920e9e945cd9c">deactivate</a> ()</td></tr>
+<tr class="memdesc:afa44060505af609ef54920e9e945cd9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">agent is present, but will not do anything or engage with other agents <br />
+  <a href="#afa44060505af609ef54920e9e945cd9c">More...</a><br /></td></tr>
+<tr class="separator:afa44060505af609ef54920e9e945cd9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fed87772396add58de66881a45a0ee0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a8fed87772396add58de66881a45a0ee0">activate</a> ()</td></tr>
+<tr class="memdesc:a8fed87772396add58de66881a45a0ee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">agent will resume activity <br />
+  <a href="#a8fed87772396add58de66881a45a0ee0">More...</a><br /></td></tr>
+<tr class="separator:a8fed87772396add58de66881a45a0ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acff6959f20c65996d2ebc4c15bb50511"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#acff6959f20c65996d2ebc4c15bb50511">active</a> ()</td></tr>
+<tr class="memdesc:acff6959f20c65996d2ebc4c15bb50511"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if agent is active <br />
+  <a href="#acff6959f20c65996d2ebc4c15bb50511">More...</a><br /></td></tr>
+<tr class="separator:acff6959f20c65996d2ebc4c15bb50511"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -215,6 +283,10 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr class="memitem:a7c06ae5cb3645a82dfaaacdce6bb96b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classplace.html">place</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a7c06ae5cb3645a82dfaaacdce6bb96b6">places</a> [3]</td></tr>
 <tr class="memdesc:a7c06ae5cb3645a82dfaaacdce6bb96b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of pointers to places.  <a href="#a7c06ae5cb3645a82dfaaacdce6bb96b6">More...</a><br /></td></tr>
 <tr class="separator:a7c06ae5cb3645a82dfaaacdce6bb96b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24ca44293418bdc1b068565fa6c056af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classplace.html">place</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a24ca44293418bdc1b068565fa6c056af">placeCache</a> [3]</td></tr>
+<tr class="memdesc:a24ca44293418bdc1b068565fa6c056af"><td class="mdescLeft">&#160;</td><td class="mdescRight">a stack to store temporarily any places that need to be remebered for later use. Used when agent travels outside standart routine.<br />
+ <a href="#a24ca44293418bdc1b068565fa6c056af">More...</a><br /></td></tr>
+<tr class="separator:a24ca44293418bdc1b068565fa6c056af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c07bfb8b610ad493a4704643b4dcbcf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">placeTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a6c07bfb8b610ad493a4704643b4dcbcf">currentPlace</a></td></tr>
 <tr class="memdesc:a6c07bfb8b610ad493a4704643b4dcbcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Where the agent is currently located.  <a href="#a6c07bfb8b610ad493a4704643b4dcbcf">More...</a><br /></td></tr>
 <tr class="separator:a6c07bfb8b610ad493a4704643b4dcbcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -226,17 +298,18 @@ unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <a class="el" href="classscheduleList.html#a9cf40bc6da1e11a4d290a787b2d19c82">scheduleList::scheduleTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a7bbc8fb53b60ab3aeb4778c5451587ed">scheduleType</a></td></tr>
 <tr class="memdesc:a7bbc8fb53b60ab3aeb4778c5451587ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current type of travel schedule. <br /></td></tr>
 <tr class="separator:a7bbc8fb53b60ab3aeb4778c5451587ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9b39310b9d7a399f1017ae68e1c1b56"><td class="memItemLeft" align="right" valign="top"><a id="aa9b39310b9d7a399f1017ae68e1c1b56"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#aa9b39310b9d7a399f1017ae68e1c1b56">scheduleTimer</a> =0</td></tr>
-<tr class="memdesc:aa9b39310b9d7a399f1017ae68e1c1b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts down the time spent at the current location. <br /></td></tr>
-<tr class="separator:aa9b39310b9d7a399f1017ae68e1c1b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad276695b6da0018ce7e5cc4e4e91c4de"><td class="memItemLeft" align="right" valign="top">std::stack&lt; <a class="el" href="classplace.html">place</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ad276695b6da0018ce7e5cc4e4e91c4de">placeCache</a></td></tr>
-<tr class="memdesc:ad276695b6da0018ce7e5cc4e4e91c4de"><td class="mdescLeft">&#160;</td><td class="mdescRight">create and agent and set default disease flags and ID.  <a href="#ad276695b6da0018ce7e5cc4e4e91c4de">More...</a><br /></td></tr>
-<tr class="separator:ad276695b6da0018ce7e5cc4e4e91c4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9474eb80c943e09993caf6061f61a274"><td class="memItemLeft" align="right" valign="top"><a id="a9474eb80c943e09993caf6061f61a274"></a>
 <a class="el" href="classscheduleList.html#a9cf40bc6da1e11a4d290a787b2d19c82">scheduleList::scheduleTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a9474eb80c943e09993caf6061f61a274">originalScheduleType</a></td></tr>
 <tr class="memdesc:a9474eb80c943e09993caf6061f61a274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place to hold schedule type if switching current schedule to an alternative (e.g. on holiday) <br /></td></tr>
 <tr class="separator:a9474eb80c943e09993caf6061f61a274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9b39310b9d7a399f1017ae68e1c1b56"><td class="memItemLeft" align="right" valign="top"><a id="aa9b39310b9d7a399f1017ae68e1c1b56"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#aa9b39310b9d7a399f1017ae68e1c1b56">scheduleTimer</a> =0</td></tr>
+<tr class="memdesc:aa9b39310b9d7a399f1017ae68e1c1b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts down the time spent at the current location. <br /></td></tr>
+<tr class="separator:aa9b39310b9d7a399f1017ae68e1c1b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cb3795e7c470b976a51bf1bf2b56f8d"><td class="memItemLeft" align="right" valign="top"><a id="a6cb3795e7c470b976a51bf1bf2b56f8d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a6cb3795e7c470b976a51bf1bf2b56f8d">_locationIsRemote</a></td></tr>
+<tr class="memdesc:a6cb3795e7c470b976a51bf1bf2b56f8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">variable set to true if needing to cross domains <br /></td></tr>
+<tr class="separator:a6cb3795e7c470b976a51bf1bf2b56f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -255,6 +328,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a4ce2354e51e374817fb22f3a3804bbcf">_alive</a> =true</td></tr>
 <tr class="memdesc:a4ce2354e51e374817fb22f3a3804bbcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag set to true if the agent is alive <br /></td></tr>
 <tr class="separator:a4ce2354e51e374817fb22f3a3804bbcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c279189434d56fc576431aa6c9d931c"><td class="memItemLeft" align="right" valign="top"><a id="a3c279189434d56fc576431aa6c9d931c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a3c279189434d56fc576431aa6c9d931c">_active</a> =true</td></tr>
+<tr class="memdesc:a3c279189434d56fc576431aa6c9d931c"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag set to true if the agent is active - some agents may pause their activity if visting other domains <br /></td></tr>
+<tr class="separator:a3c279189434d56fc576431aa6c9d931c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1039ffd02b8639005034ee04abe2ac02"><td class="memItemLeft" align="right" valign="top"><a id="a1039ffd02b8639005034ee04abe2ac02"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a1039ffd02b8639005034ee04abe2ac02">_leaver</a> =false</td></tr>
+<tr class="memdesc:a1039ffd02b8639005034ee04abe2ac02"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag set to true if the agent is about to leave this domain <br /></td></tr>
+<tr class="separator:a1039ffd02b8639005034ee04abe2ac02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -288,11 +369,109 @@ If they are in a contaminated location, they may contract the disease. Additiona
 <p>This enum associates a set of integers with names. </p>
 <p>So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example. Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567. transport vehicles are places, albeit moveable! </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00076">76</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00080">80</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af5eb66189d689e9d7b5642ebda2c8fbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5eb66189d689e9d7b5642ebda2c8fbc">&#9670;&nbsp;</a></span>agent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">agent::agent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>create and agent and set default disease flags and ID. </p>
+<p>The static nextID variable is used to auto-set the ID number. nextID is then incremented.<br />
+Also set aside storage for the three placeTypes the agent can occupy. <br />
+ these are set later, as the places need to be created before they can be allocated to agents.<br />
+NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens!<br />
+</p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00120">120</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8fed87772396add58de66881a45a0ee0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fed87772396add58de66881a45a0ee0">&#9670;&nbsp;</a></span>activate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void agent::activate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>agent will resume activity <br />
+ </p>
+<p>This is primarily for use with MPI based remote travel where agents have to move to another domain.<br />
+ Agents will call this on returning to the local domain (any remote copies having been deactivated symmetrically </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00306">306</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
+</div>
+</div>
+<a id="acff6959f20c65996d2ebc4c15bb50511"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acff6959f20c65996d2ebc4c15bb50511">&#9670;&nbsp;</a></span>active()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool agent::active </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>check if agent is active <br />
+ </p>
+<p>this is checked in <a class="el" href="model_8h.html">model.h</a> to see whether agent should be doing anything (i.e. it is currently on a local MPI domain) </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00311">311</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
+</div>
+</div>
 <a id="a79a4982f0c0af35a010b9793e7c8ab77"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79a4982f0c0af35a010b9793e7c8ab77">&#9670;&nbsp;</a></span>advanceTravelSchedule()</h2>
 
@@ -312,7 +491,7 @@ If they are in a contaminated location, they may contract the disease. Additiona
 <p>decrement the time counter for the current place by the timestep and then check to see if this time has expired<br />
 If so get the next place on the schedule as pointed to by schedulePoint+1 see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00067">67</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00132">132</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -342,7 +521,40 @@ If so get the next place on the schedule as pointed to by schedulePoint+1 see <a
 <p>give the agent the disease </p>
 <p>needed to set off the disease initially </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00149">149</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00188">188</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
+</div>
+</div>
+<a id="afa44060505af609ef54920e9e945cd9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa44060505af609ef54920e9e945cd9c">&#9670;&nbsp;</a></span>deactivate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void agent::deactivate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>agent is present, but will not do anything or engage with other agents <br />
+ </p>
+<p>This is primarily for use with MPI based remote travel where agents have to move to another domain.<br />
+To save re-allocating memory, agents can be present both on a local and remote MPI domain - while active <br />
+on the remote domain, they are inactive locally. </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00300">300</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -372,7 +584,7 @@ If so get the next place on the schedule as pointed to by schedulePoint+1 see <a
 <p>die - possibly from any cause... </p>
 <p>set flags relevant to disease anyway as these are needed for reporting </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00158">158</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00197">197</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -403,7 +615,7 @@ If so get the next place on the schedule as pointed to by schedulePoint+1 see <a
  </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00216">216</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00270">270</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -433,7 +645,7 @@ If so get the next place on the schedule as pointed to by schedulePoint+1 see <a
 <p>get the place corresponding to home </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00201">201</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00255">255</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -464,7 +676,7 @@ If so get the next place on the schedule as pointed to by schedulePoint+1 see <a
  </p>
 <dl class="section return"><dt>Returns</dt><dd>The agent ID number, an unsigned long integer </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00226">226</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00280">280</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -495,7 +707,7 @@ If so get the next place on the schedule as pointed to by schedulePoint+1 see <a
  </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00211">211</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00265">265</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -526,12 +738,93 @@ If so get the next place on the schedule as pointed to by schedulePoint+1 see <a
  </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00206">206</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00260">260</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
+</div>
+</div>
+<a id="a694186b6d6839d0c0f2c797a37f9de75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a694186b6d6839d0c0f2c797a37f9de75">&#9670;&nbsp;</a></span>holidayTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool agent::holidayTime </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>step</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A rule to determine whether the agent is about to go away on travel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">step</td><td>the current model time step </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00108">108</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ae48983da3bd44f76516304ad7971292a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae48983da3bd44f76516304ad7971292a">&#9670;&nbsp;</a></span>initTravelSchedule() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void agent::initTravelSchedule </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>initialise the travel schedule - this sets up the list of places that will be visited, in order <br />
+</p>
+<p>The schedule is assumed to be sitting at the end of the previous event when the model starts. <br />
+set up the timer to be zero therefore (no time left at current event) and get the start schedulePoint out of the schedule. see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00158">158</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8b8cfe1c17b5cc94742dc6a7fb0ac118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b8cfe1c17b5cc94742dc6a7fb0ac118">&#9670;&nbsp;</a></span>initTravelSchedule() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void agent::initTravelSchedule </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>initialise the travel schedule but setting the scheduleType using its named string <br />
+</p>
+<p>As for the </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">params</td><td>A string that picks out one of the available travel schedules see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00152">152</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
 <a id="a9006452c1e818c84da70bbe52dfe2a1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9006452c1e818c84da70bbe52dfe2a1a">&#9670;&nbsp;</a></span>initTravelSchedule()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9006452c1e818c84da70bbe52dfe2a1a">&#9670;&nbsp;</a></span>initTravelSchedule() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -546,10 +839,9 @@ If so get the next place on the schedule as pointed to by schedulePoint+1 see <a
       </table>
 </div><div class="memdoc">
 
-<p>initialise the travel schedule - this sets up the list of places that will be visited, in order <br />
+<p>initialise the travel schedule - this time using the <a class="el" href="classparameterSettings.html" title="ParameterSettings is a class designed to hold all the parameters for the model. ">parameterSettings</a> <br />
 </p>
-<p>The schedule is assumed to be sitting at the end of the previous event when the model starts. <br />
-set up the timer to be zero therefore (no time left at current event) and get the start schedulePoint out of the schedule. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The schedule name is extracted from the parameters and passed as a string argument to the overloaded travel schedule initialiser </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">params</td><td>A reference to a <a class="el" href="classparameterSettings.html" title="ParameterSettings is a class designed to hold all the parameters for the model. ">parameterSettings</a> object <br />
 see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
@@ -557,7 +849,38 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00079">79</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00146">146</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aa1026fea387f117e8327f38c1cb1d25f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1026fea387f117e8327f38c1cb1d25f">&#9670;&nbsp;</a></span>leaver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool agent::leaver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>return whether the agent is about to emigrate <br />
+ </p>
+<dl class="section return"><dt>Returns</dt><dd>boolean true if agent is leaving the domain </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00285">285</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -582,7 +905,7 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
 <li>not used just at present - this function is very expensive on compute time see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00034">34</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00044">44</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -621,7 +944,7 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00181">181</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00235">235</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -658,7 +981,7 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00221">221</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00275">275</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -695,7 +1018,27 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00067">67</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00070">70</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
+</div>
+</div>
+<a id="a6a74677c0bb2b06cf0ba86b1145e4a46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a74677c0bb2b06cf0ba86b1145e4a46">&#9670;&nbsp;</a></span>setRemoteLocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void agent::setRemoteLocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>set a flag to indicate there's a need to move to another domain </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00117">117</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -734,7 +1077,7 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00196">196</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00250">250</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -773,12 +1116,12 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00190">190</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00244">244</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
-<a id="ae20b0b8a169fb7a459c7b195bb970d80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae20b0b8a169fb7a459c7b195bb970d80">&#9670;&nbsp;</a></span>update()</h2>
+<a id="a5181a13dca8f87edc230c6e3b0e80f8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5181a13dca8f87edc230c6e3b0e80f8f">&#9670;&nbsp;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -786,7 +1129,8 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
         <tr>
           <td class="memname">void agent::update </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>step</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -794,9 +1138,46 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 
 <p>Move through the travel schedule, and then do any actions specific to places (apart from disease) <br />
 . </p>
-<p>needs to be called every timestep see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </p>
+<p>needs to be called every timestep see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition<br />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">step</td><td>the current model time step </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00054">54</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00064">64</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a0fda1543f375a2b9dc9e44f1648fc1a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fda1543f375a2b9dc9e44f1648fc1a0">&#9670;&nbsp;</a></span>updateTravelSchedule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void agent::updateTravelSchedule </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>step</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change schedules according to whether routine or (for example) going on holiday <br />
+. </p>
+<p>If going away the original home/work/vehicle pointers are cached, then new ones selected for <br />
+the remote destination. The originals get replaced on returning home: otherwise the schedule gets updated for the next timestep. see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition<br />
+</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">step</td><td>the current model time step </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00079">79</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -872,29 +1253,28 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 <li>note to get this actual place, use this as an index into the places vector </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00084">84</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00092">92</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
-<a id="ad276695b6da0018ce7e5cc4e4e91c4de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad276695b6da0018ce7e5cc4e4e91c4de">&#9670;&nbsp;</a></span>placeCache</h2>
+<a id="a24ca44293418bdc1b068565fa6c056af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24ca44293418bdc1b068565fa6c056af">&#9670;&nbsp;</a></span>placeCache</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::stack&lt;<a class="el" href="classplace.html">place</a>*&gt; agent::placeCache</td>
+          <td class="memname"><a class="el" href="classplace.html">place</a>* agent::placeCache[3]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>create and agent and set default disease flags and ID. </p>
-<p>The static nextID variable is used to auto-set the ID number. nextID is then incremented.<br />
-Also set aside storage for the three placeTypes the agent can occupy. <br />
- these are set later, as the places need to be created before they can be allocated to agents.<br />
-NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens! stack to store temporarily any places that need to be remebered for later use </p>
+<p>a stack to store temporarily any places that need to be remebered for later use. Used when agent travels outside standart routine.<br />
+</p>
+<p>Visiting places using a <a class="el" href="remoteTravel_8h.html">remoteTravel.h</a> object resets the places stored in places to point e.g. home and vehicle to holiday destinations <br />
+the cache allows original places to be remebered and restored on return from travel. Note that using an STL stack would work, but is hugely memory expensive. </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00098">98</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00089">89</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -916,7 +1296,7 @@ NB this means that places is initially empty - remember to set agent home/work/t
 intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!). Note that this could be replaced with a vector for more flexibility, but this is slightly slower and consumes more memory. Array need to match placetype enum in size </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00081">81</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00085">85</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>

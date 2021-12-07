@@ -1,13 +1,14 @@
 <map id="main.cpp" name="main.cpp">
-<area shape="rect" id="node11" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="624,453,723,480"/>
-<area shape="rect" id="node14" href="$timereporter_8h.html" title="File containing the definition of a class used to wrap the C++ timing classes timeReporter. " alt="" coords="919,155,1022,181"/>
+<area shape="rect" id="node11" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="591,453,689,480"/>
+<area shape="rect" id="node14" href="$timereporter_8h.html" title="File containing the definition of a class used to wrap the C++ timing classes timeReporter. " alt="" coords="970,155,1073,181"/>
 <area shape="rect" id="node16" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers randomizer. " alt="" coords="218,379,315,405"/>
 <area shape="rect" id="node18" href="$randomizerSingleton_8h.html" title="File containing a wrapper class for random numbers using a singleton randomizerS. ..." alt="" coords="43,379,194,405"/>
-<area shape="rect" id="node19" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="590,229,655,256"/>
-<area shape="rect" id="node24" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="647,80,715,107"/>
+<area shape="rect" id="node19" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="493,229,558,256"/>
+<area shape="rect" id="node23" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="698,80,766,107"/>
 <area shape="rect" id="node20" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="493,304,571,331"/>
-<area shape="rect" id="node22" href="$schedulelist_8h_source.html" title="schedulelist.h" alt="" coords="570,379,673,405"/>
-<area shape="rect" id="node21" href="$timestep_8h.html" title="File containing the definition of the timeStep class. " alt="" coords="697,379,780,405"/>
-<area shape="rect" id="node26" href="$modelFactory_8h.html" title="File containing the definition of the modelFactory class. " alt="" coords="625,155,737,181"/>
-<area shape="rect" id="node27" href="$places_8h.html" title="File containing the deinfition of the place class. " alt="" coords="737,229,807,256"/>
+<area shape="rect" id="node22" href="$schedulelist_8h_source.html" title="schedulelist.h" alt="" coords="555,379,658,405"/>
+<area shape="rect" id="node21" href="$timestep_8h.html" title="File containing the definition of the timeStep class. " alt="" coords="683,379,765,405"/>
+<area shape="rect" id="node25" href="$modelFactory_8h.html" title="File containing the definition of the factories for making models. " alt="" coords="676,155,788,181"/>
+<area shape="rect" id="node26" href="$places_8h.html" title="File containing the deinfition of the place class. " alt="" coords="689,229,759,256"/>
+<area shape="rect" id="node28" href="$remoteTravel_8h.html" title="File containing the definition of the remoteTravel class. " alt="" coords="784,229,891,256"/>
 </map>

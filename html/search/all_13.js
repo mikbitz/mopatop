@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7emodel',['~model',['../classmodel.html#a23a7dbff52aedc7c5fbd1c81d419688f',1,'model']]]
+  ['verbose',['verbose',['../classMUIcoupler.html#a39e98861fb9d2966f2cc9acfdca7f6fb',1,'MUIcoupler']]],
+  ['visit',['visit',['../classremoteTravel.html#aee597bb7fe9ac1e50a28e309e7bcf40e',1,'remoteTravel']]]
 ];
