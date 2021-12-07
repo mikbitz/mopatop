@@ -35,17 +35,17 @@
 #include"modelFactory.h"
 #include"timereporter.h"
 class model{
-    /** A container to hold pointers to all the agents */
+    /** @brief A container to hold pointers to all the agents */
     std::vector<agent*> agents;
-    /** A container to hold the places */
+    /** @brief A container to hold the places */
     std::vector<place*> places;
-    /** The number of agents to be created */
+    /** @brief The number of agents to be created */
     long nAgents;
-    /** A string containing the file path for output, for a given experiment, to be put before specific file names */
+    /** @brief A string containing the file path for output, for a given experiment, to be put before specific file names */
     std::string _filePrefix;
-    /** A string containing any extra default characters to come after the filename */
+    /** @brief A string containing any extra default characters to come after the filename */
     std::string _filePostfix;
-    /** The output file stream */
+    /** @brief The output file stream */
     std::ofstream output;
     /** @brief variable to hold the random number generator for this model
         @details This is currently directly created with default seed 0, rather than being a singleton (accessible from anywhere in the code)\n
