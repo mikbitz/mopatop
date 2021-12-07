@@ -73,16 +73,19 @@ public:
     travelSchedule(scheduleList::scheduleTypes i){
         if (i==scheduleList::mobile)mobile();
         if (i==scheduleList::stationary)stationary();
+        if (i==scheduleList::remoteTravel)remoteTravel();
+        if (i==scheduleList::returnTrip)returnTrip();
     }
     /** @brief Change the travel schedule, picking the new one by name
      *@param s The name fo the schedule to be used from now on */
     void switchTo(std::string s){
-        if (s=="mobile")mobile();
-        else if (s=="stationary")stationary();
+        if      (s=="mobile"      )mobile();
+        else if (s=="stationary"  )stationary();
+        else if (s=="remoteTravel")remoteTravel();
+        else if (s=="returnTrip"  )returnTrip();
         else {
             std::cout<<"Unknown schedule name in switchTo: "<<s<<std::endl;            
         }
-        
     }
     /** @brief remove all data for the current schedule
      *  @details This leads to an emrpty schedule - it is assumed that the detination should therefore be fixed as home \n
@@ -114,8 +117,28 @@ public:
         defaultDestination=agent::vehicle;//on the way home...
         index=2;//start on the bus to home - call to initTravelSchedule in agent constructor will move the agent to home for the first step
     }
+    /** @brief A schedule where the agents go to an alternative destination away from home */
+    void remoteTravel(){
+        cleanOldSchedule();
+        destinations.push_back(agent::vehicle);
+        timeSpent.push_back(8*timeStep::hour());
+        destinations.push_back(agent::home);
+        timeSpent.push_back((16+5*24)*timeStep::hour());
+        defaultDestination=agent::vehicle;
+        index=1;//take a long trip, then stay at work the entire time for five days - but now work is at a hotel
+    }
+    /** @brief Agents return from their time away from home */
+    void returnTrip(){
+        cleanOldSchedule();
+        destinations.push_back(agent::vehicle);
+        timeSpent.push_back(8*timeStep::hour());
+        destinations.push_back(agent::home);
+        timeSpent.push_back(2*timeStep::hour());
+        defaultDestination=agent::vehicle;
+        index=1;//vehicle returns agent, then they stay at home for two hours (for compatibility with mobile schedule).
+    }
     /** @brief return the placeType for the next place in the schedule after postion n. Schedule is cyclic and is meant to represent a whole day.
-        @details The schedule reports the next destination when this function is called. If the step goes beyond the schedule end, it wraps back to the start.
+        @details The schedule report the next destination when this function is called. If the step goes beyond the schedule end, it wraps back to the start.
         @param n an index into the list of destinations*/
     agent::placeTypes getNextLocation(unsigned n){
         agent::placeTypes p=defaultDestination;

@@ -42,7 +42,7 @@ class scheduleList{
 public:
     /** @brief This enum associates a set of integers with names. 
      * @details So stationary=0, mobile=1 etc. This allows meaningful names to be used to refer to the type of schedule, for example.*/
-    enum scheduleTypes{stationary,mobile};
+    enum scheduleTypes{stationary,mobile,remoteTravel,returnTrip};
     /** @brief Constructor to build the list of schedules 
      *  @details add the schduleTypes to the schedules vector
      */
@@ -51,6 +51,8 @@ public:
     travelSchedule& operator[](scheduleTypes i);
     /** convert a string schedule name (e.g. from the parameter file) to one of the schedule type enums */
     scheduleTypes getType(std::string scheduleType);
+    /** return a scheduleType correspoding to a given named string. */
+    std::string getName(scheduleList::scheduleTypes sT);
 private:
     /** A map to hold a list of travel schedules, indexed by type */
     std::map<scheduleTypes,travelSchedule> schedules; 

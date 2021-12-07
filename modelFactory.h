@@ -2,6 +2,7 @@
 #define MODELFACTORY_H
 #include "agent.h"
 #include "places.h"
+#include "remoteTravel.h"
 /* A program to model agents moving between places
     Copyright (C) 2021  Mike Bithell
 
@@ -23,15 +24,32 @@
 //------------------------------------------------------------------------
 /**
  * @file modelFactory.h 
- * @brief File containing the definition of the modelFactory class
+ * @brief File containing the definition of the factories for making models
  * 
  * @author Mike Bithell
  * @date 30/08/2021
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-/** @brief These classes allow for the creation of agent populations and places using a variety of different methods 
-    @details The modelFactory itself is a (virtual) base class - the various factories are sub-classed from this class below.\n
+/** @brief A class to store a list of possible travel destinations 
+    @details This is a class with a static list of places that can be visited as specified in \ref remoteTravel.h \n
+    Since the list is static there is only one copy where this list is intialised (in \ref modelFactory at present)\n
+    Agents then access travelLocations via their name.
+   */
+class travelList{
+public:
+    /** @brief a keyed list of travel locations using their \b unique name */
+    static std::map<std::string,remoteTravel*> travelLocations;
+    /** @brief static function to add named locations to the list 
+        @param name the unique name of the location
+        @param parameters the model parmeter settings - needs to be passed to the \ref remoteTravel object
+        @param otherDomain a flag to denote whether this location is actually located in another MPI domain*/
+    static void add(std::string name,parameterSettings& parameters,std::vector<place*>& places,bool otherDomain=false){
+        travelLocations[name]=new remoteTravel(parameters,places,otherDomain);
+    }
+};
+/** @brief The modelFactory itself is a (virtual) base class
+    @details The various model factories are sub-classed from this class below.\n
     These classes are expected to be called directly from a model object.
     A \ref modelFactorySelector selector then allows for a given factory to be chosen by name using a string
 */
@@ -46,7 +64,7 @@ public:
       @param agents A reference to the model object's list of agents
       @param places* A reference to the model object's list of places
         */
-    virtual void createAgents(parameterSettings& parameters,std::vector<agent*>& agents,std::vector<place*>& places)=0;
+    virtual void createAgents(parameterSettings& parameters,std::vector<agent*>& agents,std::vector<place*>& places,std::string domain)=0;
 };
 /** @brief Create a set of agents that all know only about one place, and remain there for all time, irespective of travel schedule\n 
     @details First the place is created, then agents, who all set this one place as home, work and transport. The latter two are set\n
@@ -63,7 +81,7 @@ class simpleOnePlaceFactory:public modelFactory{
       @param parameters A reference to the model parameterSettings object
       @param agents A reference to the model object's list of agents
       @param places* A reference to the model object's list of places*/
-    void createAgents(parameterSettings& parameters,std::vector<agent*>& agents,std::vector<place*>& places){
+    void createAgents(parameterSettings& parameters,std::vector<agent*>& agents,std::vector<place*>& places,std::string domain){
 
         std::cout<<"Starting simple one place generator..."<<std::endl;
         std::cout<<"Creating places ...";
@@ -118,7 +136,7 @@ class simpleMobileFactory:public modelFactory{
     @param parameters A reference to the model parameterSettings object
     @param agents A reference to the model object's list of agents
     @param places* A reference to the model object's list of places*/
-    void createAgents(parameterSettings& parameters, std::vector<agent*>& agents,std::vector<place*>& places){
+    void createAgents(parameterSettings& parameters, std::vector<agent*>& agents,std::vector<place*>& places,std::string domain){
 
         long nAgents=parameters.get<long>("run.nAgents");
         //default values to allocate rough numbers of agents to types of place
@@ -138,25 +156,11 @@ class simpleMobileFactory:public modelFactory{
         if (nHomes==0) nHomes=1;
         if (nWork==0) nWork=1;
         if (nBus==0) nBus=1;
-        //faster to resize the array here, then create places in a parallel loop (individual place memory allocations get done in parallel, but loop is thread-safe)
-        //Currently 4.5e9 agents + 2.1 e9 places on 64 threads on HPC takes about 45 minutes.
-        //one could also subdivide this resizing and gain something in speed by making indiviual sub-vectors on each thread in an omp parallel loop then concatenating them in an omp critical section?
-        //something like this might gain a little bit: - but only seems to save about a minute on the above time...
-        //#pragma omp parallel
-        //{
-        //    long z=(nHomes+nWork+nBus)/omp_get_num_threads();//allocate part of the vector on each thread
-        //    //this variable is private to the thread
-        //    std::vector<place*> vec_private(z);
-        //    //add to the global vector, but avoid races.
-        //    #pragma omp critical
-        //    places.insert(places.end(), vec_private.begin(), vec_private.end());
-        //}
-        //even so after the above, need to make sure we really are the right size in case the number of threads doesn't exactly divide the the size of the vector
         places.resize(nHomes+nWork+nBus);
         
         std::cout<<"Starting simple mobile generator..."<<std::endl;
         std::cout<<"Creating homes ..."<<std::endl;
-        
+
         #pragma omp parallel for
         for (long i=0;i<nHomes;i++){
             place* p=new place(parameters);
@@ -167,18 +171,10 @@ class simpleMobileFactory:public modelFactory{
         std::cout<<"Creating agents ...";
         long k=0;
         //fraction indicates when each extra 10% of agents have been created
-        long fr=parameters.get<long>("run.nAgents")/10;
+        long fr=nAgents/10;
         //check for tiny numbers of agents
         if (fr==0)fr=nAgents;
         //allocate agentsPerHome agents per home - as far as possible - any excess over nAgents/agentsPerHome go into the excess Home as defined above (either one or two if agentsPerHome==3 for example)
-        //again fastest to resize vector first, then allocate agent pointers in parallel loop. 
-        //#pragma omp parallel
-        //{
-        //    long z=(nAgents)/omp_get_num_threads();
-        //    std::vector<agent*> vec_private(z);
-        //    #pragma omp critical
-        //    agents.insert(agents.end(), vec_private.begin(), vec_private.end());
-        //}
         agents.resize(nAgents);
         #pragma omp parallel for
         for (long i=0;i<nAgents;i++){
@@ -229,6 +225,11 @@ class simpleMobileFactory:public modelFactory{
         }
         //report intialization to std out 
         std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
+        //create some remote places to travel to - local ones are on this MPI domain, remote another one.
+        //local only to domain b - for domain other than b it will be availabe here but labelled as remote 
+        travelList::add("NewYork",parameters,places,domain=="b");
+        //local only to domain a
+        travelList::add("London",parameters,places,domain=="a");
 
     }
 };
@@ -259,4 +260,5 @@ public:
         return *F;
     }
 };
+
 #endif

@@ -36,6 +36,7 @@
 #include"randomizerSingleton.h"
 #include"agent.h"
 #include "model.h"
+
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 //default variables from static classes - these are here to keep the linker happy
@@ -70,6 +71,9 @@ int main(int argc, char **argv) {
         std::cout<<"Default parameter file overridden on command line"<<std::endl;
         parameters.readParameters(argv[1]);
     }
+
+    std::string domain=argv[2];
+
     //set the number of OMP threads used to parallelise loops
     omp_set_num_threads(parameters.get<int>("run.nThreads"));
 
@@ -96,7 +100,7 @@ int main(int argc, char **argv) {
         //create and initialise a new model
         //any variations to parameter values should happen before this, so that the values
         //get properly saved to the output RunParameters file (created by model::setOutputFilePaths)
-        model m(parameters);
+        model m(parameters,domain);
         //start a timer to record the execution time
         auto start=timeReporter::getTime();
         //loop over time steps

@@ -130,7 +130,7 @@ public:
         return units;
     }
     //------------------------------------------------------------------------
-    /** @brief report the timestep value in seconds - so that the user need not know that this is the representation  */
+    /** @brief set the timestep value in seconds - so that the user need not know that this is the representation  */
     static void setdeltaT(double sec){
         dt=sec;
     }

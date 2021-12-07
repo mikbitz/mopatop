@@ -10,16 +10,29 @@
 #include "schedulelist.h"
 #include "travelschedule.h"
 scheduleList::scheduleList(){
-    schedules[stationary]=travelSchedule(stationary);
-    schedules[mobile]=travelSchedule(mobile);
+    schedules[stationary]   = travelSchedule(stationary);
+    schedules[mobile]       = travelSchedule(mobile);
+    schedules[remoteTravel] = travelSchedule(remoteTravel);
+    schedules[returnTrip]   = travelSchedule(returnTrip);
 }
 travelSchedule& scheduleList::operator[](scheduleList::scheduleTypes i){
     return schedules[i];
 }
-scheduleList::scheduleTypes scheduleList::getType(std::string scheduleType){
+scheduleList::scheduleTypes scheduleList::getType(std::string scheduleString){
     scheduleTypes s=stationary;
-    if (scheduleType=="stationary")s=stationary;
-    else if (scheduleType=="mobile")s=mobile;
-    else std::cout<<"Unknown schedule type:"<<scheduleType<<" in scheduleList::getType - defaulting to stationary"<<std::endl;
+    if      (scheduleString=="stationary"  )s=stationary;
+    else if (scheduleString=="mobile"      )s=mobile;
+    else if (scheduleString=="remoteTravel")s=remoteTravel;
+    else if (scheduleString=="returnTrip"  )s=returnTrip;
+    else std::cout<<"Unknown schedule type:"<<scheduleString<<" in scheduleList::getType - defaulting to stationary"<<std::endl;
+    return s;
+}
+std::string scheduleList::getName(scheduleList::scheduleTypes sT){
+    std::string s="stationary";
+    if      (sT==stationary)  s="stationary";
+    else if (sT==mobile)      s="mobile";
+    else if (sT==remoteTravel)s="remoteTravel";
+    else if (sT==returnTrip)  s="returnTrip";
+    else std::cout<<"Unknown schedule type:"<<sT<<" in scheduleList::getType - defaulting to stationary"<<std::endl;
     return s;
 }

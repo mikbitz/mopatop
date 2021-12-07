@@ -34,10 +34,18 @@
 */
 #include"modelFactory.h"
 #include"timereporter.h"
+#ifdef COUPLER
+#include "fetchall.h"
+#endif
 class model{
-    /** @brief A container to hold pointers to all the agents */
+    /** @brief A container to hold pointers to all the locally resident agents\n
+        @details Here locally resident means that all these agents are on the current MPI domain.*/
     std::vector<agent*> agents;
-    /** @brief A container to hold the places */
+    /** @brief A container to hold pointers to agents from another MPI domain.
+       @details These agents are only present if they have travelled from another copy of the model running on a different (HPC) node\n
+                  see \ref coupler below*/
+    std::vector<agent*> travellers;
+    /** @brief A container to hold the local places */
     std::vector<place*> places;
     /** @brief The number of agents to be created */
     long nAgents;
@@ -57,11 +65,34 @@ class model{
       can be reproduced if the same number of threads is used (and the same start random seed), but runs with different numbers of threads\n
       will typically produce different output (to the extent that output is stochastic)*/
     std::vector<randomizer> randoms;
+#ifdef COUPLER
+    /** @brief A pointer to the model coupler, if required.
+        @details This allows for various different models to be coupled together with MPI as specified by \ref fetchall.h \n
+        It can also be used to split this model over several MPI domains, where each domain runs one copy of the model and agents get\n
+        transferred between domains if needed - useful if the model gets large enough that it won't fit in a single (high performance computer) node. \n
+        For example, one might divide the world into two sections (e.g. North and southern hemisphere) - agents then have to cross domain if they travel \n
+        from NH to SH.*/
+    MUIcoupler* coupler;
+#endif
+    /** @brief The name of the MPI domain for use with MUI and this copy of the model */ 
+    std::string domain;
+    /** @brief Count of the agents leaving the domain in this step */
+    long leavercount=0;
 public:
-    /** Constructor for the model - set up the random seed and the output file, then call \ref init to define the agents and the places \n
-        The time reporter class is used to check how long it takes to set up everything. The static timestep class is initialised from the parameter file \n
-        @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
-    model(parameterSettings& parameters){
+    /** @brief Constructor for the model - set up the random seed and the output file, then call \ref init to define the agents and the places \n
+        @details The time reporter class is used to check how long it takes to set up everything. The static timestep class is initialised from the parameter file \n
+        The model allows for there to be mutiple copies to be running simultaneously (possibly coupled together)\n
+        The domain string is a label unique to each running copy. These can be coupled using the MUI coupler \n
+        and MPI - the idea being that a model can be split up across a cluster to allow for very large models \n
+        or to allow the model to be coupled to another kind of model (e.g. an ecosystem model). See \ref fetchall.h \n
+        If this is not needed then the domain is ignored.
+        @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied
+        @param domain A string that defines which domain this is, when using domain decomposition to run multiple models */
+    model(parameterSettings& parameters,std::string dom):domain(dom){
+         //If using the MUI coupler, initialise the domain
+#ifdef COUPLER
+        coupler=new MUIcoupler(domain);
+#endif
         //timestep is a static class - need only set its parameters once, here.
         timeStep t(parameters);
         nAgents=parameters.get<long>("run.nAgents");
@@ -79,7 +110,7 @@ public:
         output<<"step,time(hours),susceptible,infected,recovered,dead"<<std::endl;
         //Initialisation can be slow - check the timing
         auto start=timeReporter::getTime();
-        init(parameters);
+        init(parameters,domain);
         auto end=timeReporter::getTime();
         timeReporter::showInterval("Initialisation took: ", start,end);
     }
@@ -97,7 +128,7 @@ public:
      *  like ./output/experiment.test/run_0000 ./output/experiment.test/run_0001 ... ./output/experiment.test/run_9999 \n
      *  More then 10000 will be ok, but the directory names will spill over to ./output/experiment.test/run_10000 etc. \n
      *  The number can be customised using experiment.run.prefix, which should be set to a power of 10.\n
-     *  A single run can be specified by setting experiment.run.number - if this coincides with and existing run/directory\n
+     *  A single run can be specified by setting experiment.run.number - if this coincides with an existing run/directory\n
      *  then the files there may be overwritten (unless explicit output file names are changed).
         @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
     void setOutputFilePaths(parameterSettings& parameters){
@@ -139,11 +170,10 @@ public:
      *  will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale \n
      *  This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
      */
-    void init(parameterSettings& parameters){
+    void init(parameterSettings& parameters,std::string domain){
         modelFactory& F=modelFactorySelector::select(parameters("model.type"));
         //create the distribution of agents, places and transport
-        F.createAgents(parameters,agents,places);
-
+        F.createAgents(parameters,agents,places,domain);
         //set off the disease! - some number of agents (default 1) is infected at the start.
         //shuffle things so agents are allocated at random
         random_shuffle(agents.begin(),agents.end());
@@ -181,7 +211,17 @@ public:
         @param stepNumber The timestep number passed in from the model class
         @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied*/
     void step(int stepNumber, parameterSettings& parameters){
+
+#ifdef COUPLER
+        //If using the MUI coupler, exchange data. agents may leave to become travellers, and travellers may return
+        coupler->exchange(stepNumber,agents,travellers);
+#endif
+        //count tests whether anything needs to be exchanged with the coupler *from* this domain - still need to run coupler to check for arrivals
+        leavercount=0;
+        //Note where travellers are referred to, these include ONLY agents that have travelled to here from another MUI domain
+        
         //set some timers so loop relative times can be compared - note disease loop tends to get slower as more agents get infected.
+
         auto start=timeReporter::getTime();
         auto end=start;
         if (stepNumber==0)start=timeReporter::getTime();
@@ -191,11 +231,25 @@ public:
         //NB in very large runs (100s of millions of agents) this becomes very inefficient - so use a reduction
         #pragma omp parallel for reduction(+:infected,recovered,dead) 
         for (long i=0;i<agents.size();i++){
-            if (agents[i]->alive()){
-                if (agents[i]->diseased())infected++;
-                if (agents[i]->recovered())recovered++;
-            }else{
-                dead++;
+            if (agents[i]->active()){
+                if (agents[i]->alive()){
+                    if (agents[i]->diseased())infected++;
+                    if (agents[i]->recovered())recovered++;
+                }else{
+                    dead++;
+                }
+            }
+        }
+        //travellers have come here from a remote MPI domain
+        #pragma omp parallel for reduction(+:infected,recovered,dead) 
+        for (long i=0;i<travellers.size();i++){
+            if (travellers[i]->active()){
+                if (travellers[i]->alive()){
+                    if (travellers[i]->diseased())infected++;
+                    if (travellers[i]->recovered())recovered++;
+                }else{
+                    dead++;
+                }
             }
         }
         if (stepNumber==0){
@@ -220,7 +274,11 @@ public:
         //alternatively could be randomized...depends on the idea of how a location works...places could be sub-divided to mimic spatial extent for example.
         #pragma omp parallel for
         for (long i=0;i<agents.size();i++){
-            agents[i]->cough();
+            if (agents[i]->active())agents[i]->cough();
+        }
+        #pragma omp parallel for
+        for (long i=0;i<travellers.size();i++){
+            if (travellers[i]->active())travellers[i]->cough();
         }
         if(stepNumber==0){
             end=timeReporter::getTime();
@@ -231,8 +289,12 @@ public:
         //This is faster here using an RNG separate for each thread
         #pragma omp parallel for
         for (long i=0;i<agents.size();i++){
-            agents[i]->process_disease(randoms[omp_get_thread_num()]);
+            if (agents[i]->active())agents[i]->process_disease(randoms[omp_get_thread_num()]);
             //agents[i]->process_disease(randoms[0]);
+        }
+        #pragma omp parallel for
+        for (long i=0;i<travellers.size();i++){
+            if (travellers[i]->active())travellers[i]->process_disease(randoms[omp_get_thread_num()]);
         }
         if (stepNumber==0){
             end=timeReporter::getTime();
@@ -240,9 +302,19 @@ public:
             start=end;
         }
         //move around, do other things in a location
-        #pragma omp parallel for
+        #pragma omp parallel for  reduction(+:leavercount)
         for (long i=0;i<agents.size();i++){
-            agents[i]->update();
+            if (agents[i]->active()){
+                agents[i]->update(stepNumber);
+                 if (agents[i]->leaver()) leavercount++;
+            }
+        }
+        #pragma omp parallel for reduction(+:leavercount)
+        for (long i=0;i<travellers.size();i++){
+            if (travellers[i]->active()){
+                travellers[i]->update(stepNumber);
+                if (travellers[i]->leaver()) leavercount++;
+            }
         }
         if (stepNumber==0){
             end=timeReporter::getTime();
@@ -260,7 +332,7 @@ public:
             //places[i]->show();
         }
     }
-    /** @brief report current number of agents in the model*/
+    /** @brief report current number of agents in the model - includes both active and inactive */
     unsigned long numberOfAgents(){
         return agents.size();
     }
@@ -271,7 +343,8 @@ public:
     /** @brief report current number of infections*/
     unsigned long numberDiseased(){
         unsigned long n=0;
-        for (auto a:agents)if (a->diseased()) n++;
+        for (auto a:agents)    if (a->active() && a->diseased()) n++;
+        for (auto a:travellers)if (a->active() && a->diseased()) n++;
         return n;
     }
     
