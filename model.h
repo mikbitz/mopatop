@@ -74,6 +74,7 @@ class model{
         from NH to SH.*/
     MUIcoupler* coupler;
 #endif
+    std::vector<long>leavers;
     /** @brief The name of the MPI domain for use with MUI and this copy of the model */ 
     std::string domain;
     /** @brief Count of the agents leaving the domain in this step */
@@ -214,8 +215,9 @@ public:
 
 #ifdef COUPLER
         //If using the MUI coupler, exchange data. agents may leave to become travellers, and travellers may return
-        coupler->exchange(stepNumber,agents,travellers);
+        coupler->exchange(stepNumber,agents,travellers,leavers);
 #endif
+        leavers.clear();
         //count tests whether anything needs to be exchanged with the coupler *from* this domain - still need to run coupler to check for arrivals
         leavercount=0;
         //Note where travellers are referred to, these include ONLY agents that have travelled to here from another MUI domain
@@ -301,19 +303,28 @@ public:
             timeReporter::showInterval("Run time being diseased: ",start,end);
             start=end;
         }
-        //move around, do other things in a location
-        #pragma omp parallel for  reduction(+:leavercount)
+        //move around, do other things in a location (might possibly help to count leavers here - or maybe not
+        #pragma omp parallel for  //reduction(+:leavercount)
         for (long i=0;i<agents.size();i++){
             if (agents[i]->active()){
                 agents[i]->update(stepNumber);
-                 if (agents[i]->leaver()) leavercount++;
+                //if (agents[i]->leaver()) leavercount++;
             }
         }
-        #pragma omp parallel for reduction(+:leavercount)
+        //check for agents leaving the domain
+#ifdef COUPLER
+        #pragma omp parallel for
+        for (long i=0;i<agents.size();i++){
+            if (agents[i]->active() && agents[i]->leaver()){
+                #pragma omp critical
+                 leavers.push_back(i);
+            }
+        }
+#endif
+        #pragma omp parallel for 
         for (long i=0;i<travellers.size();i++){
             if (travellers[i]->active()){
                 travellers[i]->update(stepNumber);
-                if (travellers[i]->leaver()) leavercount++;
             }
         }
         if (stepNumber==0){

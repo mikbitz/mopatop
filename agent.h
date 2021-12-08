@@ -125,6 +125,7 @@ public:
         _active=true;
         _leaver=false;
         _locationIsRemote=false;
+        //this is supposed to set a unique ID, bit *NOT* threadsafe!!
         ID=nextID;
         nextID++;
     }

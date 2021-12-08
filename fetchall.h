@@ -63,8 +63,6 @@ class MUIcoupler {
     mui::uniface<mui::mui_config>* interface;
     /** @brief the name of this domain - unique to each mpi thread */
     std::string domain;
-    /** @brief store a mapping from agent IDs to index in locals */
-    std::map<unsigned long,unsigned long> identities;
     /** @brief set to true to print out (lots of) diagnostic info - only really for debug/test purposes */
     bool verbose;
 public:
@@ -130,8 +128,11 @@ public:
         are set up using a call to \ref outwardTravel in \ref agent.cpp . They are also labelled as needing to leave the domain at the end of their schedule.\n
         Now we can add the returning travellers - we use their (local) ID and index, as transmitted with them from the remote domain to find their corresponding \n
         local copy, activate it and copy in the data sent from the remote domain. The schedule for returning home is set with a call to \ref inwardTravel .
-        */
-    void exchange(int time,std::vector<agent*>& locals,std::vector<agent*>& travellers){
+        @param time The current model time step
+        @param locals The list of agents local to this domain (i.e. excluding travellers)
+        @param travellers The list of agents that have come from the remote domain
+        @param leavers The list of new agents about to leave this domain */
+    void exchange(int time,std::vector<agent*>& locals,std::vector<agent*>& travellers,std::vector<long>& leavers){
         
         // Declare MUI interface and samplers using templates in config.h
         // note: please update types stored in default_config in config.h first to 1-dimensional before compilation
@@ -147,21 +148,29 @@ public:
 //TODO set up the airplane (or other vehicle) to carry the agent at each end, in a way that can generalize to more than two domains, and that knows the domain.
         //count of agents moved this time
         unsigned count=0;
-        //loop over all locals looking for leavers
-        for(unsigned long i=0; i<locals.size(); i++) { //Agents that normally reside on this domain may decide to leave
+        // store a mapping from agent IDs to index in locals */
+        std::map<unsigned long,unsigned long> identities;
+        //this *might* be more efficient in parallel - as numbers returning should be a lot smaller than locals.size()
+        #pragma omp parallel for
+        for(unsigned long i=0; i<locals.size(); i++) { //
             //need to store the index value currently associated with inactive agents for retrieving travellers below
+            //note this might not be the index they originally had when they first left the domain...
+            #pragma omp critical
             if (!locals[i]->active())identities[locals[i]->getID()]=i;
-            if (locals[i]->leaver()){
-                count++;
-                //local copy on this domain pauses
-                locals[i]->deactivate();
-                //once the agent has crossed to the other side, it shouldn't try again! - until its schedule says so in the main model
-                locals[i]->doNotLeaveDomain();
-                //currently use i to label the agent - OK since here we loop over all agents, and immediately fetch below
-                push_loc = static_cast<mui::mui_config::REAL>(i);
-                //locals going travelling are labelled with a zero
-                push_data(0,push_loc,locals[i]);            
-            }
+        }
+        //loop over all locals  leavers- Agents that normally reside on this domain may decide to leave
+        //leavers vector holds the indices into the locals vector
+        for(unsigned long i=0; i<leavers.size(); i++){
+            //push leaver data
+            count++;
+            //local copy on this domain pauses
+            locals[leavers[i]]->deactivate();
+            //once the agent has crossed to the other side, it shouldn't try again! - until its schedule says so in the main model
+            locals[leavers[i]]->doNotLeaveDomain();
+            //currently use i to label the agent - OK since here we loop over all agents, and immediately fetch below
+            push_loc = static_cast<mui::mui_config::REAL>(leavers[i]);
+            //locals going travelling are labelled with a zero
+            push_data(0,push_loc,locals[leavers[i]]);            
         }
         //Now check if travellers are on the way home from this domain
         //we keep the vector of travellers so that they can be re-used for other agents rather than re-allocating memory (which tends to be slow).
@@ -177,7 +186,6 @@ public:
                 push_loc = static_cast<mui::mui_config::REAL>(i);
                 //returning travellers are labelled with a 2
                 push_data(2,push_loc,travellers[i]); 
-                
             }
         }
         if(verbose)std::cout<<"Domain "<<domain<<": counted "<<count<<" leavers at step "<<time<<std::endl;
@@ -224,7 +232,7 @@ public:
                 if(verbose)std::cout<<"I am a passenger, and I ride and I ride"<<std::endl;
                 a->setID(fetch_vals[i]);
                 a->activate();
-                a->outwardTravel();//sets the local place pointers.
+                a->outwardTravel();//sets the local place pointers and schedule.
                 a->setRemoteLocation();//agent will leave domain at end of travel schedule
                 //...copy in necessary data...one value for each after the ID
                 pull_data(i,a,fetch_vals);
@@ -238,7 +246,7 @@ public:
                 assert(locals[identities[fetch_vals[i]]]->getID()==(long)fetch_vals[i]);
                 agent* a=locals[identities[fetch_vals[i]]];
                 a->activate();
-                a->inwardTravel();
+                a->inwardTravel();//sets up return journey
                 //...copy in modified data...one value for each after the ID
                 pull_data(i,a,fetch_vals);
             }
