@@ -105,6 +105,8 @@ class simpleOnePlaceFactory:public modelFactory{
             //some schedules assume that work and tranport exist - set these so as not to cause a model crash
             a->setTransport(places[0]);
             a->setWork(places[0]);
+            //agent internal thread ID counter not thread safe, so set explicitly
+            a->setID(i);
             k++;
             if (k%fr==0)std::cout<<k<<"...";
             agents[i]=a;
@@ -156,6 +158,21 @@ class simpleMobileFactory:public modelFactory{
         if (nHomes==0) nHomes=1;
         if (nWork==0) nWork=1;
         if (nBus==0) nBus=1;
+        //faster to resize the array here, then create places in a parallel loop (individual place memory allocations get done in parallel, but loop is thread-safe)
+        //Currently 4.5e9 agents + 2.1 e9 places on 64 threads on HPC takes about 45 minutes.
+        //one could also subdivide this resizing and gain something in speed by making indiviual sub-vectors on each thread in an omp parallel loop then concatenating them in an omp critical section?
+        //something like this might gain a little bit: - but only seems to save about a minute on the above time...
+        //#pragma omp parallel
+        //{
+        //    long z=(nHomes+nWork+nBus)/omp_get_num_threads();//allocate part of the vector on each thread
+        //    //this variable is private to the thread
+        //    std::vector<place*> vec_private(z);
+        //    //add to the global vector, but avoid races.
+        //    #pragma omp critical
+        //    places.insert(places.end(), vec_private.begin(), vec_private.end());
+        //}
+        //even so after the above, need to make sure we really are the right size in case the number of threads doesn't exactly divide the the size of the vector
+
         places.resize(nHomes+nWork+nBus);
         
         std::cout<<"Starting simple mobile generator..."<<std::endl;
@@ -179,6 +196,8 @@ class simpleMobileFactory:public modelFactory{
         #pragma omp parallel for
         for (long i=0;i<nAgents;i++){
             agent* a=new agent();
+            //set the agent ID explicitly - internal agent ID counter is not thread safe 
+            a->setID(i);
             assert(places[i/agentsPerHome]!=0);
             a->setHome(places[i/agentsPerHome]);
             k++;
