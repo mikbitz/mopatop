@@ -41,7 +41,8 @@ class remoteTravel {
         place* plane;
         /** @brief place to stay while away */
         place* hotel;
-        /** flag to say if this place is on a remote MPI domain */
+        /** @brief flag to say if this place is on a remote MPI domain
+            @details All places are defined on every domain, so that travellers can find out about them, but also so that they can be used for return trips from the remote domain*/
         bool _remoteDomain;
 public:
         /** @brief default constructor is an empty place - agents should not be allowed to travel here! */

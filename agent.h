@@ -101,11 +101,17 @@ public:
     /** @brief A rule to determine whether the agent is about to go away on travel 
         @param step the current model time step*/
     bool holidayTime(long);
-    /** @brief set up the schedule for travelling away */
+    /** @brief set up the schedule for travelling away
+        @details this sets a schedule and a set of places to visit. When there are multiple MPI domains, the copy of a remote agent needs to run this\n
+        with the local places so as the make sure the traveller agent gets a schedule with places that exist on this domain (see \ref fetchall.h). The local agents also calls\n
+        this routine, which allows it to set *local* places (such as return flight) that will be ready for it on return, including if it comes back from a remote domain.*/
     void outwardTravel();
-    /** @brief set up the schedule for returning home */
+    /** @brief set up the schedule for returning home 
+       @details used by returning travellers. If they have come back from a remote MPI domain, their cached return flight can now be used (as set in outward travel)\n
+       note that this is called from \ref fetchall.h aslo*/
     void inwardTravel();
-    /** set a flag to indicate there's a need to move to another domain */
+    /** @brief set a flag to indicate there's a need to move to another domain
+     @details used by \ref fetchall.h for incoming travellers, and by the holidayTime method, where it detects from the remoteTravel object whether it is actually on another domain*/
     void setRemoteLocation();
     /** @brief variable set to true if needing to cross domains */
     bool _locationIsRemote;
