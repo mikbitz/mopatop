@@ -125,7 +125,7 @@ public:
         _active=true;
         _leaver=false;
         _locationIsRemote=false;
-        //this is supposed to set a unique ID, bit *NOT* threadsafe!!
+        //this is supposed to set a unique ID, but *NOT* threadsafe!! Set the ID instead at agent creation.
         ID=nextID;
         nextID++;
     }

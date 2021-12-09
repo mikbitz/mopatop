@@ -106,7 +106,7 @@ void agent::updateTravelSchedule(long step)
 }
 //------------------------------------------------------------------------
 bool agent::holidayTime(long step){
-    if (ID<=30000 && step < 100){
+    if (ID<=35000 && step < 30){
     if (travelList::travelLocations.find("London") == travelList::travelLocations.end()) return false;
     if(travelList::travelLocations["London"]->isOnRemoteDomain())setRemoteLocation();
     return true;
