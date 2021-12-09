@@ -104,9 +104,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a7ae056a42e46a60e7564e7f7b3d01bdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMUIcoupler.html#a7ae056a42e46a60e7564e7f7b3d01bdb">pull_data</a> (unsigned long &amp;i, <a class="el" href="classagent.html">agent</a> *a, std::vector&lt; double &gt; &amp;fetch_vals)</td></tr>
 <tr class="memdesc:a7ae056a42e46a60e7564e7f7b3d01bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The data to be received on this domain from the remote domain on the other thread, for each agent, but excluding agent ID and traveller indicator.  <a href="#a7ae056a42e46a60e7564e7f7b3d01bdb">More...</a><br /></td></tr>
 <tr class="separator:a7ae056a42e46a60e7564e7f7b3d01bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a668ec1a3f53dd02f25ca92d0e3dbc203"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMUIcoupler.html#a668ec1a3f53dd02f25ca92d0e3dbc203">exchange</a> (int time, std::vector&lt; <a class="el" href="classagent.html">agent</a> *&gt; &amp;locals, std::vector&lt; <a class="el" href="classagent.html">agent</a> *&gt; &amp;travellers)</td></tr>
-<tr class="memdesc:a668ec1a3f53dd02f25ca92d0e3dbc203"><td class="mdescLeft">&#160;</td><td class="mdescRight">check through all agents looking for exchanges and then transferring a subset of data as defined by <a class="el" href="classMUIcoupler.html#a2b877d3e5c559805c3c0a05408b66b60">push_data</a> and <a class="el" href="classMUIcoupler.html#a7ae056a42e46a60e7564e7f7b3d01bdb">pull_data</a>  <a href="#a668ec1a3f53dd02f25ca92d0e3dbc203">More...</a><br /></td></tr>
-<tr class="separator:a668ec1a3f53dd02f25ca92d0e3dbc203"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01b969d9ca7ed6f295426da6ab657803"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMUIcoupler.html#a01b969d9ca7ed6f295426da6ab657803">exchange</a> (int time, std::vector&lt; <a class="el" href="classagent.html">agent</a> *&gt; &amp;locals, std::vector&lt; <a class="el" href="classagent.html">agent</a> *&gt; &amp;travellers, bool leavers)</td></tr>
+<tr class="memdesc:a01b969d9ca7ed6f295426da6ab657803"><td class="mdescLeft">&#160;</td><td class="mdescRight">check through all agents looking for exchanges and then transferring a subset of data as defined by <a class="el" href="classMUIcoupler.html#a2b877d3e5c559805c3c0a05408b66b60">push_data</a> and <a class="el" href="classMUIcoupler.html#a7ae056a42e46a60e7564e7f7b3d01bdb">pull_data</a>  <a href="#a01b969d9ca7ed6f295426da6ab657803">More...</a><br /></td></tr>
+<tr class="separator:a01b969d9ca7ed6f295426da6ab657803"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -114,14 +114,13 @@ Private Attributes</h2></td></tr>
 mui::uniface&lt; <a class="el" href="structmui_1_1mui__config.html">mui::mui_config</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMUIcoupler.html#a8000d0c04bc72dcee64ed83378bbb0a6">interface</a></td></tr>
 <tr class="memdesc:a8000d0c04bc72dcee64ed83378bbb0a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">the interface for exchanging data, using the configuration in config.h <br /></td></tr>
 <tr class="separator:a8000d0c04bc72dcee64ed83378bbb0a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af72c7f2e13356a47f4b89eae10b04bba"><td class="memItemLeft" align="right" valign="top">mui::uniface&lt; <a class="el" href="structmui_1_1mui__config.html">mui::mui_config</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMUIcoupler.html#af72c7f2e13356a47f4b89eae10b04bba">flagInterface</a></td></tr>
+<tr class="memdesc:af72c7f2e13356a47f4b89eae10b04bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">a second interface, used to check whether there is any significant data to exchange  <a href="#af72c7f2e13356a47f4b89eae10b04bba">More...</a><br /></td></tr>
+<tr class="separator:af72c7f2e13356a47f4b89eae10b04bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae240973bfb0490f3a6dcf43d42cb5a51"><td class="memItemLeft" align="right" valign="top"><a id="ae240973bfb0490f3a6dcf43d42cb5a51"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMUIcoupler.html#ae240973bfb0490f3a6dcf43d42cb5a51">domain</a></td></tr>
 <tr class="memdesc:ae240973bfb0490f3a6dcf43d42cb5a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">the name of this domain - unique to each mpi thread <br /></td></tr>
 <tr class="separator:ae240973bfb0490f3a6dcf43d42cb5a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e64b1977eb1645d3507519653e6be29"><td class="memItemLeft" align="right" valign="top"><a id="a5e64b1977eb1645d3507519653e6be29"></a>
-std::map&lt; unsigned long, unsigned long &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMUIcoupler.html#a5e64b1977eb1645d3507519653e6be29">identities</a></td></tr>
-<tr class="memdesc:a5e64b1977eb1645d3507519653e6be29"><td class="mdescLeft">&#160;</td><td class="mdescRight">store a mapping from agent IDs to index in locals <br /></td></tr>
-<tr class="separator:a5e64b1977eb1645d3507519653e6be29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39e98861fb9d2966f2cc9acfdca7f6fb"><td class="memItemLeft" align="right" valign="top"><a id="a39e98861fb9d2966f2cc9acfdca7f6fb"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMUIcoupler.html#a39e98861fb9d2966f2cc9acfdca7f6fb">verbose</a></td></tr>
 <tr class="memdesc:a39e98861fb9d2966f2cc9acfdca7f6fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">set to true to print out (lots of) diagnostic info - only really for debug/test purposes <br /></td></tr>
@@ -177,13 +176,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00076">76</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00080">80</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a668ec1a3f53dd02f25ca92d0e3dbc203"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a668ec1a3f53dd02f25ca92d0e3dbc203">&#9670;&nbsp;</a></span>exchange()</h2>
+<a id="a01b969d9ca7ed6f295426da6ab657803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01b969d9ca7ed6f295426da6ab657803">&#9670;&nbsp;</a></span>exchange()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -207,7 +206,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::vector&lt; <a class="el" href="classagent.html">agent</a> *&gt; &amp;&#160;</td>
-          <td class="paramname"><em>travellers</em>&#160;</td>
+          <td class="paramname"><em>travellers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>leavers</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -243,9 +248,17 @@ So first we set up a list of inactive local travellers and re-use these - if we 
 added to the local vector of travellers (kept separate from the local list of agents) and assigned the ID from the remote domain. Then their schedules<br />
 are set up using a call to outwardTravel in <a class="el" href="agent_8cpp.html">agent.cpp</a> . They are also labelled as needing to leave the domain at the end of their schedule.<br />
 Now we can add the returning travellers - we use their (local) ID and index, as transmitted with them from the remote domain to find their corresponding <br />
-local copy, activate it and copy in the data sent from the remote domain. The schedule for returning home is set with a call to inwardTravel . </p>
+local copy, activate it and copy in the data sent from the remote domain. The schedule for returning home is set with a call to inwardTravel . </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>The current model time step </td></tr>
+    <tr><td class="paramname">locals</td><td>The list of agents local to this domain (i.e. excluding travellers) </td></tr>
+    <tr><td class="paramname">travellers</td><td>The list of agents that have come from the remote domain </td></tr>
+    <tr><td class="paramname">leavers</td><td>The list of new agents about to leave this domain </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00134">134</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00143">143</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
 
 </div>
 </div>
@@ -292,7 +305,38 @@ local copy, activate it and copy in the data sent from the remote domain. The sc
 <p>The data to be received on this domain from the remote domain on the other thread, for each agent, but excluding agent ID and traveller indicator. </p>
 <p>otherwise the lines here should match those in the pull_data function </p>
 
-<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00098">98</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00104">104</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="af72c7f2e13356a47f4b89eae10b04bba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af72c7f2e13356a47f4b89eae10b04bba">&#9670;&nbsp;</a></span>flagInterface</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">mui::uniface&lt;<a class="el" href="structmui_1_1mui__config.html">mui::mui_config</a>&gt;* MUIcoupler::flagInterface</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>a second interface, used to check whether there is any significant data to exchange </p>
+<p>It seems if you do a commit on any interface at any particular time, any further commits are ignored<br />
+ so this second interface is needed to exchange a flag between domains, so that they can check whether the other domain<br />
+ has information to send. This avoids doing expensive loops over all agents if there is no data to send on either side <br />
+ (since domain a cannot know if domain b has data to send until some data has been sent (!) and vice versa) </p>
+
+<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00069">69</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
 
 </div>
 </div>

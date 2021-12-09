@@ -117,6 +117,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a50e2ea60804c8a2e8390302569ad6db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">place to stay while away <br /></td></tr>
 <tr class="separator:a50e2ea60804c8a2e8390302569ad6db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc9b552824d13f8b59cbc2f623a106b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classremoteTravel.html#acc9b552824d13f8b59cbc2f623a106b8">_remoteDomain</a></td></tr>
+<tr class="memdesc:acc9b552824d13f8b59cbc2f623a106b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag to say if this place is on a remote MPI domain  <a href="#acc9b552824d13f8b59cbc2f623a106b8">More...</a><br /></td></tr>
 <tr class="separator:acc9b552824d13f8b59cbc2f623a106b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -180,7 +181,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="remoteTravel_8h_source.html#l00053">53</a> of file <a class="el" href="remoteTravel_8h_source.html">remoteTravel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="remoteTravel_8h_source.html#l00054">54</a> of file <a class="el" href="remoteTravel_8h_source.html">remoteTravel.h</a>.</p>
 
 </div>
 </div>
@@ -213,7 +214,7 @@ Private Attributes</h2></td></tr>
  so that they can manage a return trip on a local plane. Named locations therefore need to be setup on each<br />
  domain consistently (e.g. so that "London" is remote on one domain, but local on another) </p>
 
-<p class="definition">Definition at line <a class="el" href="remoteTravel_8h_source.html#l00070">70</a> of file <a class="el" href="remoteTravel_8h_source.html">remoteTravel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="remoteTravel_8h_source.html#l00071">71</a> of file <a class="el" href="remoteTravel_8h_source.html">remoteTravel.h</a>.</p>
 
 </div>
 </div>
@@ -251,7 +252,7 @@ It is expected that agents will take care of remebering their home location and 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="remoteTravel_8h_source.html#l00062">62</a> of file <a class="el" href="remoteTravel_8h_source.html">remoteTravel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="remoteTravel_8h_source.html#l00063">63</a> of file <a class="el" href="remoteTravel_8h_source.html">remoteTravel.h</a>.</p>
 
 </div>
 </div>
@@ -275,9 +276,11 @@ It is expected that agents will take care of remebering their home location and 
   </tr>
 </table>
 </div><div class="memdoc">
-<p>flag to say if this place is on a remote MPI domain </p>
 
-<p class="definition">Definition at line <a class="el" href="remoteTravel_8h_source.html#l00045">45</a> of file <a class="el" href="remoteTravel_8h_source.html">remoteTravel.h</a>.</p>
+<p>flag to say if this place is on a remote MPI domain </p>
+<p>All places are defined on every domain, so that travellers can find out about them, but also so that they can be used for return trips from the remote domain </p>
+
+<p class="definition">Definition at line <a class="el" href="remoteTravel_8h_source.html#l00046">46</a> of file <a class="el" href="remoteTravel_8h_source.html">remoteTravel.h</a>.</p>
 
 </div>
 </div>

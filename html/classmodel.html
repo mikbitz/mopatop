@@ -166,10 +166,10 @@ std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a9991af4d4489efcbd7ad52de2be330de">domain</a></td></tr>
 <tr class="memdesc:a9991af4d4489efcbd7ad52de2be330de"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the MPI domain for use with MUI and this copy of the model. <br /></td></tr>
 <tr class="separator:a9991af4d4489efcbd7ad52de2be330de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31a9ed03e674f6871e6ce12d0fa0de77"><td class="memItemLeft" align="right" valign="top"><a id="a31a9ed03e674f6871e6ce12d0fa0de77"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a31a9ed03e674f6871e6ce12d0fa0de77">leavercount</a> =0</td></tr>
-<tr class="memdesc:a31a9ed03e674f6871e6ce12d0fa0de77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count of the agents leaving the domain in this step. <br /></td></tr>
-<tr class="separator:a31a9ed03e674f6871e6ce12d0fa0de77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c7e914c0b88ec4393327d7e0c86dd92"><td class="memItemLeft" align="right" valign="top"><a id="a7c7e914c0b88ec4393327d7e0c86dd92"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodel.html#a7c7e914c0b88ec4393327d7e0c86dd92">leavers</a> =false</td></tr>
+<tr class="memdesc:a7c7e914c0b88ec4393327d7e0c86dd92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag if agents leaving the domain in this step. <br /></td></tr>
+<tr class="separator:a7c7e914c0b88ec4393327d7e0c86dd92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The model contains all the agents and places, and steps them through time. </p>
@@ -268,7 +268,7 @@ If this is not needed then the domain is ignored. </p><dl class="params"><dt>Par
 </dl>
 <p>Right now this is here just to output final values at the end of the last step. </p>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00189">189</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00190">190</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -319,7 +319,7 @@ If this is not needed then the domain is ignored. </p><dl class="params"><dt>Par
 will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale <br />
 This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns. </p>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00173">173</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00174">174</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -363,7 +363,7 @@ then the files there may be overwritten (unless explicit output file names are c
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00134">134</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00135">135</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -414,7 +414,7 @@ Also to avoid any systematic biases, agents need to all finish their contaminati
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00213">213</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00214">214</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
