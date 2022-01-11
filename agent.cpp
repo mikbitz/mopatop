@@ -81,12 +81,12 @@ void agent::updateTravelSchedule(long step)
 
     //are we about to reach end of schedule? - used for travel away from home
     if (scheduleTimer-timeStep::deltaT()<=0 && currentPlace==home){
-        if (scheduleType==scheduleList::returnTrip   ){
+        if (scheduleType==scheduleList::returnTrip   ){//returning from time away from home
             setTransport(placeCache[vehicle]);
             scheduleType=originalScheduleType;
             initTravelSchedule();
         }
-        else if (scheduleType==scheduleList::remoteTravel ){//unstack home - will be on local aeroplane, as set up by getFlight.
+        else if (scheduleType==scheduleList::remoteTravel ){//set up return trip unstack home - will be on local aeroplane, as set up by visit in outwardTravel.
             if (_locationIsRemote)leaveDomain();
             inwardTravel();
         }
@@ -106,6 +106,7 @@ void agent::updateTravelSchedule(long step)
 }
 //------------------------------------------------------------------------
 bool agent::holidayTime(long step){
+    //rule for deciding to go on holiday
     if (ID<=35000 && step < 30){
     if (travelList::travelLocations.find("London") == travelList::travelLocations.end()) return false;
     if(travelList::travelLocations["London"]->isOnRemoteDomain())setRemoteLocation();
