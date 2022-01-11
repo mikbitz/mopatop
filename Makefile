@@ -1,5 +1,6 @@
 #!/bin/bash
 #If using MPI and the MUI coupler use the command "make WITH_MPI_COUPLER=1"
+#NB do a make clean first time if you previously compiled without the coupler
 ifeq ($(WITH_MPI_COUPLER),1)
 CC	= mpicxx
 CXXFLAGS= -I/usr/lib64/mpi/gcc/mpich/include -std=c++17 -O3 -fopenmp -DCOUPLER
