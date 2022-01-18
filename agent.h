@@ -37,13 +37,14 @@ class travelSchedule;
 class place;
 #include"disease.h"
 #include "schedulelist.h"
-
+class activityType;
 /**
  * @brief The main agent class - each agent represents one person
  * @details Agents move from place to place, using the travelSchedule. If they have the disease, the cough at each place they visit and contaminate it \n
  * If they are in a contaminated location, they may contract the disease. Additionally they may do other things in their current location.
 */
 class agent{
+    activityType* _activity;
     /** @brief A static (class-level) variable that stores a list of all possible allSchedules
         @details the list is indexed by \ref scheduleList::scheduleTypes - a single instance minmimizes storage, as the schedules themselves are rather memory expensive */
     static scheduleList allSchedules;
@@ -77,7 +78,7 @@ public:
      * @details So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example.
      * Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567.
      * transport vehicles are places, albeit moveable!*/
-    enum placeTypes{home,work,vehicle};
+    enum placeTypes{home,work,vehicle,hospital,shop};
     /** @brief An array of pointers to places 
      *  @details - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use the name (home.work etc.) \n
        intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!).
@@ -123,18 +124,7 @@ public:
      */
 
 
-    agent(){
-        _diseased=false;
-        _immune=false;
-        _recovered=false;
-        _alive=true;
-        _active=true;
-        _leaver=false;
-        _locationIsRemote=false;
-        //this is supposed to set a unique ID, but *NOT* threadsafe!! Set the ID instead at agent creation.
-        ID=nextID;
-        nextID++;
-    }
+    agent();
 
     /** @brief Function to change the agent from one place's list of occupants to another 
      *  @details- not used just at present - this function is very expensive on compute time 
@@ -225,17 +215,11 @@ public:
         _recovered=recovery;
     }
     /** @brief do any things that need to be done at home */
-    void atHome(){
-        //if (ID==0)std::cout<<"at Home "<<std::endl;
-    }
+    void atHome();
     /** @brief do any things that need to be done at work */
-    void atWork(){
-        //if (ID==0)std::cout<<"at Work"<<std::endl;
-    }
+    void atWork();
     /** @brief do any things that need to be done while travelling */
-    void inTransit(){
-        //if (ID==0)std::cout<<"travelling"<<std::endl;
-    }
+    void inTransit();
     /** @brief set up the place vector to include being at home 
      * @details - needs to be called when places are being created by the model class 
      @param pu a pointer to the specific home location for this agent */
@@ -318,5 +302,35 @@ public:
     bool active(){
          return _active;
     }
+    /** @brief set location according to current activity */
+    void updateLocation();
+    
 };
+
+class activityType{
+    agent::placeTypes _p;
+    int _expiryTime;
+public:
+    activityType(){
+        _expiryTime=9999;
+        _p=agent::home;
+    }
+    activityType(agent::placeTypes p,int T):_p(p),_expiryTime(T){
+    }
+    void update(agent::placeTypes p,int T){
+        _p=p;
+        _expiryTime=T;
+    }
+    bool expired(){
+        if (_expiryTime==9999) return false;
+        return _expiryTime<=timeStep::getTimeOfDay();
+    }    
+    bool expiresAfter(int T){
+        return (_expiryTime>=T);
+    }
+    agent::placeTypes place(){
+        return _p;
+    }
+};
+
 #endif // AGENT_H_INCLUDED
