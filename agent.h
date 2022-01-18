@@ -44,7 +44,7 @@ class activityType;
  * If they are in a contaminated location, they may contract the disease. Additionally they may do other things in their current location.
 */
 class agent{
-    activityType* _activity;
+
     /** @brief A static (class-level) variable that stores a list of all possible allSchedules
         @details the list is indexed by \ref scheduleList::scheduleTypes - a single instance minmimizes storage, as the schedules themselves are rather memory expensive */
     static scheduleList allSchedules;
@@ -302,35 +302,8 @@ public:
     bool active(){
          return _active;
     }
-    /** @brief set location according to current activity */
-    void updateLocation();
-    
+
 };
 
-class activityType{
-    agent::placeTypes _p;
-    int _expiryTime;
-public:
-    activityType(){
-        _expiryTime=9999;
-        _p=agent::home;
-    }
-    activityType(agent::placeTypes p,int T):_p(p),_expiryTime(T){
-    }
-    void update(agent::placeTypes p,int T){
-        _p=p;
-        _expiryTime=T;
-    }
-    bool expired(){
-        if (_expiryTime==9999) return false;
-        return _expiryTime<=timeStep::getTimeOfDay();
-    }    
-    bool expiresAfter(int T){
-        return (_expiryTime>=T);
-    }
-    agent::placeTypes place(){
-        return _p;
-    }
-};
 
 #endif // AGENT_H_INCLUDED

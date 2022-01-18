@@ -41,7 +41,7 @@ std::map<std::string,remoteTravel*> travelList::travelLocations;
 
 //------------------------------------------------------------------------
 agent::agent(){
-    _activity=new activityType();
+
     _diseased=false;
     _immune=false;
     _recovered=false;
@@ -78,23 +78,23 @@ void agent::atHome(){
     if (ID==0)std::cout<<"at Home "<<std::endl;
     int T=timeStep::getTimeOfDay();
     int day=timeStep::getDayOfWeek();
-    if (_activity->expired() && T>=800 && T<900 && day < 5)_activity->update(vehicle,900);//go to work unless the weekend
+    if (scheduleType==scheduleList::mobile && T>=800 && T<900 && day < 5)currentPlace=vehicle;//go to work unless the weekend
 }
 //------------------------------------------------------------------------
 
 
 void agent::atWork(){
     if (ID==0)std::cout<<"at Work"<<std::endl;
-    if (_activity->expired())_activity->update(vehicle,1800);
+    if (timeStep::getTimeOfDay()>=1700)currentPlace=vehicle;
 }
 //------------------------------------------------------------------------
 
 void agent::inTransit(){
     if (ID==0)std::cout<<"travelling"<<std::endl;
-    if (_activity->expired() && _activity->expiresAfter(1800))
-        _activity->update(home,800);
+    if (timeStep::getTimeOfDay()>=1800)
+        currentPlace=home;
     else 
-        _activity->update(work,1700);
+       if (timeStep::getTimeOfDay()<1700) currentPlace=work;
     
 }
 //------------------------------------------------------------------------
@@ -104,7 +104,7 @@ void agent::update(long step)
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
         if (currentPlace==vehicle)inTransit();
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver
-updateLocation();
+//updateLocation();
         //updateTravelSchedule(step);
 if (ID==0)std::cout<<timeStep::getTimeOfDay()<<" "<< timeStep::getDayOfWeek()<<std::endl;
         //moving agents between data structure is expensive - only needed if agents need direct agent-to-agent interactions in a place -
@@ -112,10 +112,6 @@ if (ID==0)std::cout<<timeStep::getTimeOfDay()<<" "<< timeStep::getDayOfWeek()<<s
         //(this could allow for remote meetings/phone calls?!)
         //moveTo(currentPlace);
 
-}
-void agent::updateLocation(){
-   currentPlace=_activity->place();
-//activities with time=9999 never expire (e.g. at hospital until better)
 }
 //------------------------------------------------------------------------
 void agent::updateTravelSchedule(long step)
@@ -188,7 +184,7 @@ void agent::advanceTravelSchedule(){
 void agent::initTravelSchedule(parameterSettings& params){       
    //by default we go to the schedule defined by by the parameter file
    initTravelSchedule(params("schedule.type"));
-    if (params("schedule.type")=="mobile")_activity->update(home,800);
+
 }
 //------------------------------------------------------------------------
 void agent::initTravelSchedule(std::string s){       
