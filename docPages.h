@@ -95,7 +95,8 @@
  * coughing in a place before any are allowed to update their infection status)\n
  * However, agents also have an event-based schedule - so the regular timestep does not preclude agents having \n
  * heterogenous activities with respect to travel or other actions, provided that the schedule time-grain is not shorter\n
- * than the main timestep (or the schedule has its own sub-time steps for taking forward an activity).
+ * than the main timestep (or the schedule has its own sub-time steps for taking forward an activity).\n
+ * Hours of the day and day of the week are calculated based on a model start (step 0) taking place at midnight at the start of monday.
  * @subsubsection rd random numbers
  * A single pseudo random number sequence is generated using the mersenne twister algorithm
  * @subsubsection tr benchmarking

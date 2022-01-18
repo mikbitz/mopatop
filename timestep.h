@@ -46,7 +46,10 @@
  * parameters.readParameters("../defaultParameterFile");
  * timeStep t(parameters);
  * \endcode 
- Note that currently months (leap years) are not properly handled as they are all assumed to be 30 days (365 days), and dates are not available!*/ 
+ Note that currently months (leap years) are not properly handled as they are all assumed to be 30 days (365 days), and dates are not available!
+ However, the model stepNumber can be used to calculate the number of hours and minutes, and the weekday since the start of the model run\n
+ assuming that the run starts on monday at 0000h. Each timestep the model updates the stepnumber help here for this purpose, so that
+ the static stepNumber variable always holds the value of the model step number, and this can be accessed from anywherein the code.*/ 
 class timeStep{
     /** @brief number of seconds in a year */
     static double years;
