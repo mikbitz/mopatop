@@ -34,7 +34,6 @@
 #include "travelschedule.h"
 #include "remoteTravel.h"
 #include "modelFactory.h"
-#include"schedulelist.h"
 
 //static list of travel destinations away from home
 std::map<std::string,remoteTravel*> travelList::travelLocations;
@@ -78,7 +77,7 @@ void agent::atHome(){
     if (ID==0)std::cout<<"at Home "<<std::endl;
     int T=timeStep::getTimeOfDay();
     int day=timeStep::getDayOfWeek();
-    if (scheduleType==scheduleList::mobile && T>=800 && T<900 && day < 5)currentPlace=vehicle;//go to work unless the weekend
+    if (scheduleType==mobile && T>=800 && T<900 && day < 5)currentPlace=vehicle;//go to work unless the weekend
 }
 //------------------------------------------------------------------------
 
@@ -104,8 +103,7 @@ void agent::update(long step)
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
         if (currentPlace==vehicle)inTransit();
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver
-//updateLocation();
-        //updateTravelSchedule(step);
+
 if (ID==0)std::cout<<timeStep::getTimeOfDay()<<" "<< timeStep::getDayOfWeek()<<std::endl;
         //moving agents between data structure is expensive - only needed if agents need direct agent-to-agent interactions in a place -
         //might be made cheaper by allowing agents to be present in multiple places, but only active in one.
@@ -119,12 +117,12 @@ void agent::updateTravelSchedule(long step)
 
     //are we about to reach end of schedule? - used for travel away from home
     if (scheduleTimer-timeStep::deltaT()<=0 && currentPlace==home){
-        if (scheduleType==scheduleList::returnTrip   ){
+        if (scheduleType==returnTrip   ){
             setTransport(placeCache[vehicle]);
             scheduleType=originalScheduleType;
             initTravelSchedule();
         }
-        else if (scheduleType==scheduleList::remoteTravel ){//unstack home - will be on local aeroplane, as set up by getFlight.
+        else if (scheduleType==remoteTravel ){//unstack home - will be on local aeroplane, as set up by visit.
             if (_locationIsRemote)leaveDomain();
             inwardTravel();
         }
@@ -172,11 +170,11 @@ void agent::advanceTravelSchedule(){
     scheduleTimer-=timeStep::deltaT();//reduce by actual time represented by this timestep (since schedule is defined in hours rater than timesteps)
     if (scheduleTimer<=0){
 
-        currentPlace=allSchedules[scheduleType].getNextLocation(schedulePoint);
+        //currentPlace=allSchedules[scheduleType].getNextLocation(schedulePoint);
         //the agent controls whether to step to the next location on the schedule - default is to step forward - otherwise they may want to step back...
         //e.g by calling schedule->getcurrentDestination rather than incrementing schedulePoint.
-        schedulePoint=allSchedules[scheduleType].increment(schedulePoint);
-        scheduleTimer=allSchedules[scheduleType].getTimeAtCurrentPlace(schedulePoint);
+        //schedulePoint=allSchedules[scheduleType].increment(schedulePoint);
+        //scheduleTimer=allSchedules[scheduleType].getTimeAtCurrentPlace(schedulePoint);
 
     }
 }
@@ -189,17 +187,27 @@ void agent::initTravelSchedule(parameterSettings& params){
 //------------------------------------------------------------------------
 void agent::initTravelSchedule(std::string s){       
 
-   scheduleType=allSchedules.getType(s);
+   scheduleType=getScheduleType(s);
    initTravelSchedule();
+}
+//------------------------------------------------------------------------
+agent::scheduleTypes agent::getScheduleType(std::string scheduleString){
+    scheduleTypes s=stationary;
+    if      (scheduleString=="stationary"  )s=stationary;
+    else if (scheduleString=="mobile"      )s=mobile;
+    else if (scheduleString=="remoteTravel")s=remoteTravel;
+    else if (scheduleString=="returnTrip"  )s=returnTrip;
+    else std::cout<<"Unknown schedule type:"<<scheduleString<<" in scheduleList::getType - defaulting to stationary"<<std::endl;
+    return s;
 }
 //------------------------------------------------------------------------
 void agent::initTravelSchedule(){       
 
-   schedulePoint=allSchedules[scheduleType].getStartPoint();
+   //schedulePoint=allSchedules[scheduleType].getStartPoint();
    scheduleTimer=0;//assume we are at the end of the previous event in the schedule.
-   currentPlace=allSchedules[scheduleType].getCurrentDestination(schedulePoint);
+   //currentPlace=allSchedules[scheduleType].getCurrentDestination(schedulePoint);
    //go to the start of the next event
-   advanceTravelSchedule();
+   //advanceTravelSchedule();
 }
 //------------------------------------------------------------------------
 void agent::cough()
@@ -213,4 +221,4 @@ void agent::cough()
 
 //static variables have to be defined outside the header file
 unsigned long agent::nextID=0;
-scheduleList agent::allSchedules;
+

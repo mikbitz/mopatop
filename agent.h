@@ -74,11 +74,14 @@ public:
     /** @brief Unique agent identifier - should be able to go up to 4e9 */
     unsigned long ID;
 
-    /** @brief This enum associates a set of integers with names. 
+    /** @brief This enum associates a set of integers with names, in order to identify types of place. 
      * @details So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example.
      * Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567.
      * transport vehicles are places, albeit moveable!*/
     enum placeTypes{home,work,vehicle,hospital,shop};
+    /** @brief This enum identifies types of travel schedule 
+     * @details So stationary=0, mobile=1 etc. This allows meaningful names to be used to refer to the type of schedule, for example.*/
+    enum scheduleTypes{stationary,mobile,remoteTravel,returnTrip};
     /** @brief An array of pointers to places 
      *  @details - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use the name (home.work etc.) \n
        intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!).
@@ -94,9 +97,9 @@ public:
     /** @brief an integer that picks out the current step through the travel schedule */
     unsigned schedulePoint;
     /** @brief The current type of travel schedule     */
-    scheduleList::scheduleTypes scheduleType;
+    scheduleTypes scheduleType;
     /** @brief Place to hold schedule type if switching current schedule to an alternative (e.g. on holiday)    */
-    scheduleList::scheduleTypes originalScheduleType;
+    scheduleTypes originalScheduleType;
     /** @brief Counts down the time spent at the current location     */  
     double scheduleTimer=0;
     /** @brief A rule to determine whether the agent is about to go away on travel 
@@ -162,6 +165,8 @@ public:
         If so get the next place on the schedule as pointed to by schedulePoint+1
         see \ref agent.cpp for definition*/
     void advanceTravelSchedule();
+    /** convert a string schedule name (e.g. from the parameter file) to one of the schedule type enums */
+    scheduleTypes getScheduleType(std::string scheduleType);
     /** @brief if you have the disease, contaminate the current place  - call every timestep \n
      see \ref agent.cpp for definition*/
     void cough();
