@@ -65,6 +65,7 @@ class timeStep{
     /** @brief Units for the timestep  - number of seconds in \ref dt will be set as required.
         @details can be years,months,days,hours,minutes or seconds*/
     static std::string units;
+    static int stepNumber;
 public:
 
     /** Default constructor sets timestep to be  in hours */
@@ -130,42 +131,66 @@ public:
         return units;
     }
     //------------------------------------------------------------------------
-    /** @brief set the timestep value in seconds - so that the user need not know that this is the representation  */
+    /** @brief set the number of model steps since the start of the run   */
+    static void setStepNumber(int s){
+        stepNumber=s;
+    }
+    //------------------------------------------------------------------------
+    /** @brief return the current number of model steps since the start of the run  */
+    static int getStepNumber(){
+        return stepNumber;
+    }
+    //------------------------------------------------------------------------
+    /** @brief return a representation of the time of day as in 24 hour clock e.g. 914 for for 14 minutes past nine in the morning  
+     It is assumed that the model run starts at midnight i.e. step 0 is 0000h */
+    static int getTimeOfDay(){
+        int numHours=int(stepNumber*deltaT()/hour())%24;
+        int numMin=int(stepNumber*deltaT()/minute())%60;
+        return numHours*100+numMin;
+    }
+        //------------------------------------------------------------------------
+    /** @brief return a representation of the day of the week as an integer with 0=Mon, 1=Tue etc.  
+      The model run is assumed to start on a Monday*/
+    static int getDayOfWeek(){
+        return int(stepNumber*deltaT()/hour()/24)%7;
+    }
+    //------------------------------------------------------------------------
+    /** @brief set the timestep value in seconds   */
     static void setdeltaT(double sec){
         dt=sec;
     }
     //------------------------------------------------------------------------
-    /** @brief report the timestep value in seconds - so that the user need not know that this is the representation  */
+    /** @brief report the timestep value in seconds  */
     static double deltaT(){
         return dt;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for a (365 day )year - so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for a (365 day )year  */
     static double year(){
         return years;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for a nominal (30 day) month - so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for a nominal (30 day) month  */
     static double month(){
         return months;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for a day - so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for a day   */
     static double day(){
         return days;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for an hour - so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for an hour   */
     static double hour(){
         return hours;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for a minute- so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for a minute */
     static double minute(){
         return minutes;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for a second - so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for a second  */
     static double second(){
         return seconds;
     }

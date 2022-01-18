@@ -17,3 +17,4 @@ double timeStep::minutes=60;
 double timeStep::seconds=1;
 double timeStep::dt=3600;
 std::string timeStep::units="hours";
+int timeStep::stepNumber=0;
