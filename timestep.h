@@ -28,6 +28,7 @@
  **/
 
 #include<string>
+#include <ctime>
 #include"parameters.h"
 /** @brief A static class to set up the real-world times that apply to a timestep
 *   @details The idea here is that the code will use a timestep in seconds, but the user need not know this.\n
@@ -68,7 +69,12 @@ class timeStep{
     /** @brief Units for the timestep  - number of seconds in \ref dt will be set as required.
         @details can be years,months,days,hours,minutes or seconds*/
     static std::string units;
+    /** @brief the current model step - updated in ther step method of model.h every timestep */
     static int stepNumber;
+    /** @brief the date that the current model represents */
+    static tm *date;
+    /** @brief seconds since Jan. 1 1970 at the start of the model */
+    static time_t initialSeconds;
 public:
 
     /** Default constructor sets timestep to be  in hours */
@@ -151,11 +157,21 @@ public:
         int numMin=int(stepNumber*deltaT()/minute())%60;
         return numHours*100+numMin;
     }
-        //------------------------------------------------------------------------
+    //------------------------------------------------------------------------
     /** @brief return a representation of the day of the week as an integer with 0=Mon, 1=Tue etc.  
       The model run is assumed to start on a Monday*/
     static int getDayOfWeek(){
         return int(stepNumber*deltaT()/hour()/24)%7;
+    }
+    //------------------------------------------------------------------------
+    static void reportDate(){
+        date->tm_year=70;
+        date->tm_mon=0;
+        date->tm_mday=1;
+        date->tm_min=0;
+        date->tm_hour=1;
+        date->tm_sec=0;
+        std::cout<<"date "<<asctime(date)<<" "<<mktime(date)<<std::endl;
     }
     //------------------------------------------------------------------------
     /** @brief set the timestep value in seconds   */

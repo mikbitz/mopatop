@@ -172,6 +172,7 @@ public:
      *  This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
      */
     void init(parameterSettings& parameters,std::string domain){
+        timeStep::reportDate();
         modelFactory& F=modelFactorySelector::select(parameters("model.type"));
         //create the distribution of agents, places and transport
         F.createAgents(parameters,agents,places,domain);
@@ -180,6 +181,7 @@ public:
         random_shuffle(agents.begin(),agents.end());
         long num=std::min((long)parameters.get<long>("disease.simplistic.initialNumberInfected"),(long)agents.size());
         for (long i=0;i<num;i++)agents[i]->becomeInfected();
+        
         
     }
     //------------------------------------------------------------------------
@@ -228,6 +230,7 @@ public:
         auto end=start;
         //The timestep class needs to know the current time step so that this can be used in thing like calculating the day of the week
         timeStep::setStepNumber(stepNumber);
+
         //timereporters are used to check how long parts of the model take to run...at least for the first step
         if (stepNumber==0)start=timeReporter::getTime();
         //counts the totals

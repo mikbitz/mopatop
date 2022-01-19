@@ -18,3 +18,7 @@ double timeStep::seconds=1;
 double timeStep::dt=3600;
 std::string timeStep::units="hours";
 int timeStep::stepNumber=0;
+//use teh ctime data system - initialise the seconds to the current system time
+time_t timeStep::initialSeconds=time(0);
+//convert to a date structure.
+tm *timeStep::date=gmtime(&initialSeconds);
