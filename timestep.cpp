@@ -18,7 +18,13 @@ double timeStep::seconds=1;
 double timeStep::dt=3600;
 std::string timeStep::units="hours";
 int timeStep::stepNumber=0;
-//use teh ctime data system - initialise the seconds to the current system time
-time_t timeStep::initialSeconds=time(0);
-//convert to a date structure.
-tm *timeStep::date=gmtime(&initialSeconds);
+int timeStep::monthDays[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+//default to Mon 1 Jan 1900 00:00:00
+int timeStep::currentMonth=0;
+int timeStep::currentDayOfMonth=0;
+int timeStep::currentWeekDay=0;
+int timeStep::currentYear=1900;
+int timeStep::currentHour=0;
+int timeStep::currentMinute=0;
+int timeStep::currentSeconds=0;
+

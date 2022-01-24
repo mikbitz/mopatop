@@ -228,8 +228,7 @@ public:
 
         auto start=timeReporter::getTime();
         auto end=start;
-        //The timestep class needs to know the current time step so that this can be used in thing like calculating the day of the week
-        timeStep::setStepNumber(stepNumber);
+
 
         //timereporters are used to check how long parts of the model take to run...at least for the first step
         if (stepNumber==0)start=timeReporter::getTime();
@@ -340,6 +339,8 @@ public:
         for (long i=0;i<places.size();i++){
             //places[i]->show();
         }
+        //The timestep class needs to know the current time step so that this can be used in thing like calculating the day of the week
+        timeStep::update();
     }
     /** @brief report current number of agents in the model - includes both active and inactive */
     unsigned long numberOfAgents(){

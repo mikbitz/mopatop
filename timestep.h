@@ -75,6 +75,14 @@ class timeStep{
     static tm *date;
     /** @brief seconds since Jan. 1 1970 at the start of the model */
     static time_t initialSeconds;
+    static int monthDays[12];
+    static int currentMonth;
+    static int currentDayOfMonth;
+    static int currentWeekDay;
+    static int currentYear;
+    static int currentHour;
+    static int currentMinute;
+    static int currentSeconds;
 public:
 
     /** Default constructor sets timestep to be  in hours */
@@ -141,6 +149,43 @@ public:
     }
     //------------------------------------------------------------------------
     /** @brief set the number of model steps since the start of the run   */
+    static void update(){
+        stepNumber++;
+        currentSeconds+=deltaT();//deltaT is always in seconds
+        if (currentSeconds>=60){
+            currentMinute+=currentSeconds/60;
+            currentSeconds=currentSeconds%60;
+        }
+        if (currentMinute>=60){
+            currentHour+=currentMinute/60;
+            currentMinute=currentMinute%60;
+        }
+        if (currentHour>=24){
+            currentWeekDay+=(currentHour/24);
+            currentWeekDay=currentWeekDay%7;
+            currentDayOfMonth+=currentHour/24;
+            currentHour=currentHour%24;
+        }
+        int leapday=0;
+        if (currentDayOfMonth>=monthDays[currentMonth]){
+            if (currentMonth==1){//February, since months run from 0 to 11
+                //leap year if divisible by 4 unless a century in which case needs to be divisible by 400
+                if(currentYear%400==0 || (currentYear%4==0 && currentYear%100!=0))leapday=1;
+            }
+            while(currentDayOfMonth>=monthDays[currentMonth]+leapday){
+                currentDayOfMonth-=monthDays[currentMonth]+leapday;
+                currentMonth++;
+                if (currentMonth!=1) leapday=0;
+            }
+        }
+        if (currentMonth>=12){
+            currentYear+=currentMonth/12;
+            currentMonth=currentMonth%12;
+        }
+        reportDate();
+    }
+    //------------------------------------------------------------------------
+    /** @brief set the number of model steps since the start of the run   */
     static void setStepNumber(int s){
         stepNumber=s;
     }
@@ -153,25 +198,33 @@ public:
     /** @brief return a representation of the time of day as in 24 hour clock e.g. 914 for for 14 minutes past nine in the morning  
      It is assumed that the model run starts at midnight i.e. step 0 is 0000h */
     static int getTimeOfDay(){
-        int numHours=int(stepNumber*deltaT()/hour())%24;
-        int numMin=int(stepNumber*deltaT()/minute())%60;
-        return numHours*100+numMin;
+        return currentHour*100+currentMinute;
     }
     //------------------------------------------------------------------------
     /** @brief return a representation of the day of the week as an integer with 0=Mon, 1=Tue etc.  
       The model run is assumed to start on a Monday*/
     static int getDayOfWeek(){
-        return int(stepNumber*deltaT()/hour()/24)%7;
+        return currentWeekDay;
     }
     //------------------------------------------------------------------------
     static void reportDate(){
-        date->tm_year=70;
-        date->tm_mon=0;
-        date->tm_mday=1;
-        date->tm_min=0;
-        date->tm_hour=1;
-        date->tm_sec=0;
-        std::cout<<"date "<<asctime(date)<<" "<<mktime(date)<<std::endl;
+        std::cout<<"wday (mon=0) "<<currentWeekDay<<" ";
+        std::cout<<currentYear<<" ";
+        std::cout<<currentMonth<<" ";
+        std::cout<<currentDayOfMonth<<" ";
+        std::cout<<currentHour<<":";
+        std::cout<<currentMinute<<":";
+        std::cout<<currentSeconds<<":";
+    }
+    //------------------------------------------------------------------------
+    static void setDate(int year,int month,int day,int monthday,int hour,int min,int sec){
+        currentMonth=month;
+        currentWeekDay=day;
+        currentYear=year;
+        currentHour=hour;
+        currentMinute=min;
+        currentSeconds=sec;
+        currentDayOfMonth=monthday;
     }
     //------------------------------------------------------------------------
     /** @brief set the timestep value in seconds   */
