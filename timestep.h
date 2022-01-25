@@ -25,10 +25,10 @@
  * 
  * @author Mike Bithell
  * @date 17/08/2021
+ * Modified 25/1/21 to include dates
  **/
 
 #include<string>
-#include <ctime>
 #include"parameters.h"
 /** @brief A static class to set up the real-world times that apply to a timestep
 *   @details The idea here is that the code will use a timestep in seconds, but the user need not know this.\n
@@ -47,14 +47,23 @@
  * parameters.readParameters("../defaultParameterFile");
  * timeStep t(parameters);
  * \endcode 
- Note that currently months (leap years) are not properly handled as they are all assumed to be 30 days (365 days), and dates are not available!
- However, the model stepNumber can be used to calculate the number of hours and minutes, and the weekday since the start of the model run\n
- assuming that the run starts on monday at 0000h. Each timestep the model updates the stepnumber help here for this purpose, so that
- the static stepNumber variable always holds the value of the model step number, and this can be accessed from anywherein the code.*/ 
+ The model stepNumber can be used to calculate the number of hours and minutes, and the weekday since the start of the model run.\n
+ Each timestep the model updates the stepnumber held here for this purpose, so that  the static stepNumber variable always holds the value of \n
+ the model step number, and this can be accessed from anywhere in the code. This is done by calling the timestep::update() method each timestep.\n
+ This adds one to the stepNumber, and then calculates the date given the starting date for the model (defaults to Mon 1 jan 1900, as a known day).\n
+ Days and monthsminutes and hours  are held as integers starting at zero to make date calculations easier.\n
+ At present there are no time zones available, so dates are calculated in nominal UTC (ignoring leap seconds, but allowing for leap years)\n 
+ NB Although one coudl use the ctime library, this proved to be unreliable in converting back and forth between dates in a tm structure and\n
+ seconds since 1970 that are held in a time_t, both in terms of results not always being consistent and interms of calls to gmtime modifying\n
+ tm pointers not involved in the call. :(\n
+ An alternative would be to use the boost posix time and gregorian libraries, which work well, but boost can be a problem to compile against\n
+ as libraries can very between systems.
+ */ 
 class timeStep{
     /** @brief number of seconds in a year */
     static double years;
-    /** @brief number of seconds in a month */
+    /** @brief number of seconds in a month, approximately
+        @details seconds in a year divided by 12 - used only if a "monthly" timestep is requested */
     static double months;
     /** @brief number of seconds in a day */
     static double days;
@@ -71,30 +80,35 @@ class timeStep{
     static std::string units;
     /** @brief the current model step - updated in ther step method of model.h every timestep */
     static int stepNumber;
-    /** @brief the date that the current model represents */
-    static tm *date;
-    /** @brief seconds since Jan. 1 1970 at the start of the model */
-    static time_t initialSeconds;
+    /** @brief the days in each month, for use in calculating dates */
     static int monthDays[12];
+    /** @brief The month of the year at the current step, from 0 (Jan.) to 11 (Dec.) */
     static int currentMonth;
+    /** @brief The day of the month, starting from 0 */
     static int currentDayOfMonth;
+    /**  @brief The day of the week from 0-6 with Monday as 0 */
     static int currentWeekDay;
+    /** @brief The year expected to be a four digit integer */
     static int currentYear;
+    /** @brief the hour of the day from 0 to 23 - expected to be a two digit integer */
     static int currentHour;
+    /** @brief the minute of the hour from 0 to 59 */
     static int currentMinute;
+    /** @brief the seconds of the hour from 0 to 59 */
     static int currentSeconds;
 public:
 
-    /** Default constructor sets timestep to be  in hours */
+    /** @brief Default constructor sets timestep units to be hours 
+        @details The actual internal units here for timeStep is always seconds - here dt is set to be 3600, i.e. the defautl timestep is one hour*/
     timeStep(){
         units="hours";
         years   = 24*3600*365;//365 days in a year!!!
-        months  = 24*3600*30;//every month has 30 days- so not exactly 12 of these "months" in a year
+        months  = 24*3600*365/12;//every of these "months" has about 30.4 days- so these are not quite actual months - actual dates are found using the update method
         days    = 24*3600;
         hours   = 3600;
         minutes = 60;
         seconds = 1;
-        dt=3600;//the actual internal units here for timeStep is always seconds, so this value corresponds to one hour
+        dt=3600;
     }
     /** @brief Constructor to get the values from a \ref parameterSettings object 
      *  @param p a reference to a \ref parameterSettings object*/
@@ -148,7 +162,7 @@ public:
         return units;
     }
     //------------------------------------------------------------------------
-    /** @brief set the number of model steps since the start of the run   */
+    /** @brief set the number of model steps since the start of the run, and calculate the date   */
     static void update(){
         stepNumber++;
         currentSeconds+=deltaT();//deltaT is always in seconds
@@ -190,7 +204,8 @@ public:
         stepNumber=s;
     }
     //------------------------------------------------------------------------
-    /** @brief return the current number of model steps since the start of the run  */
+    /** @brief return the current number of model steps since the start of the run  
+        @details It is assumed this will be updated every model timestep */
     static int getStepNumber(){
         return stepNumber;
     }
