@@ -52,12 +52,14 @@
  the model step number, and this can be accessed from anywhere in the code. This is done by calling the timestep::update() method each timestep.\n
  This adds one to the stepNumber, and then calculates the date given the starting date for the model (defaults to Mon 1 jan 1900, as a known day).\n
  Days and monthsminutes and hours  are held as integers starting at zero to make date calculations easier.\n
- At present there are no time zones available, so dates are calculated in nominal UTC (ignoring leap seconds, but allowing for leap years)\n 
+ At present there are no time zones available, so dates are calculated in nominal UTC (ignoring leap seconds, but allowing for leap years)\n
+ Similarly dates before 1752 are not correct as these predate the switch to the gregorian calendar.\n
+ The default initial date is Mon. 1 Jan. 1900.\n
  NB Although one coudl use the ctime library, this proved to be unreliable in converting back and forth between dates in a tm structure and\n
  seconds since 1970 that are held in a time_t, both in terms of results not always being consistent and interms of calls to gmtime modifying\n
  tm pointers not involved in the call. :(\n
  An alternative would be to use the boost posix time and gregorian libraries, which work well, but boost can be a problem to compile against\n
- as libraries can very between systems.
+ as libraries can vary between systems. Maybe fixed by C++ 20 chrono?
  */ 
 class timeStep{
     /** @brief number of seconds in a year */
@@ -80,7 +82,7 @@ class timeStep{
     static std::string units;
     /** @brief the current model step - updated in ther step method of model.h every timestep */
     static int stepNumber;
-    /** @brief the days in each month, for use in calculating dates */
+    /** @brief the days in each month, for use in calculating dates - values for currentDayOfMonth range from 0 to monthDays[month]-1 */
     static int monthDays[12];
     /** @brief The month of the year at the current step, from 0 (Jan.) to 11 (Dec.) */
     static int currentMonth;
@@ -162,7 +164,7 @@ public:
         return units;
     }
     //------------------------------------------------------------------------
-    /** @brief set the number of model steps since the start of the run, and calculate the date   */
+    /** @brief set the number of model steps since the start of the run, and calculate the date */
     static void update(){
         stepNumber++;
         currentSeconds+=deltaT();//deltaT is always in seconds
@@ -217,24 +219,53 @@ public:
     }
     //------------------------------------------------------------------------
     /** @brief return a representation of the day of the week as an integer with 0=Mon, 1=Tue etc.  
-      The model run is assumed to start on a Monday*/
+      The model run is assumed to start on a Monday by default */
     static int getDayOfWeek(){
         return currentWeekDay;
     }
     //------------------------------------------------------------------------
+    /** @brief return a representation of the month of the year as an integer with 0=Jan, 1=Feb etc.  
+      The model run is assumed to start on 1 January by default */
+    static int getMonth(){
+        return currentMonth;
+    }
+    //------------------------------------------------------------------------
+    /** @brief report the values in the current date structure in format: Day dd/mm/yyyy hh:mm:ss*/
     static void reportDate(){
-        std::cout<<"wday (mon=0) "<<currentWeekDay<<" ";
+        std::string wday[7]={"Mon.","Tue.","Wed.","Thu.","Fri.","Sat.","Sun."};
+        std::cout<<wday[currentWeekDay]<<" ";
+        if (currentDayOfMonth<10) std::cout<<"0";
+        std::cout<<currentDayOfMonth+1<<"/";
+        if (currentMonth<10) std::cout<<"0";
+        std::cout<<currentMonth+1<<"/";
         std::cout<<currentYear<<" ";
-        std::cout<<currentMonth<<" ";
-        std::cout<<currentDayOfMonth<<" ";
+        if (currentHour<10) std::cout<<"0";
         std::cout<<currentHour<<":";
+        if (currentMinute<10) std::cout<<"0";
         std::cout<<currentMinute<<":";
+        if (currentSeconds<10) std::cout<<"0";
         std::cout<<currentSeconds<<":";
     }
     //------------------------------------------------------------------------
-    static void setDate(int year,int month,int day,int monthday,int hour,int min,int sec){
+    /** @brief Set the values in the date structure - Note apart from the year all values are integers starting from zero 
+     @param year The year as a four digit integer
+     @param month the month as an integer with 0=Jan. 1=Feb. etc
+     @param weekday The day of the week with 0=Mon. 1=Tue up to 6=Sun.
+     @param monthday The day of the month - from 0 to some upper value depending on the month
+     @param hour Hour of the day from 0 to 23
+     @param min minute of the hour from 0 to 59
+     @param sec second from 0 59
+     @details Some minimal checking is carried out but reliance is placed on the user to get all the details here correct! e.g. day of the week consistent with other values
+     */
+    static void setDate(int year,int month,int dayofweek,int monthday,int hour,int min,int sec){
+        assert(month >=0 && month<12);
+        assert(weekday>=0 && weekday<7);
+        assert(monthday>=0 && monthday<monthDays[month]);
+        assert(hour>=0 && hours<24);
+        assert(min>=0 && min<60);
+        assert(sec>=0 && sec<60);
         currentMonth=month;
-        currentWeekDay=day;
+        currentWeekDay=dayofweek;
         currentYear=year;
         currentHour=hour;
         currentMinute=min;
