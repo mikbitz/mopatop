@@ -250,7 +250,7 @@ public:
     /** @brief Set the values in the date structure - Note apart from the year all values are integers starting from zero 
      @param year The year as a four digit integer
      @param month the month as an integer with 0=Jan. 1=Feb. etc
-     @param weekday The day of the week with 0=Mon. 1=Tue up to 6=Sun.
+     @param dayofweek The day of the week with 0=Mon. 1=Tue up to 6=Sun.
      @param monthday The day of the month - from 0 to some upper value depending on the month
      @param hour Hour of the day from 0 to 23
      @param min minute of the hour from 0 to 59
@@ -259,7 +259,7 @@ public:
      */
     static void setDate(int year,int month,int dayofweek,int monthday,int hour,int min,int sec){
         assert(month >=0 && month<12);
-        assert(weekday>=0 && weekday<7);
+        assert(dayofweek>=0 && dayofweek<7);
         assert(monthday>=0 && monthday<monthDays[month]);
         assert(hour>=0 && hours<24);
         assert(min>=0 && min<60);
