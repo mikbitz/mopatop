@@ -141,7 +141,7 @@ public:
             std::cout<<"Invalid time units: "<<units<<" in timeStep.h"<<std::endl;
             exit(1);
         }
-        setDate("Mon 31/01/2022 17:01:00");
+        setDate(p.get("timeStep.startdate"));
     }
     //------------------------------------------------------------------------
     /** @brief set the timestep unit 

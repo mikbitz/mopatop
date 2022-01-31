@@ -17,15 +17,16 @@
 #run control
 #-------------------------------
 #Number of agents to create - integer
-run.nAgents=3000000
+run.nAgents=350000
+
 
 #Number of steps to run for - integer
-run.nSteps=1000
+run.nSteps=300
 
 #number of OMP threads to use - integer
 #Increase the number here if using openmp to parallelise any loops.
 #Note number of threads needs to be <= to number of cores/threads supported on the local machine
-run.nThreads=4
+run.nThreads=2
 
 #random seed - integer
 #change to vary the stochastic parts of the model
@@ -71,6 +72,13 @@ timeStep.units=hours
 #so if this is set to 2 and the above units set to hours, each timestep will represent 2 hours of real time
 #note that any rates set in this file will need to take into account this timing 
 timeStep.dt=1
+
+#the date on which the model run begins - string
+#Format is "day dd/mm/yyyy hh:mm:ss" - assumed UTC (although time zones note yet implemented)
+#The default value is Mon 01/01/1900 00:00:00
+#Note the date has to be specified exactly as below in terms of spaces / and :
+#Make sure that the day is actually consistently correct with the given date, as the model cannot at present correct this
+#timeStep.startdate=Mon 31/01/2022 00:00:00
 #-------------------------------
 #output
 #-------------------------------
