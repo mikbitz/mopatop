@@ -29,6 +29,7 @@
  **/
 
 #include<string>
+#include<map>
 #include"parameters.h"
 /** @brief A static class to set up the real-world times that apply to a timestep
 *   @details The idea here is that the code will use a timestep in seconds, but the user need not know this.\n
@@ -111,6 +112,7 @@ public:
         minutes = 60;
         seconds = 1;
         dt=3600;
+
     }
     /** @brief Constructor to get the values from a \ref parameterSettings object 
      *  @param p a reference to a \ref parameterSettings object*/
@@ -139,7 +141,7 @@ public:
             std::cout<<"Invalid time units: "<<units<<" in timeStep.h"<<std::endl;
             exit(1);
         }
-            
+        setDate("Mon 31/01/2022 17:01:00");
     }
     //------------------------------------------------------------------------
     /** @brief set the timestep unit 
@@ -232,7 +234,7 @@ public:
     //------------------------------------------------------------------------
     /** @brief report the values in the current date structure in format: Day dd/mm/yyyy hh:mm:ss*/
     static void reportDate(){
-        std::string wday[7]={"Mon.","Tue.","Wed.","Thu.","Fri.","Sat.","Sun."};
+        std::string wday[7]={"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
         std::cout<<wday[currentWeekDay]<<" ";
         if (currentDayOfMonth<10) std::cout<<"0";
         std::cout<<currentDayOfMonth+1<<"/";
@@ -250,7 +252,7 @@ public:
     /** @brief Set the values in the date structure - Note apart from the year all values are integers starting from zero 
      @param year The year as a four digit integer
      @param month the month as an integer with 0=Jan. 1=Feb. etc
-     @param dayofweek The day of the week with 0=Mon. 1=Tue up to 6=Sun.
+     @param dayofweek The day of the week with 0=Mon. 1=Tue. up to 6=Sun.
      @param monthday The day of the month - from 0 to some upper value depending on the month
      @param hour Hour of the day from 0 to 23
      @param min minute of the hour from 0 to 59
@@ -261,16 +263,70 @@ public:
         assert(month >=0 && month<12);
         assert(dayofweek>=0 && dayofweek<7);
         assert(monthday>=0 && monthday<monthDays[month]);
-        assert(hour>=0 && hours<24);
+        assert(hour>=0 && hour<24);
         assert(min>=0 && min<60);
         assert(sec>=0 && sec<60);
-        currentMonth=month;
         currentWeekDay=dayofweek;
+        currentDayOfMonth=monthday;
+        currentMonth=month;
         currentYear=year;
         currentHour=hour;
         currentMinute=min;
         currentSeconds=sec;
-        currentDayOfMonth=monthday;
+
+    }
+        //------------------------------------------------------------------------
+    /** @brief Set the values in the date structure - using input in the form of a string: Day dd/mm/yyyy hh:mm:ss e.g. "Mon 01/01/1900 00:00:00"
+     @param s the date in the above format - note spaces slashes and colons expected exactly as shown (no extra . or anything else)
+     @details Some minimal checking is carried out but reliance is placed on the user to get all the details here correct! e.g. day of the week consistent with other values
+     */
+    static void setDate(std::string s){
+        std::map<std::string,int> wday;
+        wday["Mon"]=0;
+        wday["Tue"]=1;
+        wday["Wed"]=2;
+        wday["Thu"]=3;
+        wday["Fri"]=4;
+        wday["Sat"]=5;
+        wday["Sun"]=6;
+        int pos;
+        std::string w;
+
+        pos=s.find(" ");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        assert(wday.find(w)!=wday.end());
+        int dayofweek=wday[w];
+        
+        pos=s.find("/");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        int monthday=std::stoi(w)-1;//days of month normally quoted beginning at 1 but internally we use 0
+        
+        pos=s.find("/");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        int month=std::stoi(w)-1;//months normally quoted beginning at 1 from Jan. but internally we use 0
+        
+        pos=s.find(" ");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        int year=std::stoi(w);
+        
+        pos=s.find(":");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        int hour=std::stoi(w);
+
+        pos=s.find(":");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        int min=std::stoi(w);
+        
+        // seconds should be all that's left!
+        int sec=std::stoi(s);
+
+        setDate(year,month,dayofweek,monthday,hour,min,sec);
     }
     //------------------------------------------------------------------------
     /** @brief set the timestep value in seconds   */
