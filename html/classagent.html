@@ -96,12 +96,24 @@ Collaboration diagram for agent:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ae4db97692e30c160de5af4be250d06b4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">placeTypes</a> { <b>home</b>, 
+<tr class="memitem:ae4db97692e30c160de5af4be250d06b4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#ae4db97692e30c160de5af4be250d06b4">placeTypes</a> { <br />
+&#160;&#160;<b>home</b>, 
 <b>work</b>, 
-<b>vehicle</b>
+<b>vehicle</b>, 
+<b>hospital</b>, 
+<br />
+&#160;&#160;<b>shop</b>
+<br />
  }</td></tr>
-<tr class="memdesc:ae4db97692e30c160de5af4be250d06b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This enum associates a set of integers with names.  <a href="classagent.html#ae4db97692e30c160de5af4be250d06b4">More...</a><br /></td></tr>
+<tr class="memdesc:ae4db97692e30c160de5af4be250d06b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This enum associates a set of integers with names, in order to identify types of place.  <a href="classagent.html#ae4db97692e30c160de5af4be250d06b4">More...</a><br /></td></tr>
 <tr class="separator:ae4db97692e30c160de5af4be250d06b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3daf7aa8c7a17813011abea5db69bf21"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a3daf7aa8c7a17813011abea5db69bf21">scheduleTypes</a> { <b>stationary</b>, 
+<b>mobile</b>, 
+<b>remoteTravel</b>, 
+<b>returnTrip</b>
+ }</td></tr>
+<tr class="memdesc:a3daf7aa8c7a17813011abea5db69bf21"><td class="mdescLeft">&#160;</td><td class="mdescRight">This enum identifies types of travel schedule.  <a href="classagent.html#a3daf7aa8c7a17813011abea5db69bf21">More...</a><br /></td></tr>
+<tr class="separator:a3daf7aa8c7a17813011abea5db69bf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -146,6 +158,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a79a4982f0c0af35a010b9793e7c8ab77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a79a4982f0c0af35a010b9793e7c8ab77">advanceTravelSchedule</a> ()</td></tr>
 <tr class="memdesc:a79a4982f0c0af35a010b9793e7c8ab77"><td class="mdescLeft">&#160;</td><td class="mdescRight">check whether to move forward to the next travel location  <a href="#a79a4982f0c0af35a010b9793e7c8ab77">More...</a><br /></td></tr>
 <tr class="separator:a79a4982f0c0af35a010b9793e7c8ab77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c7bc8aa25f6bf63f7f72bee3217cd5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classagent.html#a3daf7aa8c7a17813011abea5db69bf21">scheduleTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a9c7bc8aa25f6bf63f7f72bee3217cd5e">getScheduleType</a> (std::string <a class="el" href="classagent.html#a8a5eff4b7dc9c4146550130ccb95876e">scheduleType</a>)</td></tr>
+<tr class="separator:a9c7bc8aa25f6bf63f7f72bee3217cd5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a958d3d4ffc3c372136459b08f5e4a457"><td class="memItemLeft" align="right" valign="top"><a id="a958d3d4ffc3c372136459b08f5e4a457"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a958d3d4ffc3c372136459b08f5e4a457">cough</a> ()</td></tr>
 <tr class="memdesc:a958d3d4ffc3c372136459b08f5e4a457"><td class="mdescLeft">&#160;</td><td class="mdescRight">if you have the disease, contaminate the current place - call every timestep <br />
@@ -293,14 +307,14 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a268205422e604b0381c1595319aef698">schedulePoint</a></td></tr>
 <tr class="memdesc:a268205422e604b0381c1595319aef698"><td class="mdescLeft">&#160;</td><td class="mdescRight">an integer that picks out the current step through the travel schedule <br /></td></tr>
 <tr class="separator:a268205422e604b0381c1595319aef698"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bbc8fb53b60ab3aeb4778c5451587ed"><td class="memItemLeft" align="right" valign="top"><a id="a7bbc8fb53b60ab3aeb4778c5451587ed"></a>
-<a class="el" href="classscheduleList.html#a9cf40bc6da1e11a4d290a787b2d19c82">scheduleList::scheduleTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a7bbc8fb53b60ab3aeb4778c5451587ed">scheduleType</a></td></tr>
-<tr class="memdesc:a7bbc8fb53b60ab3aeb4778c5451587ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current type of travel schedule. <br /></td></tr>
-<tr class="separator:a7bbc8fb53b60ab3aeb4778c5451587ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9474eb80c943e09993caf6061f61a274"><td class="memItemLeft" align="right" valign="top"><a id="a9474eb80c943e09993caf6061f61a274"></a>
-<a class="el" href="classscheduleList.html#a9cf40bc6da1e11a4d290a787b2d19c82">scheduleList::scheduleTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a9474eb80c943e09993caf6061f61a274">originalScheduleType</a></td></tr>
-<tr class="memdesc:a9474eb80c943e09993caf6061f61a274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place to hold schedule type if switching current schedule to an alternative (e.g. on holiday) <br /></td></tr>
-<tr class="separator:a9474eb80c943e09993caf6061f61a274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a5eff4b7dc9c4146550130ccb95876e"><td class="memItemLeft" align="right" valign="top"><a id="a8a5eff4b7dc9c4146550130ccb95876e"></a>
+<a class="el" href="classagent.html#a3daf7aa8c7a17813011abea5db69bf21">scheduleTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a8a5eff4b7dc9c4146550130ccb95876e">scheduleType</a></td></tr>
+<tr class="memdesc:a8a5eff4b7dc9c4146550130ccb95876e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current type of travel schedule. <br /></td></tr>
+<tr class="separator:a8a5eff4b7dc9c4146550130ccb95876e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b9cd4f9529573eb0040ce09e5d0f7d3"><td class="memItemLeft" align="right" valign="top"><a id="a1b9cd4f9529573eb0040ce09e5d0f7d3"></a>
+<a class="el" href="classagent.html#a3daf7aa8c7a17813011abea5db69bf21">scheduleTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#a1b9cd4f9529573eb0040ce09e5d0f7d3">originalScheduleType</a></td></tr>
+<tr class="memdesc:a1b9cd4f9529573eb0040ce09e5d0f7d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place to hold schedule type if switching current schedule to an alternative (e.g. on holiday) <br /></td></tr>
+<tr class="separator:a1b9cd4f9529573eb0040ce09e5d0f7d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9b39310b9d7a399f1017ae68e1c1b56"><td class="memItemLeft" align="right" valign="top"><a id="aa9b39310b9d7a399f1017ae68e1c1b56"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagent.html#aa9b39310b9d7a399f1017ae68e1c1b56">scheduleTimer</a> =0</td></tr>
 <tr class="memdesc:aa9b39310b9d7a399f1017ae68e1c1b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts down the time spent at the current location. <br /></td></tr>
@@ -365,10 +379,29 @@ If they are in a contaminated location, they may contract the disease. Additiona
       </table>
 </div><div class="memdoc">
 
-<p>This enum associates a set of integers with names. </p>
+<p>This enum associates a set of integers with names, in order to identify types of place. </p>
 <p>So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example. Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567. transport vehicles are places, albeit moveable! </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00080">80</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00081">81</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
+</div>
+</div>
+<a id="a3daf7aa8c7a17813011abea5db69bf21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3daf7aa8c7a17813011abea5db69bf21">&#9670;&nbsp;</a></span>scheduleTypes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classagent.html#a3daf7aa8c7a17813011abea5db69bf21">agent::scheduleTypes</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This enum identifies types of travel schedule. </p>
+<p>So stationary=0, mobile=1 etc. This allows meaningful names to be used to refer to the type of schedule, for example. </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00084">84</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -378,9 +411,6 @@ If they are in a contaminated location, they may contract the disease. Additiona
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">agent::agent </td>
@@ -389,11 +419,6 @@ If they are in a contaminated location, they may contract the disease. Additiona
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>create and agent and set default disease flags and ID. </p>
@@ -403,7 +428,7 @@ Also set aside storage for the three placeTypes the agent can occupy. <br />
 NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens!<br />
 </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00126">126</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00042">42</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -436,7 +461,7 @@ NB this means that places is initially empty - remember to set agent home/work/t
 <p>This is primarily for use with MPI based remote travel where agents have to move to another domain.<br />
  Agents will call this on returning to the local domain (any remote copies having been deactivated symmetrically </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00313">313</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00302">302</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -467,7 +492,7 @@ NB this means that places is initially empty - remember to set agent home/work/t
  </p>
 <p>this is checked in <a class="el" href="model_8h.html">model.h</a> to see whether agent should be doing anything (i.e. it is currently on a local MPI domain) </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00318">318</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00307">307</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -490,7 +515,7 @@ NB this means that places is initially empty - remember to set agent home/work/t
 <p>decrement the time counter for the current place by the timestep and then check to see if this time has expired<br />
 If so get the next place on the schedule as pointed to by schedulePoint+1 see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00132">132</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00168">168</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -520,7 +545,7 @@ If so get the next place on the schedule as pointed to by schedulePoint+1 see <a
 <p>give the agent the disease </p>
 <p>needed to set off the disease initially </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00195">195</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00190">190</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -553,7 +578,7 @@ If so get the next place on the schedule as pointed to by schedulePoint+1 see <a
 To save re-allocating memory, agents can be present both on a local and remote MPI domain - while active <br />
 on the remote domain, they are inactive locally. </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00307">307</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00296">296</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -583,7 +608,7 @@ on the remote domain, they are inactive locally. </p>
 <p>die - possibly from any cause... </p>
 <p>set flags relevant to disease anyway as these are needed for reporting </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00204">204</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00199">199</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -614,7 +639,7 @@ on the remote domain, they are inactive locally. </p>
  </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00277">277</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00266">266</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -644,7 +669,7 @@ on the remote domain, they are inactive locally. </p>
 <p>get the place corresponding to home </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00262">262</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00251">251</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -675,7 +700,28 @@ on the remote domain, they are inactive locally. </p>
  </p>
 <dl class="section return"><dt>Returns</dt><dd>The agent ID number, an unsigned long integer </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00287">287</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00276">276</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+
+</div>
+</div>
+<a id="a9c7bc8aa25f6bf63f7f72bee3217cd5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c7bc8aa25f6bf63f7f72bee3217cd5e">&#9670;&nbsp;</a></span>getScheduleType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classagent.html#a3daf7aa8c7a17813011abea5db69bf21">agent::scheduleTypes</a> agent::getScheduleType </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>scheduleType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>convert a string schedule name (e.g. from the parameter file) to one of the schedule type enums </p>
+
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00194">194</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -706,7 +752,7 @@ on the remote domain, they are inactive locally. </p>
  </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00272">272</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00261">261</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -737,7 +783,7 @@ on the remote domain, they are inactive locally. </p>
  </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a place </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00267">267</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00256">256</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -765,7 +811,7 @@ on the remote domain, they are inactive locally. </p>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00108">108</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00144">144</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -789,7 +835,7 @@ on the remote domain, they are inactive locally. </p>
 <p>The schedule is assumed to be sitting at the end of the previous event when the model starts. <br />
 set up the timer to be zero therefore (no time left at current event) and get the start schedulePoint out of the schedule. see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00158">158</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00204">204</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -818,7 +864,7 @@ set up the timer to be zero therefore (no time left at current event) and get th
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00152">152</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00188">188</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -848,7 +894,7 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00146">146</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00182">182</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -871,7 +917,7 @@ see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </td></tr>
 <p>used by returning travellers. If they have come back from a remote MPI domain, their cached return flight can now be used (as set in outward travel)<br />
 note that this is called from <a class="el" href="fetchall_8h.html">fetchall.h</a> aslo </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00121">121</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00157">157</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -902,7 +948,7 @@ note that this is called from <a class="el" href="fetchall_8h.html">fetchall.h</
  </p>
 <dl class="section return"><dt>Returns</dt><dd>boolean true if agent is leaving the domain </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00292">292</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00281">281</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -927,7 +973,7 @@ note that this is called from <a class="el" href="fetchall_8h.html">fetchall.h</
 <li>not used just at present - this function is very expensive on compute time see <a class="el" href="agent_8cpp.html">agent.cpp</a> for definition </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00044">44</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00057">57</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -951,7 +997,7 @@ note that this is called from <a class="el" href="fetchall_8h.html">fetchall.h</
 with the local places so as the make sure the traveller agent gets a schedule with places that exist on this domain (see <a class="el" href="fetchall_8h.html">fetchall.h</a>). The local agents also calls<br />
 this routine, which allows it to set <em>local</em> places (such as return flight) that will be ready for it on return, including if it comes back from a remote domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00127">127</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00163">163</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -990,7 +1036,7 @@ this routine, which allows it to set <em>local</em> places (such as return fligh
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00242">242</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00231">231</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -1027,7 +1073,7 @@ this routine, which allows it to set <em>local</em> places (such as return fligh
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00282">282</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00271">271</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -1064,7 +1110,7 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00070">70</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00071">71</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -1086,7 +1132,7 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 <p>set a flag to indicate there's a need to move to another domain </p>
 <p>used by <a class="el" href="fetchall_8h.html">fetchall.h</a> for incoming travellers, and by the holidayTime method, where it detects from the <a class="el" href="classremoteTravel.html" title="The class defines a remote place to stay, such as a hotel, and a vehicle in which to travel there (e...">remoteTravel</a> object whether it is actually on another domain </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00117">117</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00153">153</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -1125,7 +1171,7 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00257">257</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00246">246</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -1164,7 +1210,7 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00251">251</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00240">240</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -1194,7 +1240,7 @@ If agent IDs need to be unique then this could cause issues... </p><dl class="pa
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00064">64</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00101">101</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -1225,7 +1271,7 @@ the remote destination. The originals get replaced on returning home: otherwise 
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00079">79</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8cpp_source.html#l00115">115</a> of file <a class="el" href="agent_8cpp_source.html">agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -1253,7 +1299,7 @@ the remote destination. The originals get replaced on returning home: otherwise 
 <p>flag set to false initially, set if the agent cannot catch the disease </p>
 <p>in the simplest case an agent that recovers from the disease is immune forever </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00056">56</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00057">57</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -1280,7 +1326,7 @@ the remote destination. The originals get replaced on returning home: otherwise 
 <p>A static (class-level) variable that stores a list of all possible allSchedules. </p>
 <p>the list is indexed by <a class="el" href="classscheduleList.html#a9cf40bc6da1e11a4d290a787b2d19c82">scheduleList::scheduleTypes</a> - a single instance minmimizes storage, as the schedules themselves are rather memory expensive </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00049">49</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00050">50</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -1301,7 +1347,7 @@ the remote destination. The originals get replaced on returning home: otherwise 
 <li>note to get this actual place, use this as an index into the places vector </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00092">92</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00096">96</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -1322,7 +1368,7 @@ the remote destination. The originals get replaced on returning home: otherwise 
 <p>Visiting places using a <a class="el" href="remoteTravel_8h.html">remoteTravel.h</a> object resets the places stored in places to point e.g. home and vehicle to holiday destinations <br />
 the cache allows original places to be remebered and restored on return from travel. Note that using an STL stack would work, but is hugely memory expensive. </p>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00089">89</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00093">93</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>
@@ -1344,7 +1390,7 @@ the cache allows original places to be remebered and restored on return from tra
 intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!). Note that this could be replaced with a vector for more flexibility, but this is slightly slower and consumes more memory. Array need to match placetype enum in size </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00085">85</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="agent_8h_source.html#l00089">89</a> of file <a class="el" href="agent_8h_source.html">agent.h</a>.</p>
 
 </div>
 </div>

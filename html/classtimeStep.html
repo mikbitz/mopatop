@@ -85,11 +85,14 @@ $(function() {
 Collaboration diagram for timeStep:</div>
 <div class="dyncontent">
 <div class="center"><img src="classtimeStep__coll__graph.png" border="0" usemap="#timeStep_coll__map" alt="Collaboration graph"/></div>
+<map name="timeStep_coll__map" id="timeStep_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab74c72ae0a0a9ed1c64ae8006f58d7af"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ab74c72ae0a0a9ed1c64ae8006f58d7af">timeStep</a> ()</td></tr>
+<tr class="memdesc:ab74c72ae0a0a9ed1c64ae8006f58d7af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor sets timestep units to be hours.  <a href="#ab74c72ae0a0a9ed1c64ae8006f58d7af">More...</a><br /></td></tr>
 <tr class="separator:ab74c72ae0a0a9ed1c64ae8006f58d7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5617d5cbb1de42813ec624825d76cbf8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a5617d5cbb1de42813ec624825d76cbf8">timeStep</a> (<a class="el" href="classparameterSettings.html">parameterSettings</a> &amp;p)</td></tr>
 <tr class="memdesc:a5617d5cbb1de42813ec624825d76cbf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to get the values from a <a class="el" href="classparameterSettings.html">parameterSettings</a> object.  <a href="#a5617d5cbb1de42813ec624825d76cbf8">More...</a><br /></td></tr>
@@ -104,37 +107,73 @@ Static Public Member Functions</h2></td></tr>
 static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a56874870aaf366cd705aa94771108c30">timeStepUnit</a> ()</td></tr>
 <tr class="memdesc:a56874870aaf366cd705aa94771108c30"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the timestep unit currently in use <br /></td></tr>
 <tr class="separator:a56874870aaf366cd705aa94771108c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7833480c64b7aca68ee549b301179ac0"><td class="memItemLeft" align="right" valign="top"><a id="a7833480c64b7aca68ee549b301179ac0"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a7833480c64b7aca68ee549b301179ac0">update</a> ()</td></tr>
+<tr class="memdesc:a7833480c64b7aca68ee549b301179ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the number of model steps since the start of the run, and calculate the date <br /></td></tr>
+<tr class="separator:a7833480c64b7aca68ee549b301179ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ec99f5de6c18c26ad1c29e92fbd9998"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a4ec99f5de6c18c26ad1c29e92fbd9998">setStepNumber</a> (int s)</td></tr>
+<tr class="memdesc:a4ec99f5de6c18c26ad1c29e92fbd9998"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the number of model steps since the start of the run <br />
+  <a href="#a4ec99f5de6c18c26ad1c29e92fbd9998">More...</a><br /></td></tr>
+<tr class="separator:a4ec99f5de6c18c26ad1c29e92fbd9998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67c234a0b9476fae7114306099891172"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a67c234a0b9476fae7114306099891172">getStepNumber</a> ()</td></tr>
+<tr class="memdesc:a67c234a0b9476fae7114306099891172"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the current number of model steps since the start of the run <br />
+  <a href="#a67c234a0b9476fae7114306099891172">More...</a><br /></td></tr>
+<tr class="separator:a67c234a0b9476fae7114306099891172"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab721d5f33d4485d48821cf67522d952"><td class="memItemLeft" align="right" valign="top"><a id="aab721d5f33d4485d48821cf67522d952"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#aab721d5f33d4485d48821cf67522d952">getTimeOfDay</a> ()</td></tr>
+<tr class="memdesc:aab721d5f33d4485d48821cf67522d952"><td class="mdescLeft">&#160;</td><td class="mdescRight">return a representation of the time of day as in 24 hour clock e.g. 914 for for 14 minutes past nine in the morning <br /></td></tr>
+<tr class="separator:aab721d5f33d4485d48821cf67522d952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e17be6d82d9bee6050428e4fb6cfb9f"><td class="memItemLeft" align="right" valign="top"><a id="a6e17be6d82d9bee6050428e4fb6cfb9f"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a6e17be6d82d9bee6050428e4fb6cfb9f">getDayOfWeek</a> ()</td></tr>
+<tr class="memdesc:a6e17be6d82d9bee6050428e4fb6cfb9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">return a representation of the day of the week as an integer with 0=Mon, 1=Tue etc. <br />
+The model run is assumed to start on a Monday by default <br /></td></tr>
+<tr class="separator:a6e17be6d82d9bee6050428e4fb6cfb9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac3a216617f569f1420c0b60944fc89e"><td class="memItemLeft" align="right" valign="top"><a id="aac3a216617f569f1420c0b60944fc89e"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#aac3a216617f569f1420c0b60944fc89e">getMonth</a> ()</td></tr>
+<tr class="memdesc:aac3a216617f569f1420c0b60944fc89e"><td class="mdescLeft">&#160;</td><td class="mdescRight">return a representation of the month of the year as an integer with 0=Jan, 1=Feb etc. <br />
+The model run is assumed to start on 1 January by default <br /></td></tr>
+<tr class="separator:aac3a216617f569f1420c0b60944fc89e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5df721d9c452f746e2b8eb76cd1b1ea0"><td class="memItemLeft" align="right" valign="top"><a id="a5df721d9c452f746e2b8eb76cd1b1ea0"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a5df721d9c452f746e2b8eb76cd1b1ea0">reportDate</a> ()</td></tr>
+<tr class="memdesc:a5df721d9c452f746e2b8eb76cd1b1ea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the values in the current date structure in format: Day dd/mm/yyyy hh:mm:ss <br /></td></tr>
+<tr class="separator:a5df721d9c452f746e2b8eb76cd1b1ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e59817b2b0a8861b7c0c3e71d508882"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a0e59817b2b0a8861b7c0c3e71d508882">setDate</a> (int <a class="el" href="classtimeStep.html#a7ad9543ec76c240d41a18511890d70be">year</a>, int <a class="el" href="classtimeStep.html#a51edaa8f205679f9abc56d78a3e394e5">month</a>, int dayofweek, int monthday, int <a class="el" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">hour</a>, int min, int sec)</td></tr>
+<tr class="memdesc:a0e59817b2b0a8861b7c0c3e71d508882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the values in the date structure - Note apart from the year all values are integers starting from zero.  <a href="#a0e59817b2b0a8861b7c0c3e71d508882">More...</a><br /></td></tr>
+<tr class="separator:a0e59817b2b0a8861b7c0c3e71d508882"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bbb7df0150ee6d2760db41c52d1979c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a3bbb7df0150ee6d2760db41c52d1979c">setDate</a> (std::string s)</td></tr>
+<tr class="memdesc:a3bbb7df0150ee6d2760db41c52d1979c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the values in the date structure - using input in the form of a string: Day dd/mm/yyyy hh:mm:ss e.g. "Mon 01/01/1900 00:00:00".  <a href="#a3bbb7df0150ee6d2760db41c52d1979c">More...</a><br /></td></tr>
+<tr class="separator:a3bbb7df0150ee6d2760db41c52d1979c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a982215dcfe223c07dc64fb6e89b0f393"><td class="memItemLeft" align="right" valign="top"><a id="a982215dcfe223c07dc64fb6e89b0f393"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a982215dcfe223c07dc64fb6e89b0f393">setdeltaT</a> (double sec)</td></tr>
-<tr class="memdesc:a982215dcfe223c07dc64fb6e89b0f393"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the timestep value in seconds - so that the user need not know that this is the representation <br /></td></tr>
+<tr class="memdesc:a982215dcfe223c07dc64fb6e89b0f393"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the timestep value in seconds <br /></td></tr>
 <tr class="separator:a982215dcfe223c07dc64fb6e89b0f393"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43049a6eb016155b1b2152b2b62f42bc"><td class="memItemLeft" align="right" valign="top"><a id="a43049a6eb016155b1b2152b2b62f42bc"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a43049a6eb016155b1b2152b2b62f42bc">deltaT</a> ()</td></tr>
-<tr class="memdesc:a43049a6eb016155b1b2152b2b62f42bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the timestep value in seconds - so that the user need not know that this is the representation <br /></td></tr>
+<tr class="memdesc:a43049a6eb016155b1b2152b2b62f42bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the timestep value in seconds <br /></td></tr>
 <tr class="separator:a43049a6eb016155b1b2152b2b62f42bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ad9543ec76c240d41a18511890d70be"><td class="memItemLeft" align="right" valign="top"><a id="a7ad9543ec76c240d41a18511890d70be"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a7ad9543ec76c240d41a18511890d70be">year</a> ()</td></tr>
-<tr class="memdesc:a7ad9543ec76c240d41a18511890d70be"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for a (365 day )year - so that the user need not know that this is the representation <br /></td></tr>
+<tr class="memdesc:a7ad9543ec76c240d41a18511890d70be"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for a (365 day )year <br /></td></tr>
 <tr class="separator:a7ad9543ec76c240d41a18511890d70be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51edaa8f205679f9abc56d78a3e394e5"><td class="memItemLeft" align="right" valign="top"><a id="a51edaa8f205679f9abc56d78a3e394e5"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a51edaa8f205679f9abc56d78a3e394e5">month</a> ()</td></tr>
-<tr class="memdesc:a51edaa8f205679f9abc56d78a3e394e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for a nominal (30 day) month - so that the user need not know that this is the representation <br /></td></tr>
+<tr class="memdesc:a51edaa8f205679f9abc56d78a3e394e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for a nominal (30 day) month <br /></td></tr>
 <tr class="separator:a51edaa8f205679f9abc56d78a3e394e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6364ad278884017a1da511da573f9c99"><td class="memItemLeft" align="right" valign="top"><a id="a6364ad278884017a1da511da573f9c99"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a6364ad278884017a1da511da573f9c99">day</a> ()</td></tr>
-<tr class="memdesc:a6364ad278884017a1da511da573f9c99"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for a day - so that the user need not know that this is the representation <br /></td></tr>
+<tr class="memdesc:a6364ad278884017a1da511da573f9c99"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for a day <br /></td></tr>
 <tr class="separator:a6364ad278884017a1da511da573f9c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c8335f3c6874e783f1b0a776c902a60"><td class="memItemLeft" align="right" valign="top"><a id="a8c8335f3c6874e783f1b0a776c902a60"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">hour</a> ()</td></tr>
-<tr class="memdesc:a8c8335f3c6874e783f1b0a776c902a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for an hour - so that the user need not know that this is the representation <br /></td></tr>
+<tr class="memdesc:a8c8335f3c6874e783f1b0a776c902a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for an hour <br /></td></tr>
 <tr class="separator:a8c8335f3c6874e783f1b0a776c902a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad252fd5c15bcc66a73bf3fe713181603"><td class="memItemLeft" align="right" valign="top"><a id="ad252fd5c15bcc66a73bf3fe713181603"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ad252fd5c15bcc66a73bf3fe713181603">minute</a> ()</td></tr>
-<tr class="memdesc:ad252fd5c15bcc66a73bf3fe713181603"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for a minute- so that the user need not know that this is the representation <br /></td></tr>
+<tr class="memdesc:ad252fd5c15bcc66a73bf3fe713181603"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for a minute <br /></td></tr>
 <tr class="separator:ad252fd5c15bcc66a73bf3fe713181603"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a098fb4278352c60757ff35fe52859c27"><td class="memItemLeft" align="right" valign="top"><a id="a098fb4278352c60757ff35fe52859c27"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a098fb4278352c60757ff35fe52859c27">second</a> ()</td></tr>
-<tr class="memdesc:a098fb4278352c60757ff35fe52859c27"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for a second - so that the user need not know that this is the representation <br /></td></tr>
+<tr class="memdesc:a098fb4278352c60757ff35fe52859c27"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of seconds for a second <br /></td></tr>
 <tr class="separator:a098fb4278352c60757ff35fe52859c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcaae573ad5cddd2ccc47e15656d18e4"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#afcaae573ad5cddd2ccc47e15656d18e4">yearsPerTimeStep</a> ()</td></tr>
 <tr class="memdesc:afcaae573ad5cddd2ccc47e15656d18e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">report the number of years that would be represented by a timestep  <a href="#afcaae573ad5cddd2ccc47e15656d18e4">More...</a><br /></td></tr>
@@ -188,9 +227,8 @@ Static Private Attributes</h2></td></tr>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a6b0f346c527da85bef5a0cce0fad24a3">years</a> =24*3600*365</td></tr>
 <tr class="memdesc:a6b0f346c527da85bef5a0cce0fad24a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of seconds in a year <br /></td></tr>
 <tr class="separator:a6b0f346c527da85bef5a0cce0fad24a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac631606ffdebf816ea632bf11574f283"><td class="memItemLeft" align="right" valign="top"><a id="ac631606ffdebf816ea632bf11574f283"></a>
-static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ac631606ffdebf816ea632bf11574f283">months</a> =24*3600*30</td></tr>
-<tr class="memdesc:ac631606ffdebf816ea632bf11574f283"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of seconds in a month <br /></td></tr>
+<tr class="memitem:ac631606ffdebf816ea632bf11574f283"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ac631606ffdebf816ea632bf11574f283">months</a> =24*3600*30</td></tr>
+<tr class="memdesc:ac631606ffdebf816ea632bf11574f283"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of seconds in a month, approximately  <a href="#ac631606ffdebf816ea632bf11574f283">More...</a><br /></td></tr>
 <tr class="separator:ac631606ffdebf816ea632bf11574f283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a079afa6dd8436680d9c8e10a16d79fea"><td class="memItemLeft" align="right" valign="top"><a id="a079afa6dd8436680d9c8e10a16d79fea"></a>
 static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a079afa6dd8436680d9c8e10a16d79fea">days</a> =24*3600</td></tr>
@@ -215,14 +253,62 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr class="memitem:a76d26edeca85e16b1d159fe75fa6177f"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a76d26edeca85e16b1d159fe75fa6177f">units</a> =&quot;hours&quot;</td></tr>
 <tr class="memdesc:a76d26edeca85e16b1d159fe75fa6177f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Units for the timestep - number of seconds in <a class="el" href="classtimeStep.html#a3992450a8bb7b8da9919193c637a3ae1">dt</a> will be set as required.  <a href="#a76d26edeca85e16b1d159fe75fa6177f">More...</a><br /></td></tr>
 <tr class="separator:a76d26edeca85e16b1d159fe75fa6177f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6b0568c03b1ad4750a37b964e7c8a6f"><td class="memItemLeft" align="right" valign="top"><a id="ae6b0568c03b1ad4750a37b964e7c8a6f"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ae6b0568c03b1ad4750a37b964e7c8a6f">stepNumber</a> =0</td></tr>
+<tr class="memdesc:ae6b0568c03b1ad4750a37b964e7c8a6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">the current model step - updated in ther step method of <a class="el" href="model_8h.html" title="File containing the definition model class. ">model.h</a> every timestep <br /></td></tr>
+<tr class="separator:ae6b0568c03b1ad4750a37b964e7c8a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcf50d132a873616a354ca905ac8745d"><td class="memItemLeft" align="right" valign="top"><a id="abcf50d132a873616a354ca905ac8745d"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#abcf50d132a873616a354ca905ac8745d">monthDays</a> [12] ={31,28,31,30,31,30,31,31,30,31,30,31}</td></tr>
+<tr class="memdesc:abcf50d132a873616a354ca905ac8745d"><td class="mdescLeft">&#160;</td><td class="mdescRight">the days in each month, for use in calculating dates - values for currentDayOfMonth range from 0 to monthDays[month]-1 <br /></td></tr>
+<tr class="separator:abcf50d132a873616a354ca905ac8745d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0503540a59c7591b4062a978d3f65eaa"><td class="memItemLeft" align="right" valign="top"><a id="a0503540a59c7591b4062a978d3f65eaa"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a0503540a59c7591b4062a978d3f65eaa">currentMonth</a> =0</td></tr>
+<tr class="memdesc:a0503540a59c7591b4062a978d3f65eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The month of the year at the current step, from 0 (Jan.) to 11 (Dec.) <br /></td></tr>
+<tr class="separator:a0503540a59c7591b4062a978d3f65eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04d52e096c3a8a3c0d9fa5da79a7ca2f"><td class="memItemLeft" align="right" valign="top"><a id="a04d52e096c3a8a3c0d9fa5da79a7ca2f"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a04d52e096c3a8a3c0d9fa5da79a7ca2f">currentDayOfMonth</a> =0</td></tr>
+<tr class="memdesc:a04d52e096c3a8a3c0d9fa5da79a7ca2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The day of the month, starting from 0. <br /></td></tr>
+<tr class="separator:a04d52e096c3a8a3c0d9fa5da79a7ca2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7da258f730300b661e5ea3adef0eb3cc"><td class="memItemLeft" align="right" valign="top"><a id="a7da258f730300b661e5ea3adef0eb3cc"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a7da258f730300b661e5ea3adef0eb3cc">currentWeekDay</a> =0</td></tr>
+<tr class="memdesc:a7da258f730300b661e5ea3adef0eb3cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The day of the week from 0-6 with Monday as 0. <br /></td></tr>
+<tr class="separator:a7da258f730300b661e5ea3adef0eb3cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f10da75a4323babcb922923c324b9f4"><td class="memItemLeft" align="right" valign="top"><a id="a8f10da75a4323babcb922923c324b9f4"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a8f10da75a4323babcb922923c324b9f4">currentYear</a> =1900</td></tr>
+<tr class="memdesc:a8f10da75a4323babcb922923c324b9f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The year expected to be a four digit integer. <br /></td></tr>
+<tr class="separator:a8f10da75a4323babcb922923c324b9f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a209f995751cfc74793acd307790e4e03"><td class="memItemLeft" align="right" valign="top"><a id="a209f995751cfc74793acd307790e4e03"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a209f995751cfc74793acd307790e4e03">currentHour</a> =0</td></tr>
+<tr class="memdesc:a209f995751cfc74793acd307790e4e03"><td class="mdescLeft">&#160;</td><td class="mdescRight">the hour of the day from 0 to 23 - expected to be a two digit integer <br /></td></tr>
+<tr class="separator:a209f995751cfc74793acd307790e4e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab70fbd8768062d671e988728ac8b225c"><td class="memItemLeft" align="right" valign="top"><a id="ab70fbd8768062d671e988728ac8b225c"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#ab70fbd8768062d671e988728ac8b225c">currentMinute</a> =0</td></tr>
+<tr class="memdesc:ab70fbd8768062d671e988728ac8b225c"><td class="mdescLeft">&#160;</td><td class="mdescRight">the minute of the hour from 0 to 59 <br /></td></tr>
+<tr class="separator:ab70fbd8768062d671e988728ac8b225c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ff6bee7620e9cfd688c7e3b3d9a5418"><td class="memItemLeft" align="right" valign="top"><a id="a3ff6bee7620e9cfd688c7e3b3d9a5418"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtimeStep.html#a3ff6bee7620e9cfd688c7e3b3d9a5418">currentSeconds</a> =0</td></tr>
+<tr class="memdesc:a3ff6bee7620e9cfd688c7e3b3d9a5418"><td class="mdescLeft">&#160;</td><td class="mdescRight">the seconds of the hour from 0 to 59 <br /></td></tr>
+<tr class="separator:a3ff6bee7620e9cfd688c7e3b3d9a5418"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A static class to set up the real-world times that apply to a timestep. </p>
 <p>The idea here is that the code will use a timestep in seconds, but the user need not know this.<br />
  They can set values using a chosen time unit, and get the right number of timesteps in those using this class<br />
- The value of any time can be set in the relevant units by using the static variables e.g. to get a time of 8 hours </p><div class="fragment"><div class="line">*<span class="keywordtype">double</span> time_needed=8*<a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>()</div></div><!-- fragment --><p> Similarly, to add the current value of the timestep to a given time, use timestep::deltaT() </p><div class="fragment"><div class="line"><span class="keywordtype">double</span> time= 4* <a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>() + <a class="code" href="classtimeStep.html#a43049a6eb016155b1b2152b2b62f42bc">timeStep::deltaT</a>()</div></div><!-- fragment --><p> Configure this once at the start of the code by creating an object and feeding it the <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> parameters;</div><div class="line">parameters.<a class="code" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a>(<span class="stringliteral">&quot;../defaultParameterFile&quot;</span>);</div><div class="line"><a class="code" href="classtimeStep.html">timeStep</a> t(parameters);</div></div><!-- fragment --><p> Note that currently months (leap years) are not properly handled as they are all assumed to be 30 days (365 days), and dates are not available! </p>
+ The value of any time can be set in the relevant units by using the static variables e.g. to get a time of 8 hours </p><div class="fragment"><div class="line">*<span class="keywordtype">double</span> time_needed=8*<a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>()</div></div><!-- fragment --><p> Similarly, to add the current value of the timestep to a given time, use timestep::deltaT() </p><div class="fragment"><div class="line"><span class="keywordtype">double</span> time= 4* <a class="code" href="classtimeStep.html#a8c8335f3c6874e783f1b0a776c902a60">timeStep::hour</a>() + <a class="code" href="classtimeStep.html#a43049a6eb016155b1b2152b2b62f42bc">timeStep::deltaT</a>()</div></div><!-- fragment --><p> Configure this once at the start of the code by creating an object and feeding it the <a class="el" href="classparameterSettings.html">parameterSettings</a> object </p><div class="fragment"><div class="line"><a class="code" href="classparameterSettings.html">parameterSettings</a> parameters;</div><div class="line">parameters.<a class="code" href="classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db">readParameters</a>(<span class="stringliteral">&quot;../defaultParameterFile&quot;</span>);</div><div class="line"><a class="code" href="classtimeStep.html">timeStep</a> t(parameters);</div></div><!-- fragment --><p> The model stepNumber can be used to calculate the number of hours and minutes, and the weekday since the start of the model run.<br />
+ Each timestep the model updates the stepnumber held here for this purpose, so that the static stepNumber variable always holds the value of <br />
+ the model step number, and this can be accessed from anywhere in the code. This is done by calling the timestep::update() method each timestep.<br />
+ This adds one to the stepNumber, and then calculates the date given the starting date for the model (defaults to Mon 1 jan 1900, as a known day).<br />
+ Days and monthsminutes and hours are held as integers starting at zero to make date calculations easier.<br />
+ At present there are no time zones available, so dates are calculated in nominal UTC (ignoring leap seconds, but allowing for leap years)<br />
+ Similarly dates before 1752 are not correct as these predate the switch to the gregorian calendar.<br />
+ The default initial date is Mon. 1 Jan. 1900.<br />
+ NB Although one coudl use the ctime library, this proved to be unreliable in converting back and forth between dates in a tm structure and<br />
+ seconds since 1970 that are held in a time_t, both in terms of results not always being consistent and interms of calls to gmtime modifying<br />
+ tm pointers not involved in the call. :(<br />
+ An alternative would be to use the boost posix time and gregorian libraries, which work well, but boost can be a problem to compile against<br />
+ as libraries can vary between systems. Maybe fixed by C++ 20 chrono? </p>
 
-<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00050">50</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00066">66</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab74c72ae0a0a9ed1c64ae8006f58d7af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab74c72ae0a0a9ed1c64ae8006f58d7af">&#9670;&nbsp;</a></span>timeStep() <span class="overload">[1/2]</span></h2>
@@ -246,9 +332,11 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Default constructor sets timestep to be in hours </p>
 
-<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00071">71</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+<p>Default constructor sets timestep units to be hours. </p>
+<p>The actual internal units here for <a class="el" href="classtimeStep.html" title="A static class to set up the real-world times that apply to a timestep. ">timeStep</a> is always seconds - here dt is set to be 3600, i.e. the defautl timestep is one hour </p>
+
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00107">107</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 
 </div>
 </div>
@@ -284,7 +372,7 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00083">83</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00120">120</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 
 </div>
 </div>
@@ -315,7 +403,38 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>report the number of days that would be represented by a timestep </p>
 <p>e.g if the time step is two days, report 2. </p>
 
-<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00187">187</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00388">388</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+
+</div>
+</div>
+<a id="a67c234a0b9476fae7114306099891172"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67c234a0b9476fae7114306099891172">&#9670;&nbsp;</a></span>getStepNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int timeStep::getStepNumber </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>return the current number of model steps since the start of the run <br />
+ </p>
+<p>It is assumed this will be updated every model timestep </p>
+
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00216">216</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 
 </div>
 </div>
@@ -345,7 +464,164 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>report the number of months that would be represented by a timestep </p>
 <p>e.g if the time step is one day, report 1./30 (so not really months!) </p>
 
-<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00181">181</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00382">382</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+
+</div>
+</div>
+<a id="a0e59817b2b0a8861b7c0c3e71d508882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e59817b2b0a8861b7c0c3e71d508882">&#9670;&nbsp;</a></span>setDate() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void timeStep::setDate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>year</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dayofweek</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>monthday</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the values in the date structure - Note apart from the year all values are integers starting from zero. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">year</td><td>The year as a four digit integer </td></tr>
+    <tr><td class="paramname">month</td><td>the month as an integer with 0=Jan. 1=Feb. etc </td></tr>
+    <tr><td class="paramname">dayofweek</td><td>The day of the week with 0=Mon. 1=Tue. up to 6=Sun. </td></tr>
+    <tr><td class="paramname">monthday</td><td>The day of the month - from 0 to some upper value depending on the month </td></tr>
+    <tr><td class="paramname">hour</td><td>Hour of the day from 0 to 23 </td></tr>
+    <tr><td class="paramname">min</td><td>minute of the hour from 0 to 59 </td></tr>
+    <tr><td class="paramname">sec</td><td>second from 0 59</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Some minimal checking is carried out but reliance is placed on the user to get all the details here correct! e.g. day of the week consistent with other values </p>
+
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00264">264</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+
+</div>
+</div>
+<a id="a3bbb7df0150ee6d2760db41c52d1979c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bbb7df0150ee6d2760db41c52d1979c">&#9670;&nbsp;</a></span>setDate() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void timeStep::setDate </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the values in the date structure - using input in the form of a string: Day dd/mm/yyyy hh:mm:ss e.g. "Mon 01/01/1900 00:00:00". </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the date in the above format - note spaces slashes and colons expected exactly as shown (no extra . or anything else)</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Some minimal checking is carried out but reliance is placed on the user to get all the details here correct! e.g. day of the week consistent with other values </p>
+
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00285">285</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+
+</div>
+</div>
+<a id="a4ec99f5de6c18c26ad1c29e92fbd9998"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ec99f5de6c18c26ad1c29e92fbd9998">&#9670;&nbsp;</a></span>setStepNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void timeStep::setStepNumber </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>set the number of model steps since the start of the run <br />
+ </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>An integer giving the timesteup number </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00210">210</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 
 </div>
 </div>
@@ -381,7 +657,7 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00113">113</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00151">151</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 
 </div>
 </div>
@@ -411,11 +687,38 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>report the number of years that would be represented by a timestep </p>
 <p>e.g if the time step is one day, report 1./365 </p>
 
-<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00175">175</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00376">376</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac631606ffdebf816ea632bf11574f283"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac631606ffdebf816ea632bf11574f283">&#9670;&nbsp;</a></span>months</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double timeStep::months =24*3600*30</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>number of seconds in a month, approximately </p>
+<p>seconds in a year divided by 12 - used only if a "monthly" timestep is requested </p>
+
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00071">71</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+
+</div>
+</div>
 <a id="a76d26edeca85e16b1d159fe75fa6177f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a76d26edeca85e16b1d159fe75fa6177f">&#9670;&nbsp;</a></span>units</h2>
 
@@ -439,7 +742,7 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Units for the timestep - number of seconds in <a class="el" href="classtimeStep.html#a3992450a8bb7b8da9919193c637a3ae1">dt</a> will be set as required. </p>
 <p>can be years,months,days,hours,minutes or seconds </p>
 
-<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00067">67</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="timestep_8h_source.html#l00084">84</a> of file <a class="el" href="timestep_8h_source.html">timestep.h</a>.</p>
 
 </div>
 </div>
