@@ -74,7 +74,7 @@ timeStep.units=hours
 timeStep.dt=1
 
 #the date on which the model run begins - string
-#Format is "day dd/mm/yyyy hh:mm:ss" - assumed UTC (although time zones note yet implemented)
+#Format is "day dd/mm/yyyy hh:mm:ss" - assumed UTC (although time zones not yet implemented)
 #The default value is Mon 01/01/1900 00:00:00
 #Note the date has to be specified exactly as below in terms of spaces / and :
 #Make sure that the day is actually consistently correct with the given date, as the model cannot at present correct this
