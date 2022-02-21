@@ -51,7 +51,7 @@
 int main(int argc, char **argv) {
 
     std::string name="Mopatop";
-    std::string version="0.4";
+    std::string version="0.5";
     std::cout<<name<<" model version "<<version<<std::endl;
 
     //work out the current local time using C++ clunky time 
