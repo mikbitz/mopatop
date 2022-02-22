@@ -101,15 +101,45 @@ void agent::inTransit(){
 void agent::update(long step)
 {
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
-        if (currentPlace==vehicle)inTransit();
+        if (currentPlace==vehicle)inTransit();//trips to and fromr work only
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver
-
+        goOnHoliday();
+        returnFromHoliday();
+        arriveHome();
 if (ID==0)std::cout<<timeStep::getTimeOfDay()<<" "<< timeStep::getDayOfWeek()<<std::endl;
         //moving agents between data structure is expensive - only needed if agents need direct agent-to-agent interactions in a place -
         //might be made cheaper by allowing agents to be present in multiple places, but only active in one.
         //(this could allow for remote meetings/phone calls?!)
         //moveTo(currentPlace);
 
+}
+//------------------------------------------------------------------------
+void agent::goOnHoliday(){
+    if (timeStep::getMonth()==5 && timeStep::getDayOfMonth()==0) {//holiday on 1st of June at midnight!
+     if (ID<=35000 ){
+      if (travelList::travelLocations.find("London") == travelList::travelLocations.end()) return;//didn't find the holiday destination
+      if(travelList::travelLocations["London"]->isOnRemoteDomain())setRemoteLocation();
+      if (_locationIsRemote)leaveDomain();
+      placeCache[vehicle]=places[vehicle];//store current values to be restored after trip - NB do this *BEFORE* visit! 
+      placeCache[home]=places[home];
+      outwardTravel();
+      currentPlace=vehicle;//now plane
+     } 
+    }
+}
+//------------------------------------------------------------------------
+void agent::returnFromHoliday(){
+    if (timeStep::getMonth()==5 && timeStep::getDayOfMonth()==14) {//return from holiday after two weeks, at midnight
+            if (_locationIsRemote)leaveDomain();
+            inwardTravel();
+    }
+}
+//------------------------------------------------------------------------
+void agent::arriveHome(){
+    if (timeStep::getMonth()==5 && timeStep::getDayOfMonth()==14 && timeStep::getTimeOfDay()>=1200){//got off the plane.
+            setTransport(placeCache[vehicle]);
+            currentPlace=home;
+    }
 }
 //------------------------------------------------------------------------
 void agent::updateTravelSchedule(long step)

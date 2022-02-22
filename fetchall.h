@@ -157,7 +157,7 @@ public:
         //std::vector<mui::point<mui::mui_config::REAL, 1>> flag_locs = flagInterface->fetch_points<mui::mui_config::REAL>( "Check", time, chrono_sampler ); // Extract the locations stored in the interface at time
         std::vector<double> received_flag_value = flagInterface->fetch_values<mui::mui_config::REAL>( "Check", time, chrono_sampler );
         //only do the full data exchange if either this domain has some data to send, or the flag received from the other domain is non zero (i.e. it wants to send data)
-        //since we have cast bools to doubles, use 0.5 as the check to guarantee we don;t have trouble with values being some tiny amount greater than zero.
+        //since we have cast bools to doubles, use 0.5 as the check to guarantee we don't have trouble with values being some tiny amount greater than zero.
 if ((received_flag_value[0]+(double)leavers)>0.5){
         // Push values to the MUI interface - at the moment it seems all values have to be cast to doubles??
         

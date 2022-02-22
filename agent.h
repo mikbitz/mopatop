@@ -102,6 +102,12 @@ public:
     scheduleTypes originalScheduleType;
     /** @brief Counts down the time spent at the current location     */  
     double scheduleTimer=0;
+    /** @brief A rule to determine whether the agent is about to go away on holiday*/
+    void goOnHoliday();
+    /** @brief A rule to determine whether the agent is about to go get on plane home*/
+    void returnFromHoliday();
+    /** @brief A rule to determine whether the agent has reached home*/
+    void arriveHome();
     /** @brief A rule to determine whether the agent is about to go away on travel 
         @param step the current model time step*/
     bool holidayTime(long);

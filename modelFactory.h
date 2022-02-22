@@ -137,7 +137,8 @@ class simpleMobileFactory:public modelFactory{
     @details This method has to be accessed by creating a pointer to this sub-class.
     @param parameters A reference to the model parameterSettings object
     @param agents A reference to the model object's list of agents
-    @param places* A reference to the model object's list of places*/
+    @param places* A reference to the model object's list of places
+    @todo refactor the behaviour for local and remote MPI domains */
     void createAgents(parameterSettings& parameters, std::vector<agent*>& agents,std::vector<place*>& places,std::string domain){
 
         long nAgents=parameters.get<long>("run.nAgents");
@@ -245,10 +246,13 @@ class simpleMobileFactory:public modelFactory{
         //report intialization to std out 
         std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
         //create some remote places to travel to - local ones are on this MPI domain, remote another one.
-        //local only to domain b - for domain other than b it will be availabe here but labelled as remote 
-        travelList::add("NewYork",parameters,places,domain=="b");
-        //local only to domain a
-        travelList::add("London",parameters,places,domain=="a");
+        //If domain!="b"  is true, the location is remote to MPI domain b - otherwise it is labelled as local i.e. the current domain is indeed "b"
+        //hmmm - this needs some thought if there are more than two domains - also means that only "a" and "b" are recognised
+        
+        //local to domain not b, i.e. a, currently.
+        travelList::add("NewYork",parameters,places,domain!="b");
+        //local only to domain b
+        travelList::add("London",parameters,places,domain!="a");
 
     }
 };

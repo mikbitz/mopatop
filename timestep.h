@@ -26,6 +26,7 @@
  * @author Mike Bithell
  * @date 17/08/2021
  * Modified 25/1/21 to include dates
+ * @todo includes timezones and a proper date library
  **/
 
 #include<string>
@@ -141,6 +142,7 @@ public:
             std::cout<<"Invalid time units: "<<units<<" in timeStep.h"<<std::endl;
             exit(1);
         }
+        //set the initial date and time using the value from the paramter file in the form "Day dd/mm/yyyy hh:mm:ss"
         setDate(p.get("timeStep.startdate"));
     }
     //------------------------------------------------------------------------
@@ -203,7 +205,8 @@ public:
         reportDate();
     }
     //------------------------------------------------------------------------
-    /** @brief set the number of model steps since the start of the run   */
+    /** @brief set the number of model steps since the start of the run   
+        @param s An integer giving the timesteup number*/
     static void setStepNumber(int s){
         stepNumber=s;
     }
@@ -214,8 +217,7 @@ public:
         return stepNumber;
     }
     //------------------------------------------------------------------------
-    /** @brief return a representation of the time of day as in 24 hour clock e.g. 914 for for 14 minutes past nine in the morning  
-     It is assumed that the model run starts at midnight i.e. step 0 is 0000h */
+    /** @brief return a representation of the time of day as in 24 hour clock e.g. 914 for for 14 minutes past nine in the morning*/
     static int getTimeOfDay(){
         return currentHour*100+currentMinute;
     }
@@ -224,6 +226,12 @@ public:
       The model run is assumed to start on a Monday by default */
     static int getDayOfWeek(){
         return currentWeekDay;
+    }
+    //------------------------------------------------------------------------
+    /** @brief return a representation of the day of the month  0=day 1, 1= day 2 etc.  
+      The model run is assumed to start on 1 January by default */
+    static int getDayOfMonth(){
+        return currentDayOfMonth;
     }
     //------------------------------------------------------------------------
     /** @brief return a representation of the month of the year as an integer with 0=Jan, 1=Feb etc.  
