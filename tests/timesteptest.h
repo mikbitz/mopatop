@@ -179,6 +179,28 @@ public:
         CPPUNIT_ASSERT( timeStep::getDayOfWeek()==4);
         CPPUNIT_ASSERT( timeStep::getTimeOfDay()==1102);
         CPPUNIT_ASSERT( timeStep::getSeconds()==3);
+        //now advance one month in daily steps
+        timeStep::setdeltaT(timeStep::day());
+        //Jan. has 31 days
+        for (int i=0;i<31;i++)timeStep::update();
+        CPPUNIT_ASSERT( timeStep::getYear()==1952);
+        CPPUNIT_ASSERT( timeStep::getMonth()==1);
+        //1952 is a leap year, but we are before Feb.
+        CPPUNIT_ASSERT( timeStep::getDayOfMonth()==10);
+        //day of week advances by 4 weeks 3 days
+        CPPUNIT_ASSERT( timeStep::getDayOfWeek()==0);
+        CPPUNIT_ASSERT( timeStep::getTimeOfDay()==1102);
+        CPPUNIT_ASSERT( timeStep::getSeconds()==3);
+        //forward a further year
+        for (int i=0;i<365;i++)timeStep::update();
+        CPPUNIT_ASSERT( timeStep::getYear()==1953);
+        CPPUNIT_ASSERT( timeStep::getMonth()==1);
+        //1952 is a leap year so one day back
+        CPPUNIT_ASSERT( timeStep::getDayOfMonth()==9);
+        //day of week advances by 1
+        CPPUNIT_ASSERT( timeStep::getDayOfWeek()==1);
+        CPPUNIT_ASSERT( timeStep::getTimeOfDay()==1102);
+        CPPUNIT_ASSERT( timeStep::getSeconds()==3);
         //change back to default just in case of later uses
         timeStep::setdeltaT(timeStep::hour());
     }
