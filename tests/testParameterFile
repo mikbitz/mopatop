@@ -70,6 +70,13 @@ timeStep.units=seconds
 #so if this is set to 2 and the above units set to hours, each timestep will represent 2 hours of real time
 #note that any rates set in this file will need to take into account this timing 
 timeStep.dt=3600
+
+#the date on which the model run begins - string
+#Format is "day dd/mm/yyyy hh:mm:ss" - assumed UTC (although time zones not yet implemented)
+#The default value is Mon 01/01/1900 00:00:00
+#Note the date has to be specified *exactly* as below in terms of spaces / and : - Day of the week should be three letters, initally capitalised 
+#If the day of the week is not consistent with the (gregorian) value, it will get corrected
+timeStep.startdate=Wed 23/02/2022 11:29:05
 #-------------------------------
 #output
 #-------------------------------
