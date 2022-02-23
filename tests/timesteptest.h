@@ -201,7 +201,46 @@ public:
         CPPUNIT_ASSERT( timeStep::getDayOfWeek()==1);
         CPPUNIT_ASSERT( timeStep::getTimeOfDay()==1102);
         CPPUNIT_ASSERT( timeStep::getSeconds()==3);
-        //change back to default just in case of later uses
+        //change back to hours
+        timeStep::setdeltaT(timeStep::hour());
+        //forward 48 hours and then another 7
+        for (int i=0;i<55;i++)timeStep::update();
+        CPPUNIT_ASSERT( timeStep::getYear()==1953);
+        CPPUNIT_ASSERT( timeStep::getMonth()==1);
+        //two days forward
+        CPPUNIT_ASSERT( timeStep::getDayOfMonth()==11);
+        //day of week advances by 2
+        CPPUNIT_ASSERT( timeStep::getDayOfWeek()==3);
+        //time increased by 7 hours
+        CPPUNIT_ASSERT( timeStep::getTimeOfDay()==1802);
+        CPPUNIT_ASSERT( timeStep::getSeconds()==3);
+        //try quarter hours
+        timeStep::setdeltaT(0.25*timeStep::hour());
+        //forward 2 hours and 15 minutes
+        for (int i=0;i<9;i++)timeStep::update();
+        CPPUNIT_ASSERT( timeStep::getYear()==1953);
+        CPPUNIT_ASSERT( timeStep::getMonth()==1);
+        //two days forward
+        CPPUNIT_ASSERT( timeStep::getDayOfMonth()==11);
+        //day of week advances by 2
+        CPPUNIT_ASSERT( timeStep::getDayOfWeek()==3);
+        //time increased by 7 hours
+        CPPUNIT_ASSERT( timeStep::getTimeOfDay()==2017);
+        CPPUNIT_ASSERT( timeStep::getSeconds()==3);
+        //try seconds
+        timeStep::setdeltaT(timeStep::second());
+        //add 67 seconds
+        for (int i=0;i<67;i++)timeStep::update();
+        CPPUNIT_ASSERT( timeStep::getYear()==1953);
+        CPPUNIT_ASSERT( timeStep::getMonth()==1);
+        //two days forward
+        CPPUNIT_ASSERT( timeStep::getDayOfMonth()==11);
+        //day of week advances by 2
+        CPPUNIT_ASSERT( timeStep::getDayOfWeek()==3);
+        //time increased by 7 hours
+        CPPUNIT_ASSERT( timeStep::getTimeOfDay()==2018);
+        CPPUNIT_ASSERT( timeStep::getSeconds()==10);
+        //change back to default hours in case other tests are doing things
         timeStep::setdeltaT(timeStep::hour());
     }
 };
