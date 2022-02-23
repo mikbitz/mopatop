@@ -210,8 +210,9 @@ public:
     }
     //------------------------------------------------------------------------
     /** @brief set the number of model steps since the start of the run   
-        @param s An integer giving the timesteup number*/
+        @param s An integer giving the timesteup number, greater than or equal to zero*/
     static void setStepNumber(int s){
+        assert (s>=0);
         stepNumber=s;
     }
     //------------------------------------------------------------------------
