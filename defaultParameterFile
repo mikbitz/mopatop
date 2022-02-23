@@ -76,8 +76,8 @@ timeStep.dt=1
 #the date on which the model run begins - string
 #Format is "day dd/mm/yyyy hh:mm:ss" - assumed UTC (although time zones not yet implemented)
 #The default value is Mon 01/01/1900 00:00:00
-#Note the date has to be specified exactly as below in terms of spaces / and :
-#Make sure that the day is actually consistently correct with the given date, as the model cannot at present correct this
+#Note the date has to be specified *exactly* as below in terms of spaces / and : - Day of the week should be three letters, initally capitalised 
+#If the day of the week is not consistent with the (gregorian) value, it will get corrected
 #timeStep.startdate=Mon 31/01/2022 00:00:00
 #-------------------------------
 #output
