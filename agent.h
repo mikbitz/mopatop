@@ -142,8 +142,8 @@ public:
     //the next functions are defined after the travelSchedule class, as they need to know the schedule details before they can be set up
     /** @brief Move through the travel schedule, and then do any actions specific to places (apart from disease) \n
         @details needs to be called every timestep see \ref agent.cpp for definition\n 
-        @param step the current model time step*/
-    void update(long);
+        */
+    void update();
 
     /** @brief Change schedules according to whether routine or (for example) going on holiday \n
     *  @details If going away the original home/work/vehicle pointers are cached, then new ones selected for \n

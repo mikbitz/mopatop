@@ -98,7 +98,7 @@ void agent::inTransit(){
 }
 //------------------------------------------------------------------------
 //defined here so as to be after travelSchedule class
-void agent::update(long step)
+void agent::update()
 {
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
         if (currentPlace==vehicle)inTransit();//trips to and fromr work only

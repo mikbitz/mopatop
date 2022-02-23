@@ -182,7 +182,8 @@ public:
         long num=std::min((long)parameters.get<long>("disease.simplistic.initialNumberInfected"),(long)agents.size());
         for (long i=0;i<num;i++)agents[i]->becomeInfected();
         
-        
+        std::cout<<"Day number 0=mon: "<<timeStep::findWeekDay(2022,2,23)<<std::endl;
+        exit (0);
     }
     //------------------------------------------------------------------------
     /** @brief Finish off model including any final output etc. \n
@@ -313,14 +314,14 @@ public:
         #pragma omp parallel for 
         for (long i=0;i<agents.size();i++){
             if (agents[i]->active()){
-                agents[i]->update(stepNumber);
+                agents[i]->update();
                 if (agents[i]->leaver()) leavers=true;;
             }
         }
         #pragma omp parallel for 
         for (long i=0;i<travellers.size();i++){
             if (travellers[i]->active()){
-                travellers[i]->update(stepNumber);
+                travellers[i]->update();
                 if (travellers[i]->leaver()) leavers=true;
             }
         }
