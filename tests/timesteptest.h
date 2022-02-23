@@ -37,6 +37,8 @@ class timeStepTest : public CppUnit::TestFixture  {
 public:
     /** @brief automatically create a test suite to add tests to - note this has to come after any setup/tearDown */
     CPPUNIT_TEST_SUITE( timeStepTest );
+    /** @brief check time step number updates correctly */
+    CPPUNIT_TEST( testStepping );
     /** @brief test the default state */
     CPPUNIT_TEST( testDefaults );
     /** @brief check the constructor works used on an object */
@@ -47,6 +49,20 @@ public:
     CPPUNIT_TEST( testDateFunctions );
     /** @brief end test suite */
     CPPUNIT_TEST_SUITE_END();
+    /** @brief Check that the time step number updates as expected
+     @details should start at 0 and advance by one on every call to update. Make sure this is the first test so that calls to update haven't happened yet */
+    void testStepping(){
+        //step should start at 0
+        CPPUNIT_ASSERT( timeStep::getStepNumber()  ==0);
+        timeStep::update();
+        CPPUNIT_ASSERT( timeStep::getStepNumber()  ==1);
+        timeStep::setStepNumber(100);
+        CPPUNIT_ASSERT( timeStep::getStepNumber()  ==100);
+        for (int i=0;i<17;i++)timeStep::update();
+        CPPUNIT_ASSERT( timeStep::getStepNumber()  ==117);
+        //reset to default
+        timeStep::setStepNumber(0);
+    }
     /** @brief as a static class the static variable should have values as in timeStep.cpp */
     void testDefaults()
     {
@@ -243,5 +259,6 @@ public:
         //change back to default hours in case other tests are doing things
         timeStep::setdeltaT(timeStep::hour());
     }
+
 };
 #endif // TIMESTEPTEST_H_INCLUDED
