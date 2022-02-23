@@ -195,13 +195,17 @@ public:
             while(currentDayOfMonth>=monthDays[currentMonth]+leapday){
                 currentDayOfMonth-=monthDays[currentMonth]+leapday;
                 currentMonth++;
-                if (currentMonth!=1) leapday=0;
+                if (currentMonth>=12){
+                    currentYear+=currentMonth/12;
+                    currentMonth=currentMonth%12;
+                }
+                if (currentMonth!=1) 
+                    leapday=0;
+                else
+                    if(currentYear%400==0 || (currentYear%4==0 && currentYear%100!=0))leapday=1;
             }
         }
-        if (currentMonth>=12){
-            currentYear+=currentMonth/12;
-            currentMonth=currentMonth%12;
-        }
+
         reportDate();
     }
     //------------------------------------------------------------------------
@@ -217,9 +221,15 @@ public:
         return stepNumber;
     }
     //------------------------------------------------------------------------
-    /** @brief return a representation of the time of day as in 24 hour clock e.g. 914 for for 14 minutes past nine in the morning*/
+    /** @brief return a representation of the time of day as in 24 hour clock 
+     @details e.g. 914 for for 14 minutes past nine in the morning - seconds are not reported - use get seconds function*/
     static int getTimeOfDay(){
         return currentHour*100+currentMinute;
+    }
+    //------------------------------------------------------------------------
+    /** @brief return the seconds in the current hour*/
+    static int getSeconds(){
+        return currentSeconds;
     }
     //------------------------------------------------------------------------
     /** @brief return a representation of the day of the week as an integer with 0=Mon, 1=Tue etc.  
@@ -239,14 +249,21 @@ public:
     static int getMonth(){
         return currentMonth;
     }
+        //------------------------------------------------------------------------
+    /** @brief return a representation of the month of the year as an integer with 0=Jan, 1=Feb etc.  
+      The model run is assumed to start on 1 January by default */
+    static int getYear(){
+        return currentYear;
+    }
     //------------------------------------------------------------------------
     /** @brief report the values in the current date structure in format: Day dd/mm/yyyy hh:mm:ss*/
     static void reportDate(){
         std::string wday[7]={"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
         std::cout<<wday[currentWeekDay]<<" ";
-        if (currentDayOfMonth<10) std::cout<<"0";
+        //std::cout<<currentWeekDay<<" "<<wday[6]<<" ";
+        if (currentDayOfMonth+1<10) std::cout<<"0";
         std::cout<<currentDayOfMonth+1<<"/";
-        if (currentMonth<10) std::cout<<"0";
+        if (currentMonth+1<10) std::cout<<"0";
         std::cout<<currentMonth+1<<"/";
         std::cout<<currentYear<<" ";
         if (currentHour<10) std::cout<<"0";
@@ -254,27 +271,57 @@ public:
         if (currentMinute<10) std::cout<<"0";
         std::cout<<currentMinute<<":";
         if (currentSeconds<10) std::cout<<"0";
-        std::cout<<currentSeconds<<":";
+        std::cout<<currentSeconds<<std::endl;
+    }
+    //------------------------------------------------------------------------
+    static int findWeekDay(int year,int month,int day)
+    /** @brief find the gregorian day of the week 
+     @param year the four-digit year
+     @param month the month, starting at 1 for Jan.
+     @param day the day of the month, starting at 1 
+     @details gregorian week day (post 1752) using Sakamoto's method - see wikipedia "Determination of the day of the week"\n
+     Note: Since here I am elsewhere using Mon=0 for weekdays, and the result is initially Sun=0, I add 6 mod 7*/
+    {
+        assert(month>0 && month<=12);
+        int offset[] = {0,3,2,5,0,3,5,1,4,6,2,4};
+        if(month<3) year--;
+        int result= ((year+year/4-year/100+year/400+offset[month-1]+day)%7);//note: relying on integer division truncating any decimals on dividing the year
+        result=(result+6)%7;//I'm using Mon=0 here so add on six days mod 7 
+        return result;
     }
     //------------------------------------------------------------------------
     /** @brief Set the values in the date structure - Note apart from the year all values are integers starting from zero 
      @param year The year as a four digit integer
      @param month the month as an integer with 0=Jan. 1=Feb. etc
      @param dayofweek The day of the week with 0=Mon. 1=Tue. up to 6=Sun.
-     @param monthday The day of the month - from 0 to some upper value depending on the month
+     @param monthday The day of the month - from 0 to some upper value depending on the month - seer \ref monthdays array
      @param hour Hour of the day from 0 to 23
      @param min minute of the hour from 0 to 59
      @param sec second from 0 59
-     @details Some minimal checking is carried out but reliance is placed on the user to get all the details here correct! e.g. day of the week consistent with other values
+     @details Some minimal checking is carried out: (gregorian) day of the week is checked and corrected if necessary.\n
+     Not stricly ISO8601 which has days of month and months of year starting at 1, and days of the week 1 through 7. oh well. its easier in the update function start at 0.\n
+     Could change this in reporting...
+     
      */
     static void setDate(int year,int month,int dayofweek,int monthday,int hour,int min,int sec){
         assert(month >=0 && month<12);
         assert(dayofweek>=0 && dayofweek<7);
-        assert(monthday>=0 && monthday<monthDays[month]);
+        assert(monthday>=0);
+        if (month!=1)assert(monthday<monthDays[month]);//not Feb.
+        if (month==1){//Feb. - check leap years
+            if(year%400==0 || (year%4==0 && year%100!=0)){
+              assert(monthday<29);
+            }
+            else {
+              assert(monthday<28);
+            }
+        }
+        int d=findWeekDay(year,month+1,monthday+1);//findWeekday is expecting months and days to start at 1, not zero
+        if (d!=dayofweek) std::cout<<"Correcting day of week to "<<d<<" (0=Monday...)"<<std::endl;
         assert(hour>=0 && hour<24);
         assert(min>=0 && min<60);
         assert(sec>=0 && sec<60);
-        currentWeekDay=dayofweek;
+        currentWeekDay=d;
         currentDayOfMonth=monthday;
         currentMonth=month;
         currentYear=year;
@@ -286,7 +333,7 @@ public:
         //------------------------------------------------------------------------
     /** @brief Set the values in the date structure - using input in the form of a string: Day dd/mm/yyyy hh:mm:ss e.g. "Mon 01/01/1900 00:00:00"
      @param s the date in the above format - note spaces slashes and colons expected exactly as shown (no extra . or anything else)
-     @details Some minimal checking is carried out but reliance is placed on the user to get all the details here correct! e.g. day of the week consistent with other values
+     @details Some minimal checking is carried out for weekday name - other checks in overloaded setDate method.
      */
     static void setDate(std::string s){
         std::map<std::string,int> wday;
