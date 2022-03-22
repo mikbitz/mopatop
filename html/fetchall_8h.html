@@ -86,7 +86,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMUIcoupler.html">MUIcoupler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class defines an interface for tow copes of the model running on different MPI threads.  <a href="classMUIcoupler.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class defines an interface for two copies of the model running on different MPI threads.  <a href="classMUIcoupler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -96,8 +96,11 @@ Classes</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>25 September 2020,25/11/2021</dd></dl>
 <p>MB 25/11/2021 updated the fetch for tranferring some agent data<br />
 Each data value transferred has an identifying point ID associated with it<br />
-Example run, with domains a and b<br />
-mpiexec -f hosts -np 1 ./testagent parameterFilea a : -np 1 ./testagent parameterFileb b </p>
+Example run, with domains a and b (where a and b are examples of arbitrary user defined string - they must be different<br />
+but otherwise can take any value - for example instead of a nd b, we could use one and two, or 1 and 2.<br />
+mpiexec -f hosts -np 1 ./testagent parameterFilea a : -np 1 ./testagent parameterFileb b<br />
+Note that to get this to work on a local machine, a file called "hosts" may be needed - <br />
+this can just have the single value localhost in it. Without this MPI may get upset when trying to set the hostname </p>
 
 <p class="definition">Definition in file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
 </div></div><!-- contents -->

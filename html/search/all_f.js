@@ -15,5 +15,6 @@ var searchData=
   ['remotetravel_2eh',['remoteTravel.h',['../remoteTravel_8h.html',1,'']]],
   ['remove',['remove',['../classplace.html#ac81d6af0bf64305a3a4a843d7d176920',1,'place']]],
   ['reportdate',['reportDate',['../classtimeStep.html#a5df721d9c452f746e2b8eb76cd1b1ea0',1,'timeStep']]],
+  ['returnfromholiday',['returnFromHoliday',['../classagent.html#a28cc700c2749e75b596d36ff1edfcbfc',1,'agent']]],
   ['returntrip',['returnTrip',['../classtravelSchedule.html#a7dbadc4de32f37df3d90e9d8b0b2a643',1,'travelSchedule']]]
 ];
