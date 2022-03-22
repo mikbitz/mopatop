@@ -87,11 +87,13 @@ public:
         or to allow the model to be coupled to another kind of model (e.g. an ecosystem model). See \ref fetchall.h \n
         If this is not needed then the domain is ignored.
         @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied
-        @param domain A string that defines which domain this is, when using domain decomposition to run multiple models */
+        @param domain A string that defines which MPI domain this is, when using domain decomposition to run multiple models using MPI - see fetchall.h */
     model(parameterSettings& parameters,std::string dom):domain(dom){
          //If using the MUI coupler, initialise the domain
 #ifdef COUPLER
+
         coupler=new MUIcoupler(domain);
+
 #endif
         leavers=false;
         //timestep is a static class - need only set its parameters once, here.

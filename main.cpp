@@ -71,9 +71,13 @@ int main(int argc, char **argv) {
         std::cout<<"Default parameter file overridden on command line"<<std::endl;
         parameters.readParameters(argv[1]);
     }
-
-    std::string domain=argv[2];
-
+    std::string domain="none";
+    //domain is only used if we are running with MPI to couple across MPI nodes
+    //if the latter we require an arbitrary unique string for each MPI domain to be specified on the command line
+    //see fetchall.h
+# ifdef COUPLER
+    domain=argv[2];
+# endif
     //set the number of OMP threads used to parallelise loops
     omp_set_num_threads(parameters.get<int>("run.nThreads"));
 

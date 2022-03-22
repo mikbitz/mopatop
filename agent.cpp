@@ -142,6 +142,21 @@ void agent::arriveHome(){
     }
 }
 //------------------------------------------------------------------------
+void agent::setRemoteLocation(){
+    _locationIsRemote=true;
+}
+//------------------------------------------------------------------------
+void agent::inwardTravel(){//note this and outward travel below are used in the case of multiple MPI domains, so need to be kept separate from update travel schedule above
+    //unstack home
+    setHome(placeCache[home]);
+    initTravelSchedule("returnTrip");
+}
+//------------------------------------------------------------------------
+void agent::outwardTravel(){
+    travelList::travelLocations["London"]->visit(this);//if leaving domain this caches the return flight - note alters home and vehicle settings
+    initTravelSchedule("remoteTravel");
+}
+//------------------------------------------------------------------------
 void agent::updateTravelSchedule(long step)
 {
 
@@ -178,21 +193,6 @@ bool agent::holidayTime(long step){
     return true;
     }
     return false;
-}
-//------------------------------------------------------------------------
-void agent::setRemoteLocation(){
-    _locationIsRemote=true;
-}
-//------------------------------------------------------------------------
-void agent::inwardTravel(){//note this and outward travel below are used in the case of multiple MPI domains, so need to be kept separate from update travel schedule above
-    //unstack home
-    setHome(placeCache[home]);
-    initTravelSchedule("returnTrip");
-}
-//------------------------------------------------------------------------
-void agent::outwardTravel(){
-    travelList::travelLocations["London"]->visit(this);//if leaving domain this caches the return flight - note alters home and vehicle settings
-    initTravelSchedule("remoteTravel");
 }
 //------------------------------------------------------------------------
 void agent::advanceTravelSchedule(){
