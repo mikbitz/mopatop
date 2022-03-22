@@ -49,16 +49,17 @@
  * parameters.readParameters("../defaultParameterFile");
  * timeStep t(parameters);
  * \endcode 
+ * A call to timeStep::update() is expected at the end of every model timestep.
  The model stepNumber can be used to calculate the number of hours and minutes, and the weekday since the start of the model run.\n
  Each timestep the model updates the stepnumber held here for this purpose, so that  the static stepNumber variable always holds the value of \n
  the model step number, and this can be accessed from anywhere in the code. This is done by calling the timestep::update() method each timestep.\n
  This adds one to the stepNumber, and then calculates the date given the starting date for the model (defaults to Mon 1 jan 1900, as a known day).\n
- Days and monthsminutes and hours  are held as integers starting at zero to make date calculations easier.\n
+ Days and months, minutes and hours  are held as integers starting at zero to make date calculations easier.\n
  At present there are no time zones available, so dates are calculated in nominal UTC (ignoring leap seconds, but allowing for leap years)\n
  Similarly dates before 1752 are not correct as these predate the switch to the gregorian calendar.\n
  The default initial date is Mon. 1 Jan. 1900.\n
- NB Although one coudl use the ctime library, this proved to be unreliable in converting back and forth between dates in a tm structure and\n
- seconds since 1970 that are held in a time_t, both in terms of results not always being consistent and interms of calls to gmtime modifying\n
+ NB Although one could use the ctime library, this proved to be unreliable in converting back and forth between dates in a tm structure and\n
+ seconds since 1970 that are held in a time_t, both in terms of results not always being consistent and in terms of calls to gmtime modifying\n
  tm pointers not involved in the call. :(\n
  An alternative would be to use the boost posix time and gregorian libraries, which work well, but boost can be a problem to compile against\n
  as libraries can vary between systems. Maybe fixed by C++ 20 chrono?
