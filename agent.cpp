@@ -101,7 +101,7 @@ void agent::inTransit(){
 void agent::update()
 {
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
-        if (currentPlace==vehicle)inTransit();//trips to and fromr work only
+        if (currentPlace==vehicle)inTransit();//trips to and from work only
         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver
         goOnHoliday();
         returnFromHoliday();

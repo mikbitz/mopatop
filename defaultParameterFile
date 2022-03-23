@@ -1,4 +1,4 @@
-#Model parameters
+#Model parameters v0.5
 #lines starting with any amount of white space, followed by # are comments
 #Lines with no = will also be skipped
 #Format is "label=value" on each line
@@ -26,7 +26,7 @@ run.nSteps=300
 #number of OMP threads to use - integer
 #Increase the number here if using openmp to parallelise any loops.
 #Note number of threads needs to be <= to number of cores/threads supported on the local machine
-run.nThreads=2
+run.nThreads=1
 
 #random seed - integer
 #change to vary the stochastic parts of the model

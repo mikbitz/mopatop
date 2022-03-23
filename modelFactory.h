@@ -102,7 +102,7 @@ class simpleOnePlaceFactory:public modelFactory{
         for (long i=0;i<parameters.get<long>("run.nAgents");i++){
             agent* a=new agent();
             a->setHome(places[0]);
-            //some schedules assume that work and tranport exist - set these so as not to cause a model crash
+            //some rules assume that work and tranport exist - set these so as not to cause a model crash
             a->setTransport(places[0]);
             a->setWork(places[0]);
             //agent internal thread ID counter not thread safe, so set explicitly
