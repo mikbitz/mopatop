@@ -12,7 +12,7 @@ although note that not all links in the above page menus work directly with this
 
 ## Platforms
 ### Linux
-The model has been tested and runs on opensuse linux with g++ version >= 9.3 
+The model has been tested and runs on opensuse linux with g++ version >= 9.3 , C++17
 
 ### MacOS
 Compile on macOS 11.5.2 BigSur using g++-11 installed with homebrew as follows:-
@@ -33,7 +33,9 @@ You should then be able to compile and run the model as for a standard linux ins
 ## Capability
 
 This model is currently known to be able to run an epidemic with at least 4.5 billion simple agents, along with 2.1 billion
-homes/workplaces/transport vehicles on a 76 core machine with 512GB of memory - benchmarking is as yet incomplete however.
+homes/workplaces/transport vehicles on a 76 core machine with 512GB of memory - benchmarking is as yet incomplete however. Scaling seems good out to 64 cores.
 
 Memory scales linearly with agent numbers at about 0.1K per agent (including places/transport). Initialisation on Intel icelake processors takes about 1.5 micro-seconds per agent,
-and run times scale at about 0.2 microseconds per agent per model time step. Speedup continues out to 64 core, a little less than linearly with a factor of about 25 over 64 cores.  
+and run times scale at about 0.2 microseconds per agent per model time step. Speedup continues out to 64 core, a little less than linearly with a factor of about 25 over 64 cores.
+
+Using MPI and the MUI coupler (see fetchall.h) the model can be scaled up to 7 billion agents on two 76 core 512GB nodes.
