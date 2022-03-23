@@ -271,7 +271,7 @@
  * @subsubsection trvl travel
  * - Agents check the time in the current place, and move to the next place when the time passes a threshhold. \n
  * agents rules specify the next place type to move to and then they go there. The time need not be a multiple of the timestep\n
- * but actual time spent in each palce will in practice end up being some mulitple of the timestep.\n
+ * but actual time spent in each place will in practice end up being some multiple of the timestep.\n
  * - Structure is included to allow agents to add and remove themsleves from a list of agents in each place\n
  * but at present this is not needed (and the add and remove process is computationally quite expensive). \n
  * Agents just keep a pointer ot a given place, and interaction is implicit (currently only through contamination level).
