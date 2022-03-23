@@ -90,16 +90,35 @@ with a fixed chance per timestep, and are subsequently immune. </p>
 Compiling the model</h2>
 <p>On a linux system with g++ installed just do <br />
 g++ -o agentModel -O3 -fopenmp -std=c++17 <a class="el" href="timestep_8cpp.html" title="File to define static variables for timestep. ">timestep.cpp</a> <a class="el" href="disease_8cpp.html" title="File to define static variables for disease. ">disease.cpp</a> <a class="el" href="agent_8cpp.html" title="File containing methods that requie definitions of other classes to be available. ...">agent.cpp</a> <a class="el" href="places_8cpp.html" title="File containing methods that require definitions of other classes to be available. ">places.cpp</a> <a class="el" href="schedulelist_8cpp.html" title="File to define list of schedules for use by agents. ">schedulelist.cpp</a> <a class="el" href="main_8cpp.html" title="File containing some classes and method definitions and the main function. ">main.cpp</a><br />
+Note that you need to have openMP available even if you only intend to run single-threaded <br />
+Better use the Makefile :-<br />
+You should first remove any pre-exiisting object or dependency files with<br />
+make clean <br />
+and then type<br />
+make<br />
 Note the current version requires g++ version&gt;=9 and c++17 in order for the filesystem function to work (for creating new directories etc.)<br />
-If using openmp (parallelised loops) then set the number of threads in the <a class="el" href="classparameterSettings.html" title="ParameterSettings is a class designed to hold all the parameters for the model. ">parameterSettings</a> class.<br />
-Note the number of cores to be used must be &lt;= number supported by the local machine! </p>
+</p>
 <h2><a class="anchor" id="Run"></a>
 Running the model</h2>
 <p>At present this is a simple command-line application - just type the executable name (agentModel above) and then return.<br />
 This will use the default parameter file. To use an alternative specify the file name after the executable name:- <br />
 </p><div class="fragment"><div class="line">agentModel parameterFileName</div></div><!-- fragment --><p> The parameter file allows for a number of runs to be made from a single call to agentModel, but with different random seeds<br />
 Each run output will be stored in a separate directory. See the run section in the parameter file for how to set this up. </p>
-<h2><a class="anchor" id="dett"></a>
+<h2><a class="anchor" id="Parallell"></a>
+Parallellisationalisation</h2>
+<p>If using openmp (parallelised loops) then set the number of threads in the <a class="el" href="classparameterSettings.html" title="ParameterSettings is a class designed to hold all the parameters for the model. ">parameterSettings</a> file.<br />
+Note the number of cores to be used must be &lt;= number supported by the local machine! The facility exists to run the model over many MPI nodes useing the MUI coupler - <a href="https://github.com/MxUI/MUI">https://github.com/MxUI/MUI</a><br />
+see <a class="el" href="fetchall_8h.html">fetchall.h</a> <br />
+In which case you need to do:- <br />
+make WITH_MPI_COUPLER=1 <br />
+and then run the model as specified in <a class="el" href="fetchall_8h.html" title="originally a simple example demonstrating the non-interpolating fetch_points and fetch_values command...">fetchall.h</a>. However, this is currently only likely to be necessary for very large models <br />
+(more than a few billion agents), and requires care in makign sure the model set up works across nodes. You will also need MPI<br />
+libraries installed - current testing uses mpich 2<br />
+If using MPI you need instead something like, for testing on a single machine </p><div class="fragment"><div class="line">mpiexec -f hosts -np 1 ./agentmodel parameterFile1 domain1 : -np 1 ./agentmodel defaultparameterFile2 domain2</div></div><!-- fragment --><p> where the hosts is just a single line <br />
+ </p><div class="fragment"><div class="line">localhost\n</div></div><!-- fragment --><p> This runs two copies of the model with appropriately set different parameters sets (although note you need to have matching dates and timesteps!)<br />
+Each copy runs as a multi-core openMP application, with data exchange controlled as in <a class="el" href="fetchall_8h.html" title="originally a simple example demonstrating the non-interpolating fetch_points and fetch_values command...">fetchall.h</a><br />
+On a multi-node HPC you will need instead:-<br />
+</p><div class="fragment"><div class="line">mpirun -np 1 -node host1 ./agentmodel parameterFile1 domain1 : -np 1 -node host2 ./agentmodel defaultparameterFile2 domain2</div></div><!-- fragment --> <h2><a class="anchor" id="dett"></a>
 Detailed Description</h2>
 <p>For a formalised description of the model see <a class="el" href="ODD.html">ODD description</a> For parameter settings and builing experiments see <a class="el" href="params.html">Parameter Setting and Experiments</a> </p>
 </div></div><!-- contents -->
