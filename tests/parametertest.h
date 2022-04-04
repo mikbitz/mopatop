@@ -60,6 +60,7 @@ public:
         CPPUNIT_ASSERT(p.get<int>("run.randomSeed")==0);
         CPPUNIT_ASSERT(p.get("timeStep.units")=="hours");
         CPPUNIT_ASSERT(p.get<double>("timeStep.dt")==1);
+        CPPUNIT_ASSERT(p.get("timeStep.startdate")=="Mon 01/01/1900 00:00:00");
         CPPUNIT_ASSERT(p.get("outputFile")=="diseaseSummary");
         CPPUNIT_ASSERT(p.get("experiment.output.directory")=="./output");
         CPPUNIT_ASSERT(p.get("experiment.name")=="default");
@@ -117,7 +118,7 @@ public:
         CPPUNIT_ASSERT(p.get<int>("run.randomIncrement")==57);
 
     }
-        /** @brief Check some of teh other classes are getting teh right input from the parameterSettings objects
+        /** @brief Check some of the other classes are getting the right input from the parameterSettings objects
      *   @details In this case the static timeStep and disease, as well as the places */
     void testSetUpObjects(){
         parameterSettings p;

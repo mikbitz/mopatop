@@ -76,7 +76,7 @@ int main(){
   MyCustomProgressTestListener progress;
   runner.eventManager().addListener(&progress);
   //add test suites
-  runner.addTest( agentTest::suite() );
+  //runner.addTest( agentTest::suite() );
   runner.addTest( randomTest::suite() );
   runner.addTest( timeReporterTest::suite() );
   runner.addTest( timeStepTest::suite() );
@@ -85,8 +85,8 @@ int main(){
   runner.addTest( diseaseTest::suite() );
   runner.addTest( placeTest::suite() );
   runner.addTest( parameterTest::suite() );
-  runner.addTest( modelFactoryTest::suite() ); 
-  runner.addTest( modelTest::suite() ); 
+  //runner.addTest( modelFactoryTest::suite() ); 
+  //runner.addTest( modelTest::suite() ); 
   //run all test suites
   runner.run();
   return 0;

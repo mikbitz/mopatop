@@ -1,0 +1,29 @@
+Run started at: Tue Sep  7 13:39:10 2021
+
+----------------------------- 
+Input Parameter File: 
+----------------------------- 
+disease.simplistic.deathRate                        0.0007
+disease.simplistic.infectionShedLoad                0.001
+disease.simplistic.initialNumberInfected            1
+disease.simplistic.recoveryRate                     0.0007
+experiment.description                              The default parameter set was used
+experiment.name                                     default
+experiment.output.directory                         ./output
+experiment.run.number                               0004
+experiment.run.prefix                               10000
+model.type                                          simpleMobile
+model.version                                       Unknown
+outputFile                                          diseaseSummary
+places.cleanContamination                           false
+places.disease.simplistic.fractionalDecrement       1
+run.nAgents                                         600
+run.nRepeats                                        1
+run.nSteps                                          1
+run.nThreads                                        1
+run.randomIncrement                                 1
+run.randomSeed                                      0
+schedule.type                                       mobile
+timeStep.dt                                         1
+timeStep.units                                      hours
+----------------------------- 

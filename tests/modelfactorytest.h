@@ -62,7 +62,7 @@ public:
         std::vector<place*> places;
         parameterSettings pr;
         modelFactory& F=modelFactorySelector::select("simpleOnePlace");
-        F.createAgents(pr,agents,places);
+        F.createAgents(pr,agents,places,"a");
         CPPUNIT_ASSERT(agents.size()==600);
         CPPUNIT_ASSERT(places.size()==1);
         //agents all in the same place
@@ -77,7 +77,7 @@ public:
         agents.clear();
         places.clear();
         modelFactory& G=modelFactorySelector::select("simpleMobile");
-        G.createAgents(pr,agents,places);
+        G.createAgents(pr,agents,places,"a");
         CPPUNIT_ASSERT(agents.size()==600);
         CPPUNIT_ASSERT(places.size()==280);
         for (auto& a:agents)CPPUNIT_ASSERT(a->getHome()!=a->getWork());

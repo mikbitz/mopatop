@@ -1,0 +1,78 @@
+\hypertarget{classtimeStepTest}{}\section{time\+Step\+Test Class Reference}
+\label{classtimeStepTest}\index{time\+Step\+Test@{time\+Step\+Test}}
+
+
+Check the class that maps the time step to a given set of real-\/world units (e.\+g. hours)  
+
+
+
+
+{\ttfamily \#include $<$timesteptest.\+h$>$}
+
+
+
+Inheritance diagram for time\+Step\+Test\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classtimeStepTest__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for time\+Step\+Test\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classtimeStepTest__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtimeStepTest_a33172d5eb5f67ad6eb8ef3e04baed49c}\label{classtimeStepTest_a33172d5eb5f67ad6eb8ef3e04baed49c}} 
+\mbox{\hyperlink{classtimeStepTest_a33172d5eb5f67ad6eb8ef3e04baed49c}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+TE}} (\mbox{\hyperlink{classtimeStepTest}{time\+Step\+Test}})
+\begin{DoxyCompactList}\small\item\em automatically create a test suite to add tests to -\/ note this has to come after any setup/tear\+Down \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeStepTest_a8dd61267ca389d04a8db4776b64eee9a}\label{classtimeStepTest_a8dd61267ca389d04a8db4776b64eee9a}} 
+\mbox{\hyperlink{classtimeStepTest_a8dd61267ca389d04a8db4776b64eee9a}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+ST}} (\mbox{\hyperlink{classtimeStepTest_ae501f2f63633a2b24c4cfc1f9c33f96b}{test\+Defaults}})
+\begin{DoxyCompactList}\small\item\em test the default state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeStepTest_a215e48294ca13fb21cd703e31e80bf48}\label{classtimeStepTest_a215e48294ca13fb21cd703e31e80bf48}} 
+\mbox{\hyperlink{classtimeStepTest_a215e48294ca13fb21cd703e31e80bf48}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+ST}} (\mbox{\hyperlink{classtimeStepTest_a3e6e3abcb3b887cd3ebbbacb3c6a812f}{test\+Default\+Constructor}})
+\begin{DoxyCompactList}\small\item\em check the constructor works used on an object \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeStepTest_a83693f088afb5b02ca85ede22866efbf}\label{classtimeStepTest_a83693f088afb5b02ca85ede22866efbf}} 
+\mbox{\hyperlink{classtimeStepTest_a83693f088afb5b02ca85ede22866efbf}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+ST}} (\mbox{\hyperlink{classtimeStepTest_abb17f1970e1ec459c524ef87870f651f}{test\+Return\+Values}})
+\begin{DoxyCompactList}\small\item\em check that all the functions work \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeStepTest_a9d77630b4ebb30faacc9627d0739c836}\label{classtimeStepTest_a9d77630b4ebb30faacc9627d0739c836}} 
+\mbox{\hyperlink{classtimeStepTest_a9d77630b4ebb30faacc9627d0739c836}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+\+E\+ND}} ()
+\begin{DoxyCompactList}\small\item\em end test suite \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeStepTest_ae501f2f63633a2b24c4cfc1f9c33f96b}\label{classtimeStepTest_ae501f2f63633a2b24c4cfc1f9c33f96b}} 
+void \mbox{\hyperlink{classtimeStepTest_ae501f2f63633a2b24c4cfc1f9c33f96b}{test\+Defaults}} ()
+\begin{DoxyCompactList}\small\item\em as a static class the static variable should have values as in time\+Step.\+cpp \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtimeStepTest_a3e6e3abcb3b887cd3ebbbacb3c6a812f}\label{classtimeStepTest_a3e6e3abcb3b887cd3ebbbacb3c6a812f}} 
+void \mbox{\hyperlink{classtimeStepTest_a3e6e3abcb3b887cd3ebbbacb3c6a812f}{test\+Default\+Constructor}} ()
+\begin{DoxyCompactList}\small\item\em When an object is created, the values should be those from the constructor in time\+Step.\+h. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtimeStepTest_abb17f1970e1ec459c524ef87870f651f}{test\+Return\+Values}} ()
+\begin{DoxyCompactList}\small\item\em Check that the return values are as expected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Check the class that maps the time step to a given set of real-\/world units (e.\+g. hours) 
+
+NB if time\+Step\+::deltaT is reset anywhere, because timestep is a static class, this can affect other tests 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtimeStepTest_abb17f1970e1ec459c524ef87870f651f}\label{classtimeStepTest_abb17f1970e1ec459c524ef87870f651f}} 
+\index{time\+Step\+Test@{time\+Step\+Test}!test\+Return\+Values@{test\+Return\+Values}}
+\index{test\+Return\+Values@{test\+Return\+Values}!time\+Step\+Test@{time\+Step\+Test}}
+\subsubsection{\texorpdfstring{test\+Return\+Values()}{testReturnValues()}}
+{\footnotesize\ttfamily void time\+Step\+Test\+::test\+Return\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check that the return values are as expected. 
+
+e.\+g. after setting time\+Step\+::setdelta\+T(time\+Step\+::hour()), Time\+Steps\+Per\+Hour and hours\+Per\+Time\+Step should both be 1 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{timesteptest_8h}{timesteptest.\+h}}\end{DoxyCompactItemize}

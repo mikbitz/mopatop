@@ -1,0 +1,59 @@
+\hypertarget{classMyCustomProgressTestListener}{}\section{My\+Custom\+Progress\+Test\+Listener Class Reference}
+\label{classMyCustomProgressTestListener}\index{My\+Custom\+Progress\+Test\+Listener@{My\+Custom\+Progress\+Test\+Listener}}
+
+
+Report the start of each test.  
+
+
+
+
+Inheritance diagram for My\+Custom\+Progress\+Test\+Listener\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classMyCustomProgressTestListener__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for My\+Custom\+Progress\+Test\+Listener\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classMyCustomProgressTestListener__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classMyCustomProgressTestListener_a798f9c66a689cbe41701b582b9033892}{start\+Test}} (Cpp\+Unit\+::\+Test $\ast$test)
+\begin{DoxyCompactList}\small\item\em define the message to be printed when each test starts \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Report the start of each test. 
+
+Define a class that will print a message to stdout as each test is started. ~\newline
+An instance of this class gets added to the Cpp\+Unit\+::\+Text\+Ui\+::\+Test\+Runner that runs the test suites 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMyCustomProgressTestListener_a798f9c66a689cbe41701b582b9033892}\label{classMyCustomProgressTestListener_a798f9c66a689cbe41701b582b9033892}} 
+\index{My\+Custom\+Progress\+Test\+Listener@{My\+Custom\+Progress\+Test\+Listener}!start\+Test@{start\+Test}}
+\index{start\+Test@{start\+Test}!My\+Custom\+Progress\+Test\+Listener@{My\+Custom\+Progress\+Test\+Listener}}
+\subsubsection{\texorpdfstring{start\+Test()}{startTest()}}
+{\footnotesize\ttfamily virtual void My\+Custom\+Progress\+Test\+Listener\+::start\+Test (\begin{DoxyParamCaption}\item[{Cpp\+Unit\+::\+Test $\ast$}]{test }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+define the message to be printed when each test starts 
+
+The name of the current running test is extracted using test-\/$>$get\+Name() 
+\begin{DoxyParams}{Parameters}
+{\em test} & a pointer to a Cpp\+Unit\+::test object \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{testing_8cpp}{testing.\+cpp}}\end{DoxyCompactItemize}
