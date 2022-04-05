@@ -3,7 +3,7 @@
 ##@file runExperiment.py
 #@brief Use csv files to define sets of values to be used in an experiment.
 #@details Read in the file that lists all the experiments, then 
-#select on experiment to run, and use the base model parameter file as specified
+#select one experiment to run, and use the base model parameter file as specified
 #for the experiment to write out a set of parameter files to cover the parameter
 #space. The expectation is that all parameters to be changed will be given in
 #the header row of the experiment specification file, starting at column 2
@@ -22,7 +22,7 @@ import sys
 from datetime import datetime
 
 ##Name of the experiment of the experiment to run
-experimentName='stochasticVariation'
+experimentName='endTimeTest10_20000'
 ##if set to True, run the model now! otherwise output a set of parameterFiles
 directRun=True
 ##needed if running the model now - the name of the executable to run

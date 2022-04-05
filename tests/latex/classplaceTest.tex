@@ -1,0 +1,126 @@
+\hypertarget{classplaceTest}{}\section{place\+Test Class Reference}
+\label{classplaceTest}\index{place\+Test@{place\+Test}}
+
+
+Check places for contamination levels and agent occupancy.  
+
+
+
+
+{\ttfamily \#include $<$placetest.\+h$>$}
+
+
+
+Inheritance diagram for place\+Test\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classplaceTest__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for place\+Test\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classplaceTest__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classplaceTest_a1818bbe31325c6d9344b35f3b510cacf}\label{classplaceTest_a1818bbe31325c6d9344b35f3b510cacf}} 
+void \mbox{\hyperlink{classplaceTest_a1818bbe31325c6d9344b35f3b510cacf}{set\+Up}} ()
+\begin{DoxyCompactList}\small\item\em set up a default place pointer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classplaceTest_a2a0d52566e44cc385dc8fecdae504d6f}\label{classplaceTest_a2a0d52566e44cc385dc8fecdae504d6f}} 
+void \mbox{\hyperlink{classplaceTest_a2a0d52566e44cc385dc8fecdae504d6f}{tear\+Down}} ()
+\begin{DoxyCompactList}\small\item\em delete the place \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classplaceTest_a48f337cc28990999494a191bd93a0546}\label{classplaceTest_a48f337cc28990999494a191bd93a0546}} 
+\mbox{\hyperlink{classplaceTest_a48f337cc28990999494a191bd93a0546}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+TE}} (\mbox{\hyperlink{classplaceTest}{place\+Test}})
+\begin{DoxyCompactList}\small\item\em automatically create a test suite to add tests to -\/ note this has to come after any setup/tear\+Down \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classplaceTest_ae53796f1cb068709a350189329eb4c95}\label{classplaceTest_ae53796f1cb068709a350189329eb4c95}} 
+\mbox{\hyperlink{classplaceTest_ae53796f1cb068709a350189329eb4c95}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+ST}} (\mbox{\hyperlink{classplaceTest_a7f6879744d411bded42d786645595245}{test\+Default\+Constructor}})
+\begin{DoxyCompactList}\small\item\em check constructor works \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classplaceTest_a1bde1ec54daa7825ca16e8f72473f79a}\label{classplaceTest_a1bde1ec54daa7825ca16e8f72473f79a}} 
+\mbox{\hyperlink{classplaceTest_a1bde1ec54daa7825ca16e8f72473f79a}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+ST}} (\mbox{\hyperlink{classplaceTest_a1e4e638d2e34b0c247fe82455985aa34}{test\+ID}})
+\begin{DoxyCompactList}\small\item\em check place ID \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classplaceTest_a102cedb00ff7312ce527285210eebeff}\label{classplaceTest_a102cedb00ff7312ce527285210eebeff}} 
+\mbox{\hyperlink{classplaceTest_a102cedb00ff7312ce527285210eebeff}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+ST}} (\mbox{\hyperlink{classplaceTest_a12e071effa88774bb49e498632d19846}{test\+Contamination}})
+\begin{DoxyCompactList}\small\item\em test contamination -\/should decay \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classplaceTest_a5f2d3f4fecd70536be029afc85858908}\label{classplaceTest_a5f2d3f4fecd70536be029afc85858908}} 
+\mbox{\hyperlink{classplaceTest_a5f2d3f4fecd70536be029afc85858908}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+\+E\+ND}} ()
+\begin{DoxyCompactList}\small\item\em test occupancy -\/ currently not used \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classplaceTest_a7f6879744d411bded42d786645595245}{test\+Default\+Constructor}} ()
+\begin{DoxyCompactList}\small\item\em The constructor should set the necessary default values. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classplaceTest_a1e4e638d2e34b0c247fe82455985aa34}\label{classplaceTest_a1e4e638d2e34b0c247fe82455985aa34}} 
+void \mbox{\hyperlink{classplaceTest_a1e4e638d2e34b0c247fe82455985aa34}{test\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Check the default ID is zero and that it can be set with set\+ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classplaceTest_a12e071effa88774bb49e498632d19846}{test\+Contamination}} ()
+\begin{DoxyCompactList}\small\item\em Check the contamination levels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classplaceTest_acc20c36b8c0e62cea5068b3707e98237}{test\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Check the update exponentially decreases contamination. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classplaceTest_a095889ea563a243152e41a0e05fffbc2}{test\+Agents\+In\+Places}} ()
+\begin{DoxyCompactList}\small\item\em check occupancy \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classplaceTest_a0f4e660bdadc034488490bbadc33e09f}\label{classplaceTest_a0f4e660bdadc034488490bbadc33e09f}} 
+place $\ast$ \mbox{\hyperlink{classplaceTest_a0f4e660bdadc034488490bbadc33e09f}{p}}
+\begin{DoxyCompactList}\small\item\em A pointer to a default place for the set\+Up method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Check places for contamination levels and agent occupancy. 
+
+Setting and increase/decrease of contmination is checked, ~\newline
+Along with the ability to add and remove agents from the list of occupants 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classplaceTest_a095889ea563a243152e41a0e05fffbc2}\label{classplaceTest_a095889ea563a243152e41a0e05fffbc2}} 
+\index{place\+Test@{place\+Test}!test\+Agents\+In\+Places@{test\+Agents\+In\+Places}}
+\index{test\+Agents\+In\+Places@{test\+Agents\+In\+Places}!place\+Test@{place\+Test}}
+\subsubsection{\texorpdfstring{test\+Agents\+In\+Places()}{testAgentsInPlaces()}}
+{\footnotesize\ttfamily void place\+Test\+::test\+Agents\+In\+Places (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check occupancy 
+
+it should only be possible to add an agent once. removal should not crash if non-\/resident agent is removed.~\newline
+number of agents should increase and decrease correctly. The show function shoudl correctly list I\+Ds of residents. \mbox{\Hypertarget{classplaceTest_a12e071effa88774bb49e498632d19846}\label{classplaceTest_a12e071effa88774bb49e498632d19846}} 
+\index{place\+Test@{place\+Test}!test\+Contamination@{test\+Contamination}}
+\index{test\+Contamination@{test\+Contamination}!place\+Test@{place\+Test}}
+\subsubsection{\texorpdfstring{test\+Contamination()}{testContamination()}}
+{\footnotesize\ttfamily void place\+Test\+::test\+Contamination (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check the contamination levels. 
+
+values should increase as expected, not be able to go below zero and get reset to zero by clean\+Contamination() \mbox{\Hypertarget{classplaceTest_a7f6879744d411bded42d786645595245}\label{classplaceTest_a7f6879744d411bded42d786645595245}} 
+\index{place\+Test@{place\+Test}!test\+Default\+Constructor@{test\+Default\+Constructor}}
+\index{test\+Default\+Constructor@{test\+Default\+Constructor}!place\+Test@{place\+Test}}
+\subsubsection{\texorpdfstring{test\+Default\+Constructor()}{testDefaultConstructor()}}
+{\footnotesize\ttfamily void place\+Test\+::test\+Default\+Constructor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The constructor should set the necessary default values. 
+
+use std\+::numeric\+\_\+limits$<$double$>$\+::min() here to find the smallest possible double~\newline
+so that test will not fail as a result of rounding errors. \mbox{\Hypertarget{classplaceTest_acc20c36b8c0e62cea5068b3707e98237}\label{classplaceTest_acc20c36b8c0e62cea5068b3707e98237}} 
+\index{place\+Test@{place\+Test}!test\+Update@{test\+Update}}
+\index{test\+Update@{test\+Update}!place\+Test@{place\+Test}}
+\subsubsection{\texorpdfstring{test\+Update()}{testUpdate()}}
+{\footnotesize\ttfamily void place\+Test\+::test\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check the update exponentially decreases contamination. 
+
+It shoudl aslo be possible to set na diunset the clean\+Contamination flag that makes contamination go to zero after every step (or not, whne it is unset). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{placetest_8h}{placetest.\+h}}\end{DoxyCompactItemize}

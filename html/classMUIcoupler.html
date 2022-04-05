@@ -76,7 +76,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>This class defines an interface for tow copes of the model running on different MPI threads.  
+<p>This class defines an interface for two copies of the model running on different MPI threads.  
  <a href="classMUIcoupler.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="fetchall_8h_source.html">fetchall.h</a>&gt;</code></p>
@@ -125,11 +125,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a39e98861fb9d2966f2cc9acfdca7f6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class defines an interface for tow copes of the model running on different MPI threads. </p>
+<div class="textblock"><p>This class defines an interface for two copies of the model running on different MPI threads. </p>
 <p>On each MPI thread (currently just two allowed) define an interface for exchange of data between the threads <br />
- In each time step, the list of agents is checked to see whether data should be transferred between threads </p>
+ In each time step, the list of agents is checked to see whether data should be transferred between threads<br />
+ The format for the interface is mpi://domainIdentifier/interfaceIdentifier - so if I am on domain one, I can push data to <br />
+ an interface called e.g. ifs - so my complete interface name is mpi://one/ifs. Domain two can find data pushed to this <br />
+ interface by using its own interface called mpi://two/ifs . The main algotrithm then looks something like, on each domain </p><div class="fragment"><div class="line">push data to <span class="keyword">interface </span>ifs - sets up dat to be exported</div><div class="line">commit - all data is ready to go - send to other <a class="code" href="classMUIcoupler.html#ae240973bfb0490f3a6dcf43d42cb5a51">domain</a></div><div class="line">pull data from ifs - gets data committed by remote <a class="code" href="classMUIcoupler.html#ae240973bfb0490f3a6dcf43d42cb5a51">domain</a></div></div><!-- fragment --><p> Multiple interfaces can be defined both for the same two domains (e.g. to transmit a flag or similar) or there can be many domains with shared but different interfaces (I think...) </p>
 
-<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00061">61</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00074">74</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae482718825c942edaf89e8605be70dfe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae482718825c942edaf89e8605be70dfe">&#9670;&nbsp;</a></span>MUIcoupler()</h2>
@@ -174,7 +177,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00080">80</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00093">93</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
 
 </div>
 </div>
@@ -256,7 +259,7 @@ local copy, activate it and copy in the data sent from the remote domain. The sc
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00143">143</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00156">156</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
 
 </div>
 </div>
@@ -303,7 +306,7 @@ local copy, activate it and copy in the data sent from the remote domain. The sc
 <p>The data to be received on this domain from the remote domain on the other thread, for each agent, but excluding agent ID and traveller indicator. </p>
 <p>otherwise the lines here should match those in the pull_data function </p>
 
-<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00104">104</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00117">117</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
 
 </div>
 </div>
@@ -334,7 +337,7 @@ local copy, activate it and copy in the data sent from the remote domain. The sc
  has information to send. This avoids doing expensive loops over all agents if there is no data to send on either side <br />
  (since domain a cannot know if domain b has data to send until some data has been sent (!) and vice versa) </p>
 
-<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00069">69</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fetchall_8h_source.html#l00082">82</a> of file <a class="el" href="fetchall_8h_source.html">fetchall.h</a>.</p>
 
 </div>
 </div>

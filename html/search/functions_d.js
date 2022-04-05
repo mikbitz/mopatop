@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['randomizer',['randomizer',['../classrandomizer.html#acb623bdac274bd888c78f93e0ca66c32',1,'randomizer']]],
-  ['randomizers',['randomizerS',['../classrandomizerS.html#a036cbc7788059a49ff81cdff4ea3fa0d',1,'randomizerS']]],
-  ['readparameters',['readParameters',['../classparameterSettings.html#a934aa5c26195e52aa69c5a524a1af9db',1,'parameterSettings']]],
-  ['recover',['recover',['../classagent.html#ad7fe68fea750a9132f959220b3bb014c',1,'agent::recover()'],['../classdisease.html#adb413c0c05f7714e0dd2d6cf1d8265d7',1,'disease::recover()']]],
-  ['recovered',['recovered',['../classagent.html#a7f196aa0eea3191bfdadc77d1fe931ba',1,'agent']]],
-  ['remotetravel',['remoteTravel',['../classremoteTravel.html#abfe065143d675c7f4885073b5fac8fbd',1,'remoteTravel::remoteTravel()'],['../classremoteTravel.html#a657b25d13ac4c695a7f024d0395ac03b',1,'remoteTravel::remoteTravel(parameterSettings &amp;parameters, std::vector&lt; place *&gt; &amp;places, bool remote=false)'],['../classtravelSchedule.html#aee820eb52a5f5ad3c73d36a1a3a04fc0',1,'travelSchedule::remoteTravel()']]],
-  ['remove',['remove',['../classplace.html#ac81d6af0bf64305a3a4a843d7d176920',1,'place']]],
-  ['returntrip',['returnTrip',['../classtravelSchedule.html#a7dbadc4de32f37df3d90e9d8b0b2a643',1,'travelSchedule']]]
+  ['parametersettings',['parameterSettings',['../classparameterSettings.html#a9b8e13d37c1cc98c00b36cadefba8274',1,'parameterSettings']]],
+  ['place',['place',['../classplace.html#ad927c2f191b36a3ed0d19457cb945161',1,'place::place()'],['../classplace.html#a85ab7cc65bb05175ca9b755fc2e0c269',1,'place::place(parameterSettings p)']]],
+  ['printparameters',['printParameters',['../classparameterSettings.html#a6d2835e01d1155565d81d5974cb257da',1,'parameterSettings']]],
+  ['process_5fdisease',['process_disease',['../classagent.html#abae30dc0c04cac106bba533d28963ae6',1,'agent']]],
+  ['pull_5fdata',['pull_data',['../classMUIcoupler.html#a7ae056a42e46a60e7564e7f7b3d01bdb',1,'MUIcoupler']]],
+  ['push_5fdata',['push_data',['../classMUIcoupler.html#a2b877d3e5c559805c3c0a05408b66b60',1,'MUIcoupler']]]
 ];

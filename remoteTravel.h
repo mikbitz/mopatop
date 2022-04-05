@@ -58,7 +58,7 @@ public:
         /** @brief agents that visit here need to know about the transport and location 
             @details Agents call this to set up their visit. Their travel schedule is expected to be set consistently. \n
             It is expected that agents will take care of remebering their home location and travel mode, so that these can be \n
-                     reset once a visit is complete
+            reset once a visit is complete
             @param a a pointer to an agent */
         void visit(agent* a){
             a->setTransport(plane);
@@ -66,8 +66,8 @@ public:
         }
         /** @brief Note whether the location is on a remote domain
          *  @details all travel locations should exist on all domains, so that agents can set up a visit, and \n
-         *           so that they can manage a return trip on a local plane. Named locations therefore need to be setup on each\n
-                     domain consistently (e.g. so that "London" is remote on one domain, but local on another)*/ 
+         *  so that they can manage a return trip on a local plane. Named locations therefore need to be setup on each\n
+            domain consistently (e.g. so that "London" is remote on one domain, but local on another)*/ 
         bool isOnRemoteDomain(){
             return _remoteDomain;
         }

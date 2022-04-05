@@ -52,7 +52,7 @@ public:
         parameterSettings pr;
         //fix the output directory
         pr.setParameter("experiment.run.number","0000");
-        model m(pr);
+        model m(pr,"a");
         CPPUNIT_ASSERT(m.numberOfAgents()==600);
         CPPUNIT_ASSERT(m.numberOfPlaces()==280);
         CPPUNIT_ASSERT(m.numberDiseased()==1);
@@ -65,7 +65,7 @@ public:
         parameterSettings pr;
         //check that we can't have more infected than the total number of agents
         pr.setParameter("disease.simplistic.initialNumberInfected","5000");
-        model m(pr);
+        model m(pr,"a");
         CPPUNIT_ASSERT(m.numberOfAgents()==600);
         CPPUNIT_ASSERT(m.numberOfPlaces()==280);
         CPPUNIT_ASSERT(m.numberDiseased()==600);
@@ -79,7 +79,7 @@ public:
         pr.setParameter("experiment.run.number","0000");
         //make sure the thread number is set for open mp!        
         omp_set_num_threads(1);
-        model m(pr);
+        model m(pr,"a");
 
         //take a step
         m.step(0,pr);
@@ -87,7 +87,7 @@ public:
         std::ifstream f("./output/experiment.default/run_0000/diseaseSummary.csv");
         std::string s;
         std::getline(f,s);
-        //chekc header is OK
+        //check header is OK
         CPPUNIT_ASSERT(s=="step,time(hours),susceptible,infected,recovered,dead");
         std::getline(f,s);
         //this line could change with thread num or RNG settings!

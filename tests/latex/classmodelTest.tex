@@ -1,0 +1,86 @@
+\hypertarget{classmodelTest}{}\section{model\+Test Class Reference}
+\label{classmodelTest}\index{model\+Test@{model\+Test}}
+
+
+test out the model class  
+
+
+
+
+{\ttfamily \#include $<$modeltest.\+h$>$}
+
+
+
+Inheritance diagram for model\+Test\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classmodelTest__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for model\+Test\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classmodelTest__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmodelTest_afd8cee8035be15212f9236c2cf5b1bde}\label{classmodelTest_afd8cee8035be15212f9236c2cf5b1bde}} 
+\mbox{\hyperlink{classmodelTest_afd8cee8035be15212f9236c2cf5b1bde}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+TE}} (\mbox{\hyperlink{classmodelTest}{model\+Test}})
+\begin{DoxyCompactList}\small\item\em automatically create a test suite to add tests to \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmodelTest_aa1691735f57c35d37d358ef56dfdc97e}\label{classmodelTest_aa1691735f57c35d37d358ef56dfdc97e}} 
+\mbox{\hyperlink{classmodelTest_aa1691735f57c35d37d358ef56dfdc97e}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+ST}} (\mbox{\hyperlink{classmodelTest_a1ec93676ece4bbb6f98cf65340472939}{test\+Default\+Constructor}})
+\begin{DoxyCompactList}\small\item\em test the default constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmodelTest_ab189eb8152f72c53c6437d9e54e5a374}\label{classmodelTest_ab189eb8152f72c53c6437d9e54e5a374}} 
+\mbox{\hyperlink{classmodelTest_ab189eb8152f72c53c6437d9e54e5a374}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+ST}} (\mbox{\hyperlink{classmodelTest_ab7a0f9094aaab12eadc0fedbb57505e8}{test\+Number\+Infected}})
+\begin{DoxyCompactList}\small\item\em test the default constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmodelTest_a3596a54ba85399f6d293fb928041f9a5}\label{classmodelTest_a3596a54ba85399f6d293fb928041f9a5}} 
+\mbox{\hyperlink{classmodelTest_a3596a54ba85399f6d293fb928041f9a5}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+ST}} (\mbox{\hyperlink{classmodelTest_a18ccf91ea0223e52d439fa267665d718}{test\+Run}})
+\begin{DoxyCompactList}\small\item\em test run \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmodelTest_a704621b184dbdb454d4cf0f90d4d210c}\label{classmodelTest_a704621b184dbdb454d4cf0f90d4d210c}} 
+\mbox{\hyperlink{classmodelTest_a704621b184dbdb454d4cf0f90d4d210c}{C\+P\+P\+U\+N\+I\+T\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+\+E\+ND}} ()
+\begin{DoxyCompactList}\small\item\em end the test suite \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classmodelTest_a1ec93676ece4bbb6f98cf65340472939}\label{classmodelTest_a1ec93676ece4bbb6f98cf65340472939}} 
+void \mbox{\hyperlink{classmodelTest_a1ec93676ece4bbb6f98cf65340472939}{test\+Default\+Constructor}} ()
+\begin{DoxyCompactList}\small\item\em make sure results from constructor are as expected for simple mobile model \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmodelTest_ab7a0f9094aaab12eadc0fedbb57505e8}{test\+Number\+Infected}} ()
+\begin{DoxyCompactList}\small\item\em in the simple disease the initial number infected should not be able to exceed the agent number \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmodelTest_a18ccf91ea0223e52d439fa267665d718}{test\+Run}} ()
+\begin{DoxyCompactList}\small\item\em try stepping the model forward and check output \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+test out the model class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodelTest_ab7a0f9094aaab12eadc0fedbb57505e8}\label{classmodelTest_ab7a0f9094aaab12eadc0fedbb57505e8}} 
+\index{model\+Test@{model\+Test}!test\+Number\+Infected@{test\+Number\+Infected}}
+\index{test\+Number\+Infected@{test\+Number\+Infected}!model\+Test@{model\+Test}}
+\subsubsection{\texorpdfstring{test\+Number\+Infected()}{testNumberInfected()}}
+{\footnotesize\ttfamily void model\+Test\+::test\+Number\+Infected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+in the simple disease the initial number infected should not be able to exceed the agent number 
+
+If more than the number of agents is requested, then the code is expected to max. this out~\newline
+as the total number of agents initially present \mbox{\Hypertarget{classmodelTest_a18ccf91ea0223e52d439fa267665d718}\label{classmodelTest_a18ccf91ea0223e52d439fa267665d718}} 
+\index{model\+Test@{model\+Test}!test\+Run@{test\+Run}}
+\index{test\+Run@{test\+Run}!model\+Test@{model\+Test}}
+\subsubsection{\texorpdfstring{test\+Run()}{testRun()}}
+{\footnotesize\ttfamily void model\+Test\+::test\+Run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+try stepping the model forward and check output 
+
+if the number of omp threads is not set this can produce crashes or unpredictable results... 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{modeltest_8h}{modeltest.\+h}}\end{DoxyCompactItemize}

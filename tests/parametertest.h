@@ -60,6 +60,7 @@ public:
         CPPUNIT_ASSERT(p.get<int>("run.randomSeed")==0);
         CPPUNIT_ASSERT(p.get("timeStep.units")=="hours");
         CPPUNIT_ASSERT(p.get<double>("timeStep.dt")==1);
+        CPPUNIT_ASSERT(p.get("timeStep.startdate")=="Mon 01/01/1900 00:00:00");
         CPPUNIT_ASSERT(p.get("outputFile")=="diseaseSummary");
         CPPUNIT_ASSERT(p.get("experiment.output.directory")=="./output");
         CPPUNIT_ASSERT(p.get("experiment.name")=="default");
@@ -117,7 +118,7 @@ public:
         CPPUNIT_ASSERT(p.get<int>("run.randomIncrement")==57);
 
     }
-        /** @brief Check some of teh other classes are getting teh right input from the parameterSettings objects
+        /** @brief Check some of the other classes are getting the right input from the parameterSettings objects
      *   @details In this case the static timeStep and disease, as well as the places */
     void testSetUpObjects(){
         parameterSettings p;
@@ -129,6 +130,10 @@ public:
         CPPUNIT_ASSERT(timeStep::timeStepUnit()=="seconds");
         //file asks for timesteps of 3600 seconds
         CPPUNIT_ASSERT(timeStep::deltaT()==timeStep::hour());
+        //start date is set to 23/02/2022, but model assumes 0 for first day of month, and first month
+        CPPUNIT_ASSERT(timeStep::getDayOfMonth()==22);
+        CPPUNIT_ASSERT(timeStep::getMonth()==1);
+        CPPUNIT_ASSERT(timeStep::getYear()==2022);
         disease d(p);
         CPPUNIT_ASSERT(disease::getRecoveryRate()==0.0008);
         CPPUNIT_ASSERT(disease::getDeathRate()==0.001);

@@ -46,12 +46,12 @@
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /** set up and run the model 
- @param argc The number of command line arguments - at the moment only 1 can be handled
- @param argv The argument values - expected to be just the name of the parameter file */
+ @param argc The number of command line arguments - at the moment 1 is the parameter file and (optionally) 2 is the MPI domain name
+ @param argv The argument values - 1 is expected to be just the name of the parameter file, 2 is an arbitrary string */
 int main(int argc, char **argv) {
 
     std::string name="Mopatop";
-    std::string version="0.4";
+    std::string version="0.5";
     std::cout<<name<<" model version "<<version<<std::endl;
 
     //work out the current local time using C++ clunky time 
@@ -71,9 +71,13 @@ int main(int argc, char **argv) {
         std::cout<<"Default parameter file overridden on command line"<<std::endl;
         parameters.readParameters(argv[1]);
     }
-
-    std::string domain=argv[2];
-
+    std::string domain="none";
+    //domain is only used if we are running with MPI to couple across MPI nodes
+    //if the latter we require an arbitrary unique string for each MPI domain to be specified on the command line
+    //see fetchall.h
+# ifdef COUPLER
+    domain=argv[2];
+# endif
     //set the number of OMP threads used to parallelise loops
     omp_set_num_threads(parameters.get<int>("run.nThreads"));
 

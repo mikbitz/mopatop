@@ -92,14 +92,20 @@ public:
         agent::setIDbaseValue(0);
         
     }
-    /** @brief test the travel schedule */
+    /** @brief test the travel rules
+        @details At the moment the agents have a hard-coded time to got to work of 0800, 1 hour travel, and work until 1700, then 1 hour travel home again*/
     void testSchedule()
     {   
         agent a;
         place h,w,t;   
         parameterSettings pr;
+        timeStep tm;
+        //start off at midnight
+        timeStep::setDate(1949,9,1,9,00,00,00);
+        timeStep::setStepNumber(0);
         //default parameter settings have simple mobile schedule
         a.initTravelSchedule(pr);
+        a.setID(0);
         //set the places
         a.setHome(&h);
         a.setWork(&w);
@@ -108,17 +114,20 @@ public:
         CPPUNIT_ASSERT(a.getCurrentPlace()==&h);
         //should stay at home for a while - 14 hours
         a.update();
+        //need also to advance the time - note this happens in the model *after* agent update.
+        tm.update();
+        //expect to be at home until 0800
         CPPUNIT_ASSERT(a.getCurrentPlace()==&h);
-        for (int i=0;i<13;i++)a.update();
+        for (int i=0;i<8;i++){a.update();tm.update();}
         CPPUNIT_ASSERT(a.getCurrentPlace()==&t);
-        a.update();
-        //now at work - for 8 hours
+        {a.update();tm.update();}
+        //now at work until 1700
         CPPUNIT_ASSERT(a.getCurrentPlace()==&w);
-        for (int i=0;i<8;i++)a.update();
+        for (int i=0;i<8;i++){a.update();tm.update();}
         CPPUNIT_ASSERT(a.getCurrentPlace()==&t);
-        a.update();
+        for (int i=0;i<6;i++){a.update();tm.update();}
         CPPUNIT_ASSERT(a.getCurrentPlace()==&h);
-        
+
     }
     /** @brief test the function that changes occupancy lists of places */
     void testMove()

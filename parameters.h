@@ -136,6 +136,8 @@ public:
         _parameters["timeStep.units"]="hours";_parameterType["timeStep.units"]=s;
         //the actual time duration of each step in the above units
         _parameters["timeStep.dt"]="1";_parameterType["timeStep.dt"]=d;
+        //the actual time duration of each step in the above units
+        _parameters["timeStep.startdate"]="Mon 01/01/1900 00:00:00";_parameterType["timeStep.startdate"]=s;
         //path to the output file
         _parameters["outputFile"]="diseaseSummary";_parameterType["outputFile"]=s;
         //path to location of output files

@@ -1,3 +1,4 @@
 Name,modelVersion,baseDirectory,specificationFile,purpose
 example,0.4,experiments/example,baseExample.csv,Example experiment as a base for building new ones
-endTimeTest,0.4,experiments/endTimeTest,base_endTimeTest.csv,How does end of infection vary with R
+stochasticVariation,0.4,experiments/stochasticVariation,base_stochasticVariation.csv,Testing how randomseeds and numbers of agents affect the output
+endTimeTest10_20000,0.4,experiments/endTimeTest10_20000,base_endTimeTest10_20000.csv,Testing how changes in parameters affect length of a well-mixed epidemic

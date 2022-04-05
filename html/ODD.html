@@ -102,9 +102,19 @@ c)outputs are easily set up at regular times. Care is required to make sure this
 preferentially always "acting first", so may either require the order of agents activity to be randomised, or<br />
 for particular activities to be completed for ALL agents before subsequent ones (e.g.all agents need to complete<br />
 coughing in a place before any are allowed to update their infection status)<br />
-However, agents also have an event-based schedule - so the regular timestep does not preclude agents having <br />
-heterogenous activities with respect to travel or other actions, provided that the schedule time-grain is not shorter<br />
-than the main timestep (or the schedule has its own sub-time steps for taking forward an activity). </p>
+However, agents also have time-based rules - so the regular timestep does not preclude agents having <br />
+heterogenous activities with respect to travel or other actions, provided that the time-grain is not shorter<br />
+than the main timestep (or the rule has its own sub-time steps for taking forward an activity).<br />
+Hours of the day and day of the week are calculated based on a model start (step 0) <br />
+</p>
+<h2><a class="anchor" id="dts"></a>
+dates</h2>
+<p>It is expected that a real date will be given for the model start in the form "day dd/mm/yyyy hh:mm:ss"<br />
+If no date is specified the default is Mon 01/01/1900 00:00:00 . All times are in UTC (no time zones yet)<br />
+As the model time step advances, the date also rolls forward consistently with the model time-step units <br />
+(by default one timestep corresponds to one hour). Agents can get the the current date and time in simple <br />
+24-hour format (e.g 915, 2321), adn therefore can set actions depending on time of day, but also month/season...<br />
+</p>
 <h3><a class="anchor" id="rd"></a>
 random numbers</h3>
 <p>A single pseudo random number sequence is generated using the mersenne twister algorithm </p>
@@ -131,13 +141,13 @@ Places are also containers for the contamination, and evolve its level over time
 In a more complex model places could have substructure (e.g. a canteen, multiple buildings in a hospital) and a <br />
 topology (which building is next to which other, are there floors with differnt access) and geometry (how far away are <br />
 other buildings).<br />
-Note that as a result of the travel Schedule there is an implicit topology of connections between places, and an associated<br />
+Note that as a result of the travel timings there is an implicit topology of connections between places, and an associated<br />
 implict induced social network, beyond that which would exist purely in households<br />
 At present there are three types of place - home, work and vehicle - others could be added (e.g. shops, hospitals). </p>
 <h3><a class="anchor" id="ag"></a>
 agents</h3>
 <p>Agents are individual people with just a few attributes - their current place, whether they are infected or immune, <br />
-a travel schedule, and a count-down to the next travel-schedule event. They also have a list of known places <br />
+a set of travel rules, and switching to different activities depending on the time of day. They also have a list of known places <br />
 (home, work,vehicle) which can differ for each agent - in practice some of them will share a home, a workplace, or a <br />
 travel vehicle (e.g. a bus), and this allows for the spread of the disease. </p>
 <h3><a class="anchor" id="di"></a>
@@ -147,19 +157,18 @@ rate, to be infected if there is contamination and to shed infection into a plac
  </p>
 <h3><a class="anchor" id="ts"></a>
 travelSchedule</h3>
-<p>Each agent has their own index into a travel schedule, selected from a list of pre-defined possibilities<br />
-agents keep a time counter to count down to the next travel schedule event - in pricniple they could opt not to<br />
-move the schedule forward, but currently they alwys do so. At present, there are only two travelschedule<br />
+<p>Each agent has their own (currently hard-coded) set of travel rules, agentsse time of day to determine the next travel event In principle they could opt not to move (e.g. in lockdown) but currently they alwys do so. At present, there are only two movement<br />
 types - one where the agents moves between a fixed set of places, and one where they remain permanently at home<br />
 The latter allows e.g. testing against a fully mixed disease model, if home is the same place for all agents.<br />
-The schedule has an ordered list of place types representing destination for travel, and a time to be spent<br />
-in each place of a given type. Agents use the place type to select their own particular place to travel to <br />
-when the scheduled time in their current place has expired. </p>
+Rules implicitly define a time to be spent in each place of a given type. Agents use the place type to select <br />
+their own particular place to travel to when the scheduled time in their current place has expired.<br />
+A simple set of rules to go on holiday in the summer currently has agents fly to a hotel somewhere and stay there<br />
+for some time period. </p>
 <h3><a class="anchor" id="moo"></a>
 model</h3>
 <p>Various different model types can be selected with different behaviours. These tend to have different configurations<br />
-of places, travel and home, and different schedules for moveing between these. For example, there is a model<br />
-that intialises all agents to exist in a single place, and with a schedule that leads them all to remain there for<br />
+of places, travel and home, and different patterns for moving between these. For example, there is a model<br />
+that intialises all agents to exist in a single place, and with rules that lead them all to remaining there for<br />
 the whole model execution. Switching between models uses the Factory pattern to allow different kinds of models to be chosen. </p>
 <h2><a class="anchor" id="proc"></a>
 Process Overview and Scheduling</h2>
@@ -194,7 +203,7 @@ different occupancy levels, depending on the type of activity they represent.The
 many cases largely separated from other locations in terms of the possibility of spreading disease,<br />
 so act to an extent as closed environments in which disease can spread.Such places include collectively<br />
 shared transport, such as buses trains and cars (but not, for example, bicycles, except maybe tandems).<br />
-The spatial relationship of these locations only matters to the extent that this determines how long <br />
+The spatial relationship of these locations currently only matters to the extent that this determines how long <br />
 people spend in transport vehicles, and what potential there is for moving between locations(e.g. <br />
  whether there are nearby restaurants, coffee shops etc.) </p>
 <h2><a class="anchor" id="theo"></a>
@@ -207,7 +216,7 @@ on the characteristics of individual, but what kind of space is occupied, how lo
 space, and how confined it is. </p>
 <h2><a class="anchor" id="indiv"></a>
 Individual Decision Making</h2>
-<p>Agents decide to move to a new place when the time in the current place expires (as set by the travel schedule). </p>
+<p>Agents decide to move to a new place when the time in the current place expires (as set by the appropriate rule). </p>
 <h2><a class="anchor" id="lear"></a>
 Learning</h2>
 <p>None. </p>
@@ -219,7 +228,7 @@ Individual prediction</h2>
 <p>None. </p>
 <h2><a class="anchor" id="objec"></a>
 Objectives</h2>
-<p>Agents just follow a fixed travel schedule. </p>
+<p>Agents effectively just follow a fixed travel schedule. </p>
 <h2><a class="anchor" id="inte"></a>
 Interaction</h2>
 <p>Interaction is indirect through contamination levels in the various places </p>
@@ -261,7 +270,7 @@ stay in the same place, and have a single home location, or else:-<br />
 <li>Vehicles are created representing buses, with a capacity of 30 agents. Agents are allocated to<br />
  buses in the same order as to work places<br />
 </li>
-<li>Travel schedules are initialised with Agents on the bus heading home - every agents has the same<br />
+<li>Travel is initialised with Agents on the bus heading home - every agents has the same<br />
 schedule with the exact same time spent in each place.<br />
 </li>
 <li>A (customiseable) number of agents are infected at random with the disease<br />
@@ -297,13 +306,13 @@ agents cough, then the level just becomes proportional to the number of agents i
 <h3><a class="anchor" id="trvl"></a>
 travel</h3>
 <ul>
-<li>Agents set a counter whenever they move, which is the time to be spent in the place the move to<br />
+<li>Agents check the time in the current place, and move to the next place when the time passes a threshhold. <br />
+agents rules specify the next place type to move to and then they go there. The time need not be a multiple of the timestep<br />
+but actual time spent in each place will in practice end up being some multiple of the timestep.<br />
 </li>
-<li>Every time step, the counter is decremented by the time step size. Once the counter reaches zero<br />
-agents query the travel schedule for the next place type to move to and then go there. It is assumed that<br />
-the time set in the schedule is an exact multiple of the timestep</li>
 <li>Structure is included to allow agents to add and remove themsleves from a list of agents in each place<br />
-but at present this is not needed (and the add and remove process is computationally quite expensive). </li>
+but at present this is not needed (and the add and remove process is computationally quite expensive). <br />
+Agents just keep a pointer ot a given place, and interaction is implicit (currently only through contamination level). </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->

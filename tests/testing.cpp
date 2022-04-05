@@ -26,7 +26,7 @@
  **/
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
-//compile with g++ -std=c++17 -lcppunit ../timestep.cpp ../places.cpp ../disease.cpp testing.cpp
+//compile with g++ -std=c++17 -o tests -fopenmp -lcppunit ../agent.cpp  ../disease.cpp  ../places.cpp  ../schedulelist.cpp  ../timestep.cpp testing.cpp
 //Use the CPPUNIT testing suite to write unit tests for classes in the mopatop code base
 #include <iostream>
 #include <string>
@@ -76,10 +76,11 @@ int main(){
   MyCustomProgressTestListener progress;
   runner.eventManager().addListener(&progress);
   //add test suites
+  //do teimstep test before agent test, as agent test needs to advance the timestep (which is static)
+  runner.addTest( timeStepTest::suite() );
   runner.addTest( agentTest::suite() );
   runner.addTest( randomTest::suite() );
   runner.addTest( timeReporterTest::suite() );
-  runner.addTest( timeStepTest::suite() );
   runner.addTest( travelScheduleTest::suite() );
   runner.addTest( scheduleListTest::suite() );
   runner.addTest( diseaseTest::suite() );

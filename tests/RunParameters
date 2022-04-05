@@ -1,0 +1,31 @@
+Run started at: Tue Apr  5 14:04:51 2022
+
+----------------------------- 
+Input Parameter File: ./testParameterFile
+----------------------------- 
+disease.simplistic.deathRate                        0.001
+disease.simplistic.infectionShedLoad                0.001
+disease.simplistic.initialNumberInfected            5
+disease.simplistic.recoveryRate                     0.0008
+experiment.description                               The default parameter set was used
+experiment.name                                     default
+experiment.output.directory                         ./output
+experiment.run.number                               -1
+experiment.run.prefix                               10000
+model.name                                          Mopatop
+model.type                                          simpleOnePlace
+model.version                                       Unknown
+outputFile                                          diseaseSummary
+places.cleanContamination                           true
+places.disease.simplistic.fractionalDecrement       0.5
+run.nAgents                                         600
+run.nRepeats                                        1
+run.nSteps                                          3000
+run.nThreads                                        1
+run.randomIncrement                                 57
+run.randomSeed                                      0
+schedule.type                                       stationary
+timeStep.dt                                         3600
+timeStep.startdate                                  Wed 23/02/2022 11:29:05
+timeStep.units                                      seconds
+----------------------------- 

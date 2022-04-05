@@ -62,7 +62,7 @@ public:
         std::vector<place*> places;
         parameterSettings pr;
         modelFactory& F=modelFactorySelector::select("simpleOnePlace");
-        F.createAgents(pr,agents,places);
+        F.createAgents(pr,agents,places,"a");
         CPPUNIT_ASSERT(agents.size()==600);
         CPPUNIT_ASSERT(places.size()==1);
         //agents all in the same place
@@ -71,20 +71,22 @@ public:
         for (auto& a:agents)CPPUNIT_ASSERT(a->getWork()==places[0]);
         //schedule is just stay home
         for (int i=0;i<100;i++){
-            agents[81]->update();
+            agents[81]->update();timeStep::update();
             CPPUNIT_ASSERT(agents[81]->getHome()==places[0]);
         }
         agents.clear();
         places.clear();
         modelFactory& G=modelFactorySelector::select("simpleMobile");
-        G.createAgents(pr,agents,places);
+        //reset date so as to make sure we start at midnight
+        timeStep::setDate("Mon 01/01/1900 00:00:00");
+        G.createAgents(pr,agents,places,"a");
         CPPUNIT_ASSERT(agents.size()==600);
         CPPUNIT_ASSERT(places.size()==280);
         for (auto& a:agents)CPPUNIT_ASSERT(a->getHome()!=a->getWork());
         for (auto& a:agents)CPPUNIT_ASSERT(a->getHome()==a->getCurrentPlace());
-        //schedule is home for 14 hours then transport 1 hour then work
+        //schedule is home for from midnight to 0800 hours then transport 1 hour then work, hourly timestep
         for (int i=0;i<17;i++){
-            agents[10]->update();
+            agents[10]->update();timeStep::update();
         }
         CPPUNIT_ASSERT(agents[10]->getWork()==agents[10]->getCurrentPlace());
     }

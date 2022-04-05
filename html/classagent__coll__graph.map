@@ -1,4 +1,3 @@
 <map id="agent" name="agent">
 <area shape="rect" id="node2" href="$classplace.html" title="Places can have a list of occupants, and store disease contamination. " alt="" coords="5,5,180,273"/>
-<area shape="rect" id="node3" href="$classscheduleList.html" title="{scheduleList\n|&#45; schedules\l|+ scheduleList()\l+ operator[]()\l+ getType()\l+ getName()\l}" alt="" coords="205,79,319,200"/>
 </map>

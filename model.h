@@ -87,11 +87,13 @@ public:
         or to allow the model to be coupled to another kind of model (e.g. an ecosystem model). See \ref fetchall.h \n
         If this is not needed then the domain is ignored.
         @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied
-        @param domain A string that defines which domain this is, when using domain decomposition to run multiple models */
+        @param domain A string that defines which MPI domain this is, when using domain decomposition to run multiple models using MPI - see fetchall.h */
     model(parameterSettings& parameters,std::string dom):domain(dom){
          //If using the MUI coupler, initialise the domain
 #ifdef COUPLER
+
         coupler=new MUIcoupler(domain);
+
 #endif
         leavers=false;
         //timestep is a static class - need only set its parameters once, here.
@@ -172,6 +174,7 @@ public:
      *  This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.
      */
     void init(parameterSettings& parameters,std::string domain){
+        timeStep::reportDate();
         modelFactory& F=modelFactorySelector::select(parameters("model.type"));
         //create the distribution of agents, places and transport
         F.createAgents(parameters,agents,places,domain);
@@ -180,7 +183,6 @@ public:
         random_shuffle(agents.begin(),agents.end());
         long num=std::min((long)parameters.get<long>("disease.simplistic.initialNumberInfected"),(long)agents.size());
         for (long i=0;i<num;i++)agents[i]->becomeInfected();
-        
     }
     //------------------------------------------------------------------------
     /** @brief Finish off model including any final output etc. \n
@@ -226,6 +228,9 @@ public:
 
         auto start=timeReporter::getTime();
         auto end=start;
+
+
+        //timereporters are used to check how long parts of the model take to run...at least for the first step
         if (stepNumber==0)start=timeReporter::getTime();
         //counts the totals
         long infected=0,recovered=0,dead=0;
@@ -308,14 +313,14 @@ public:
         #pragma omp parallel for 
         for (long i=0;i<agents.size();i++){
             if (agents[i]->active()){
-                agents[i]->update(stepNumber);
+                agents[i]->update();
                 if (agents[i]->leaver()) leavers=true;;
             }
         }
         #pragma omp parallel for 
         for (long i=0;i<travellers.size();i++){
             if (travellers[i]->active()){
-                travellers[i]->update(stepNumber);
+                travellers[i]->update();
                 if (travellers[i]->leaver()) leavers=true;
             }
         }
@@ -334,6 +339,8 @@ public:
         for (long i=0;i<places.size();i++){
             //places[i]->show();
         }
+        //The timestep class needs to know the current time step so that this can be used in thing like calculating the day of the week
+        timeStep::update();
     }
     /** @brief report current number of agents in the model - includes both active and inactive */
     unsigned long numberOfAgents(){

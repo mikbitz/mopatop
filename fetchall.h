@@ -47,17 +47,30 @@
  *        interpolation.\n
  * @details MB 25/11/2021 updated the fetch for tranferring some agent data\n
  * Each data value transferred has an identifying point ID associated with it\n
- * Example run, with domains a and b\n
- * mpiexec -f hosts -np 1 ./testagent parameterFilea a : -np 1 ./testagent parameterFileb b
+ * Example run, with domains a and b (where a and b are examples of arbitrary user defined string - they must be different\n
+ * but otherwise can take any value - for example instead of a nd b, we could use one and two, or 1 and 2.\n
+ * mpiexec -f hosts -np 1 ./testagent parameterFilea a : -np 1 ./testagent parameterFileb b\n
+ * Note that to get this to work on a local machine, a file called "hosts" may be needed - \n
+ * this can just have the single value localhost in it. Without this MPI may get upset when trying to set the hostname
  *
  */
 
 #include "../mui/mui.h"
 #include "mui_config.h"
 #include <omp.h>
-/** @brief This class defines an interface for tow copes of the model running on different MPI threads
+/** @brief This class defines an interface for two copies of the model running on different MPI threads
     @details On each MPI thread (currently just two allowed) define an interface for exchange of data between the threads \n
-             In each time step, the list of agents is checked to see whether data should be transferred between threads*/
+             In each time step, the list of agents is checked to see whether data should be transferred between threads\n
+             The format for the interface is mpi://domainIdentifier/interfaceIdentifier - so if I am on domain one, I can push data to \n
+             an interface called e.g. ifs - so my complete interface name is mpi://one/ifs. Domain two can find data pushed to this \n
+             interface by using its own interface called  mpi://two/ifs . The main algotrithm then looks something like, on each domain
+             \code
+             push data to interface ifs - sets up dat to be exported
+             commit - all data is ready to go - send to other domain
+             pull data from ifs - gets data committed by remote domain
+             \endcode 
+             Multiple interfaces can be defined both for the same two domains (e.g. to transmit a flag or similar)
+             or there can be many domains with shared but different interfaces (I think...) */
 class MUIcoupler {
     /** @brief the interface for exchanging data, using the configuration in config.h */
     mui::uniface<mui::mui_config>* interface;
@@ -149,7 +162,7 @@ public:
 
         mui::chrono_sampler_exact<mui::mui_config> chrono_sampler;
         mui::point<mui::mui_config::REAL, 1> push_loc;
-        //push the leavers flag to the other domain - leavers is 1 if this domain has any data to send - at the moment I ony seem to be able to send real valiues assocaited with a "data point"
+        //push the leavers flag to the other domain - leavers is 1 if this domain has any data to send - at the moment I ony seem to be able to send real values assocaited with a "data point"
         //hence the extra zero value and the casts
         flagInterface->push( "Check",  static_cast<mui::mui_config::REAL>(0), static_cast<mui::mui_config::REAL>(leavers)  );
         flagInterface->commit(time);
@@ -157,7 +170,7 @@ public:
         //std::vector<mui::point<mui::mui_config::REAL, 1>> flag_locs = flagInterface->fetch_points<mui::mui_config::REAL>( "Check", time, chrono_sampler ); // Extract the locations stored in the interface at time
         std::vector<double> received_flag_value = flagInterface->fetch_values<mui::mui_config::REAL>( "Check", time, chrono_sampler );
         //only do the full data exchange if either this domain has some data to send, or the flag received from the other domain is non zero (i.e. it wants to send data)
-        //since we have cast bools to doubles, use 0.5 as the check to guarantee we don;t have trouble with values being some tiny amount greater than zero.
+        //since we have cast bools to doubles, use 0.5 as the check to guarantee we don't have trouble with values being some tiny amount greater than zero.
 if ((received_flag_value[0]+(double)leavers)>0.5){
         // Push values to the MUI interface - at the moment it seems all values have to be cast to doubles??
         

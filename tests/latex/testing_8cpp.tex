@@ -1,0 +1,73 @@
+\hypertarget{testing_8cpp}{}\section{testing.\+cpp File Reference}
+\label{testing_8cpp}\index{testing.\+cpp@{testing.\+cpp}}
+
+
+Define the progress test listener, \mbox{\hyperlink{classMyCustomProgressTestListener}{My\+Custom\+Progress\+Test\+Listener}}, and the main function to run all the tests.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$cppunit/\+Test\+Case.\+h$>$}\newline
+{\ttfamily \#include $<$cppunit/\+Test\+Suite.\+h$>$}\newline
+{\ttfamily \#include $<$cppunit/\+Test\+Caller.\+h$>$}\newline
+{\ttfamily \#include $<$cppunit/ui/text/\+Test\+Runner.\+h$>$}\newline
+{\ttfamily \#include $<$cppunit/\+Test\+Result.\+h$>$}\newline
+{\ttfamily \#include $<$cppunit/extensions/\+Helper\+Macros.\+h$>$}\newline
+{\ttfamily \#include $<$cppunit/\+Text\+Test\+Progress\+Listener.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../agent.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}randomtest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}timereportertest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}timesteptest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}travelscheduletest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}schedulelisttest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}diseasetest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}placetest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}parametertest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}agenttest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}modelfactorytest.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}modeltest.\+h\char`\"{}}\newline
+Include dependency graph for testing.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{testing_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classMyCustomProgressTestListener}{My\+Custom\+Progress\+Test\+Listener}}
+\begin{DoxyCompactList}\small\item\em Report the start of each test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{testing_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Run the main set of test suites. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Define the progress test listener, \mbox{\hyperlink{classMyCustomProgressTestListener}{My\+Custom\+Progress\+Test\+Listener}}, and the main function to run all the tests. 
+
+\begin{DoxyAuthor}{Author}
+Mike Bithell 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+17/08/2021 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{testing_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{testing_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{testing.\+cpp@{testing.\+cpp}!main@{main}}
+\index{main@{main}!testing.\+cpp@{testing.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Run the main set of test suites. 
+
+First set up Test\+Runner then the Listener to report the start of each test. Then add the listener and each of the test suites to the Test\+Runner~\newline
+Finally call the run method of Test\+Runner to execute all the test suites 

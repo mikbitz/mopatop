@@ -25,9 +25,12 @@
  * 
  * @author Mike Bithell
  * @date 17/08/2021
+ * Modified 25/1/21 to include dates
+ * @todo includes timezones and a proper date library
  **/
 
 #include<string>
+#include<map>
 #include"parameters.h"
 /** @brief A static class to set up the real-world times that apply to a timestep
 *   @details The idea here is that the code will use a timestep in seconds, but the user need not know this.\n
@@ -46,11 +49,26 @@
  * parameters.readParameters("../defaultParameterFile");
  * timeStep t(parameters);
  * \endcode 
- Note that currently months (leap years) are not properly handled as they are all assumed to be 30 days (365 days), and dates are not available!*/ 
+ * A call to timeStep::update() is expected at the end of every model timestep.
+ The model stepNumber can be used to calculate the number of hours and minutes, and the weekday since the start of the model run.\n
+ Each timestep the model updates the stepnumber held here for this purpose, so that  the static stepNumber variable always holds the value of \n
+ the model step number, and this can be accessed from anywhere in the code. This is done by calling the timestep::update() method each timestep.\n
+ This adds one to the stepNumber, and then calculates the date given the starting date for the model (defaults to Mon 1 jan 1900, as a known day).\n
+ Days and months, minutes and hours  are held as integers starting at zero to make date calculations easier.\n
+ At present there are no time zones available, so dates are calculated in nominal UTC (ignoring leap seconds, but allowing for leap years)\n
+ Similarly dates before 1752 are not correct as these predate the switch to the gregorian calendar.\n
+ The default initial date is Mon. 1 Jan. 1900.\n
+ NB Although one could use the ctime library, this proved to be unreliable in converting back and forth between dates in a tm structure and\n
+ seconds since 1970 that are held in a time_t, both in terms of results not always being consistent and in terms of calls to gmtime modifying\n
+ tm pointers not involved in the call. :(\n
+ An alternative would be to use the boost posix time and gregorian libraries, which work well, but boost can be a problem to compile against\n
+ as libraries can vary between systems. Maybe fixed by C++ 20 chrono?
+ */ 
 class timeStep{
     /** @brief number of seconds in a year */
     static double years;
-    /** @brief number of seconds in a month */
+    /** @brief number of seconds in a month, approximately
+        @details seconds in a year divided by 12 - used only if a "monthly" timestep is requested */
     static double months;
     /** @brief number of seconds in a day */
     static double days;
@@ -65,18 +83,38 @@ class timeStep{
     /** @brief Units for the timestep  - number of seconds in \ref dt will be set as required.
         @details can be years,months,days,hours,minutes or seconds*/
     static std::string units;
+    /** @brief the current model step - updated in ther step method of model.h every timestep */
+    static int stepNumber;
+    /** @brief the days in each month, for use in calculating dates - values for currentDayOfMonth range from 0 to monthDays[month]-1 */
+    static int monthDays[12];
+    /** @brief The month of the year at the current step, from 0 (Jan.) to 11 (Dec.) */
+    static int currentMonth;
+    /** @brief The day of the month, starting from 0 */
+    static int currentDayOfMonth;
+    /**  @brief The day of the week from 0-6 with Monday as 0 */
+    static int currentWeekDay;
+    /** @brief The year expected to be a four digit integer */
+    static int currentYear;
+    /** @brief the hour of the day from 0 to 23 - expected to be a two digit integer */
+    static int currentHour;
+    /** @brief the minute of the hour from 0 to 59 */
+    static int currentMinute;
+    /** @brief the seconds of the hour from 0 to 59 */
+    static int currentSeconds;
 public:
 
-    /** Default constructor sets timestep to be  in hours */
+    /** @brief Default constructor sets timestep units to be hours 
+        @details The actual internal units here for timeStep is always seconds - here dt is set to be 3600, i.e. the defautl timestep is one hour*/
     timeStep(){
         units="hours";
         years   = 24*3600*365;//365 days in a year!!!
-        months  = 24*3600*30;//every month has 30 days- so not exactly 12 of these "months" in a year
+        months  = 24*3600*365/12;//every of these "months" has about 30.4 days- so these are not quite actual months - actual dates are found using the update method
         days    = 24*3600;
         hours   = 3600;
         minutes = 60;
         seconds = 1;
-        dt=3600;//the actual internal units here for timeStep is always seconds, so this value corresponds to one hour
+        dt=3600;
+
     }
     /** @brief Constructor to get the values from a \ref parameterSettings object 
      *  @param p a reference to a \ref parameterSettings object*/
@@ -105,7 +143,8 @@ public:
             std::cout<<"Invalid time units: "<<units<<" in timeStep.h"<<std::endl;
             exit(1);
         }
-            
+        //set the initial date and time using the value from the paramter file in the form "Day dd/mm/yyyy hh:mm:ss"
+        setDate(p.get("timeStep.startdate"));
     }
     //------------------------------------------------------------------------
     /** @brief set the timestep unit 
@@ -130,42 +169,259 @@ public:
         return units;
     }
     //------------------------------------------------------------------------
-    /** @brief set the timestep value in seconds - so that the user need not know that this is the representation  */
+    /** @brief set the number of model steps since the start of the run, and calculate the date */
+    static void update(){
+        stepNumber++;
+        currentSeconds+=deltaT();//deltaT is always in seconds
+        if (currentSeconds>=60){
+            currentMinute+=currentSeconds/60;
+            currentSeconds=currentSeconds%60;
+        }
+        if (currentMinute>=60){
+            currentHour+=currentMinute/60;
+            currentMinute=currentMinute%60;
+        }
+        if (currentHour>=24){
+            currentWeekDay+=(currentHour/24);
+            currentWeekDay=currentWeekDay%7;
+            currentDayOfMonth+=currentHour/24;
+            currentHour=currentHour%24;
+        }
+        int leapday=0;
+        if (currentDayOfMonth>=monthDays[currentMonth]){
+            if (currentMonth==1){//February, since months run from 0 to 11
+                //leap year if divisible by 4 unless a century in which case needs to be divisible by 400
+                if(currentYear%400==0 || (currentYear%4==0 && currentYear%100!=0))leapday=1;
+            }
+            while(currentDayOfMonth>=monthDays[currentMonth]+leapday){
+                currentDayOfMonth-=monthDays[currentMonth]+leapday;
+                currentMonth++;
+                if (currentMonth>=12){
+                    currentYear+=currentMonth/12;
+                    currentMonth=currentMonth%12;
+                }
+                if (currentMonth!=1) 
+                    leapday=0;
+                else
+                    if(currentYear%400==0 || (currentYear%4==0 && currentYear%100!=0))leapday=1;
+            }
+        }
+
+        //reportDate();
+    }
+    //------------------------------------------------------------------------
+    /** @brief set the number of model steps since the start of the run   
+        @param s An integer giving the timesteup number, greater than or equal to zero*/
+    static void setStepNumber(int s){
+        assert (s>=0);
+        stepNumber=s;
+    }
+    //------------------------------------------------------------------------
+    /** @brief return the current number of model steps since the start of the run  
+        @details It is assumed this will be updated every model timestep */
+    static int getStepNumber(){
+        return stepNumber;
+    }
+    //------------------------------------------------------------------------
+    /** @brief return a representation of the time of day as in 24 hour clock 
+     @details e.g. 914 for for 14 minutes past nine in the morning - seconds are not reported - use get seconds function*/
+    static int getTimeOfDay(){
+        return currentHour*100+currentMinute;
+    }
+    //------------------------------------------------------------------------
+    /** @brief return the seconds in the current hour*/
+    static int getSeconds(){
+        return currentSeconds;
+    }
+    //------------------------------------------------------------------------
+    /** @brief return a representation of the day of the week as an integer with 0=Mon, 1=Tue etc.  
+      The model run is assumed to start on a Monday by default */
+    static int getDayOfWeek(){
+        return currentWeekDay;
+    }
+    //------------------------------------------------------------------------
+    /** @brief return a representation of the day of the month  0=day 1, 1= day 2 etc.  
+      The model run is assumed to start on 1 January by default */
+    static int getDayOfMonth(){
+        return currentDayOfMonth;
+    }
+    //------------------------------------------------------------------------
+    /** @brief return a representation of the month of the year as an integer with 0=Jan, 1=Feb etc.  
+      The model run is assumed to start on 1 January by default */
+    static int getMonth(){
+        return currentMonth;
+    }
+        //------------------------------------------------------------------------
+    /** @brief return a representation of the month of the year as an integer with 0=Jan, 1=Feb etc.  
+      The model run is assumed to start on 1 January by default */
+    static int getYear(){
+        return currentYear;
+    }
+    //------------------------------------------------------------------------
+    /** @brief report the values in the current date structure in format: Day dd/mm/yyyy hh:mm:ss*/
+    static void reportDate(){
+        std::string wday[7]={"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
+        std::cout<<wday[currentWeekDay]<<" ";
+        //std::cout<<currentWeekDay<<" "<<wday[6]<<" ";
+        if (currentDayOfMonth+1<10) std::cout<<"0";
+        std::cout<<currentDayOfMonth+1<<"/";
+        if (currentMonth+1<10) std::cout<<"0";
+        std::cout<<currentMonth+1<<"/";
+        std::cout<<currentYear<<" ";
+        if (currentHour<10) std::cout<<"0";
+        std::cout<<currentHour<<":";
+        if (currentMinute<10) std::cout<<"0";
+        std::cout<<currentMinute<<":";
+        if (currentSeconds<10) std::cout<<"0";
+        std::cout<<currentSeconds<<std::endl;
+    }
+    //------------------------------------------------------------------------
+    static int findWeekDay(int year,int month,int day)
+    /** @brief find the gregorian day of the week 
+     @param year the four-digit year
+     @param month the month, starting at 1 for Jan.
+     @param day the day of the month, starting at 1 
+     @details gregorian week day (post 1752) using Sakamoto's method - see wikipedia "Determination of the day of the week"\n
+     Note: Since here I am elsewhere using Mon=0 for weekdays, and the result is initially Sun=0, I add 6 mod 7*/
+    {
+        assert(month>0 && month<=12);
+        int offset[] = {0,3,2,5,0,3,5,1,4,6,2,4};
+        if(month<3) year--;
+        int result= ((year+year/4-year/100+year/400+offset[month-1]+day)%7);//note: relying on integer division truncating any decimals on dividing the year
+        result=(result+6)%7;//I'm using Mon=0 here so add on six days mod 7 
+        return result;
+    }
+    //------------------------------------------------------------------------
+    /** @brief Set the values in the date structure - Note apart from the year all values are integers starting from zero 
+     @param year The year as a four digit integer
+     @param month the month as an integer with 0=Jan. 1=Feb. etc
+     @param dayofweek The day of the week with 0=Mon. 1=Tue. up to 6=Sun.
+     @param monthday The day of the month - from 0 to some upper value depending on the month - seer \ref monthdays array
+     @param hour Hour of the day from 0 to 23
+     @param min minute of the hour from 0 to 59
+     @param sec second from 0 59
+     @details Some minimal checking is carried out: (gregorian) day of the week is checked and corrected if necessary.\n
+     Not stricly ISO8601 which has days of month and months of year starting at 1, and days of the week 1 through 7. oh well. its easier in the update function start at 0.\n
+     Could change this in reporting...
+     
+     */
+    static void setDate(int year,int month,int dayofweek,int monthday,int hour,int min,int sec){
+        assert(month >=0 && month<12);
+        assert(dayofweek>=0 && dayofweek<7);
+        assert(monthday>=0);
+        if (month!=1)assert(monthday<monthDays[month]);//not Feb.
+        if (month==1){//Feb. - check leap years
+            if(year%400==0 || (year%4==0 && year%100!=0)){
+              assert(monthday<29);
+            }
+            else {
+              assert(monthday<28);
+            }
+        }
+        int d=findWeekDay(year,month+1,monthday+1);//findWeekday is expecting months and days to start at 1, not zero
+        if (d!=dayofweek) std::cout<<"Correcting day of week to "<<d<<" (0=Monday...)"<<std::endl;
+        assert(hour>=0 && hour<24);
+        assert(min>=0 && min<60);
+        assert(sec>=0 && sec<60);
+        currentWeekDay=d;
+        currentDayOfMonth=monthday;
+        currentMonth=month;
+        currentYear=year;
+        currentHour=hour;
+        currentMinute=min;
+        currentSeconds=sec;
+
+    }
+        //------------------------------------------------------------------------
+    /** @brief Set the values in the date structure - using input in the form of a string: Day dd/mm/yyyy hh:mm:ss e.g. "Mon 01/01/1900 00:00:00"
+     @param s the date in the above format - note spaces slashes and colons expected exactly as shown (no extra . or anything else)
+     @details Some minimal checking is carried out for weekday name - other checks in overloaded setDate method.
+     */
+    static void setDate(std::string s){
+        std::map<std::string,int> wday;
+        wday["Mon"]=0;
+        wday["Tue"]=1;
+        wday["Wed"]=2;
+        wday["Thu"]=3;
+        wday["Fri"]=4;
+        wday["Sat"]=5;
+        wday["Sun"]=6;
+        int pos;
+        std::string w;
+
+        pos=s.find(" ");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        assert(wday.find(w)!=wday.end());
+        int dayofweek=wday[w];
+        
+        pos=s.find("/");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        int monthday=std::stoi(w)-1;//days of month normally quoted beginning at 1 but internally we use 0
+        
+        pos=s.find("/");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        int month=std::stoi(w)-1;//months normally quoted beginning at 1 from Jan. but internally we use 0
+        
+        pos=s.find(" ");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        int year=std::stoi(w);
+        
+        pos=s.find(":");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        int hour=std::stoi(w);
+
+        pos=s.find(":");
+        w=s.substr(0,pos);
+        s.erase(0,pos+1);
+        int min=std::stoi(w);
+        
+        // seconds should be all that's left!
+        int sec=std::stoi(s);
+
+        setDate(year,month,dayofweek,monthday,hour,min,sec);
+    }
+    //------------------------------------------------------------------------
+    /** @brief set the timestep value in seconds   */
     static void setdeltaT(double sec){
         dt=sec;
     }
     //------------------------------------------------------------------------
-    /** @brief report the timestep value in seconds - so that the user need not know that this is the representation  */
+    /** @brief report the timestep value in seconds  */
     static double deltaT(){
         return dt;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for a (365 day )year - so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for a (365 day )year  */
     static double year(){
         return years;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for a nominal (30 day) month - so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for a nominal (30 day) month  */
     static double month(){
         return months;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for a day - so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for a day   */
     static double day(){
         return days;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for an hour - so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for an hour   */
     static double hour(){
         return hours;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for a minute- so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for a minute */
     static double minute(){
         return minutes;
     }
     //------------------------------------------------------------------------
-    /** @brief report the number of seconds for a second - so that the user need not know that this is the representation  */
+    /** @brief report the number of seconds for a second  */
     static double second(){
         return seconds;
     }

@@ -15,14 +15,14 @@ import os
 
 ##@brief experiment name
 #@details Change this value to the name of the new experiment to be created
-Name = 'stochasticVariation'
+Name = 'endTimeTest10_20000'
 ##@brief change to reflect version of the model
 #@details its expected that each expereriment is intended to run with a particular model version\n
 #which will be recorded in the experiment database
 modelVersion='0.4'
 ##@brief A string briefly giving experiment purpose
 #@details Change this to describe the experiment. More detail can be added in the parameter file and experiment README file
-purpose='Testing how randomseeds and numerbs of agents affect the output'
+purpose='Testing how changes in parameters affect length of a well-mixed epidemic'
 ##@brief default name of the specification file
 #This will be the name in the experiment database
 spec='base_'+Name+'.csv'
