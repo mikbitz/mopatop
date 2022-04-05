@@ -183,9 +183,6 @@ public:
         random_shuffle(agents.begin(),agents.end());
         long num=std::min((long)parameters.get<long>("disease.simplistic.initialNumberInfected"),(long)agents.size());
         for (long i=0;i<num;i++)agents[i]->becomeInfected();
-        
-        std::cout<<"Day number 0=mon: "<<timeStep::findWeekDay(2022,2,23)<<std::endl;
-        exit (0);
     }
     //------------------------------------------------------------------------
     /** @brief Finish off model including any final output etc. \n

@@ -207,7 +207,7 @@ public:
             }
         }
 
-        reportDate();
+        //reportDate();
     }
     //------------------------------------------------------------------------
     /** @brief set the number of model steps since the start of the run   

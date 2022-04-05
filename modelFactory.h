@@ -114,6 +114,7 @@ class simpleOnePlaceFactory:public modelFactory{
         std::cout<<std::endl;
 
         //set up travel schedule - same for every agent at the moment -  at home at exactly the same times
+        #pragma omp parallel for
         for (long i=0;i<agents.size();i++){
             agents[i]->initTravelSchedule(parameters);
         }
@@ -250,9 +251,9 @@ class simpleMobileFactory:public modelFactory{
         //hmmm - this needs some thought if there are more than two domains - also means that only "a" and "b" are recognised
         
         //local to domain not b, i.e. a, currently.
-        travelList::add("NewYork",parameters,places,domain!="b");
+        //travelList::add("NewYork",parameters,places,domain!="b");
         //local only to domain b
-        travelList::add("London",parameters,places,domain!="a");
+        //travelList::add("London",parameters,places,domain!="a");
 
     }
 };

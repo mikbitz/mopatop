@@ -46,8 +46,8 @@
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /** set up and run the model 
- @param argc The number of command line arguments - at the moment only 1 can be handled
- @param argv The argument values - expected to be just the name of the parameter file */
+ @param argc The number of command line arguments - at the moment 1 is the parameter file and (optionally) 2 is the MPI domain name
+ @param argv The argument values - 1 is expected to be just the name of the parameter file, 2 is an arbitrary string */
 int main(int argc, char **argv) {
 
     std::string name="Mopatop";

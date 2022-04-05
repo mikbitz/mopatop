@@ -33,10 +33,8 @@
 //------------------------------------------------------------------------
 //Forward declaration of travelSchedule class, so agents know it exists - even though the travelSchedule also needs to know about agents
 
-class travelSchedule;
 class place;
 #include"disease.h"
-#include "schedulelist.h"
 class activityType;
 /**
  * @brief The main agent class - each agent represents one person
@@ -47,7 +45,7 @@ class agent{
 
     /** @brief A static (class-level) variable that stores a list of all possible allSchedules
         @details the list is indexed by \ref scheduleList::scheduleTypes - a single instance minmimizes storage, as the schedules themselves are rather memory expensive */
-    static scheduleList allSchedules;
+//    static scheduleList allSchedules;
     /** @brief A static (class-level) variable that stores the next ID number for a new agent - initialised to 0 in agent.cpp */
     static unsigned long nextID;
     /** @brief flag set to true if the agent has the disease */
@@ -98,7 +96,8 @@ public:
     unsigned schedulePoint;
     /** @brief The current type of travel schedule     */
     scheduleTypes scheduleType;
-    /** @brief Place to hold schedule type if switching current schedule to an alternative (e.g. on holiday)    */
+    /** @brief Place to hold schedule type if switching current schedule to an alternative (e.g. on hol
+iday)    */
     scheduleTypes originalScheduleType;
     /** @brief Counts down the time spent at the current location     */  
     double scheduleTimer=0;
@@ -131,10 +130,7 @@ public:
      *  these are set later, as the places need to be created before they can be allocated to agents.\n
      * NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens!\n
      */
-
-
     agent();
-
     /** @brief Function to change the agent from one place's list of occupants to another 
      *  @details- not used just at present - this function is very expensive on compute time 
      see \ref agent.cpp for definition*/
@@ -145,22 +141,6 @@ public:
         */
     void update();
 
-    /** @brief Change schedules according to whether routine or (for example) going on holiday \n
-    *  @details If going away the original home/work/vehicle pointers are cached, then new ones selected for \n
-    *  the remote destination. The originals get replaced on returning home: otherwise the schedule gets updated for the next timestep.
-        see \ref agent.cpp for definition\n
-        @param step the current model time step*/
-    void updateTravelSchedule(long);
-    /** @brief initialise the travel schedule  - this sets up the list of places that will be visited, in order \n
-    *  @details The schedule is assumed to be sitting at the end of the previous event when the model starts. \n
-    *  set up the timer to be zero therefore (no time left at current event) and get the start schedulePoint out of the schedule.
-        see \ref agent.cpp for definition*/
-    void initTravelSchedule();
-    /** @brief initialise the travel schedule  but setting the scheduleType using its named string \n
-    *  @details As for the 
-        @param params A string that picks out one of the available travel schedules
-        see \ref agent.cpp for definition*/
-    void initTravelSchedule(std::string s);
     /** @brief initialise the travel schedule  - this time using the parameterSettings \n
      *  @details The schedule name is extracted from the parameters and passed as a string argument to the overloaded travel schedule initialiser
         @param params A reference to a parameterSettings object  
@@ -170,13 +150,11 @@ public:
         @details decrement the time counter for the current place by the timestep and then check to see if this time has expired\n
         If so get the next place on the schedule as pointed to by schedulePoint+1
         see \ref agent.cpp for definition*/
-    void advanceTravelSchedule();
-    /** convert a string schedule name (e.g. from the parameter file) to one of the schedule type enums */
-    scheduleTypes getScheduleType(std::string scheduleType);
     /** @brief if you have the disease, contaminate the current place  - call every timestep \n
      see \ref agent.cpp for definition*/
     void cough();
     /** @brief call the disease functions, specified for this agent \n
+
      see \ref agent.cpp for definition*/
     void process_disease(randomizer& );
     /** @brief report whether infected with the disease */
