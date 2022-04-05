@@ -87,7 +87,7 @@ public:
         std::ifstream f("./output/experiment.default/run_0000/diseaseSummary.csv");
         std::string s;
         std::getline(f,s);
-        //chekc header is OK
+        //check header is OK
         CPPUNIT_ASSERT(s=="step,time(hours),susceptible,infected,recovered,dead");
         std::getline(f,s);
         //this line could change with thread num or RNG settings!

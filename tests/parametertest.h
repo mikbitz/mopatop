@@ -130,6 +130,10 @@ public:
         CPPUNIT_ASSERT(timeStep::timeStepUnit()=="seconds");
         //file asks for timesteps of 3600 seconds
         CPPUNIT_ASSERT(timeStep::deltaT()==timeStep::hour());
+        //start date is set to 23/02/2022, but model assumes 0 for first day of month, and first month
+        CPPUNIT_ASSERT(timeStep::getDayOfMonth()==22);
+        CPPUNIT_ASSERT(timeStep::getMonth()==1);
+        CPPUNIT_ASSERT(timeStep::getYear()==2022);
         disease d(p);
         CPPUNIT_ASSERT(disease::getRecoveryRate()==0.0008);
         CPPUNIT_ASSERT(disease::getDeathRate()==0.001);

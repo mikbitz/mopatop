@@ -51,7 +51,7 @@ public:
     CPPUNIT_TEST_SUITE_END();
     /** @brief Check that the time step number updates as expected
      @details should start at 0 and advance by one on every call to update. Make sure this is the first test so that calls to update haven't happened yet */
-    void testStepping(){
+    void testStepping(){ 
         //step should start at 0
         CPPUNIT_ASSERT( timeStep::getStepNumber()  ==0);
         timeStep::update();
