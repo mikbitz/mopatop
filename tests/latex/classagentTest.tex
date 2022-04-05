@@ -52,9 +52,8 @@ void \mbox{\hyperlink{classagentTest_ade6fc2895d439529b21d4fb725302b77}{test\+De
 \mbox{\Hypertarget{classagentTest_ad39e9d21138b56f55a29ced6fdba8e58}\label{classagentTest_ad39e9d21138b56f55a29ced6fdba8e58}} 
 void \mbox{\hyperlink{classagentTest_ad39e9d21138b56f55a29ced6fdba8e58}{test\+Settings}} ()
 \begin{DoxyCompactList}\small\item\em test the ID and places can be set \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classagentTest_adaa25e2c092be46311aea330d19d7f94}\label{classagentTest_adaa25e2c092be46311aea330d19d7f94}} 
 void \mbox{\hyperlink{classagentTest_adaa25e2c092be46311aea330d19d7f94}{test\+Schedule}} ()
-\begin{DoxyCompactList}\small\item\em test the travel schedule \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em test the travel rules \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classagentTest_a7207d3076716ba24d42ebac5b97a6f6e}\label{classagentTest_a7207d3076716ba24d42ebac5b97a6f6e}} 
 void \mbox{\hyperlink{classagentTest_a7207d3076716ba24d42ebac5b97a6f6e}{test\+Move}} ()
 \begin{DoxyCompactList}\small\item\em test the function that changes occupancy lists of places \end{DoxyCompactList}\item 
@@ -88,7 +87,17 @@ end the test suite \mbox{\Hypertarget{classagentTest_ade6fc2895d439529b21d4fb725
 make sure default agent has no disease, is alive, and knows about 3 kinds of place. Check ID increments. 
 
 Note that since the agent ID auto-\/increments, this has to be the first test suite that uses any agents~\newline
-if the first agent tested is meant to have ID zero 
+if the first agent tested is meant to have ID zero \mbox{\Hypertarget{classagentTest_adaa25e2c092be46311aea330d19d7f94}\label{classagentTest_adaa25e2c092be46311aea330d19d7f94}} 
+\index{agent\+Test@{agent\+Test}!test\+Schedule@{test\+Schedule}}
+\index{test\+Schedule@{test\+Schedule}!agent\+Test@{agent\+Test}}
+\subsubsection{\texorpdfstring{test\+Schedule()}{testSchedule()}}
+{\footnotesize\ttfamily void agent\+Test\+::test\+Schedule (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+test the travel rules 
+
+At the moment the agents have a hard-\/coded time to got to work of 0800, 1 hour travel, and work until 1700, then 1 hour travel home again 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
