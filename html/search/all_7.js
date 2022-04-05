@@ -17,7 +17,6 @@ var searchData=
   ['getnextlocation',['getNextLocation',['../classtravelSchedule.html#ae54698a314250dc3c9ed953e61bfc8a8',1,'travelSchedule']]],
   ['getnumberofoccupants',['getNumberOfOccupants',['../classplace.html#a9b63724c8a26893ea3e45f23a9268e80',1,'place']]],
   ['getrecoveryrate',['getRecoveryRate',['../classdisease.html#ac0137358dd01129d688613aa2a4dabb4',1,'disease']]],
-  ['getscheduletype',['getScheduleType',['../classagent.html#a9c7bc8aa25f6bf63f7f72bee3217cd5e',1,'agent']]],
   ['getseconds',['getSeconds',['../classtimeStep.html#af3e01fbdc76b8385cdfa9e90dad5faa5',1,'timeStep']]],
   ['getshed',['getShed',['../classdisease.html#abdded76e093b639a626fddafe991548d',1,'disease']]],
   ['getstartpoint',['getStartPoint',['../classtravelSchedule.html#a419e953fe6b4a4471367c6ac5ed7bbd5',1,'travelSchedule']]],

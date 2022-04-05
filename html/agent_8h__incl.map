@@ -1,7 +1,6 @@
 <map id="agent.h" name="agent.h">
-<area shape="rect" id="node2" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="187,80,265,107"/>
-<area shape="rect" id="node15" href="$schedulelist_8h_source.html" title="schedulelist.h" alt="" coords="57,155,160,181"/>
-<area shape="rect" id="node3" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers randomizer. " alt="" coords="400,155,497,181"/>
-<area shape="rect" id="node6" href="$timestep_8h.html" title="File containing the definition of the timeStep class. " alt="" coords="185,155,267,181"/>
-<area shape="rect" id="node9" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="243,229,342,256"/>
+<area shape="rect" id="node2" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="205,80,283,107"/>
+<area shape="rect" id="node3" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers randomizer. " alt="" coords="138,155,235,181"/>
+<area shape="rect" id="node6" href="$timestep_8h.html" title="File containing the definition of the timeStep class. " alt="" coords="307,155,389,181"/>
+<area shape="rect" id="node9" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="272,229,371,256"/>
 </map>
