@@ -113,10 +113,10 @@ class simpleOnePlaceFactory:public modelFactory{
         }
         std::cout<<std::endl;
 
-        //set up travel schedule - same for every agent at the moment -  at home at exactly the same times
+        //set up any agent data dependent on parameters
         #pragma omp parallel for
         for (long i=0;i<agents.size();i++){
-            agents[i]->initTravelSchedule(parameters);
+            agents[i]->initialize(parameters);
         }
         //report intialization to std out 
         std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
@@ -239,10 +239,10 @@ class simpleMobileFactory:public modelFactory{
             assert(places[i/agentsPerBus+nHomes+nWork]!=0);
             agents[i]->setTransport(places[i/agentsPerBus+nHomes+nWork]);
         }
-        //set up travel schedule - same for every agent at the moment - so agents are all on the bus, at work or at home at exactly the same times
+        //set up any agent data dependent on parameters
         #pragma omp parallel for
         for (long i=0;i<agents.size();i++){
-            agents[i]->initTravelSchedule(parameters);
+            agents[i]->initialize(parameters);
         }
         //report intialization to std out 
         std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;

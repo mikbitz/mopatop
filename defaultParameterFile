@@ -47,19 +47,19 @@ run.randomIncrement=57
 #NB setting repeats to more than 1 will set autmatically set and increase experiment.run.number irrespective of any value set below. 
 
 #-------------------------------
-#schedule
+#schedule - not currently used
 #-------------------------------
 #pick schedule from either "mobile" or "stationary" - string
 #if you set simpleMobile below, you probably want mobile here too...
 #if you set mobile here and simpleOnePlace below then work,home and transport will all actually be the same place
-schedule.type=mobile
+#schedule.type=mobile
 
 #-------------------------------
 #model
 #-------------------------------
 #pick model type either "simpleMobile" or "simpleOnePlace" - string
 #simpleOnePlace puts all agents into a single location, and there they stay.
-model.type=simpleMobile
+model.type=simpleOnePlace
 
 #-------------------------------
 #timestepping

@@ -46,6 +46,7 @@ agent::agent(){
     _active=true;
     _leaver=false;
     _locationIsRemote=false;
+    _mobile=true;
     //this is supposed to set a unique ID, but *NOT* threadsafe!! Set the ID instead at agent creation.
     ID=nextID;
     nextID++;
@@ -75,7 +76,7 @@ void agent::atHome(){
     int T=timeStep::getTimeOfDay();
     int day=timeStep::getDayOfWeek();
     //if(ID==0)std::cout<<(scheduleType==stationary)<<std::endl;
-    if (scheduleType==mobile && T>=800 && T<900 && day < 5)currentPlace=vehicle;//go to work unless the weekend
+    if (_mobile && T>=800 && T<900 && day < 5)currentPlace=vehicle;//go to work if mobile and unless the weekend (days 5/6)
 }
 //------------------------------------------------------------------------
 
@@ -96,9 +97,9 @@ void agent::inTransit(){
     
 }
 //------------------------------------------------------------------------
-//defined here so as to be after travelSchedule class
 void agent::update()
 {       
+        //rules to move agents between places
         //subsumption style - the agents run all rules in fixed order - this means rules must be carefully set to make sure this works properly!
         //these rules just currently set the agent location
         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
@@ -149,20 +150,18 @@ void agent::setRemoteLocation(){
 void agent::inwardTravel(){//note this and outward travel below are used in the case of multiple MPI domains, so need to be kept separate from update travel schedule above
     //unstack home
     setHome(placeCache[home]);
-    //initTravelSchedule("returnTrip");
 }
 //------------------------------------------------------------------------
 void agent::outwardTravel(){
     //travelList::travelLocations["London"]->visit(this);//if leaving domain this caches the return flight - note alters home and vehicle settings
-    //initTravelSchedule("remoteTravel");
 }
 
 //------------------------------------------------------------------------
-void agent::initTravelSchedule(parameterSettings& params){       
+void agent::initialize(parameterSettings& params){       
    //by default we go to the schedule defined by by the parameter file
    //initTravelSchedule(params("schedule.type"));
-    if      (params("schedule.type")=="stationary"  )scheduleType=stationary;
-    else if (params("schedule.type")=="mobile"      )scheduleType=mobile;
+    if      (params("model.type")=="simpleOnePlace"  )_mobile=false;
+    else if (params("model.type")=="simpleMobile"      )_mobile=true;
 }
 //------------------------------------------------------------------------
 void agent::cough()

@@ -71,15 +71,14 @@ public:
     }
     /** @brief Unique agent identifier - should be able to go up to 4e9 */
     unsigned long ID;
-
+    /** @brief This enum identifies whether agents move from place to place
+     * @details By default this is true - the idea is that agents can be set to stay in a single location for testing against the simplest single-lcation disease model */
+    bool _mobile;
     /** @brief This enum associates a set of integers with names, in order to identify types of place. 
      * @details So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example.
      * Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567.
      * transport vehicles are places, albeit moveable!*/
     enum placeTypes{home,work,vehicle,hospital,shop};
-    /** @brief This enum identifies types of travel schedule 
-     * @details So stationary=0, mobile=1 etc. This allows meaningful names to be used to refer to the type of schedule, for example.*/
-    enum scheduleTypes{stationary,mobile,remoteTravel,returnTrip};
     /** @brief An array of pointers to places 
      *  @details - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use the name (home.work etc.) \n
        intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!).
@@ -92,15 +91,6 @@ public:
     /** @brief Where the agent is currently located 
      *@details - note to get this actual place, use this as an index into the places vector*/
     placeTypes currentPlace;
-    /** @brief an integer that picks out the current step through the travel schedule */
-    unsigned schedulePoint;
-    /** @brief The current type of travel schedule     */
-    scheduleTypes scheduleType;
-    /** @brief Place to hold schedule type if switching current schedule to an alternative (e.g. on hol
-iday)    */
-    scheduleTypes originalScheduleType;
-    /** @brief Counts down the time spent at the current location     */  
-    double scheduleTimer=0;
     /** @brief A rule to determine whether the agent is about to go away on holiday*/
     void goOnHoliday();
     /** @brief A rule to determine whether the agent is about to go get on plane home*/
@@ -140,12 +130,11 @@ iday)    */
         @details needs to be called every timestep see \ref agent.cpp for definition\n 
         */
     void update();
-
-    /** @brief initialise the travel schedule  - this time using the parameterSettings \n
-     *  @details The schedule name is extracted from the parameters and passed as a string argument to the overloaded travel schedule initialiser
+    /** @brief initialise agetn data using the parameterSettings \n
+     *  @details The agents do not keep a handle to the parameters, so this allows any initial agent data that depends on parameters to be set up
         @param params A reference to a parameterSettings object  
         see \ref agent.cpp for definition*/
-    void initTravelSchedule(parameterSettings& );
+    void initialize(parameterSettings& );
     /** @brief check whether to move forward to the next travel location
         @details decrement the time counter for the current place by the timestep and then check to see if this time has expired\n
         If so get the next place on the schedule as pointed to by schedulePoint+1
@@ -265,11 +254,11 @@ iday)    */
     bool leaver(){
         return _leaver;
     }
-    /** @brief set the agent to leave the domain on the next timestep   */
+    /** @brief set the agent to leave the MPI domain on the next timestep   */
     void leaveDomain(){
          _leaver=true;
     }
-    /** @brief set the agent to remain in the domain on the next timestep   */
+    /** @brief set the agent to remain in the MPI domain on the next timestep   */
     void doNotLeaveDomain(){
          _leaver=false;
     }
