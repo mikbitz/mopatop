@@ -100,24 +100,47 @@ void agent::inTransit(){
 void agent::update()
 {       
         //rules to move agents between places
-        //subsumption style - the agents run all rules in fixed order - this means rules must be carefully set to make sure this works properly!
+        //different rule sets may apply depending on flags for switching between sets
+        //within a set at the moment the rules are subsumption style 
+        //i.e. the agents run all rules in fixed order - with later rules possibly overriding earlier onees
+        //this means rules must be carefully set to make sure this works as intended
         //these rules just currently set the agent location
-        if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
-        if (currentPlace==vehicle)inTransit();//trips to and from work only
-        if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver
-        //goOnHoliday();
-        //returnFromHoliday();
-        //arriveHome();
+        if (holidayTime()){
+         goOnHoliday();
+         returnFromHoliday();
+         arriveHome();
+        }else{
+         if (currentPlace==home)atHome();//people might be at some other location overnight - e.g. holiday, or trucker in their cab - but home can have special properties (e.g. food storage, places where I keep my stuff)
+         if (currentPlace==vehicle)inTransit();//trips to and from work only
+         if (currentPlace==work)atWork();//this could involve travelling too - e.g. if delivery driver
+        }
         //moving agents between data structures is expensive - only needed if agents need direct agent-to-agent interactions in a place -
         //might be made cheaper by allowing agents to be present in multiple places, but only active in one.
         //(this could allow for remote meetings/phone calls?!)
         //moveTo(currentPlace);
 
 }
+bool agent::holidayTime()
+{
+    //holiday on 1st of June at midnight!
+    //if (timeStep::getMonth()==5 && timeStep::getDayOfMonth()==0) return true;
+    return false;
+}
+
 //------------------------------------------------------------------------
 void agent::goOnHoliday(){
-    if (timeStep::getMonth()==5 && timeStep::getDayOfMonth()==0) {//holiday on 1st of June at midnight!
-     if (ID<=35000 ){
+    //need flag here to test if already on holiday
+    //find a holday destination
+    //check if its local (need to have an idea of where we are, country-wise)
+    //if not find the aiport
+    //find transport to the airport - get on when near plane schedule
+    //go to airport and wait until plane ready
+    //get on (a specific timetabled) plane - one plane a day between destinations? airport needs timetable, planes attached to a departure time and have a duration 
+    //get off plane at remote airport
+    //travel locally to hotel
+    //stay in hotel until leave time
+    //reverse the above travel sequence to get home (travellers need a)where home is b)what country they are in.
+
       //if (travelList::travelLocations.find("London") == travelList::travelLocations.end()) return;//didn't find the holiday destination
       //if(travelList::travelLocations["London"]->isOnRemoteDomain())setRemoteLocation();
       if (_locationIsRemote)leaveDomain();
@@ -125,8 +148,6 @@ void agent::goOnHoliday(){
       placeCache[home]=places[home];
       outwardTravel();
       currentPlace=vehicle;//now plane
-     } 
-    }
 }
 //------------------------------------------------------------------------
 void agent::returnFromHoliday(){
@@ -158,8 +179,7 @@ void agent::outwardTravel(){
 
 //------------------------------------------------------------------------
 void agent::initialize(parameterSettings& params){       
-   //by default we go to the schedule defined by by the parameter file
-   //initTravelSchedule(params("schedule.type"));
+   //mobility defined by by the parameter file - should be consistent with modelfactory settings
     if      (params("model.type")=="simpleOnePlace"  )_mobile=false;
     else if (params("model.type")=="simpleMobile"      )_mobile=true;
 }

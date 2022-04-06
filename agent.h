@@ -98,8 +98,8 @@ public:
     /** @brief A rule to determine whether the agent has reached home*/
     void arriveHome();
     /** @brief A rule to determine whether the agent is about to go away on travel 
-        @param step the current model time step*/
-    bool holidayTime(long);
+        @details if true switches the ruleset to a holiday version */
+    bool holidayTime();
     /** @brief set up the schedule for travelling away
         @details this sets a schedule and a set of places to visit. When there are multiple MPI domains, the copy of a remote agent needs to run this\n
         with the local places so as the make sure the traveller agent gets a schedule with places that exist on this domain (see \ref fetchall.h). The local agents also calls\n
