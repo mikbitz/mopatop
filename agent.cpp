@@ -109,7 +109,7 @@ void agent::update()
         if (currentPlace==hospital){
             inHospital();
         }
-        if (needFood()) goShoppping();
+        if (needFood()) goShopping();
         if (currentPlace==shop){
             inShop();
         }
