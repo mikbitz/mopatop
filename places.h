@@ -46,9 +46,13 @@ class agent;
 */
 class place{
 
-    /** Unique identifier for a place - should be able to go up to about 4e9 */
+    /** @brief Unique identifier for a place - should be able to go up to about 4e9 */
     unsigned long ID;
-    /** An arbitrary number giving how infectious a given place currently might be - needs calibration to get a suitable per-unit-time value. \n 
+    /** @brief an integer used to label the kind of place this is
+        @details defaults to 0 as being no particular kind of location **/
+    unsigned short category;
+    /** @brief An arbitrary number giving how infectious a given place currently might be 
+     *  @details - needs calibration to get a suitable per-unit-time value. \n 
      One might expect it to vary with the size of a given location
      */
     double contaminationLevel;
@@ -75,6 +79,7 @@ public:
         contaminationLevel=0.;
         fractionalDecrement=0.1;
         cleanEveryStep=false;
+        category=0;
     }
     /** @brief set up the place. 
      *  @param p parameter Settings read from the parameter file 
@@ -93,6 +98,16 @@ public:
     /** @brief get the place ID number */
     long getID(){
         return ID;
+    }
+    /** @brief set the place category
+     *  @details care should be taken not to exceed the size of an unsigned short integer shold be something liek 0 to 65534
+        @param andun signed short integer*/
+    void setCategory(unsigned short c){
+        category=c;
+    }
+    /** @brief get the place ID number */
+    long getCategory(){
+        return category;
     }
     /**Add an agent to the list currently here 
      @param a a pointer to the agent to be added */
