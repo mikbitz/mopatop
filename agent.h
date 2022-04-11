@@ -276,20 +276,34 @@ public:
     bool active(){
          return _active;
     }
+    /** @brief check if and agent needs to go to hospital   
+        @details placeholder for future development */
     bool verySick(){
         return false;
     }
+    /** @brief if hospitalization is needed, travel to the relevant hospital
+        @details placeholder for future development */
     void goToHospital(){
     }
+    /** @brief perhaps we have recovered - go home
+        @details placeholder for future development */
     void leaveHospital(){
     }
+    /** @brief what to do in hospital
+        @details placeholder for future development */
     void inHospital(){
     }
+    /** @brief should we go to the shops?
+        @details placeholder for future development */
     bool needFood(){
         return false;
     }
+    /** @brief travel to the relevant shopping location
+        @details placeholder for future development */
     void goShopping(){
     }
+    /** @brief get shopping
+     *  @details placeholder for future development */
     void inShop(){
     }
     /** @brief Function to change the agent from one place's list of occupants to another 
