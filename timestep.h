@@ -296,7 +296,7 @@ public:
      @param year The year as a four digit integer
      @param month the month as an integer with 0=Jan. 1=Feb. etc
      @param dayofweek The day of the week with 0=Mon. 1=Tue. up to 6=Sun.
-     @param monthday The day of the month - from 0 to some upper value depending on the month - seer \ref monthdays array
+     @param monthday The day of the month - from 0 to some upper value depending on the month - see  timestep::monthdays array
      @param hour Hour of the day from 0 to 23
      @param min minute of the hour from 0 to 59
      @param sec second from 0 59

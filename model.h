@@ -43,7 +43,7 @@ class model{
     std::vector<agent*> agents;
     /** @brief A container to hold pointers to agents from another MPI domain.
        @details These agents are only present if they have travelled from another copy of the model running on a different (HPC) node\n
-                  see \ref coupler below*/
+                  see model::coupler variable*/
     std::vector<agent*> travellers;
     /** @brief A container to hold the local places */
     std::vector<place*> places;
@@ -87,7 +87,7 @@ public:
         or to allow the model to be coupled to another kind of model (e.g. an ecosystem model). See \ref fetchall.h \n
         If this is not needed then the domain is ignored.
         @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied
-        @param domain A string that defines which MPI domain this is, when using domain decomposition to run multiple models using MPI - see fetchall.h */
+        @param dom A string that defines which MPI domain this is, when using domain decomposition to run multiple models using MPI - see fetchall.h */
     model(parameterSettings& parameters,std::string dom):domain(dom){
          //If using the MUI coupler, initialise the domain
 #ifdef COUPLER
@@ -169,6 +169,7 @@ public:
     //------------------------------------------------------------------------
     /** @brief Set up the agents and places, and allocate agents to homes, workplaces, vehicles. \n
      *  @param parameters A \b reference to a class that holds all the possible parameter settings for the model.\n Using a reference ensures the values don't need to be copied
+     *  @param domain identity of the relevant MPI domain, if needed
      *  @details The relative structure of the places, size homes and workplaces and the number and size of transport vehicles, together with the schedule, \n
      *  will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale \n
      *  This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns.

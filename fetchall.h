@@ -146,9 +146,9 @@ public:
         However, to save memory allocations, we can re-use any local inactive travellers - these were agents that were sent here, but have since gone home.\n
         So first we set up a list of inactive local travellers and re-use these - if we run out of these, then we create some new agents. Each traveller is \n
         added to the local vector of travellers (kept separate from the local list of agents) and assigned the ID from the remote domain. Then their schedules\n
-        are set up using a call to \ref outwardTravel in \ref agent.cpp . They are also labelled as needing to leave the domain at the end of their schedule.\n
+        are set up using a call to \ref agent::outwardTravel in \ref agent.cpp . They are also labelled as needing to leave the domain at the end of their schedule.\n
         Now we can add the returning travellers - we use their (local) ID and index, as transmitted with them from the remote domain to find their corresponding \n
-        local copy, activate it and copy in the data sent from the remote domain. The schedule for returning home is set with a call to \ref inwardTravel .
+        local copy, activate it and copy in the data sent from the remote domain. The schedule for returning home is set with a call to \ref agent::inwardTravel .
         @param time The current model time step
         @param locals The list of agents local to this domain (i.e. excluding travellers)
         @param travellers The list of agents that have come from the remote domain

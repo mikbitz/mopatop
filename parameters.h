@@ -52,7 +52,7 @@ class parameterSettings{
     std::string _parameterFileName;
     
     //------------------------------------------------------------------------
-    /** @brief function to check whether a requiested parameter name exists.\n
+    /** @brief function to check whether a requested parameter name exists.\n
      *        If not exit the program.        */
     bool is_valid(std::string s){
         auto it = _parameters.find(s);

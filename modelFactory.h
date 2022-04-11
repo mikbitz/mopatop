@@ -44,6 +44,7 @@ public:
     /** @brief static function to add named locations to the list 
         @param name the unique name of the location
         @param parameters the model parmeter settings - needs to be passed to the \ref remoteTravel object
+        @param places the list of pointers to currently defined places
         @param otherDomain a flag to denote whether this location is actually located in another MPI domain*/
     static void add(std::string name,parameterSettings& parameters,std::vector<place*>& places,bool otherDomain=false){
         travelLocations[name]=new remoteTravel(parameters,places,otherDomain);
@@ -65,6 +66,7 @@ public:
       @param parameters A reference to the model parameterSettings object
       @param agents A reference to the model object's list of agents
       @param places* A reference to the model object's list of places
+      @param domain identity of the relevant MPI domain, if needed *
         */
     virtual void createAgents(parameterSettings& parameters,std::vector<agent*>& agents,std::vector<place*>& places,std::string domain)=0;
 };
@@ -82,7 +84,8 @@ class simpleOnePlaceFactory:public modelFactory{
        @details This method has to be accessed by creating a pointer to this sub-class.
       @param parameters A reference to the model parameterSettings object
       @param agents A reference to the model object's list of agents
-      @param places* A reference to the model object's list of places*/
+      @param places* A reference to the model object's list of places
+      @param domain identity of the relevant MPI domain, if needed*/
     void createAgents(parameterSettings& parameters,std::vector<agent*>& agents,std::vector<place*>& places,std::string domain){
 
         std::cout<<"Starting simple one place generator..."<<std::endl;
@@ -141,6 +144,7 @@ class simpleMobileFactory:public modelFactory{
     @param parameters A reference to the model parameterSettings object
     @param agents A reference to the model object's list of agents
     @param places* A reference to the model object's list of places
+    @param domain identity of the relevant MPI domain, if needed
     @todo refactor the behaviour for local and remote MPI domains */
     void createAgents(parameterSettings& parameters, std::vector<agent*>& agents,std::vector<place*>& places,std::string domain){
 
@@ -248,14 +252,6 @@ class simpleMobileFactory:public modelFactory{
         }
         //report intialization to std out 
         std::cout<<"Built "<<agents.size()<<" agents and "<<places.size()<<" places."<<std::endl;
-        //create some remote places to travel to - local ones are on this MPI domain, remote another one.
-        //If domain!="b"  is true, the location is remote to MPI domain b - otherwise it is labelled as local i.e. the current domain is indeed "b"
-        //hmmm - this needs some thought if there are more than two domains - also means that only "a" and "b" are recognised
-        
-        //local to domain not b, i.e. a, currently.
-        //travelList::add("NewYork",parameters,places,domain!="b");
-        //local only to domain b
-        //travelList::add("London",parameters,places,domain!="a");
 
     }
 };
@@ -270,14 +266,24 @@ class simpleMobileFactory:public modelFactory{
 */
 class flyingFactory:public modelFactory{
     /** @brief method to overload the createAgents method in the base class
-    @details This method has to be accessed by creating a pointer to this sub-class.
+    @details This method has to be accessed by creating a pointer to this sub-class. Here we use the simpleMobileFactory to create the intial agents and places\n
+    then add airports
     @param parameters A reference to the model parameterSettings object
     @param agents A reference to the model object's list of agents
     @param places* A reference to the model object's list of places
+    @param domain identity of the relevant MPI domain, if needed
     */
     void createAgents(parameterSettings& parameters, std::vector<agent*>& agents,std::vector<place*>& places,std::string domain){
         modelFactory& F=modelFactorySelector::select("simpleMobile");
         F.createAgents(parameters,agents,places,domain);
+        //create some remote places to travel to - local ones are on this MPI domain, remote another one.
+        //If domain!="b"  is true, the location is remote to MPI domain b - otherwise it is labelled as local i.e. the current domain is indeed "b"
+        //hmmm - this needs some thought if there are more than two domains - also means that only "a" and "b" are recognised
+        
+        //local to domain not b, i.e. a, currently.
+        //travelList::add("NewYork",parameters,places,domain!="b");
+        //local only to domain b
+        //travelList::add("London",parameters,places,domain!="a");
     }
 };
 

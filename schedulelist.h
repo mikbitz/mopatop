@@ -20,7 +20,7 @@
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 /**
- * @file scheduleList.h 
+ * @file schedulelist.h 
  * @brief File containing the definition of a class to hold a list of travel schedules
  * 
  * @author Mike Bithell

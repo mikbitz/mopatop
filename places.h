@@ -99,9 +99,9 @@ public:
     long getID(){
         return ID;
     }
-    /** @brief set the place category
+    /** @brief set the place category integer
      *  @details care should be taken not to exceed the size of an unsigned short integer shold be something liek 0 to 65534
-        @param andun signed short integer*/
+        @param c an unsigned short integer*/
     void setCategory(unsigned short c){
         category=c;
     }
