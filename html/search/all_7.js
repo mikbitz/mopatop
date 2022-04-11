@@ -28,5 +28,7 @@ var searchData=
   ['gettype',['getType',['../classscheduleList.html#acacdb4b88c0c2e412078b720074b6d5c',1,'scheduleList']]],
   ['getwork',['getWork',['../classagent.html#a90e94c25d8fa485ac70fec9226a718ca',1,'agent']]],
   ['getyear',['getYear',['../classtimeStep.html#aa0e7bacdbf36e91566c42b7389a4c66a',1,'timeStep']]],
-  ['goonholiday',['goOnHoliday',['../classagent.html#a6af0130706b45f174a4118a1c6b82c98',1,'agent']]]
+  ['goonholiday',['goOnHoliday',['../classagent.html#a6af0130706b45f174a4118a1c6b82c98',1,'agent']]],
+  ['goshopping',['goShopping',['../classagent.html#ab793b9b5b7cc382303f10e41b1caddff',1,'agent']]],
+  ['gotohospital',['goToHospital',['../classagent.html#a3d3aa8e83348ecc7ab0d94f25a525207',1,'agent']]]
 ];
