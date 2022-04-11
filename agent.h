@@ -306,6 +306,10 @@ public:
      *  @details placeholder for future development */
     void inShop(){
     }
+    /** @brief leave shopping location
+        @details placeholder for future development */
+    void leaveShop(){
+    }
     /** @brief Function to change the agent from one place's list of occupants to another 
      *  @details- not used just at present - this function is very expensive on compute time \n
      * as it has to remove agent from one list and add it to another  see \ref agent.cpp for definition*/
