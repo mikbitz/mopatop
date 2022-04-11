@@ -101,10 +101,19 @@ void agent::update()
 {       
         //rules to move agents between places
         //different rule sets may apply depending on flags for switching between sets
-        //within a set at the moment the rules are subsumption style 
+        //within a set at the moment the rules are typically subsumption style 
         //i.e. the agents run all rules in fixed order - with later rules possibly overriding earlier onees
         //this means rules must be carefully set to make sure this works as intended
-        //these rules just currently set the agent location
+
+        if (verySick()) goToHospital();
+        if (currentPlace==hospital){
+            inHospital();
+        }
+        if (needFood()) goShoppping();
+        if (currentPlace==shop){
+            inShop();
+        }
+        //what we did on our holidays
         if (holidayTime()){
          goOnHoliday();
          returnFromHoliday();

@@ -62,12 +62,29 @@ class agent{
     /** @brief flag set to true if the agent is about to leave this domain */
     bool _leaver=false;
 public:
+    /** @brief create and agent and set default disease flags and ID. 
+     * @details The static nextID variable is used to auto-set the ID number. nextID is then incremented.\n
+     * Also set aside storage for the three placeTypes the agent can occupy. \n
+     *  these are set later, as the places need to be created before they can be allocated to agents.\n
+     * NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens!\n
+     */
+    agent();
      /** @brief Set the value of \ref nextID 
          @details Use with caution - resetting this will cause automatic agent IDs to be set starting from the value set here \n
-         If agent IDs need to be unique then this could cause issues...
+         If agent IDs need to be unique then this could cause issues... need to take care if agents travel to another MPI domain
          @param i the new value from which agent IDs will be auto-incremented.*/
     static void setIDbaseValue(unsigned long i){
         nextID=i;
+    }
+    /** @brief set agent ID number  
+     @param i a long integer */
+    void setID(long i){
+        ID=i;
+    }
+    /** @brief get agent ID number  
+     @return The agent ID number, an unsigned long integer */
+    unsigned long getID(){
+        return ID;
     }
     /** @brief Unique agent identifier - should be able to go up to 4e9 */
     unsigned long ID;
@@ -84,7 +101,7 @@ public:
        intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!).
        Note that this could be replaced with a vector for more flexibility, but this is slightly slower and consumes more memory. Array need to match placetype enum in size*/
     place* places[3];
-    /** @brief a stack to store temporarily any places that need to be remebered for later use. Used when agent travels outside standart routine.\n
+    /** @brief a stack to store temporarily any places that need to be remebered for later use. Used when agent travels outside standard routine.\n
         @details Visiting places using a \ref remoteTravel.h object resets the places stored in places to point e.g. home and vehicle to holiday destinations \n
         the cache allows original places to be remebered and restored on return from travel. Note that using an STL stack would work, but is hugely memory expensive.*/
     place* placeCache[3];
@@ -100,31 +117,20 @@ public:
     /** @brief A rule to determine whether the agent is about to go away on travel 
         @details if true switches the ruleset to a holiday version */
     bool holidayTime();
-    /** @brief set up the schedule for travelling away
+    /** @brief set up travelling away
         @details this sets a schedule and a set of places to visit. When there are multiple MPI domains, the copy of a remote agent needs to run this\n
-        with the local places so as the make sure the traveller agent gets a schedule with places that exist on this domain (see \ref fetchall.h). The local agents also calls\n
-        this routine, which allows it to set *local* places (such as return flight) that will be ready for it on return, including if it comes back from a remote domain.*/
+        with the local places so as the make sure the traveller agent gets places that exist on this domain (see \ref fetchall.h). The local agents also calls\n
+        this routine, which allows it to set *local* places that will be ready for it on return, including if it comes back from a remote domain.*/
     void outwardTravel();
-    /** @brief set up the schedule for returning home 
+    /** @brief set up returning home 
        @details used by returning travellers. If they have come back from a remote MPI domain, their cached return flight can now be used (as set in outward travel)\n
        note that this is called from \ref fetchall.h aslo*/
     void inwardTravel();
-    /** @brief set a flag to indicate there's a need to move to another domain
+    /** @brief set a flag to indicate there's a need to move to another MPI domain
      @details used by \ref fetchall.h for incoming travellers, and by the holidayTime method, where it detects from the remoteTravel object whether it is actually on another domain*/
     void setRemoteLocation();
     /** @brief variable set to true if needing to cross domains */
     bool _locationIsRemote;
-    /** @brief create and agent and set default disease flags and ID. 
-     * @details The static nextID variable is used to auto-set the ID number. nextID is then incremented.\n
-     * Also set aside storage for the three placeTypes the agent can occupy. \n
-     *  these are set later, as the places need to be created before they can be allocated to agents.\n
-     * NB this means that places is initially empty - remember to set agent home/work/transport before anything else happens!\n
-     */
-    agent();
-    /** @brief Function to change the agent from one place's list of occupants to another 
-     *  @details- not used just at present - this function is very expensive on compute time 
-     see \ref agent.cpp for definition*/
-    void moveTo(placeTypes);
     //the next functions are defined after the travelSchedule class, as they need to know the schedule details before they can be set up
     /** @brief Move through the travel schedule, and then do any actions specific to places (apart from disease) \n
         @details needs to be called every timestep see \ref agent.cpp for definition\n 
@@ -239,16 +245,6 @@ public:
     place* getCurrentPlace(){
        return places[currentPlace];//places[currentPlace];
     }
-    /** @brief set agent ID number  
-     @param i a long integer */
-    void setID(long i){
-        ID=i;
-    }
-    /** @brief get agent ID number  
-     @return The agent ID number, an unsigned long integer */
-    unsigned long getID(){
-        return ID;
-    }
     /** @brief return whether the agent is about to emigrate  
      @return boolean true if agent is leaving the domain */
     bool leaver(){
@@ -280,7 +276,26 @@ public:
     bool active(){
          return _active;
     }
-
+    bool verySick(){
+        return false;
+    }
+    void goToHospital(){
+    }
+    void leaveHospital(){
+    }
+    void inHospital(){
+    }
+    bool needFood(){
+        return false;
+    }
+    void goShopping(){
+    }
+    void inShop(){
+    }
+    /** @brief Function to change the agent from one place's list of occupants to another 
+     *  @details- not used just at present - this function is very expensive on compute time \n
+     * as it has to remove agent from one list and add it to another  see \ref agent.cpp for definition*/
+    void moveTo(placeTypes);
 };
 
 
