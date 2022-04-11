@@ -1,9 +1,10 @@
 <map id="modelFactory.h" name="modelFactory.h">
-<area shape="rect" id="node2" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="183,80,249,107"/>
-<area shape="rect" id="node16" href="$places_8h.html" title="File containing the deinfition of the place class. " alt="" coords="290,80,361,107"/>
-<area shape="rect" id="node19" href="$remoteTravel_8h.html" title="File containing the definition of the remoteTravel class. " alt="" coords="385,80,492,107"/>
-<area shape="rect" id="node3" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="143,155,222,181"/>
-<area shape="rect" id="node4" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers randomizer. " alt="" coords="94,229,191,256"/>
-<area shape="rect" id="node7" href="$timestep_8h.html" title="File containing the definition of the timeStep class. " alt="" coords="371,229,453,256"/>
-<area shape="rect" id="node10" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="272,304,371,331"/>
+<area shape="rect" id="node2" href="$modelFactorySelector_8h.html" title="File containing the definition of the selector for model factories. " alt="" coords="168,229,329,256"/>
+<area shape="rect" id="node4" href="$agent_8h.html" title="File containing the definition of the agent class. " alt="" coords="289,80,355,107"/>
+<area shape="rect" id="node17" href="$places_8h.html" title="File containing the deinfition of the place class. " alt="" coords="379,80,449,107"/>
+<area shape="rect" id="node20" href="$remoteTravel_8h.html" title="File containing the definition of the remoteTravel class. " alt="" coords="474,80,581,107"/>
+<area shape="rect" id="node5" href="$disease_8h.html" title="File containing the definition disease class. " alt="" coords="283,155,361,181"/>
+<area shape="rect" id="node6" href="$randomizer_8h.html" title="File containing a wrapper class for random numbers randomizer. " alt="" coords="47,229,144,256"/>
+<area shape="rect" id="node9" href="$timestep_8h.html" title="File containing the definition of the timeStep class. " alt="" coords="354,229,437,256"/>
+<area shape="rect" id="node11" href="$parameters_8h.html" title="File containing the definition of the parameterSettings class. " alt="" coords="339,304,438,331"/>
 </map>

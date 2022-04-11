@@ -247,9 +247,9 @@ so we pick out those arrivals first. We need to create a new agent on the local 
 However, to save memory allocations, we can re-use any local inactive travellers - these were agents that were sent here, but have since gone home.<br />
 So first we set up a list of inactive local travellers and re-use these - if we run out of these, then we create some new agents. Each traveller is <br />
 added to the local vector of travellers (kept separate from the local list of agents) and assigned the ID from the remote domain. Then their schedules<br />
-are set up using a call to outwardTravel in <a class="el" href="agent_8cpp.html">agent.cpp</a> . They are also labelled as needing to leave the domain at the end of their schedule.<br />
+are set up using a call to <a class="el" href="classagent.html#a78efdfc00e3fca4ff5c0cb87e3a74b15">agent::outwardTravel</a> in <a class="el" href="agent_8cpp.html">agent.cpp</a> . They are also labelled as needing to leave the domain at the end of their schedule.<br />
 Now we can add the returning travellers - we use their (local) ID and index, as transmitted with them from the remote domain to find their corresponding <br />
-local copy, activate it and copy in the data sent from the remote domain. The schedule for returning home is set with a call to inwardTravel . </p><dl class="params"><dt>Parameters</dt><dd>
+local copy, activate it and copy in the data sent from the remote domain. The schedule for returning home is set with a call to <a class="el" href="classagent.html#a92a9879e7cc0426f6f8873401230730e">agent::inwardTravel</a> . </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">time</td><td>The current model time step </td></tr>
     <tr><td class="paramname">locals</td><td>The list of agents local to this domain (i.e. excluding travellers) </td></tr>

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['randomizer',['randomizer',['../classrandomizer.html',1,'']]],
-  ['randomizers',['randomizerS',['../classrandomizerS.html',1,'']]],
-  ['remotetravel',['remoteTravel',['../classremoteTravel.html',1,'']]]
+  ['parametersettings',['parameterSettings',['../classparameterSettings.html',1,'']]],
+  ['place',['place',['../classplace.html',1,'']]]
 ];

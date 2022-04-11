@@ -78,7 +78,7 @@ $(function() {
 <p>A class to pick one of a number of possible agent factories.  
  <a href="classmodelFactorySelector.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="modelFactory_8h_source.html">modelFactory.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="modelFactorySelector_8h_source.html">modelFactorySelector.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for modelFactorySelector:</div>
 <div class="dyncontent">
@@ -87,21 +87,21 @@ Collaboration diagram for modelFactorySelector:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a32de5db7d35ec47c3cb4c98a3a7c6c9b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmodelFactory.html">modelFactory</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodelFactorySelector.html#a32de5db7d35ec47c3cb4c98a3a7c6c9b">select</a> (std::string name)</td></tr>
-<tr class="memdesc:a32de5db7d35ec47c3cb4c98a3a7c6c9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">choose the model factory  <a href="#a32de5db7d35ec47c3cb4c98a3a7c6c9b">More...</a><br /></td></tr>
-<tr class="separator:a32de5db7d35ec47c3cb4c98a3a7c6c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eb645953ab2c2d027ed6f61ffd7ab3e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmodelFactory.html">modelFactory</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmodelFactorySelector.html#a5eb645953ab2c2d027ed6f61ffd7ab3e">select</a> (std::string name)</td></tr>
+<tr class="memdesc:a5eb645953ab2c2d027ed6f61ffd7ab3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">choose the model factory  <a href="#a5eb645953ab2c2d027ed6f61ffd7ab3e">More...</a><br /></td></tr>
+<tr class="separator:a5eb645953ab2c2d027ed6f61ffd7ab3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class to pick one of a number of possible agent factories. </p>
 <p>This is a static class used to define a pointer to a <a class="el" href="classmodelFactory.html">modelFactory</a> <br />
-Each model factory can be selected using a name passed into the <a class="el" href="classmodelFactorySelector.html#a32de5db7d35ec47c3cb4c98a3a7c6c9b">select</a> method using<br />
+Each model factory can be selected using a name passed into the <a class="el" href="classmodelFactorySelector.html#a5eb645953ab2c2d027ed6f61ffd7ab3e">select</a> method using<br />
 a string. This is used in the model class along with the <a class="el" href="classparameterSettings.html">parameterSettings</a> to choose<br />
 what the model initialization of places and agents will look like. </p>
 
-<p class="definition">Definition at line <a class="el" href="modelFactory_8h_source.html#l00266">266</a> of file <a class="el" href="modelFactory_8h_source.html">modelFactory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="modelFactorySelector_8h_source.html#l00036">36</a> of file <a class="el" href="modelFactorySelector_8h_source.html">modelFactorySelector.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a32de5db7d35ec47c3cb4c98a3a7c6c9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32de5db7d35ec47c3cb4c98a3a7c6c9b">&#9670;&nbsp;</a></span>select()</h2>
+<a id="a5eb645953ab2c2d027ed6f61ffd7ab3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eb645953ab2c2d027ed6f61ffd7ab3e">&#9670;&nbsp;</a></span>select()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -110,7 +110,7 @@ what the model initialization of places and agents will look like. </p>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="classmodelFactory.html">modelFactory</a>&amp; modelFactorySelector::select </td>
+          <td class="memname"><a class="el" href="classmodelFactory.html">modelFactory</a> &amp; modelFactorySelector::select </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
@@ -119,7 +119,7 @@ what the model initialization of places and agents will look like. </p>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -131,14 +131,15 @@ what the model initialization of places and agents will look like. </p>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the requested <a class="el" href="classmodelFactory.html">modelFactory</a> Example use:- <div class="fragment"><div class="line"><a class="code" href="classmodelFactory.html">modelFactory</a>&amp; F=<a class="code" href="classmodelFactorySelector.html#a32de5db7d35ec47c3cb4c98a3a7c6c9b">modelFactorySelector::select</a>(parameters(<span class="stringliteral">&quot;model.type&quot;</span>));</div><div class="line"><span class="comment">//create the distribution of agents, places and transport</span></div><div class="line">F.<a class="code" href="classmodelFactory.html#aaf5e3cda8ec5a81bed57d60b27200dd6">createAgents</a>(parameters,agents,places);</div></div><!-- fragment --> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the requested <a class="el" href="classmodelFactory.html">modelFactory</a> Example use:- <div class="fragment"><div class="line"><a class="code" href="classmodelFactory.html">modelFactory</a>&amp; F=<a class="code" href="classmodelFactorySelector.html#a5eb645953ab2c2d027ed6f61ffd7ab3e">modelFactorySelector::select</a>(parameters(<span class="stringliteral">&quot;model.type&quot;</span>));</div><div class="line"><span class="comment">//create the distribution of agents, places and transport</span></div><div class="line">F.<a class="code" href="classmodelFactory.html#aaf5e3cda8ec5a81bed57d60b27200dd6">createAgents</a>(parameters,agents,places);</div></div><!-- fragment --> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="modelFactory_8h_source.html#l00278">278</a> of file <a class="el" href="modelFactory_8h_source.html">modelFactory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="modelFactorySelector_8cpp_source.html#l00029">29</a> of file <a class="el" href="modelFactorySelector_8cpp_source.html">modelFactorySelector.cpp</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="modelFactory_8h_source.html">modelFactory.h</a></li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li><a class="el" href="modelFactorySelector_8h_source.html">modelFactorySelector.h</a></li>
+<li><a class="el" href="modelFactorySelector_8cpp_source.html">modelFactorySelector.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

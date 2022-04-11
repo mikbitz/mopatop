@@ -1,5 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classmodelFactory.html" title="The modelFactory itself is a (virtual) base class. " alt="" coords="5,31,108,57"/>
-<area shape="rect" id="node2" href="$classsimpleMobileFactory.html" title="Create a set of agents that all have three places they know about, home, work and transport ..." alt="" coords="166,5,309,32"/>
-<area shape="rect" id="node3" href="$classsimpleOnePlaceFactory.html" title="Create a set of agents that all know only about one place, and remain there for all time..." alt="" coords="156,56,319,83"/>
+<area shape="rect" id="node1" href="$classmodelFactory.html" title="The modelFactory itself is a (virtual) base class. " alt="" coords="5,56,108,83"/>
+<area shape="rect" id="node2" href="$classflyingFactory.html" title="Create airports, in addition to three places agents know about, home, work and transport ..." alt="" coords="188,5,287,32"/>
+<area shape="rect" id="node3" href="$classsimpleMobileFactory.html" title="Create a set of agents that all have three places they know about, home, work and transport ..." alt="" coords="166,56,309,83"/>
+<area shape="rect" id="node4" href="$classsimpleOnePlaceFactory.html" title="Create a set of agents that all know only about one place, and remain there for all time..." alt="" coords="156,107,319,133"/>
 </map>

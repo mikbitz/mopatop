@@ -223,7 +223,7 @@ If this is not needed then the domain is ignored. </p><dl class="params"><dt>Par
   <table class="params">
     <tr><td class="paramname">parameters</td><td>A <b>reference</b> to a class that holds all the possible parameter settings for the model.<br />
  Using a reference ensures the values don't need to be copied </td></tr>
-    <tr><td class="paramname">domain</td><td>A string that defines which MPI domain this is, when using domain decomposition to run multiple models using MPI - see <a class="el" href="fetchall_8h.html" title="originally a simple example demonstrating the non-interpolating fetch_points and fetch_values command...">fetchall.h</a> </td></tr>
+    <tr><td class="paramname">dom</td><td>A string that defines which MPI domain this is, when using domain decomposition to run multiple models using MPI - see <a class="el" href="fetchall_8h.html" title="originally a simple example demonstrating the non-interpolating fetch_points and fetch_values command...">fetchall.h</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -268,7 +268,7 @@ If this is not needed then the domain is ignored. </p><dl class="params"><dt>Par
 </dl>
 <p>Right now this is here just to output final values at the end of the last step. </p>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00192">192</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00193">193</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -311,7 +311,8 @@ If this is not needed then the domain is ignored. </p><dl class="params"><dt>Par
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parameters</td><td>A <b>reference</b> to a class that holds all the possible parameter settings for the model.<br />
- Using a reference ensures the values don't need to be copied</td></tr>
+ Using a reference ensures the values don't need to be copied </td></tr>
+    <tr><td class="paramname">domain</td><td>identity of the relevant MPI domain, if needed</td></tr>
   </table>
   </dd>
 </dl>
@@ -319,7 +320,7 @@ If this is not needed then the domain is ignored. </p><dl class="params"><dt>Par
 will jointly determine how effective the disease is a spreading, given the contamination rate and recovery timescale <br />
 This simple intializer puts three agents in each home, 10 agents in each workplace and 30 in each bus - so agents will mix in workplaces, home and buses in slightly different patterns. </p>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00176">176</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00177">177</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -414,7 +415,7 @@ Also to avoid any systematic biases, agents need to all finish their contaminati
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00216">216</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00217">217</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 
 </div>
 </div>
@@ -527,7 +528,7 @@ will typically produce different output (to the extent that output is stochastic
 
 <p>A container to hold pointers to agents from another MPI domain. </p>
 <p>These agents are only present if they have travelled from another copy of the model running on a different (HPC) node<br />
- see coupler below </p>
+ see model::coupler variable </p>
 
 <p class="definition">Definition at line <a class="el" href="model_8h_source.html#l00047">47</a> of file <a class="el" href="model_8h_source.html">model.h</a>.</p>
 

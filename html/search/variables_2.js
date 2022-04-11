@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['category',['category',['../classplace.html#ac91249114884be0c9679dc5ae0c30641',1,'place']]],
   ['cleaneverystep',['cleanEveryStep',['../classplace.html#a6bc57da25f0c357caa3fd93e0fbcd079',1,'place']]],
   ['contaminationlevel',['contaminationLevel',['../classplace.html#aa70f207f5fba167e14e9bc917b0acfa9',1,'place']]],
   ['currentdayofmonth',['currentDayOfMonth',['../classtimeStep.html#a04d52e096c3a8a3c0d9fa5da79a7ca2f',1,'timeStep']]],

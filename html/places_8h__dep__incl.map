@@ -1,8 +1,9 @@
 <map id="places.h" name="places.h">
 <area shape="rect" id="node2" href="$agent_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="5,155,84,181"/>
-<area shape="rect" id="node3" href="$modelFactory_8h.html" title="File containing the definition of the factories for making models. " alt="" coords="82,80,194,107"/>
-<area shape="rect" id="node6" href="$disease_8cpp.html" title="File to define static variables for disease. " alt="" coords="219,80,311,107"/>
-<area shape="rect" id="node7" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="335,80,421,107"/>
+<area shape="rect" id="node3" href="$modelFactory_8h.html" title="File containing the definition of the factories for making models. " alt="" coords="85,80,197,107"/>
+<area shape="rect" id="node7" href="$disease_8cpp.html" title="File to define static variables for disease. " alt="" coords="221,80,313,107"/>
+<area shape="rect" id="node8" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="338,80,423,107"/>
 <area shape="rect" id="node4" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="108,155,176,181"/>
+<area shape="rect" id="node6" href="$modelFactorySelector_8cpp.html" title="File containing list of model factories that can be selected. " alt="" coords="200,155,375,181"/>
 <area shape="rect" id="node5" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="105,229,179,256"/>
 </map>

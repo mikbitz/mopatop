@@ -1,10 +1,11 @@
 <map id="agent.h" name="agent.h">
 <area shape="rect" id="node2" href="$agent_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="5,155,84,181"/>
-<area shape="rect" id="node3" href="$modelFactory_8h.html" title="File containing the definition of the factories for making models. " alt="" coords="77,80,189,107"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="149,229,223,256"/>
-<area shape="rect" id="node6" href="$disease_8cpp.html" title="File to define static variables for disease. " alt="" coords="264,80,356,107"/>
-<area shape="rect" id="node7" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="381,80,466,107"/>
-<area shape="rect" id="node8" href="$travelschedule_8h.html" title="File containing the definition of the travelSchedule class. " alt="" coords="491,80,607,107"/>
-<area shape="rect" id="node4" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="116,155,184,181"/>
-<area shape="rect" id="node9" href="$schedulelist_8cpp.html" title="File to define list of schedules for use by agents. " alt="" coords="491,155,607,181"/>
+<area shape="rect" id="node3" href="$modelFactory_8h.html" title="File containing the definition of the factories for making models. " alt="" coords="158,80,270,107"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="File containing some classes and method definitions and the main function. " alt="" coords="239,229,314,256"/>
+<area shape="rect" id="node7" href="$disease_8cpp.html" title="File to define static variables for disease. " alt="" coords="451,80,543,107"/>
+<area shape="rect" id="node8" href="$places_8cpp.html" title="File containing methods that require definitions of other classes to be available. " alt="" coords="567,80,653,107"/>
+<area shape="rect" id="node9" href="$travelschedule_8h.html" title="File containing the definition of the travelSchedule class. " alt="" coords="677,80,793,107"/>
+<area shape="rect" id="node4" href="$model_8h.html" title="File containing the definition model class. " alt="" coords="108,155,176,181"/>
+<area shape="rect" id="node6" href="$modelFactorySelector_8cpp.html" title="File containing list of model factories that can be selected. " alt="" coords="200,155,375,181"/>
+<area shape="rect" id="node10" href="$schedulelist_8cpp.html" title="File to define list of schedules for use by agents. " alt="" coords="677,155,793,181"/>
 </map>

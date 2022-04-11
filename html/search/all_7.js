@@ -1,6 +1,7 @@
 var searchData=
 [
   ['get',['get',['../classparameterSettings.html#a417e5df1124a130366c687c451cd2b40',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#ad1bca448c7289d3c40a71926c2d71ae3',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#a684f724ba1254694ec9693d71fe2a2c8',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#a0cfc75aa4cd453d973cae2bfa13d1719',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#a75db51f35ffa143deba085c4ac071d22',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#acab437a0c02567836fba8055fc682b39',1,'parameterSettings::get(std::string s)'],['../classparameterSettings.html#a73c7e3c79bb37d53214467bf083281f6',1,'parameterSettings::get(std::string s)']]],
+  ['getcategory',['getCategory',['../classplace.html#aa22f0b1a5eef065ced9e23d0dd2d2bcc',1,'place']]],
   ['getcleaneverystep',['getCleanEveryStep',['../classplace.html#a02b0ebee74a8d3c969d948b56b97a4d0',1,'place']]],
   ['getcontaminationlevel',['getContaminationLevel',['../classplace.html#a5cd4d893d8454e592e7ddb51d5e1361a',1,'place']]],
   ['getcurrentdestination',['getCurrentDestination',['../classtravelSchedule.html#a2ab00ae9b2b02c2994ec22e1562e3ff2',1,'travelSchedule']]],

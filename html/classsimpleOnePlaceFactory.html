@@ -113,7 +113,7 @@ Additional Inherited Members</h2></td></tr>
 in case at some point a different travel schedule is picked, in which case attemtps to move will all still just end up in the home location<br />
  <a class="el" href="classmodelFactorySelector.html">modelFactorySelector</a> knows this as "simpleOnePlace" . Use this class by creating a pointer to the sub-class:- </p><div class="fragment"><div class="line"><a class="code" href="classmodelFactory.html">modelFactory</a>* F=<span class="keyword">new</span> <a class="code" href="classsimpleOnePlaceFactory.html">simpleOnePlaceFactory</a>();</div></div><!-- fragment --><p> See <a class="el" href="classmodelFactorySelector.html">modelFactorySelector</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="modelFactory_8h_source.html#l00078">78</a> of file <a class="el" href="modelFactory_8h_source.html">modelFactory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="modelFactory_8h_source.html#l00082">82</a> of file <a class="el" href="modelFactory_8h_source.html">modelFactory.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a206c93b40c2ea66bbefa22b9fd94bcb4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a206c93b40c2ea66bbefa22b9fd94bcb4">&#9670;&nbsp;</a></span>createAgents()</h2>
@@ -167,13 +167,14 @@ in case at some point a different travel schedule is picked, in which case attem
     <tr><td class="paramname">parameters</td><td>A reference to the model <a class="el" href="classparameterSettings.html" title="ParameterSettings is a class designed to hold all the parameters for the model. ">parameterSettings</a> object </td></tr>
     <tr><td class="paramname">agents</td><td>A reference to the model object's list of agents </td></tr>
     <tr><td class="paramname">places*</td><td>A reference to the model object's list of places </td></tr>
+    <tr><td class="paramname">domain</td><td>identity of the relevant MPI domain, if needed </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Implements <a class="el" href="classmodelFactory.html#aaf5e3cda8ec5a81bed57d60b27200dd6">modelFactory</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="modelFactory_8h_source.html#l00084">84</a> of file <a class="el" href="modelFactory_8h_source.html">modelFactory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="modelFactory_8h_source.html#l00089">89</a> of file <a class="el" href="modelFactory_8h_source.html">modelFactory.h</a>.</p>
 
 </div>
 </div>
