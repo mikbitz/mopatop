@@ -1,5 +1,6 @@
 #ifndef MODELFACTORY_H
 #define MODELFACTORY_H
+#include "modelFactorySelector.h"
 #include "agent.h"
 #include "places.h"
 #include "remoteTravel.h"
@@ -48,6 +49,7 @@ public:
         travelLocations[name]=new remoteTravel(parameters,places,otherDomain);
     }
 };
+
 /** @brief The modelFactory itself is a (virtual) base class
     @details The various model factories are sub-classed from this class below.\n
     These classes are expected to be called directly from a model object.
@@ -134,7 +136,7 @@ class simpleOnePlaceFactory:public modelFactory{
     See \ref modelFactorySelector
 */
 class simpleMobileFactory:public modelFactory{
-/** @brief method to overlaod the createAgents method in the base class
+/** @brief method to overload the createAgents method in the base class
     @details This method has to be accessed by creating a pointer to this sub-class.
     @param parameters A reference to the model parameterSettings object
     @param agents A reference to the model object's list of agents
@@ -257,32 +259,27 @@ class simpleMobileFactory:public modelFactory{
 
     }
 };
-/** @brief A class to pick one of a number of possible agent factories 
-    @details This is a static class used to define a pointer to a \ref modelFactory \n
-    Each model factory can be selected using a name passed into the \ref select method using\n
-    a string. This is used in the model class along with the \ref parameterSettings to choose\n
-    what the model initialization of places and agents will look like.
-   */
-class modelFactorySelector{
-public:
-    /** @brief choose the model factory
-     * @param name A string that names one  \ref modelFactory
-     * @return A reference to the requested  \ref modelFactory
-     * Example use:-
+/** @brief Create airports, in addition to three places agents know about, home, work and transport\n 
+    @details This factory first uses simplemobileFactory to make a default set of agents and workplaces, then adds some extra structure\n
+    to represent airports so that agents can go flying.
+     \ref modelFactorySelector knows this as "flying".Use this class by creating a pointer to the sub-class:-
      \code
-        modelFactory& F=modelFactorySelector::select(parameters("model.type"));
-        //create the distribution of agents, places and transport
-        F.createAgents(parameters,agents,places);
+     modelFactory* F=new flyingFactory();
      \endcode
-     */
-    static modelFactory&  select(std::string name){
-        modelFactory* F=nullptr;
-        if (name=="simpleOnePlace")F=new simpleOnePlaceFactory();
-        if (name=="simpleMobile")  F=new simpleMobileFactory();
-        if (F==nullptr)std::cout<<"Name "<<name<<" not recognised in modelFactorySelector"<<std::endl;
-        assert(F!=nullptr);
-        return *F;
+    See \ref modelFactorySelector
+*/
+class flyingFactory:public modelFactory{
+    /** @brief method to overload the createAgents method in the base class
+    @details This method has to be accessed by creating a pointer to this sub-class.
+    @param parameters A reference to the model parameterSettings object
+    @param agents A reference to the model object's list of agents
+    @param places* A reference to the model object's list of places
+    */
+    void createAgents(parameterSettings& parameters, std::vector<agent*>& agents,std::vector<place*>& places,std::string domain){
+        modelFactory& F=modelFactorySelector::select("simpleMobile");
+        F.createAgents(parameters,agents,places,domain);
     }
 };
+
 
 #endif
