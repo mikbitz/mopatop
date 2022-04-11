@@ -57,9 +57,11 @@ run.randomIncrement=57
 #-------------------------------
 #model
 #-------------------------------
-#pick model type either "simpleMobile" or "simpleOnePlace" - string
+#pick model type either "simpleMobile" "flying" or "simpleOnePlace" - string
 #simpleOnePlace puts all agents into a single location, and there they stay.
-model.type=simpleOnePlace
+#simpleMobile allows agents to move between work and home on nominal buses
+#flying adds airplanes and airports to simpleMobile so agents can go on exotic holidays
+model.type=flying
 
 #-------------------------------
 #timestepping
