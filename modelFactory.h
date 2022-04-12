@@ -52,9 +52,9 @@ public:
 };
 class airport;
 class flight{
-    int departureTime;//Need a date? just assume for the moment the same time every day?
     place* plane;
-    int duration;
+    int duration;//may mean we roll over into another day...
+    int departureTime;//Need a date? just assume for the moment the same time every day?
     airport* destination;
 public:
     flight(){
