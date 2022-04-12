@@ -88,7 +88,8 @@ public:
         ID=0;
         contaminationLevel=0.;
         fractionalDecrement=p.get<double>("places.disease.simplistic.fractionalDecrement");
-        cleanEveryStep=p.get<bool>("places.cleanContamination");        
+        cleanEveryStep=p.get<bool>("places.cleanContamination");
+        category=0;
     }
     /** @brief set the place ID number
      *  @details care shoudl be taken that ths value set here is unique! */

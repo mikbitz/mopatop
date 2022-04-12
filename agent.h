@@ -43,9 +43,6 @@ class activityType;
 */
 class agent{
 
-    /** @brief A static (class-level) variable that stores a list of all possible allSchedules
-        @details the list is indexed by \ref scheduleList::scheduleTypes - a single instance minmimizes storage, as the schedules themselves are rather memory expensive */
-//    static scheduleList allSchedules;
     /** @brief A static (class-level) variable that stores the next ID number for a new agent - initialised to 0 in agent.cpp */
     static unsigned long nextID;
     /** @brief flag set to true if the agent has the disease */

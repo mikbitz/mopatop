@@ -50,7 +50,80 @@ public:
         travelLocations[name]=new remoteTravel(parameters,places,otherDomain);
     }
 };
-
+class airport;
+class flight{
+    int departureTime;//Need a date? just assume for the moment the same time every day?
+    place* plane;
+    int duration;
+    airport* destination;
+public:
+    flight(){
+    }
+    airport* getDestination(){
+        return destination;
+    }
+    place* getPlane(){
+        return plane;
+    }
+    int getDurationInHours(){
+        return duration;
+    }
+    int getDepartureTimeByHour(){
+        return departureTime;
+    }
+};
+class airport{
+    place* p;
+    std::string name;
+    //country departures
+    std:: multimap<unsigned short,flight*> departures;
+public:
+    airport(std::string n,parameterSettings& parameters,std::vector<place*>& places):name(n){
+        p=new place(parameters);
+        p->setID(places[places.size()-1]->getID()+1);
+        p->setCategory(1);
+        places.push_back(p);
+    }
+    place* getPlace(){
+        return p;
+    }
+    std::vector <flight*> getDepartures(unsigned short countryCode){
+        std::vector<flight*> v;
+        //get a pair iterators for the start and end of the list of airports with the same country code
+        auto ret = departures.equal_range(countryCode);
+        //loop through the airports found and add them to the list to be returned
+        for (auto it=ret.first; it!=ret.second; ++it){
+            v.push_back(it->second);
+        }
+        return v;
+    }
+    std::string getName(){
+        return name;
+    }
+};
+class airportList{
+public:
+    /** @brief a keyed list of airports using their country code as a key, so that agents can find all airports in a given country */
+    static std::multimap<unsigned short,airport*> airports;
+    /** @brief static function to add named locations to the list 
+        @param name the unique name of the airport
+        @param parameters the model parmeter settings - needs to be passed to the \ref remoteTravel object
+        @param places the list of pointers to currently defined places
+        @param otherDomain a flag to denote whether this location is actually located in another MPI domain*/
+    static void add(unsigned short countryCode,std::string name,parameterSettings& parameters,std::vector<place*>& places,bool otherDomain=false){
+        airports.insert (std::make_pair(countryCode,new airport(name,parameters,places)));
+    }
+    static std::vector<airport*> getAirports(unsigned short countryCode){
+        std::vector<airport*> v;
+        //get a pair iterators for the start and end of the list of airports with the same country code
+        auto ret = airports.equal_range(countryCode);
+        //loop through the airports found and add them to the list to be returned
+        for (auto it=ret.first; it!=ret.second; ++it){
+            v.push_back(it->second);
+        }
+        return v;
+    }
+};
 /** @brief The modelFactory itself is a (virtual) base class
     @details The various model factories are sub-classed from this class below.\n
     These classes are expected to be called directly from a model object.
@@ -276,6 +349,19 @@ class flyingFactory:public modelFactory{
     void createAgents(parameterSettings& parameters, std::vector<agent*>& agents,std::vector<place*>& places,std::string domain){
         modelFactory& F=modelFactorySelector::select("simpleMobile");
         F.createAgents(parameters,agents,places,domain);
+        int nAirports=1;
+        std::cout<<"Creating airports ..."<<std::endl;
+        //assume places prior to this have sequential IDs less than the last one added!
+        int k=places[places.size()-1]->getID()+1;
+        #pragma omp parallel for
+        for (long i=0;i<nAirports;i++){
+            place* p=new place(parameters);
+            p->setID(i+k);
+            places[i]=p;
+            places[i]->setCategory(1);
+        }
+        std::cout<<"Built "<<nAirports<<" airports."<<std::endl;
+airportList::add(0,"LDN",parameters,places);
         //create some remote places to travel to - local ones are on this MPI domain, remote another one.
         //If domain!="b"  is true, the location is remote to MPI domain b - otherwise it is labelled as local i.e. the current domain is indeed "b"
         //hmmm - this needs some thought if there are more than two domains - also means that only "a" and "b" are recognised
