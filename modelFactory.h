@@ -49,8 +49,7 @@ public:
     static void add(std::string name,parameterSettings& parameters,std::vector<place*>& places,bool otherDomain=false){
         travelLocations[name]=new remoteTravel(parameters,places,otherDomain);
     }
-};
-class airport;
+};class airport;
 class flight{
     place* plane;
     int duration;//may mean we roll over into another day...
@@ -75,7 +74,7 @@ public:
 class airport{
     place* p;
     std::string name;
-    //country departures
+    //departures to other countries by country code
     std:: multimap<unsigned short,flight*> departures;
 public:
     airport(std::string n,parameterSettings& parameters,std::vector<place*>& places):name(n){

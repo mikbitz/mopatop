@@ -35,7 +35,7 @@
 
 //static list of travel destinations away from home
 //std::map<std::string,remoteTravel*> travelList::travelLocations;
-
+std::multimap<unsigned short,airport*> airportList::airports;
 //------------------------------------------------------------------------
 agent::agent(){
 
@@ -139,9 +139,22 @@ bool agent::holidayTime()
 //------------------------------------------------------------------------
 void agent::goOnHoliday(){
     //need flag here to test if already on holiday
-    //find a holday destination
-    //check if its local (need to have an idea of where we are, country-wise)
-    //if not find the aiport
+    //find a local airport (replace 0 here with my country code)
+    int countryCode=0;
+    auto air=airportList::getAirports(countryCode);
+    //select one airport (at random?)
+    int rnd=0;
+    placeCache[0]=air[rnd]->getPlace();
+    //find a remote airport from code (at random?)- assumed there that there is a route from country 0 to country 1
+    int remoteCountry=1;
+    auto farfarAway=air[rnd]->getDepartures(remoteCountry);
+    //get the plane
+    int rnd2=0;
+    placeCache[1]=farfarAway[rnd2]->getPlane();
+    //and the remote airport
+    placeCache[2]=farfarAway[rnd2]->getDestination()->getPlace();
+    
+    
     //find transport to the airport - get on when near plane schedule
     //go to airport and wait until plane ready
     //get on (a specific timetabled) plane - one plane a day between destinations? airport needs timetable, planes attached to a departure time and have a duration 
@@ -179,7 +192,7 @@ void agent::setRemoteLocation(){
 //------------------------------------------------------------------------
 void agent::inwardTravel(){//note this and outward travel below are used in the case of multiple MPI domains, so need to be kept separate from update travel schedule above
     //unstack home
-    setHome(placeCache[home]);
+    //setHome(placeCache[home]);
 }
 //------------------------------------------------------------------------
 void agent::outwardTravel(){

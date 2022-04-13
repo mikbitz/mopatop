@@ -42,7 +42,6 @@ class activityType;
  * If they are in a contaminated location, they may contract the disease. Additionally they may do other things in their current location.
 */
 class agent{
-
     /** @brief A static (class-level) variable that stores the next ID number for a new agent - initialised to 0 in agent.cpp */
     static unsigned long nextID;
     /** @brief flag set to true if the agent has the disease */
@@ -92,7 +91,7 @@ public:
      * @details So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example.
      * Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567.
      * transport vehicles are places, albeit moveable!*/
-    enum placeTypes{home,work,vehicle,hospital,shop,transporthub};
+    enum placeTypes{home,work,vehicle,hospital,shop,transporthub,hotel};
     /** @brief An array of pointers to places 
      *  @details - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use the name (home.work etc.) \n
        intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!).
