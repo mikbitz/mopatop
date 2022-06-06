@@ -90,17 +90,20 @@ public:
     /** @brief This enum associates a set of integers with names, in order to identify types of place. 
      * @details So home=0, work=1 etc. This allows meaningful names to be used to refer to the type of place the agent currently occupies, for example.
      * Each agent has its own mapping from the placeType to an actual place - so home for agent 0 can be a different place for home for agent 124567.
-     * transport vehicles are places, albeit moveable!*/
-    enum placeTypes{home,work,vehicle,hospital,shop,transporthub,hotel};
+     * vehicles,transport are places, albeit moveable!
+     * some of the places tha agent needs to remember permanently (e.g. home, work, vehicle), but other (e.g. travel hub) might be temporary - cache is provided for
+     * some placetypes that might be needed later or don't fit in the current named list.
+     * some other structure would be ideal...at the moment though, this enum is used in rules to detect where the agent is currently, so useful to have all placetypes in one enum
+     * so that the dataype in if-blocks is the same for all*/
+    enum placeTypes{home,work,vehicle,hospital,shop,travelhub,transport,accomodation,destination,cache};
     /** @brief An array of pointers to places 
      *  @details - indexed using the placeType, so that the integer value doesn't need to be used - instead one can use the name (home.work etc.) \n
        intially these places are null pointers, so care must be taken to initialise them in the model class, once places are available (otherwise the model will likely crash at some point!).
-       Note that this could be replaced with a vector for more flexibility, but this is slightly slower and consumes more memory. Array need to match placetype enum in size*/
-    place* places[3];
-    /** @brief a stack to store temporarily any places that need to be remebered for later use. Used when agent travels outside standard routine.\n
-        @details Visiting places using a \ref remoteTravel.h object resets the places stored in places to point e.g. home and vehicle to holiday destinations \n
-        the cache allows original places to be remebered and restored on return from travel. Note that using an STL stack would work, but is hugely memory expensive.*/
-    place* placeCache[3];
+       Note that this could be replaced with a vector for more flexibility, but this is slightly slower and consumes more memory. 
+       Note that using STL (e.g. map<string,place*>  would work also (and be better), but is much memory expensive.
+        Some better way to do this kind of named indexed structure is needed though...
+        Array need to match placetype enum in size*/
+    place* places[10];
     /** @brief Where the agent is currently located 
      *@details - note to get this actual place, use this as an index into the places vector*/
     placeTypes currentPlace;
@@ -224,22 +227,22 @@ public:
     /** @brief get the place corresponding to home
          @return pointer to a place*/
     place* getHome(){
-       return places[home];//places[home];
+       return places[home];
     }
     /** @brief  get the place corresponding to work       
      *@return pointer to a place*/
     place* getWork(){
-       return places[work];//places[work];
+       return places[work];
     }
     /**  @brief get the place corresponding to transport vehicle      
      *@return pointer to a place*/
     place* getTransport(){
-       return places[vehicle];//places[vehicle];
+       return places[vehicle];
     }
     /**  @brief get the place corresponding to where the agent is now      
      *@return pointer to a place*/
     place* getCurrentPlace(){
-       return places[currentPlace];//places[currentPlace];
+       return places[currentPlace];
     }
     /** @brief return whether the agent is about to emigrate  
      @return boolean true if agent is leaving the domain */

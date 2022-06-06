@@ -89,6 +89,7 @@ void agent::atWork(){
 
 void agent::inTransit(){
     //if (ID==0)std::cout<<"travelling"<<timeStep::getTimeOfDay()<<std::endl;
+    //get out of vehcile and enter home or work depending on time of day
     int T=timeStep::getTimeOfDay();
     if (T>=1800)
         currentPlace=home;
@@ -102,7 +103,7 @@ void agent::update()
         //rules to move agents between places
         //different rule sets may apply depending on flags for switching between sets
         //within a set at the moment the rules are typically subsumption style 
-        //i.e. the agents run all rules in fixed order - with later rules possibly overriding earlier onees
+        //i.e. the agents run all rules in fixed order - with later rules possibly overriding earlier ones
         //this means rules must be carefully set to make sure this works as intended
 
         if (verySick()) goToHospital();
@@ -141,18 +142,18 @@ void agent::goOnHoliday(){
     //need flag here to test if already on holiday
     //find a local airport (replace 0 here with my country code)
     int countryCode=0;
-    auto air=airportList::getAirports(countryCode);
+    auto airports=airportList::getAirports(countryCode);
     //select one airport (at random?)
     int rnd=0;
-    placeCache[0]=air[rnd]->getPlace();
+    places[travelhub]=airports[rnd]->getPlace();
     //find a remote airport from code (at random?)- assumed there that there is a route from country 0 to country 1
     int remoteCountry=1;
-    auto farfarAway=air[rnd]->getDepartures(remoteCountry);
-    //get the plane
+    auto departure=airports[rnd]->getDepartures(remoteCountry);
+    //get the plane - how to select this sensibly?
     int rnd2=0;
-    placeCache[1]=farfarAway[rnd2]->getPlane();
+    places[transport]=departure[rnd2]->getPlane();//but there should be a way to get to the airport!
     //and the remote airport
-    placeCache[2]=farfarAway[rnd2]->getDestination()->getPlace();
+    places[destination]=departure[rnd2]->getDestination()->getPlace();
     
     
     //find transport to the airport - get on when near plane schedule
@@ -162,14 +163,9 @@ void agent::goOnHoliday(){
     //travel locally to hotel
     //stay in hotel until leave time
     //reverse the above travel sequence to get home (travellers need a)where home is b)what country they are in.
-
-      //if (travelList::travelLocations.find("London") == travelList::travelLocations.end()) return;//didn't find the holiday destination
-      //if(travelList::travelLocations["London"]->isOnRemoteDomain())setRemoteLocation();
       if (_locationIsRemote)leaveDomain();
-      placeCache[vehicle]=places[vehicle];//store current values to be restored after trip - NB do this *BEFORE* visit! 
-      placeCache[home]=places[home];
       outwardTravel();
-      currentPlace=vehicle;//now plane
+      currentPlace=transport;//now plane
 }
 //------------------------------------------------------------------------
 void agent::returnFromHoliday(){
@@ -181,7 +177,7 @@ void agent::returnFromHoliday(){
 //------------------------------------------------------------------------
 void agent::arriveHome(){
     if (timeStep::getMonth()==5 && timeStep::getDayOfMonth()==14 && timeStep::getTimeOfDay()>=1200){//got off the plane.
-            setTransport(placeCache[vehicle]);
+            setTransport(places[vehicle]);
             currentPlace=home;
     }
 }
@@ -203,7 +199,7 @@ void agent::outwardTravel(){
 void agent::initialize(parameterSettings& params){       
    //mobility defined by by the parameter file - should be consistent with modelfactory settings
     if      (params("model.type")=="simpleOnePlace"  )_mobile=false;
-    else if (params("model.type")=="simpleMobile"      )_mobile=true;
+    else if (params("model.type")=="simpleMobile"   ||  params("model.type")=="flying"  )_mobile=true;
 }
 //------------------------------------------------------------------------
 void agent::cough()
