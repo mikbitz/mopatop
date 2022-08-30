@@ -246,7 +246,7 @@ public:
      * parameterSettings p;
      * std::string rate=p.get<double>("rate");
      * \endcode
-     * function fails if the requested parameter not been defined or the tyep is incorrect - the program halts\n
+     * function fails if the requested parameter not been defined or the type is incorrect - the program halts\n
      */
     template <typename T>
     typename std::enable_if<std::is_same<T,double>::value, T>::type
