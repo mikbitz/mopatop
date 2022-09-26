@@ -76,7 +76,7 @@ int main(){
   MyCustomProgressTestListener progress;
   runner.eventManager().addListener(&progress);
   //add test suites
-  //do teimstep test before agent test, as agent test needs to advance the timestep (which is static)
+  //do timestep test before agent test, as agent test needs to advance the timestep (which is static)
   runner.addTest( timeStepTest::suite() );
   runner.addTest( agentTest::suite() );
   runner.addTest( randomTest::suite() );
